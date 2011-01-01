@@ -8,14 +8,14 @@ import monolith.type.*;
 import monolith.type.ModUnitType.*;
 
 public class CopterComp extends UnitEntity {
-	public float alpha;
+	public float alpha = 0f;
 
 	@Override
 	public void update() {
 		if (dead) {
-			alpha = Mathf.approachDelta(alpha, 1f, type.fallSpeed + 0.003f);	
+			alpha = Mathf.lerpDelta(alpha, 1f, type.fallSpeed + 0.003f);	
 		} else {
-			alpha = Mathf.approachDelta(alpha, 0f, type.fallSpeed + 0.003f);	
+			alpha = Mathf.lerpDelta(alpha, 0f, type.fallSpeed + 0.003f);	
 		}
 		super.update();
 	}
