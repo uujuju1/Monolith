@@ -38,7 +38,7 @@ public class MonolithBlocks {
 			));
 			consumePower(0.5f);
 			outputItems = with(
-				MonolithItems.macroSteel, 1
+				MonolithItems.macroSteel, 1,
 				Items.silicon, 1
 			);
 		}};
