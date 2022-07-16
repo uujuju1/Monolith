@@ -1,6 +1,7 @@
 package monolith;
 
 import mindustry.mod.*;
+import monolith.content.*;
 
 public class Monolith extends Mod{
 	@Override

@@ -3,6 +3,7 @@ package monolith.content;
 import arc.grpahics.*;
 import mindustry.world.*;
 import mindustry.content.*;
+import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.world.blocks.production.*;
 
@@ -38,7 +39,7 @@ public class MonolithBlocks {
 			));
 			consumePower(0.5f);
 			outputItems = with(
-				MonolithItems.macroSteel, 1,
+				MonolithItems.macrosteel, 1,
 				Items.silicon, 1
 			);
 		}};
