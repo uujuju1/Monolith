@@ -79,7 +79,7 @@ public class MonolithBlocks {
 					frontColor = Color.white;
 					backColor = trailColor = Color.valueOf("95ABD9");
 					trailWidth = 4f;
-					trailLength = 16f;
+					trailLength = 16;
 					shootEffect = shootEff;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					rangeChange = 16f;
@@ -90,7 +90,7 @@ public class MonolithBlocks {
 					frontColor = Color.white;
 					backColor = trailColor = Color.valueOf("B0BAC0");
 					trailWidth = 4f;
-					trailLength = 16f;
+					trailLength = 16;
 					shootEffect = shootEff;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					homingRange = 40f;
@@ -102,7 +102,7 @@ public class MonolithBlocks {
 					frontColor = Color.white;
 					backColor = trailColor = Color.valueOf("B2B8FF");
 					trailWidth = 4f;
-					trailLength = 16f;
+					trailLength = 16;
 					shootEffect = shootEff;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 				}}
