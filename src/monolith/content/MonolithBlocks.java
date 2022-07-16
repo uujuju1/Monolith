@@ -4,9 +4,11 @@ import arc.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
+import mindustry.entities.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.entities.bullet.*;
+import mindustry.entities.effect.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
@@ -67,13 +69,19 @@ public class MonolithBlocks {
 			recoil = 2f;
 			shootY = -2f;
 			rotateSpeed = 1.5f;
+			shake = 1f;
 			drawer = new DrawTurret("reinforced-");
+			Effect shootEff = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
 			ammo(
 				Items.graphite, new BasicBulletType(2f, 50) {{
 					width = height = 12f;
 					lifetime = 76f;
 					frontColor = Color.white;
 					backColor = trailColor = Color.valueOf("95ABD9");
+					trailWidth = 4f;
+					trailLength = 16f;
+					shootEffect = shootEff;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
 					rangeChange = 16f;
 				}},
 				Items.silicon, new BasicBulletType(2.5f, 30) {{
@@ -81,6 +89,10 @@ public class MonolithBlocks {
 					lifetime = 54.4f;
 					frontColor = Color.white;
 					backColor = trailColor = Color.valueOf("B0BAC0");
+					trailWidth = 4f;
+					trailLength = 16f;
+					shootEffect = shootEff;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
 					homingRange = 40f;
 					homingPower = 0.07f;
 				}},
@@ -89,6 +101,10 @@ public class MonolithBlocks {
 					lifetime = 45.33f;
 					frontColor = Color.white;
 					backColor = trailColor = Color.valueOf("B2B8FF");
+					trailWidth = 4f;
+					trailLength = 16f;
+					shootEffect = shootEff;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
 				}}
 			);
 		}};
