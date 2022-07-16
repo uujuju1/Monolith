@@ -1,5 +1,5 @@
-# Mindustry Java Mod Template
-A Java Mindustry mod template that works on Android and PC. The Kotlin version of this mod can be seen [here](https://github.com/Anuken/MindustryKotlinModTemplate).
+# Monolith
+A "vannilla" mod, no lore and no planet. Mostly a sandbox for me(uujuju) to play around.
 
 ## Building for Desktop Testing
 
@@ -26,7 +26,7 @@ Building locally takes more time to set up, but shouldn't be a problem if you've
 
 ## Adding Dependencies
 
-Please note that all dependencies on Mindustry, Arc or its submodules **must be declared as compileOnly in Gradle**. Never use `implementation` for core Mindustry or Arc dependencies. 
+idk why would you use this as a dependency but here you go
 
 - `implementation` **places the entire dependency in the jar**, which is, in most mod dependencies, very undesirable. You do not want the entirety of the Mindustry API included with your mod.
 - `compileOnly` means that the dependency is only around at compile time, and not included in the jar.
