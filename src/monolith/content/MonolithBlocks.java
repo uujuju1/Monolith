@@ -1,6 +1,7 @@
 package monolith.content;
 
-import arc.grpahics.*;
+import arc.graphics.*;
+import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.world.draw.*;
@@ -29,8 +30,12 @@ public class MonolithBlocks {
 					midColor = Color.valueOf("DEDEDE");
 				}},
 				new DrawDefault(),
-				new DrawWarmupRegion(),
-				new DrawGlowRegion("-light")
+				new DrawWarmupRegion() {{
+					color = Color.white;
+				}},
+				new DrawGlowRegion("-light") {{
+					color = Color.white;
+				}}
 			);
 			consumeItems(with(
 				Items.sand, 1,

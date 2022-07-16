@@ -1,6 +1,6 @@
 package monolith.content;
 
-import arc.grpahics.*;
+import arc.graphics.*;
 import mindustry.type.*;
 
 public class MonolithItems {
