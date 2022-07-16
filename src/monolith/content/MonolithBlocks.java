@@ -6,12 +6,17 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
+import mindustry.entities.bullet.*;
 import mindustry.world.blocks.production.*;
+import mindustry.world.blocks.defense.turrets.*;
 
 import static mindustry.type.ItemStack.*;
 
 public class MonolithBlocks {
-	public static Block furnace;
+	public static Block 
+	furnace,
+
+	move;
 
 	public void load() {
 		furnace = new GenericCrafter("furnace") {{
@@ -22,7 +27,7 @@ public class MonolithBlocks {
 			size = 3;
 			health = 200;
 			craftTime = 120;
-			warmupSpeed = 0.007f;
+			craftEffect = MonolithFx.furnaceSmelt;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
 				new DrawArcSmelt() {{
@@ -32,9 +37,8 @@ public class MonolithBlocks {
 				new DrawDefault(),
 				new DrawWarmupRegion() {{
 					color = Color.white;
-				}},
-				new DrawGlowRegion("-light") {{
-					color = Color.white;
+					glowScale = 3f;
+					glowIntensity = 0.3f;
 				}}
 			);
 			consumeItems(with(
@@ -46,6 +50,46 @@ public class MonolithBlocks {
 			outputItems = with(
 				MonolithItems.macrosteel, 1,
 				Items.silicon, 1
+			);
+		}};
+
+		move = new ItemTurret("move") {{
+			requirements(Category.turret, with(
+				Items.graphite, 150,
+				Items.silicon, 200,
+				Items.lead, 250,
+				MonolithItems.macrosteel, 100
+			));
+			size = 3;
+			health = 1400;
+			reload = 60;
+			range = 17f * 8f;
+			recoil = 2f;
+			shootY = -2f;
+			rotateSpeed = 1.5f;
+			drawer = new DrawTurret("reinforced-");
+			ammo(
+				Items.graphite, new BasicBulletType(2f, 50) {{
+					width = height = 12f;
+					lifetime = 76f;
+					frontColor = Color.white;
+					backColor = trailColor = Color.valueOf("95ABD9");
+					rangeChange = 16f;
+				}},
+				Items.silicon, new BasicBulletType(2.5f, 30) {{
+					width = height = 10f;
+					lifetime = 54.4f;
+					frontColor = Color.white;
+					backColor = trailColor = Color.valueOf("B0BAC0");
+					homingRange = 40f;
+					homingPower = 0.07f;
+				}},
+				MonolithItems.macrosteel, new BasicBulletType(3f, 40) {{
+					width = height = 12f;
+					lifetime = 45.33f;
+					frontColor = Color.white;
+					backColor = trailColor = Color.valueOf("B2B8FF");
+				}}
 			);
 		}};
 	}
