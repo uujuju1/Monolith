@@ -37,8 +37,8 @@ public class MonolithBlocks {
 				new DrawDefault(),
 				new DrawWarmupRegion() {{
 					color = Color.white;
-					glowScale = 3f;
-					glowIntensity = 0.3f;
+					sinScl = 3f;
+					sinMag = 0.3f;
 				}}
 			);
 			consumeItems(with(

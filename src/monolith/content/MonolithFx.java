@@ -2,9 +2,11 @@ package monolith.content;
 
 import arc.math.*;
 import arc.graphics.g2d.*;
+import mindustry.graphics.*;
+import mindustry.entities.*;
 
 public class MonolithFx {
-	public static Effect funaceSmelt = new Effect(60f, e -> {
+	public static Effect furnaceSmelt = new Effect(60f, e -> {
 		for(int i = 0; i < 4; i++) {
 			float
 			dx = e.x + Angles.trnsx((i * 90f) + 45f, 10f, 0f),
