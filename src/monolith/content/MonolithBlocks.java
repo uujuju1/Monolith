@@ -20,7 +20,7 @@ public class MonolithBlocks {
 	public static Block 
 	furnace,
 
-	move, accelerate;
+	move, accelerate, translate;
 
 	public void load() {
 		furnace = new GenericCrafter("furnace") {{
@@ -124,16 +124,16 @@ public class MonolithBlocks {
 			size = 4;
 			health = 2880;
 			reload = 30;
-			range = 22.75f * 8f;
+			range = 22.75f * 8f + 16f;
 			recoil = 3f;
 			rotateSpeed = 1.75f;
 			shake = 1.5f;
 			shootSound = Sounds.shootBig;
 			shoot = new ShootBarrel() {{
 				barrels = new float[] {
-					0f, 14f, 0f,
-					5f, 12f, 0f,
-					-5f, 12f, 0,
+					0f, -2f, 0f,
+					5f, -4f, 0f,
+					-5f, -4f, 0,
 				};
 			}};
 			drawer = new DrawTurret("reinforced-");
@@ -185,6 +185,52 @@ public class MonolithBlocks {
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					knockback = 7f;
 				}}
+			);
+		}}
+		translate = new ItemTurret("translate") {{
+			requirements(Category.turret, with(
+				Items.surgeAlloy, 400,
+				Items.plastanium, 350,
+				Items.thorium, 250,
+				MonolithItems.macrosteel, 450
+			));
+			size = 3;
+			health = 4500;
+			reload = 60f;
+			range = 33f * 8f;
+			recoil = 3f;
+			rotateSpeed = 1f;
+			shake = 2f;
+			shootSound = Sounds.shootBig;
+			Effect shootEff = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
+			shoot = new ShootPattern() {{
+				shots = 3;
+				shotDelay = 5f;
+			}};
+			drawer = new DrawTurret("reinforced-");
+			ammo(
+				Items.thorium, new BasicBulletType(2f, 180) {{
+					lifetime = 132;
+					width = height = 20f;
+					frontColor = Color.white;
+					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
+					trailWidth = 5f;
+					trailLength = 16;
+					shootEffect = shootEff;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 12f;
+				}},
+				Items.titanium, new BasicBulletType(4f, 150),	new BasicBulletType(4f, 180) {{
+					lifetime = 66;
+					width = height = 20f;
+					frontColor = Color.white;
+					hitColor = backColor = trailColor = Color.valueOf("88A4FF");
+					trailWidth = 5f;
+					trailLength = 16;
+					shootEffect = shootEff;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 16f;
+				}} 
 			);
 		}};
 	}
