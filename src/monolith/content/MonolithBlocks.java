@@ -186,7 +186,7 @@ public class MonolithBlocks {
 					knockback = 7f;
 				}}
 			);
-		}}
+		}};
 		translate = new ItemTurret("translate") {{
 			requirements(Category.turret, with(
 				Items.surgeAlloy, 400,
