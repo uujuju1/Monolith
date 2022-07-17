@@ -113,7 +113,7 @@ public class MonolithBlocks {
 		}};
 		accelerate = new ItemTurret("accelerate") {{
 			requirements(Category.turret, with(
-				Items.plastanium, 200
+				Items.plastanium, 200,
 				Items.thorium, 150,
 				Items.titanium, 250,
 				Items.silicon, 300,
