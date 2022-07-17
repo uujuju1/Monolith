@@ -1,6 +1,7 @@
 package monolith.content;
 
 import arc.graphics.*;
+import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
@@ -127,6 +128,7 @@ public class MonolithBlocks {
 			recoil = 3f;
 			rotateSpeed = 1.75f;
 			shake = 1.5f;
+			shootSound = Sounds.shootBig;
 			shoot = new ShootBarrel() {{
 				barrels = new float[] {
 					0f, 14f, 0f,
@@ -148,10 +150,10 @@ public class MonolithBlocks {
 					knockback = 6f;
 				}},
 				Items.titanium, new BasicBulletType(3.5f, 130) {{
-					lifetime = 52f;
+					lifetime = 61.14f;
 					width = height = 16f;
 					frontColor = Color.white;
-					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
+					hitColor = backColor = trailColor = Color.valueOf("88A4FF");
 					trailWidth = 4f;
 					trailLength = 16;
 					shootEffect = MonolithFx.shootDiamondColor;
@@ -163,7 +165,7 @@ public class MonolithBlocks {
 					lifetime = 52f;
 					width = height = 16f;
 					frontColor = Color.white;
-					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
+					hitColor = backColor = trailColor = Color.valueOf("B0BAC0");
 					trailWidth = 4f;
 					trailLength = 16;
 					shootEffect = MonolithFx.shootDiamondColor;
@@ -172,11 +174,11 @@ public class MonolithBlocks {
 					homingRange = 40f;
 					homingPower = 0.12f;
 				}},
-				MonolithItems.macrosteel, new BasicBulletType(3.5f, 90) {{
-					lifetime = 52f;
+				MonolithItems.macrosteel, new BasicBulletType(4f, 90) {{
+					lifetime = 45.5f;
 					width = height = 16f;
 					frontColor = Color.white;
-					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
+					hitColor = backColor = trailColor = Color.valueOf("B2B8FF");
 					trailWidth = 4f;
 					trailLength = 16;
 					shootEffect = MonolithFx.shootDiamondColor;
