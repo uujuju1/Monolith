@@ -143,7 +143,7 @@ public class MonolithBlocks {
 					width = height = 16f;
 					frontColor = Color.white;
 					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
-					trailWidth = 4f;
+					trailWidth = 3f;
 					trailLength = 16;
 					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
@@ -154,7 +154,7 @@ public class MonolithBlocks {
 					width = height = 16f;
 					frontColor = Color.white;
 					hitColor = backColor = trailColor = Color.valueOf("88A4FF");
-					trailWidth = 4f;
+					trailWidth = 3f;
 					trailLength = 16;
 					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
@@ -166,7 +166,7 @@ public class MonolithBlocks {
 					width = height = 16f;
 					frontColor = Color.white;
 					hitColor = backColor = trailColor = Color.valueOf("B0BAC0");
-					trailWidth = 4f;
+					trailWidth = 3f;
 					trailLength = 16;
 					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
@@ -179,7 +179,7 @@ public class MonolithBlocks {
 					width = height = 16f;
 					frontColor = Color.white;
 					hitColor = backColor = trailColor = Color.valueOf("B2B8FF");
-					trailWidth = 4f;
+					trailWidth = 3f;
 					trailLength = 16;
 					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
@@ -201,6 +201,7 @@ public class MonolithBlocks {
 			recoil = 3f;
 			rotateSpeed = 1f;
 			shake = 2f;
+			shootY = 6f;
 			shootSound = Sounds.shootBig;
 			Effect shootEff = new MultiEffect(Fx.shootBigColor, Fx.colorSparkBig);
 			shoot = new ShootPattern() {{
@@ -214,18 +215,18 @@ public class MonolithBlocks {
 					width = height = 20f;
 					frontColor = Color.white;
 					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
-					trailWidth = 5f;
+					trailWidth = 4f;
 					trailLength = 16;
 					shootEffect = shootEff;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					knockback = 12f;
 				}},
-				Items.titanium, new BasicBulletType(4f, 150),	new BasicBulletType(4f, 180) {{
+				Items.titanium, new BasicBulletType(4f, 150) {{
 					lifetime = 66;
 					width = height = 20f;
 					frontColor = Color.white;
 					hitColor = backColor = trailColor = Color.valueOf("88A4FF");
-					trailWidth = 5f;
+					trailWidth = 4f;
 					trailLength = 16;
 					shootEffect = shootEff;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
