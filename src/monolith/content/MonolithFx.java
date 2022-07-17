@@ -23,5 +23,13 @@ public class MonolithFx {
 		
 		Lines.stroke(2f * e.foutpow());
 		Lines.circle(e.x, e.y, 40f * e.finpow());
+	}),
+
+	shootDiamondColor = new Effect(30f, e -> {
+		Draw.color(e.color, Color.gray, e.finpow());
+		Angles.randLenVectors(e.id, 10, 40f * e.finpow(), 0, 15, (x, y) -> {
+			Drawf.tri(e.x + x, e.y + y, 3f * e.foutpow(), 6f * e.foutpow(), Angles.angle(e.x + x, e.y + y, e.x, e.y));
+			Drawf.tri(e.x + x, e.y + y, 3f * e.foutpow(), 6f * e.foutpow(), Angles.angle(e.x, e.y, e.x + x, e.y + y));
+		});
 	});
 }

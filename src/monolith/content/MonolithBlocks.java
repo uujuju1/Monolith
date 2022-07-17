@@ -18,7 +18,7 @@ public class MonolithBlocks {
 	public static Block 
 	furnace,
 
-	move;
+	move, accelerate;
 
 	public void load() {
 		furnace = new GenericCrafter("furnace") {{
@@ -77,22 +77,24 @@ public class MonolithBlocks {
 					width = height = 12f;
 					lifetime = 76f;
 					frontColor = Color.white;
-					backColor = trailColor = Color.valueOf("95ABD9");
-					trailWidth = 4f;
+					hitColor = backColor = trailColor = Color.valueOf("95ABD9");
+					trailWidth = 2.5f;
 					trailLength = 16;
 					shootEffect = shootEff;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 4f;
 					rangeChange = 16f;
 				}},
 				Items.silicon, new BasicBulletType(2.5f, 30) {{
 					width = height = 10f;
 					lifetime = 54.4f;
 					frontColor = Color.white;
-					backColor = trailColor = Color.valueOf("B0BAC0");
-					trailWidth = 4f;
+					hitColor = backColor = trailColor = Color.valueOf("B0BAC0");
+					trailWidth = 2.5f;
 					trailLength = 16;
 					shootEffect = shootEff;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 4f;
 					homingRange = 40f;
 					homingPower = 0.07f;
 				}},
@@ -100,11 +102,85 @@ public class MonolithBlocks {
 					width = height = 12f;
 					lifetime = 45.33f;
 					frontColor = Color.white;
-					backColor = trailColor = Color.valueOf("B2B8FF");
-					trailWidth = 4f;
+					hitColor = backColor = trailColor = Color.valueOf("B2B8FF");
+					trailWidth = 2.5f;
 					trailLength = 16;
 					shootEffect = shootEff;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 4f;
+				}}
+			);
+		}};
+		accelerate = new ItemTurret("accelerate") {{
+			requirements(Category.turret, with(
+				Items.plastanium, 200
+				Items.thorium, 150,
+				Items.titanium, 250,
+				Items.silicon, 300,
+				MonolithItems.macrosteel, 300
+			));
+			size = 4;
+			health = 2880;
+			reload = 30;
+			range = 22.75f * 8f;
+			recoil = 3f;
+			rotateSpeed = 1.75f;
+			shake = 1.5f;
+			shoot = new ShootBarrel() {{
+				barrels = new float[] {
+					0f, 14f, 0f,
+					5f, 12f, 0f,
+					-5f, 12f, 0,
+				};
+			}};
+			drawer = new DrawTurret("reinforced-");
+			ammo(
+				Items.thorium, new BasicBulletType(2f, 150) {{
+					lifetime = 91f;
+					width = height = 16f;
+					frontColor = Color.white;
+					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
+					trailWidth = 4f;
+					trailLength = 16;
+					shootEff = MonolithFx.shootDiamondColor;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 6f;
+				}},
+				Items.titanium, new BasicBulletType(3.5f, 130) {{
+					lifetime = 52f;
+					width = height = 16f;
+					frontColor = Color.white;
+					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
+					trailWidth = 4f;
+					trailLength = 16;
+					shootEff = MonolithFx.shootDiamondColor;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 5f;
+					rangeChange = 32f;
+				}},
+				Items.silicon, new BasicBulletType(3.5f, 110) {{
+					lifetime = 52f;
+					width = height = 16f;
+					frontColor = Color.white;
+					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
+					trailWidth = 4f;
+					trailLength = 16;
+					shootEff = MonolithFx.shootDiamondColor;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 4f;
+					homingRange = 40f;
+					homingPower = 0.12f;
+				}},
+				MonolithItems.macrosteel, new BasicBulletType(3.5f, 90) {{
+					lifetime = 52f;
+					width = height = 16f;
+					frontColor = Color.white;
+					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
+					trailWidth = 4f;
+					trailLength = 16;
+					shootEff = MonolithFx.shootDiamondColor;
+					hitEffect = despawnEffect = Fx.hitBulletColor;
+					knockback = 7f;
 				}}
 			);
 		}};
