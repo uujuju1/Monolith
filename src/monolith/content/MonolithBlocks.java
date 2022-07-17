@@ -9,6 +9,7 @@ import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
+import mindustry.entities.pattern.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
@@ -142,7 +143,7 @@ public class MonolithBlocks {
 					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
 					trailWidth = 4f;
 					trailLength = 16;
-					shootEff = MonolithFx.shootDiamondColor;
+					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					knockback = 6f;
 				}},
@@ -153,7 +154,7 @@ public class MonolithBlocks {
 					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
 					trailWidth = 4f;
 					trailLength = 16;
-					shootEff = MonolithFx.shootDiamondColor;
+					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					knockback = 5f;
 					rangeChange = 32f;
@@ -165,7 +166,7 @@ public class MonolithBlocks {
 					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
 					trailWidth = 4f;
 					trailLength = 16;
-					shootEff = MonolithFx.shootDiamondColor;
+					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					knockback = 4f;
 					homingRange = 40f;
@@ -178,7 +179,7 @@ public class MonolithBlocks {
 					hitColor = backColor = trailColor = Color.valueOf("BF92F9");
 					trailWidth = 4f;
 					trailLength = 16;
-					shootEff = MonolithFx.shootDiamondColor;
+					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					knockback = 7f;
 				}}
