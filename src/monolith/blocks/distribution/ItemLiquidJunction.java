@@ -1,10 +1,11 @@
 package monolith.blocks.distribution;
 
+import arc.*;
 import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import mindustry.world.*;
 
-public class ItemLiquidJunction extends Block {
+public class ItemLiquidJunction extends LiquidBlock {
 	public TextureRegion liquidRegion;
 
 	public ItemLiquidJunction(String name) {
@@ -20,17 +21,11 @@ public class ItemLiquidJunction extends Block {
 		liquidRegion = Core.atlas.find(name + "-liquid");
 	}
 
-	public class ItemLiquidJunctionBuild extends Building {
+	public class ItemLiquidJunctionBuild extends LiquidBuild {
 		@Override
 		public void updateTile() {
-			items.each(item -> dump(item));
-			liquids.each(liquid -> dumpLiquid(liquid));
-		}
-
-		@Override
-		public void draw() {
-			super.draw();
-			Draw.rect(liquidRegion, x, y, 0);
+			items.each((item, amount) -> dump(item));
+			dumpLiquid(liquids.current());
 		}
 	}
 }
