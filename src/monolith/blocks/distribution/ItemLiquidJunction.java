@@ -22,11 +22,11 @@ public class ItemLiquidJunction extends LiquidBlock {
 
 		@Override
 		public boolean acceptLiquid(Building source, Liquid liquid) {
-			return acceptsItems && liquid.currentAmount() < block.liquidCapacity;
+			return liquid.currentAmount() < block.liquidCapacity;
 		}
 		@Override
-		public boolean acceptItem(Building source, Liquid liquid) {
-			return items.get(item) < getMaximumAccepted(item);
+		public boolean acceptItem(Building source, Item liquid) {
+			return acceptsItems && items.get(item) < getMaximumAccepted(item);
 		}
 	}
 }
