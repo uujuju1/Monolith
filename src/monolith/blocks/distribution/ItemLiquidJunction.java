@@ -6,11 +6,9 @@ import mindustry.gen.*;
 import mindustry.world.blocks.liquid.*;
 
 public class ItemLiquidJunction extends LiquidBlock {
-	public TextureRegion liquidRegion;
-
 	public ItemLiquidJunction(String name) {
 		super(name);
-		hasItems = hasLiquids = true;
+		hasItems acceptItems = true;
 		destructible = true;
 		update = sync = true;
 	}
@@ -18,7 +16,6 @@ public class ItemLiquidJunction extends LiquidBlock {
 	@Override
 	public void load() {
 		super.load();
-		liquidRegion = Core.atlas.find(name + "-liquid");
 	}
 
 	public class ItemLiquidJunctionBuild extends LiquidBuild {

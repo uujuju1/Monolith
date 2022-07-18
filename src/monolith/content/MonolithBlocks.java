@@ -28,7 +28,7 @@ public class MonolithBlocks {
 
 	public void load() {
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
-			requirements(Category.crafting, with(
+			requirements(Category.liquid, with(
 				Items.metaglass, 2,
 				Items.copper, 3,
 				MonolithItems.macrosteel, 1
