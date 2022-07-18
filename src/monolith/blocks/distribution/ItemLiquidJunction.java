@@ -8,7 +8,7 @@ import mindustry.world.blocks.liquid.*;
 public class ItemLiquidJunction extends LiquidBlock {
 	public ItemLiquidJunction(String name) {
 		super(name);
-		hasItems =  acceptItems = true;
+		hasItems = acceptsItems = true;
 		destructible = true;
 		update = sync = true;
 	}
