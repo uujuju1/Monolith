@@ -23,7 +23,7 @@ public class ItemLiquidJunction extends LiquidBlock {
 
 		@Override
 		public boolean acceptLiquid(Building source, Liquid liquid) {
-			return liquid.currentAmount() < block.liquidCapacity;
+			return liquids.currentAmount() < block.liquidCapacity;
 		}
 		@Override
 		public boolean acceptItem(Building source, Item item) {
