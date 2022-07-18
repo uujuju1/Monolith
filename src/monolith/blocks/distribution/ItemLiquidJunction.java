@@ -3,6 +3,7 @@ package monolith.blocks.distribution;
 import arc.*;
 import arc.graphics.g2d.*;
 import mindustry.gen.*;
+import mindustry.type.*;
 import mindustry.world.blocks.liquid.*;
 
 public class ItemLiquidJunction extends LiquidBlock {
@@ -25,7 +26,7 @@ public class ItemLiquidJunction extends LiquidBlock {
 			return liquid.currentAmount() < block.liquidCapacity;
 		}
 		@Override
-		public boolean acceptItem(Building source, Item liquid) {
+		public boolean acceptItem(Building source, Item item) {
 			return acceptsItems && items.get(item) < getMaximumAccepted(item);
 		}
 	}
