@@ -19,5 +19,14 @@ public class ItemLiquidJunction extends LiquidBlock {
 			items.each((item, amount) -> dump(item));
 			dumpLiquid(liquids.current());
 		}
+
+		@Override
+		public boolean acceptLiquid(Building source, Liquid liquid) {
+			return acceptsItems && liquid.currentAmount() < block.liquidCapacity;
+		}
+		@Override
+		public boolean acceptItem(Building source, Liquid liquid) {
+			return items.get(item) < getMaximumAccepted(item);
+		}
 	}
 }
