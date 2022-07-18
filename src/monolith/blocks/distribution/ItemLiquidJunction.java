@@ -13,11 +13,6 @@ public class ItemLiquidJunction extends LiquidBlock {
 		update = sync = true;
 	}
 
-	@Override
-	public void load() {
-		super.load();
-	}
-
 	public class ItemLiquidJunctionBuild extends LiquidBuild {
 		@Override
 		public void updateTile() {
