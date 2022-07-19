@@ -38,9 +38,9 @@ public class AOEBlock extends Block {
 
 	@Override
 	public void setBars() {
-		addBar("shots", entity -> new Bar(Core.bundle.get("bar.shots"), Pal.turretHeat, ((AOEBlockBuild) entity).shots));
-		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, ((AOEBlockBuild) entity).reload));
-		addBar("progress", entity -> new Bar(Core.bundle.get("bar.progress"), Pal.turretHeat, ((AOEBlockBuild) entity).progress));
+		addBar("shots", entity -> new Bar(Core.bundle.get("bar.shots"), Pal.turretHeat, () -> (float)((AOEBlockBuild) entity).shots));
+		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload));
+		addBar("progress", entity -> new Bar(Core.bundle.get("bar.progress"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).progress));
 	}
 
 	public class AOEBlockBuild extends Building {
