@@ -73,7 +73,7 @@ public class AOEBlock extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			table.button(b -> b.add(new Image(Core.atlas.find("monolith-icon-bullet")).size(32f)), () -> {
+			table.button(b -> b.add(new Image(Core.atlas.find("monolith-icon-bullet"))).size(32f), () -> {
 				if (shots > 0 && reload <= 0) {
 					shootEffect.at(x, y);
 					shots--;
