@@ -1,5 +1,6 @@
 package monolith.blocks.defense;
 
+import arc.*;
 import arc.math.*;
 import arc.func.*;
 import arc.scene.ui.*;
@@ -24,7 +25,7 @@ public class AOEBlock extends Block {
 	craftEffect = Fx.smelt,
 	shootEffect = Fx.none;
 
-	public Cons<Building> drawer = build -> {Draw.rect(region, b.x, b.y, rotate ? rotdeg() : 0);};
+	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
 
 	public AOEBlock(String name) {
 		super(name);
