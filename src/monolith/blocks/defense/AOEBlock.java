@@ -22,7 +22,7 @@ public class AOEBlock extends Block {
 
 	public Effect
 	updateEffect = Fx.none,
-	craftEffect = Fx.smelt,
+	craftEffect = Fx.none,
 	shootEffect = Fx.none;
 
 	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
