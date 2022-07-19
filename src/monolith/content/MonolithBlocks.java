@@ -24,7 +24,8 @@ public class MonolithBlocks {
 
 	furnace,
 
-	move, accelerate;
+	move, accelerate,
+	monoplex;
 
 	public void load() {
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
@@ -200,6 +201,17 @@ public class MonolithBlocks {
 					knockback = 7f;
 				}}
 			);
+		}};
+
+		monoplex = new AOEBlock("monoplex") {{
+			requirements(Category.units, with(
+				Items.silicon, 80,
+				Items.plastanium, 50,
+				MonolithItems.macrosteel, 120
+			));
+			size = 2;
+			health = 250;
+			consumePower(0.5f);
 		}};
 	}
 }
