@@ -22,6 +22,8 @@ public class AOEBlock extends Block {
 	damage = 10,
 	range = 80;
 
+	public int maxShots = 10;
+
 	public Effect
 	updateEffect = Fx.none,
 	craftEffect = Fx.none,
@@ -34,13 +36,14 @@ public class AOEBlock extends Block {
 		solid = destructible = true;
 		update = sync = true;
 		hasItems = true;
+		configurable = true;
 	}
 
 	@Override
 	public void setBars() {
-		addBar("shots", entity -> new Bar(Core.bundle.get("bar.shots"), Pal.turretHeat, () -> (float)((AOEBlockBuild) entity).shots));
-		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload));
-		addBar("progress", entity -> new Bar(Core.bundle.get("bar.progress"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).progress));
+		addBar("shots", entity -> new Bar(Core.bundle.get("bar.shots"), Pal.turretHeat, () -> (float)(((AOEBlockBuild) entity).shots/maxShots)));
+		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/reloadTime));
+		addBar("progress", entity -> new Bar(Core.bundle.get("bar.progress"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).progress/craftTime));
 	}
 
 	public class AOEBlockBuild extends Building {
@@ -52,7 +55,7 @@ public class AOEBlock extends Block {
 
 		@Override
 		public void updateTile() {
-			if (efficiency > 0) {
+			if (efficiency > 0 && shots < maxShots) {
 				if (progress > 1) {
 					progress = 0;
 					shots++;
@@ -65,12 +68,12 @@ public class AOEBlock extends Block {
 					updateEffect.at(x + Mathf.range(size * 2f), y + Mathf.range(size * 2));
 				}
 			}	
-			reload -= getProgressIncrease(reloadTime);
+			reload -= Time.delta;
 		}
 
 		@Override
 		public void buildConfiguration(Table table) {
-			table.button(b -> b.add(new Image(Core.atlas.find("monolith-icon-bullet"))), () -> {
+			table.button(b -> b.add(new Image(Core.atlas.find("monolith-icon-bullet")).size(32f)), () -> {
 				if (shots > 0 && reload <= 0) {
 					shootEffect.at(x, y);
 					shots--;
