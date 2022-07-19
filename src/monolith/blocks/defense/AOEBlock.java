@@ -10,6 +10,7 @@ import mindustry.gen.*;
 import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.*;
+import mindustry.graphics.*;
 
 public class AOEBlock extends Block {
 	public float 

@@ -14,6 +14,7 @@ import mindustry.entities.pattern.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
+import monolith.blocks.defense.*;
 import monolith.blocks.distribution.*;
 
 import static mindustry.type.ItemStack.*;
