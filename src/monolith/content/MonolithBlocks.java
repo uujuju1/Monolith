@@ -222,7 +222,7 @@ public class MonolithBlocks {
 					reloadTime = 120f;
 					craftTime = 240f;
 				}},
-				new BulletRecipe("long", with(MonolithItems.macrosteel, 3, Items.silicon. 5)) {{
+				new BulletRecipe("long", with(MonolithItems.macrosteel, 3, Items.silicon, 5)) {{
 					damage = 60f;
 					range = 160f;
 					reloadTime = 60f;
