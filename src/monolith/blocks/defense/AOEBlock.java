@@ -43,15 +43,7 @@ public class AOEBlock extends Block {
 		update = sync = true;
 		configurable = true;
 
-		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> {
-			int accept = -1;
-			for (BulletRecipe plan : plans) {
-				if (e.items.has(plas.req)) {
-					accept = plans.indexOf(plan);
-				}
-			}
-			accept != -1 ? plans.get(Math.min(accept, plans.size - 1)).requirements : ItemStack.empty;
-		}));
+		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> accept != -1 ? plans.get(Math.min(accept, plans.size - 1)).requirements : ItemStack.empty}));
 	}
 
 	@Override
@@ -105,8 +97,6 @@ public class AOEBlock extends Block {
 			return src.items.has(req);
 		}
 
-		public
-
 		public void display(Table t) {
 			t.table(table -> {
 				t.setBackground(Tex.whiteui);
@@ -147,10 +137,16 @@ public class AOEBlock extends Block {
 		progress;
 
 		public int shots,
-		currentPlan;
+		currentPlan = -1f;
 
 		@Override
 		public void updateTile() {
+			for (BulletRecipe plan : plans) {
+				if (e.items.has(plas.req)) {
+					accept = plans.indexOf(plan);
+				}
+			}
+
 			if (efficiency > 0 && shots < maxShots) {
 				progress += getProgressIncrease(craftTime);
 				if (progress > 1) {
