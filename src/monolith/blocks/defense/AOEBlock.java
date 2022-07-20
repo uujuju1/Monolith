@@ -81,6 +81,10 @@ public class AOEBlock extends Block {
 		public String name;
 		public TextureRegion icon;
 		public ItemStack[] req;
+		public Effect
+		shootEffect = Fx.none,
+		craftEffect = Fx.none;
+
 		public float
 		damage = 10f,
 		range = 80f,
@@ -121,7 +125,7 @@ public class AOEBlock extends Block {
 		}
 		public void shoot(AOEBlockBuild src) {
 			if (src.shots > 0 && src.reload <= 0) {
-				// shootEffect.at(src.x, src.y);
+				shootEffect.at(src.x, src.y);
 				src.shots--;
 				Damage.damage(src.team, src.x, src.y, range, damage);
 				src.reload = reloadTime;
@@ -130,23 +134,23 @@ public class AOEBlock extends Block {
 	}
 
 	public class AOEBlockBuild extends Building {
-		float
+		public float
 		reload,
 		progress;
 
-		int shots,
+		public int shots,
 		currentPlan;
 
 		@Override
 		public void updateTile() {
 			if (efficiency > 0 && shots < maxShots) {
+				progress += getProgressIncrease(craftTime);
 				if (progress > 1) {
 					progress = 0;
 					shots++;
 					consume();
 					craftEffect.at(x, y);
 				}
-				progress += getProgressIncrease(craftTime);
 
 				if(wasVisible && Mathf.chanceDelta(updateEffectChance)){
 					updateEffect.at(x + Mathf.range(size * 2f), y + Mathf.range(size * 2));

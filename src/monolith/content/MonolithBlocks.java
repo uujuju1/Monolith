@@ -217,10 +217,16 @@ public class MonolithBlocks {
 			shootEffect = MonolithFx.aoeShoot;
 			plans.add(
 				new BulletRecipe("heavy", with(Items.graphite, 5, Items.thorium, 7)) {{
-					damage = 120;
-					range = 80;
-					reloadTime = 120;
-					craftTime = 240;
+					damage = 120f;
+					range = 80f;
+					reloadTime = 120f;
+					craftTime = 240f;
+				}},
+				new BulletRecipe("long", with(MonolithItems.macrosteel, 3, Items.silicon. 5)) {{
+					damage = 60f;
+					range = 160f;
+					reloadTime = 60f;
+					craftTime = 120f;
 				}}
 			);
 		}};

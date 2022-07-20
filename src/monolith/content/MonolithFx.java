@@ -36,7 +36,7 @@ public class MonolithFx {
 
 	aoeShoot = new Effect(30f, e -> {
 		Lines.stroke(3f * e.foutpow());
-		Lines.circle(e.x, e.y, 40ff * e.finpow());
+		Lines.circle(e.x, e.y, 40f * e.finpow());
 
 		for (int i = 0; i < 4; i++) {
 			float x = e.x + Angles.trnsx(e.rotation + (i * 90f) + (e.finpow() * 180f), 40f * e.finpow(), 0f);
