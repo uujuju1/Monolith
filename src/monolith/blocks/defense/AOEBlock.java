@@ -84,7 +84,7 @@ public class AOEBlock extends Block {
 	public void init() {
 		consume(new ConsumeItemFilter(i -> {
 			plans.each(p -> {
-				boolean accept;
+				public boolean accept;
 				accept = accept || p.acceptsItem(new ItemStack(i, 1));
 			});
 			return accept;
