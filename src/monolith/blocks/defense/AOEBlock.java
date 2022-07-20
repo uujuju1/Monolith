@@ -76,7 +76,7 @@ public class AOEBlock extends Block {
 					});
 					aoe.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots);
 				});
-			});
+			}).row();
 		});
 	}
 
@@ -88,6 +88,7 @@ public class AOEBlock extends Block {
 			}
 			return false;
 		}));
+		super.init();
 	}
 
 	public class BulletRecipe {
@@ -132,9 +133,9 @@ public class AOEBlock extends Block {
 					craft.setBackground(Tex.underline);
 					craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
-				});
+				}).row();
 				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots);
-			});
+			}).row();
 		}
 
 		public void button(Table t, AOEBlockBuild from) {
