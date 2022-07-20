@@ -56,17 +56,18 @@ public class AOEBlock extends Block {
 				t.setBackground(Tex.whiteui);
 				t.setColor(Pal.darkestGray);
 				t.add(new Image(Core.atlas.find("monolith-icon-bullet"))).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
-				
-				t.table(stats -> {
-					stats.setBackground(Tex.underline);
-					stats.add(Core.bundle.get("stat.damage") + damage).row();
-					stats.add(Core.bundle.get("stat.range") + range/8 + StatUnit.blocks.localized());
-				}).padRight(48f).row();
+				t.table(aoe -> {
+					t.table(stats -> {
+						stats.setBackground(Tex.underline);
+						stats.add(Core.bundle.get("stat.damage") + ": " + damage).row();
+						stats.add(Core.bundle.get("stat.range") + ": " + range/8 + " " +StatUnit.blocks.localized());
+					}).padRight(48f).row();
 					
-				t.table(craft -> {
-					craft.setBackground(Tex.underline);
-					craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
-					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
+					t.table(craft -> {
+						craft.setBackground(Tex.underline);
+						craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
+						craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
+					});
 				});
 			});
 		});
