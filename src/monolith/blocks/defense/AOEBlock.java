@@ -42,9 +42,10 @@ public class AOEBlock extends Block {
 
 	@Override
 	public void setBars() {
-		addBar("shots", entity -> new Bar(Core.bundle.get("bar.shots"), Pal.turretHeat, () -> (float)(((AOEBlockBuild) entity).shots/maxShots)));
+		super.setBars();
+		addBar("shots", entity -> new Bar(Core.bundle.get("bar.shots"), Pal.turretHeat, () -> ((float)((AOEBlockBuild) entity).shots/maxShots)));
 		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/reloadTime));
-		addBar("progress", entity -> new Bar(Core.bundle.get("bar.progress"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).progress/craftTime));
+		addBar("progress", entity -> new Bar(Core.bundle.get("bar.progress"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).progress));
 	}
 
 	public class AOEBlockBuild extends Building {
@@ -78,7 +79,7 @@ public class AOEBlock extends Block {
 				if (shots > 0 && reload <= 0) {
 					shootEffect.at(x, y);
 					shots--;
-					Damage.damage(x, y, range, damage);
+					Damage.damage(team, x, y, range, damage);
 					reload = reloadTime;
 				}
 			});
