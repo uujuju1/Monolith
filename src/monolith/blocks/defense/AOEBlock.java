@@ -51,8 +51,6 @@ public class AOEBlock extends Block {
 	@Override
 	public void setStats() {
 		super.setStats();
-		stats.remove(Stat.booster);
-		stats.remove(Stat.input);
 		stats.add(Stat.output, table -> {
 			table.table(t -> {
 				t.setBackground(Tex.whiteui);
@@ -67,7 +65,7 @@ public class AOEBlock extends Block {
 					
 				t.table(craft -> {
 					craft.setBackground(Tex.whiteui);
-					craft.add(Core.bundle.get("stat.productionTime") + ": " craftTime/60f + StatUnit.seconds.localized()).row();
+					craft.add(Core.bundle.get("stat.productionTime") + ": " + craftTime/60f + StatUnit.seconds.localized()).row();
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f + StatUnit.seconds.localized());
 				});
 			});
