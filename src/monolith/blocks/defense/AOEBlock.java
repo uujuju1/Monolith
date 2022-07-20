@@ -82,6 +82,7 @@ public class AOEBlock extends Block {
 
 	@Override
 	public void load() {
+		super.load();
 		plans.each(p -> p.load());
 	}
 
