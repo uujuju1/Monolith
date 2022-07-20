@@ -32,6 +32,7 @@ public class AOEBlock extends Block {
 	shootEffect = Fx.none;
 
 	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
+	public Seq<BulletRecipe> plans = new Seq<>();
 
 	public AOEBlock(String name) {
 		super(name);
@@ -52,6 +53,8 @@ public class AOEBlock extends Block {
 	public void setStats() {
 		super.setStats();
 		stats.add(Stat.output, table -> {
+			plans.each(bullet -> bullet.display(table));
+
 			table.table(t -> {
 				t.setBackground(Tex.whiteui);
 				t.setColor(Pal.darkestGray);
@@ -74,12 +77,65 @@ public class AOEBlock extends Block {
 		});
 	}
 
+	public class BulletRecipe {
+		public String name;
+		public TextureRegion icon;
+		public ItemStack[] req;
+		public float
+		damage = 10f,
+		range = 80f,
+		reloadTime = 60f,
+		craftTime = 60f;
+
+		public BulletRecipe(String name, ItemStack[] requirements) {
+			this.name = name;
+			this.req = requirements;
+		} 
+
+		public void load() {
+			icon = Core.atlas.find("monolith-icon-bullet-" + name, "monolith-icon-bullet");
+		}
+
+		public boolean acceptsItem(ItemStack has) {
+			for (ItemStack stack : has) {
+				if (stack.item == has.item) return true;
+			}
+			return false;
+		}
+
+		public void display(Table t) {
+			t.table(table -> {
+				table.table(stats -> {
+					stats.setBackground(Tex.underline);
+					stats.add(Core.bundle.get("stat.damage") + ": " + damage).row();
+					stats.add(Core.bundle.get("stat.range") + ": " + range/8 + " " +StatUnit.blocks.localized());
+				}).padRight(48f).row();
+					
+				table.table(craft -> {
+					craft.setBackground(Tex.underline);
+					craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
+					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
+				});
+				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots);
+			});
+		}
+		public void shoot(AOEBlockBuild src) {
+			if (src.shots > 0 && src.reload <= 0) {
+				// shootEffect.at(src.x, src.y);
+				src.shots--;
+				Damage.damage(src.team, src.x, src.y, range, damage);
+				src.reload = reloadTime;
+			}
+		}
+	}
+
 	public class AOEBlockBuild extends Building {
 		float
 		reload,
 		progress;
 
-		int shots;
+		int shots,
+		currentPlan;
 
 		@Override
 		public void updateTile() {
@@ -109,6 +165,9 @@ public class AOEBlock extends Block {
 					reload = reloadTime;
 				}
 			});
+			for (int i = 0; i < plans.size; i++) {
+				table.button(b -> b.add(new Image(plans.get(i).icon)), () -> plans.get(i).shoot());
+			}
 		}
 
 		@Override

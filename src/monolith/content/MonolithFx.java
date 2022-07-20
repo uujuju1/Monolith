@@ -32,5 +32,20 @@ public class MonolithFx {
 			Drawf.tri(e.x + x, e.y + y, 3f * e.foutpow(), 6f * e.foutpow(), Angles.angle(e.x + x, e.y + y, e.x, e.y));
 			Drawf.tri(e.x + x, e.y + y, 3f * e.foutpow(), 6f * e.foutpow(), Angles.angle(e.x, e.y, e.x + x, e.y + y));
 		});
+	}),
+
+	aoeShoot = new Effect(30f, e -> {
+		Lines.stroke(3f * e.foutpow());
+		Lines.circle(e.x, e.y, 40ff * e.finpow());
+
+		for (int i = 0; i < 4; i++) {
+			float x = e.x + Angles.trnsx(e.rotation + (i * 90f) + (e.finpow() * 180f), 40f * e.finpow(), 0f);
+			float y = e.y + Angles.trnsy(e.rotation + (i * 90f) + (e.finpow() * 180f), 40f * e.finpow(), 0f);
+			Drawf.tri(x, y, 8f * e.finpow(), 16f * e.foutpow(), e.rotation + (i * 90f) + (e.finpow() * 180f));
+		}
+
+		Angles.randLenVectors(e.id, 15f, 40f * e.finpow(), (x, y) -> {
+			Fill.circle(e.x + x, e.y + y, 3f * e.foutpow());
+		}); 
 	});
 }

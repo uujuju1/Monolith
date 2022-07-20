@@ -213,6 +213,16 @@ public class MonolithBlocks {
 			size = 2;
 			health = 250;
 			consumePower(0.5f);
+			consumeItems(with(Items.copper, 5));
+			shootEffect = MonolithFx.aoeShoot;
+			plans.add(
+				new BulletRecipe("heavy", with(Items.graphite, 5, Items.thorium, 7)) {{
+					damage = 120;
+					range = 80;
+					reloadTime = 120;
+					craftTime = 240;
+				}}
+			);
 		}};
 	}
 }
