@@ -48,6 +48,30 @@ public class AOEBlock extends Block {
 		addBar("progress", entity -> new Bar(Core.bundle.get("bar.progress"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).progress));
 	}
 
+	@Override
+	public void setStats() {
+		super.setStats();
+		stats.remove(Stat.booster);
+		stats.remove(Stat.input);
+		stats.add(Stat.output, t -> {
+			t.setBackground(Tex.whiteui);
+			t.setColor(Pal.darkestGray);
+			t.add(new Image(Core.atlas.find("monolith-icon-bullet"))).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
+
+			t.table(stats -> {
+				stats.add(Core.bundle.get("stat.damage")).row();
+				stats.add(Core.bundle.get("stat.range"));
+			}).padRight(48f);
+
+			t.table(reqs -> {
+				input.each(item -> {
+					reqs.add(new Image(item.item.uiIcon));
+					reqs.add("/" + item.amount).padRight(5f);
+				});
+			}).padRight(10f);
+		});
+	}
+
 	public class AOEBlockBuild extends Building {
 		float
 		reload,
