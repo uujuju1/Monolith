@@ -83,11 +83,10 @@ public class AOEBlock extends Block {
 	@Override
 	public void init() {
 		consume(new ConsumeItemFilter(i -> {
-			plans.each(p -> {
-				public boolean accept;
-				accept = accept || p.acceptsItem(new ItemStack(i, 1));
-			});
-			return accept;
+			for (BulletRecipe plan : plans) {
+				if (plan.acceptsItem(new ItemStack(i, 1))) return true;
+			}
+			return false;
 		}));
 	}
 
