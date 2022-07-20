@@ -81,6 +81,11 @@ public class AOEBlock extends Block {
 	}
 
 	@Override
+	public void load() {
+		plans.each(p -> p.load());
+	}
+
+	@Override
 	public void init() {
 		consume(new ConsumeItemFilter(i -> {
 			for (BulletRecipe plan : plans) {
