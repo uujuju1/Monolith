@@ -42,6 +42,18 @@ public class AOEBlock extends Block {
 		solid = destructible = true;
 		update = sync = true;
 		configurable = true;
+
+		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> {
+			boolean accept;
+			for (BulletRecipe plan : plans) {
+				if (e.items.has(plas.req)) {
+					accept = true;
+					plan.req;
+					break;
+				}
+			}
+			if (!accept) ItemStack.empty;
+		}));
 	}
 
 	@Override
@@ -56,27 +68,9 @@ public class AOEBlock extends Block {
 	public void setStats() {
 		super.setStats();
 		stats.add(Stat.output, table -> {
-			plans.each(bullet -> bullet.display(table));
-
 			table.table(t -> {
-				t.setBackground(Tex.whiteui);
-				t.setColor(Pal.darkestGray);
-				t.add(new Image(Core.atlas.find("monolith-icon-bullet"))).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
-				t.table(aoe -> {
-					aoe.table(stats -> {
-						stats.setBackground(Tex.underline);
-						stats.add(Core.bundle.get("stat.damage") + ": " + damage).row();
-						stats.add(Core.bundle.get("stat.range") + ": " + range/8 + " " +StatUnit.blocks.localized());
-					}).padRight(48f).row();
-					
-					aoe.table(craft -> {
-						craft.setBackground(Tex.underline);
-						craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
-						craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
-					});
-					aoe.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots);
-				});
-			}).row();
+				plans.each(bullet -> bullet.display(t));
+			});
 		});
 	}
 
@@ -84,17 +78,6 @@ public class AOEBlock extends Block {
 	public void load() {
 		super.load();
 		plans.each(p -> p.load());
-	}
-
-	@Override
-	public void init() {
-		consume(new ConsumeItemFilter(i -> {
-			for (BulletRecipe plan : plans) {
-				if (plan.acceptsItem(new ItemStack(i, 1))) return true;
-			}
-			return false;
-		}));
-		super.init();
 	}
 
 	public class BulletRecipe {
@@ -129,6 +112,9 @@ public class AOEBlock extends Block {
 
 		public void display(Table t) {
 			t.table(table -> {
+				t.setBackground(Tex.whiteui);
+				t.setColor(Pal.darkestGray);
+				t.add(new Image(icon)).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
 				table.table(stats -> {
 					stats.setBackground(Tex.underline);
 					stats.add(Core.bundle.get("stat.damage") + ": " + damage).row();
@@ -141,11 +127,11 @@ public class AOEBlock extends Block {
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
 				}).row();
 				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots);
-			}).row();
+			}).row().padBottom(5f).padTop(5f);
 		}
 
 		public void button(Table t, AOEBlockBuild from) {
-			t.button(b -> b.add(new Image(icon)), () -> shoot(from));
+			t.button(b -> b.add(new Image(icon)), () -> shoot(from)).size(32f);
 		} 
 
 		public void shoot(AOEBlockBuild src) {
