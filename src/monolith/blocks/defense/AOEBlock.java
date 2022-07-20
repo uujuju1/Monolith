@@ -13,6 +13,7 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
+import mindustry.world.meta.*;
 
 public class AOEBlock extends Block {
 	public float 
@@ -62,13 +63,14 @@ public class AOEBlock extends Block {
 				stats.add(Core.bundle.get("stat.damage")).row();
 				stats.add(Core.bundle.get("stat.range"));
 			}).padRight(48f);
-
+			/*
 			t.table(reqs -> {
 				input.each(item -> {
 					reqs.add(new Image(item.item.uiIcon));
 					reqs.add("/" + item.amount).padRight(5f);
 				});
 			}).padRight(10f);
+			*/
 		});
 	}
 
