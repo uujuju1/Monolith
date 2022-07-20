@@ -82,8 +82,10 @@ public class AOEBlock extends Block {
 	@Override
 	public void init() {
 		consume(new ConsumeItemFilter(i -> {
-			plans.each(p -> if (p.acceptsItem(new ItemStack(i, 1))) {
-				return true;
+			plans.each(p -> {
+				if (p.acceptsItem(new ItemStack(i, 1))) {
+					return true;
+				}
 			});
 			return false;
 		}));
