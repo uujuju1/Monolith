@@ -60,7 +60,7 @@ public class AOEBlock extends Block {
 				t.table(stats -> {
 					stats.setBackground(Tex.whiteui);
 					stats.add(Core.bundle.get("stat.damage") + damage).row();
-					stats.add(Core.bundle.get("stat.range") + range/8 + StatUnits.blocks.localized());
+					stats.add(Core.bundle.get("stat.range") + range/8 + StatUnit.blocks.localized());
 				}).padRight(48f).row();
 					
 				t.table(craft -> {
