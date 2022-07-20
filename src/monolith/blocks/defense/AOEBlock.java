@@ -44,15 +44,13 @@ public class AOEBlock extends Block {
 		configurable = true;
 
 		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> {
-			boolean accept;
+			int accept = -1;
 			for (BulletRecipe plan : plans) {
 				if (e.items.has(plas.req)) {
-					accept = true;
-					plan.req;
-					break;
+					accept = plans.indexOf(plan);
 				}
 			}
-			if (!accept) ItemStack.empty;
+			accept != -1 ? plans.get(Math.min(accept, plans.size - 1)).requirements : ItemStack.empty;
 		}));
 	}
 
@@ -103,12 +101,11 @@ public class AOEBlock extends Block {
 			icon = Core.atlas.find("monolith-icon-bullet-" + name, "monolith-icon-bullet");
 		}
 
-		public boolean acceptsItem(ItemStack has) {
-			for (ItemStack stack : req) {
-				if (stack.item == has.item) return true;
-			}
-			return false;
+		public boolean acceptsItem(Building src) {
+			return src.items.has(req);
 		}
+
+		public
 
 		public void display(Table t) {
 			t.table(table -> {
