@@ -44,7 +44,7 @@ public class MonolithFx {
 			Drawf.tri(x, y, 8f * e.finpow(), 16f * e.foutpow(), e.rotation + (i * 90f) + (e.finpow() * 180f));
 		}
 
-		Angles.randLenVectors(e.id, 15f, 40f * e.finpow(), (x, y) -> {
+		Angles.randLenVectors(e.id, 15, 40f * e.finpow(), (x, y) -> {
 			Fill.circle(e.x + x, e.y + y, 3f * e.foutpow());
 		}); 
 	});

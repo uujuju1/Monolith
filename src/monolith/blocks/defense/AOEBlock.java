@@ -103,7 +103,7 @@ public class AOEBlock extends Block {
 		}
 
 		public boolean acceptsItem(ItemStack has) {
-			for (ItemStack stack : has) {
+			for (ItemStack stack : reqs) {
 				if (stack.item == has.item) return true;
 			}
 			return false;
@@ -172,7 +172,7 @@ public class AOEBlock extends Block {
 				}
 			});
 			for (int i = 0; i < plans.size; i++) {
-				table.button(b -> b.add(new Image(plans.get(i).icon)), () -> plans.get(i).shoot());
+				table.button(b -> b.add(new Image(plans.get(i).icon)), () -> plans.get(i).shoot(this));
 			}
 		}
 
