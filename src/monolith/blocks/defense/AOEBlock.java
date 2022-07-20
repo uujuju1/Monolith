@@ -83,8 +83,8 @@ public class AOEBlock extends Block {
 	@Override
 	public void init() {
 		consume(new ConsumeItemFilter(i -> {
-			boolean accept = false;
 			plans.each(p -> {
+				boolean accept;
 				accept = accept || p.acceptsItem(new ItemStack(i, 1));
 			});
 			return accept;
@@ -137,6 +137,11 @@ public class AOEBlock extends Block {
 				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots);
 			});
 		}
+
+		public void button(Table t, AOEBlockBuild from) {
+			t.button(b -> b.add(new Image(icon)), () -> shoot(from));
+		} 
+
 		public void shoot(AOEBlockBuild src) {
 			if (src.shots > 0 && src.reload <= 0) {
 				shootEffect.at(src.x, src.y);
@@ -183,9 +188,7 @@ public class AOEBlock extends Block {
 					reload = reloadTime;
 				}
 			});
-			for (int i = 0; i < plans.size; i++) {
-				table.button(b -> b.add(new Image(plans.get(i).icon)), () -> plans.get(i).shoot(this));
-			}
+			plans.each(p -> p.button(table, this));
 		}
 
 		@Override
