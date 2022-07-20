@@ -79,6 +79,16 @@ public class AOEBlock extends Block {
 		});
 	}
 
+	@Override
+	public void init() {
+		consume(new ConsumeItemFilter(i -> {
+			plans.each(p -> if (p.acceptsItem(new ItemStack(i, 1))) {
+				return true;
+			});
+			return false;
+		}));
+	}
+
 	public class BulletRecipe {
 		public String name;
 		public TextureRegion icon;
@@ -103,7 +113,7 @@ public class AOEBlock extends Block {
 		}
 
 		public boolean acceptsItem(ItemStack has) {
-			for (ItemStack stack : reqs) {
+			for (ItemStack stack : req) {
 				if (stack.item == has.item) return true;
 			}
 			return false;
