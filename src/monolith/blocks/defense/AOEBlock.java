@@ -85,13 +85,13 @@ public class AOEBlock extends Block {
 
 		public void display(Table t) {
 			t.table(table -> {	
-				t.setColor(Pal.darkestGray);
-				t.setBackground(Tex.underline);
-				t.add(new Image(icon)).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
+				table.setBackground(Tex.underline);
+				table.setColor(Pal.darkestGray);
+				table.add(new Image(icon)).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
 				table.table(desc -> {
 					desc.setBackground(Tex.underline);
-					desc.add(Core.bundle.get("bullet.monolith-bullet-" + name + ".name", "monolith-bullet-" + name)).row();
-					desc.add(Core.bundle.get("bullet.monolith-bullet-" + name + ".description", ""));
+					desc.add(Core.bundle.get("bullet.monolith-" + name + ".name", "monolith-bullet-" + name)).row();
+					desc.add(Core.bundle.get("bullet.monolith-" + name + ".description", ""));
 				}).row();
 
 				table.table(stats -> {
@@ -117,7 +117,7 @@ public class AOEBlock extends Block {
 		public void button(Table t, AOEBlockBuild from) {
 			t.button(b -> b.add(new Image(icon)), () -> {
 				if (from.currentPlan != -1) {
-					if (plans.get(from.currentPlan) != this) {
+					if (plans.get(from.currentPlan) == this) {
 						shoot(from);
 					}
 				}
