@@ -8,6 +8,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
+import mindustry.ui.dialogs.*;
 import monolith.blocks.defense.AOEBlock.*;
 // custom dialog that uses a bullet recipe for stats
 public class BulletDialog extends BaseDialog {
