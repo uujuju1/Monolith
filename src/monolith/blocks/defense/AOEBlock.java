@@ -113,12 +113,14 @@ public class AOEBlock extends Block {
 					craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
 				}).row();
-				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots);
+				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots).row();
+				StatValues.items(false, req);
 			}).padBottom(5f).padTop(5f).row();
 		}
 
 		public void button(Table t, AOEBlockBuild from) {
-			t.button(b -> b.add(new Image(icon)), () -> shoot(from)).size(32f);
+			t.button(b -> b.add(new Image(icon)), () -> shoot(from)).size(48f);
+			from.currentPlan = plans.indexOf(this);
 		} 
 
 		public void shoot(AOEBlockBuild src) {
