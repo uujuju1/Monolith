@@ -17,6 +17,7 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
+import mindustry.ui.dialogs.*;
 import mindustry.world.consumers.*;
 
 public class AOEBlock extends Block {
@@ -94,17 +95,17 @@ public class AOEBlock extends Block {
 				table.add(new Image(bullet.icon)).size(64f).padTop(10f).row();
 	
 				table.table(desc -> {
-					desc.add(Core.bundle.get("bullet.monolith-" + bullet.name + ".name", "monolith-bullet-" + bullet.name)).color(Pal.accent).row();
-					desc.add(Core.bundle.get("bullet.monolith-" + bullet.name + ".description", "")).color(Color.gray).padBottom(15f).row();
+					desc.add(Core.bundle.get("bullet.monolith-" + name + ".name", "monolith-bullet-" + name)).color(Pal.accent).row();
+					desc.add(Core.bundle.get("bullet.monolith-" + name + ".description", "")).color(Color.gray).padBottom(15f).row();
 	
-					desc.add(Core.bundle.get("stat.damage") + ": " + bullet.damage).row();
-					desc.add(Core.bundle.get("stat.range") + ": " + bullet.range/8f + " " + StatUnit.blocks.localized()).padBottom(15f).row();
+					desc.add(Core.bundle.get("stat.damage") + ": " + damage).row();
+					desc.add(Core.bundle.get("stat.range") + ": " + range/8f + " " + StatUnit.blocks.localized()).padBottom(15f).row();
 	
-					desc.add(Core.bundle.get("stat.reload") + ": " + bullet.reloadTime/60f +  " " + StatUnit.seconds.localized()).row();
+					desc.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized()).row();
 	
 					desc.table(cost -> {
 						cost.setBackground(Tex.underline);
-						for (ItemStack stack : bullet.req) {
+						for (ItemStack stack : req) {
 							cost.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(2f).padRight(2f);
 						}
 					});
