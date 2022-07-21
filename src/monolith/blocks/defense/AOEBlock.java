@@ -65,7 +65,7 @@ public class AOEBlock extends Block {
 		public Effect
 		shootEffect = Fx.none,
 		craftEffect = Fx.none;
-		public Dialog dialog;
+		public BaseDialog dialog;
 
 		public float
 		damage = 10f,

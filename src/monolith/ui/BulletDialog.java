@@ -1,13 +1,14 @@
 package monolith.ui;
 
 import arc.*;
+import arc.graphics.*;
 import arc.scene.ui.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
-import monolith.blocks.defense.*;
+import monolith.blocks.defense.AOEBlock.*;
 // custom dialog that uses a bullet recipe for stats
 public class BulletDialog extends BaseDialog {
 	public BulletRecipe bullet;
