@@ -43,12 +43,6 @@ public class AOEBlock extends Block {
 	}
 
 	@Override
-	public void setBars() {
-		super.setBars();
-		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/((AOEBlockBuild) entity).getReload()));
-	}
-
-	@Override
 	public void setStats() {
 		super.setStats();
 		stats.add(Stat.output, table -> {
@@ -113,12 +107,14 @@ public class AOEBlock extends Block {
 		}
 
 		public void button(Table t, AOEBlockBuild from) {
-			t.button(b -> b.add(new Image(icon)), () -> shoot(from)).size(48f);
-			from.currentPlan = plans.indexOf(this);
+			t.button(b -> b.add(new Image(icon)), () -> {
+				shoot(from);
+				from.currentPlan = plans.indexOf(this);
+			}).size(48f);
 		} 
 
 		public void shoot(AOEBlockBuild src) {
-			if (src.reload <= 0) {
+			if (src.reload <= 0 && src.canConsume()) {
 				shootEffect.at(src.x, src.y);
 				Damage.damage(src.team, src.x, src.y, range, damage);
 				src.reload = reloadTime;
@@ -129,11 +125,6 @@ public class AOEBlock extends Block {
 	public class AOEBlockBuild extends Building {
 		public float reload;
 		public int currentPlan = -1;
-
-		public float getReload() {
-			if (currentPlan == -1) return 60f;
-			return plans.get(currentPlan).reloadTime;
-		}
 
 		@Override
 		public boolean acceptItem(Building source, Item item){
