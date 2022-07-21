@@ -39,13 +39,13 @@ public class AOEBlock extends Block {
 		update = sync = true;
 		configurable = true;
 
-		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> e.currentPlan != -1 ? plans.get(Math.min(((AOEBlockBuild)e).currentPlan, plans.size - 1)).req : ItemStack.empty));
+		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> e.currentPlan != -1 ? plans.get(Math.min(e.currentPlan, plans.size - 1)).req : ItemStack.empty));
 	}
 
 	@Override
 	public void setBars() {
 		super.setBars();
-		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/plans.get(entity.currentPlan).reloadTime));
+		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/plans.get(((AOEBlockBuild)entity).currentPlan).reloadTime));
 	}
 
 	@Override
