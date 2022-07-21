@@ -1,6 +1,10 @@
 # Monolith
 A "vannilla" mod, no lore and no planet. Mostly a sandbox for me(uujuju) to play around.
 
+# Very important note
+This mod isnt supposed to be played on campaing as some of the content may or may not corrupt your save file
+if you accidentally corrupt your save file dont yell at me
+
 ## Building for Desktop Testing
 
 1. Install JDK **17**.

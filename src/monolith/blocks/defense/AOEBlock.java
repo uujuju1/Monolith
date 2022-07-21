@@ -91,8 +91,8 @@ public class AOEBlock extends Block {
 				t.add(new Image(icon)).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
 				table.table(desc -> {
 					desc.setBackground(Tex.underline);
-					desc.add(Core.bundle.get("bullet." + name + ".name", "monolith-bullet-" + name));
-					desc.add(Core.bundle.get("bullet." + name + ".description", ""));
+					desc.add(Core.bundle.get("bullet.monolith-bullet-" + name + ".name", "monolith-bullet-" + name)).row();
+					desc.add(Core.bundle.get("bullet.monolith-bullet-" + name + ".description", ""));
 				}).row();
 
 				table.table(stats -> {
@@ -117,17 +117,19 @@ public class AOEBlock extends Block {
 
 		public void button(Table t, AOEBlockBuild from) {
 			t.button(b -> b.add(new Image(icon)), () -> {
+				if (plans.get(currentPlan) != this) {
+					shoot(from);
+				}
 				from.currentPlan = plans.indexOf(this);
-				shoot(from);
 			}).size(48f);
 		} 
 
 		public void shoot(AOEBlockBuild src) {
 			if (src.reload <= 0 && src.canConsume()) {
+				src.consume();
 				shootEffect.at(src.x, src.y);
 				Damage.damage(src.team, src.x, src.y, range, damage);
 				src.reload = reloadTime;
-				src.consume();
 			}
 		}
 	}
