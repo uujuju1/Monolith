@@ -85,31 +85,40 @@ public class AOEBlock extends Block {
 		}
 
 		public void display(Table t) {
-			t.table(table -> {
-				t.setBackground(Tex.whiteui);
+			t.table(table -> {	
 				t.setColor(Pal.darkestGray);
+				t.setBackground(Tex.underline);
 				t.add(new Image(icon)).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
+				table.table(desc -> {
+					desc.setBackground(Tex.underline);
+					desc.add(Core.bundle.get("bullet." + name + ".name"), "monolith-bullet-" + name);
+					desc.add(Core.bundle.get("bullet." + name + ".description"), "");
+				}).row();
+
 				table.table(stats -> {
 					stats.setBackground(Tex.underline);
 					stats.add(Core.bundle.get("stat.damage") + ": " + damage).row();
 					stats.add(Core.bundle.get("stat.range") + ": " + range/8 + " " +StatUnit.blocks.localized());
-				}).padRight(48f).row();
+				}).row();
 					
 				table.table(craft -> {
 					craft.setBackground(Tex.underline);
-					craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
 				}).row();
-				for (ItemStack stack : req) {
-					table.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(0.5f).padRight(0.5f);
-				}
-			}).padBottom(5f).padTop(5f).row();
+
+				table.table(cost -> {
+					t.setBackground(Tex.underline);
+					for (ItemStack stack : req) {
+						cost.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(0.5f).padRight(0.5f);
+					}
+				});
+			}).padBottom(32f).padTop(32f).row();
 		}
 
 		public void button(Table t, AOEBlockBuild from) {
 			t.button(b -> b.add(new Image(icon)), () -> {
-				shoot(from);
 				from.currentPlan = plans.indexOf(this);
+				shoot(from);
 			}).size(48f);
 		} 
 
@@ -118,6 +127,7 @@ public class AOEBlock extends Block {
 				shootEffect.at(src.x, src.y);
 				Damage.damage(src.team, src.x, src.y, range, damage);
 				src.reload = reloadTime;
+				src.consume();
 			}
 		}
 	}
