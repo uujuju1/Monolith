@@ -91,8 +91,8 @@ public class AOEBlock extends Block {
 				t.add(new Image(icon)).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
 				table.table(desc -> {
 					desc.setBackground(Tex.underline);
-					desc.add(Core.bundle.get("bullet." + name + ".name"), "monolith-bullet-" + name);
-					desc.add(Core.bundle.get("bullet." + name + ".description"), "");
+					desc.add(Core.bundle.get("bullet." + name + ".name", "monolith-bullet-" + name));
+					desc.add(Core.bundle.get("bullet." + name + ".description", ""));
 				}).row();
 
 				table.table(stats -> {
