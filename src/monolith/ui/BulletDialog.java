@@ -8,19 +8,20 @@ import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import monolith.blocks.defense.*;
-
+// custom dialog that uses a bullet recipe for stats
 public class BulletDialog extends BaseDialog {
 	public BulletRecipe bullet;
 
 	public BulletDialog(BulletRecipe bullet) {
 		this.bullet = bullet;
+		setup(this);
 	}
 
-	public void setup() {
-		clear();
-		closeOnBack();
+	public void setup(BaseDialog to) {
+		to.clear();
+		to.closeOnBack();
 
-		table(table -> {	
+		to.table(table -> {	
 			table.setBackground(Tex.whiteui);
 			table.setColor(Pal.darkestGray);
 			table.add(new Image(bullet.icon)).size(64f).padTop(10f).row();
@@ -41,7 +42,7 @@ public class BulletDialog extends BaseDialog {
 					}
 				});
 			}).pad(10).row();
-			table.button("@back", Icon.left, this.hide()).size(210f, 64f);
+			table.button("@back", Icon.left, to.hide()).size(210f, 64f);
 		}).padBottom(16f).padTop(16f).row();
 	}
 }
