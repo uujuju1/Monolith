@@ -24,7 +24,6 @@ public class AOEBlock extends Block {
 	craftTime = 60f,
 	reloadTime = 60f,
 	updateEffectChance = 0.04f,
-
 	damage = 10,
 	range = 80;
 
