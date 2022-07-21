@@ -27,12 +27,7 @@ public class AOEBlock extends Block {
 	damage = 10,
 	range = 80;
 
-	public int maxShots = 10;
-
-	public Effect
-	updateEffect = Fx.none,
-	craftEffect = Fx.none,
-	shootEffect = Fx.none;
+	public Effect	shootEffect = Fx.none;
 
 	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
 	public Seq<BulletRecipe> plans = new Seq<>();
@@ -49,9 +44,7 @@ public class AOEBlock extends Block {
 	@Override
 	public void setBars() {
 		super.setBars();
-		addBar("shots", entity -> new Bar(Core.bundle.get("bar.shots"), Pal.turretHeat, () -> ((float)((AOEBlockBuild) entity).shots/maxShots)));
-		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/reloadTime));
-		addBar("progress", entity -> new Bar(Core.bundle.get("bar.progress"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).progress));
+		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/plans.get(currentPlan).reloadTime));
 	}
 
 	@Override
@@ -81,8 +74,7 @@ public class AOEBlock extends Block {
 		public float
 		damage = 10f,
 		range = 80f,
-		reloadTime = 60f,
-		craftTime = 60f;
+		reloadTime = 60f;
 
 		public BulletRecipe(String name, ItemStack[] requirements) {
 			this.name = name;
@@ -114,7 +106,7 @@ public class AOEBlock extends Block {
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
 				}).row();
 				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots).row();
-				StatValues.items(false, req);
+				StatValues.items(req);
 			}).padBottom(5f).padTop(5f).row();
 		}
 
@@ -126,7 +118,6 @@ public class AOEBlock extends Block {
 		public void shoot(AOEBlockBuild src) {
 			if (src.shots > 0 && src.reload <= 0) {
 				shootEffect.at(src.x, src.y);
-				src.shots--;
 				Damage.damage(src.team, src.x, src.y, range, damage);
 				src.reload = reloadTime;
 			}
@@ -134,34 +125,16 @@ public class AOEBlock extends Block {
 	}
 
 	public class AOEBlockBuild extends Building {
-		public float
-		reload,
-		progress;
+		public float reload;
+		public int currentPlan = -1;
 
-		public int shots,
-		currentPlan = -1;
+		@Override
+		public boolean acceptItem(Building source, Item item){
+			return currentPlan != -1 && items.get(item) < getMaximumAccepted(item) &&	Structs.contains(plans.get(currentPlan).req, stack -> stack.item == item);
+		}
 
 		@Override
 		public void updateTile() {
-			for (BulletRecipe plan : plans) {
-				if (items.has(plan.req)) {
-					currentPlan = plans.indexOf(plan);
-				}
-			}
-
-			if (efficiency > 0 && shots < maxShots) {
-				progress += getProgressIncrease(craftTime);
-				if (progress > 1) {
-					progress = 0;
-					shots++;
-					consume();
-					craftEffect.at(x, y);
-				}
-
-				if(wasVisible && Mathf.chanceDelta(updateEffectChance)){
-					updateEffect.at(x + Mathf.range(size * 2f), y + Mathf.range(size * 2));
-				}
-			}	
 			reload -= Time.delta;
 		}
 
@@ -173,6 +146,20 @@ public class AOEBlock extends Block {
 		@Override
 		public void draw() {
 			drawer.get(this);
+		}
+
+		@Override
+		public void write(Writes w) {
+			super.writes(w);
+			w.f(reload);
+			w.i(currentPlan);
+		}
+
+		@Override
+		public void read(Reads r) {
+			super.read(r);
+			reload = r.f();
+			currentPlan = r.i();
 		}
 	}
 }
