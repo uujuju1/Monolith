@@ -106,7 +106,9 @@ public class AOEBlock extends Block {
 					craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
 				}).row();
-				StatValues.items(req);
+				for (ItemStack stack : req) {
+					table.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5f);
+				}
 			}).padBottom(5f).padTop(5f).row();
 		}
 
