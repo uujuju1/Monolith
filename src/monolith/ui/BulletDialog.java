@@ -19,7 +19,7 @@ public class BulletDialog extends BaseDialog {
 		setup(this);
 	}
 
-	public BaseDialog(String title){
+	public BulletDialog(String title){
     this(title, Core.scene.getStyle(DialogStyle.class));
   }
 
