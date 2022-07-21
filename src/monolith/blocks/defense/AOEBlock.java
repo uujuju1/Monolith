@@ -5,6 +5,7 @@ import arc.math.*;
 import arc.func.*;
 import arc.util.*;
 import arc.struct.*;
+import arc.util.io.*;
 import arc.scene.ui.*;
 import arc.graphics.g2d.*;
 import arc.scene.ui.layout.*;
