@@ -2,7 +2,10 @@ package monolith.ui;
 
 import arc.*;
 import arc.scene.ui.*;
+import mindustry.ui.*;
+import mindustry.gen.*;
 import mindustry.type.*;
+import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import monolith.blocks.defense.*;
 
@@ -11,6 +14,9 @@ public class BulletDialog extends BaseDialog {
 
 	public BulletDialog(BulletRecipe bullet) {
 		this.bullet = bullet;
+	}
+
+	public void setup() {
 		clear();
 		closeOnBack();
 
@@ -35,7 +41,7 @@ public class BulletDialog extends BaseDialog {
 					}
 				});
 			}).pad(10).row();
-			table.button("@back", Icon.left, this::hide).size(210f, 64f);
+			table.button("@back", Icon.left, this.hide()).size(210f, 64f);
 		}).padBottom(16f).padTop(16f).row();
 	}
 }
