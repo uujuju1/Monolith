@@ -116,8 +116,10 @@ public class AOEBlock extends Block {
 
 		public void button(Table t, AOEBlockBuild from) {
 			t.button(b -> b.add(new Image(icon)), () -> {
-				if (plans.get(currentPlan) != this) {
-					shoot(from);
+				if (from.currentPlan != -1) {
+					if (plans.get(from.currentPlan) != this) {
+						shoot(from);
+					}
 				}
 				from.currentPlan = plans.indexOf(this);
 			}).size(48f);
