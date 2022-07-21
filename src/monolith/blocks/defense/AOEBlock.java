@@ -18,7 +18,6 @@ import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import mindustry.world.consumers.*;
-import monolith.ui.*;
 
 public class AOEBlock extends Block {
 	public float 
@@ -65,7 +64,6 @@ public class AOEBlock extends Block {
 		public Effect
 		shootEffect = Fx.none,
 		craftEffect = Fx.none;
-		public BaseDialog dialog;
 
 		public float
 		damage = 10f,
@@ -75,7 +73,6 @@ public class AOEBlock extends Block {
 		public BulletRecipe(String name, ItemStack[] requirements) {
 			this.name = name;
 			this.req = requirements;
-			dialog = new BulletDialog("a") {{bullet = this;}};
 		} 
 
 		public void load() {
@@ -87,11 +84,40 @@ public class AOEBlock extends Block {
 		}
 
 		public void display(Table t) {
+			BaseDialog to = new BaseDialog("ae");
+			to.clear();
+			to.closeOnBack();
+
+			to.table(table -> {	
+				table.setBackground(Tex.whiteui);
+				table.setColor(Pal.darkestGray);
+				table.add(new Image(bullet.icon)).size(64f).padTop(10f).row();
+	
+				table.table(desc -> {
+					desc.add(Core.bundle.get("bullet.monolith-" + bullet.name + ".name", "monolith-bullet-" + bullet.name)).color(Pal.accent).row();
+					desc.add(Core.bundle.get("bullet.monolith-" + bullet.name + ".description", "")).color(Color.gray).padBottom(15f).row();
+	
+					desc.add(Core.bundle.get("stat.damage") + ": " + bullet.damage).row();
+					desc.add(Core.bundle.get("stat.range") + ": " + bullet.range/8f + " " + StatUnit.blocks.localized()).padBottom(15f).row();
+	
+					desc.add(Core.bundle.get("stat.reload") + ": " + bullet.reloadTime/60f +  " " + StatUnit.seconds.localized()).row();
+	
+					desc.table(cost -> {
+						cost.setBackground(Tex.underline);
+						for (ItemStack stack : bullet.req) {
+							cost.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(2f).padRight(2f);
+						}
+					});
+				}).pad(10).row();
+				table.button("@back", Icon.left, () -> to.hide()).size(210f, 64f);
+			}).padBottom(16f).padTop(16f).row();
+
+
 			t.button(b -> b.table(button -> {
 				button.add(new Image(icon)).padRight(10);
 				button.add(Core.bundle.get("stat.description"));
 			}), () -> {
-				dialog.show();
+				to.show();
 			});
 		}
 
