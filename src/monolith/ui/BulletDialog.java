@@ -48,7 +48,7 @@ public class BulletDialog extends BaseDialog {
 					}
 				});
 			}).pad(10).row();
-			table.button("@back", Icon.left, to.hide()).size(210f, 64f);
+			table.button("@back", Icon.left, () -> to.hide()).size(210f, 64f);
 		}).padBottom(16f).padTop(16f).row();
 	}
 }
