@@ -18,6 +18,7 @@ import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import mindustry.world.consumers.*;
+import monolith.ui.*;
 
 public class AOEBlock extends Block {
 	public float 
@@ -64,6 +65,7 @@ public class AOEBlock extends Block {
 		public Effect
 		shootEffect = Fx.none,
 		craftEffect = Fx.none;
+		public Dialog dialog;
 
 		public float
 		damage = 10f,
@@ -73,6 +75,7 @@ public class AOEBlock extends Block {
 		public BulletRecipe(String name, ItemStack[] requirements) {
 			this.name = name;
 			this.req = requirements;
+			dialog = new BulletDialog(this);
 		} 
 
 		public void load() {
@@ -84,34 +87,12 @@ public class AOEBlock extends Block {
 		}
 
 		public void display(Table t) {
-			t.table(table -> {	
-				table.setBackground(Tex.whiteui);
-				table.setColor(Pal.darkestGray);
-				table.add(new Image(icon)).size(48f).padLeft(10f).padRight(10f).padTop(10f).padBottom(10f);
-				table.table(desc -> {
-					desc.setBackground(Tex.underline);
-					desc.add(Core.bundle.get("bullet.monolith-" + name + ".name", "monolith-bullet-" + name)).row();
-					desc.add(Core.bundle.get("bullet.monolith-" + name + ".description", ""));
-				}).row();
-
-				table.table(stats -> {
-					stats.setBackground(Tex.underline);
-					stats.add(Core.bundle.get("stat.damage") + ": " + damage).row();
-					stats.add(Core.bundle.get("stat.range") + ": " + range/8 + " " +StatUnit.blocks.localized());
-				}).row();
-					
-				table.table(craft -> {
-					craft.setBackground(Tex.underline);
-					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
-				}).row();
-
-				table.table(cost -> {
-					t.setBackground(Tex.underline);
-					for (ItemStack stack : req) {
-						cost.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(0.5f).padRight(0.5f);
-					}
-				});
-			}).padBottom(32f).padTop(32f).row();
+			t.button(b -> b.table(button -> {
+				button.add(new Image(icon)).padRight(10);
+				button.add(Core.bundle.get("stat.description"));
+			}), () -> {
+				dialog.show();
+			});
 		}
 
 		public void button(Table t, AOEBlockBuild from) {
