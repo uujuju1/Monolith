@@ -75,7 +75,7 @@ public class AOEBlock extends Block {
 		public BulletRecipe(String name, ItemStack[] requirements) {
 			this.name = name;
 			this.req = requirements;
-			dialog = new BulletDialog(this);
+			dialog = new BulletDialog("a") {{bullet = this;}};
 		} 
 
 		public void load() {

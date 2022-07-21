@@ -14,10 +14,14 @@ import monolith.blocks.defense.AOEBlock.*;
 public class BulletDialog extends BaseDialog {
 	public BulletRecipe bullet;
 
-	public BulletDialog(BulletRecipe bullet) {
-		this.bullet = bullet;
+	public BulletDialog(String title, DialogStyle style) {
+		super(title, style);
 		setup(this);
 	}
+
+	public BaseDialog(String title){
+    this(title, Core.scene.getStyle(DialogStyle.class));
+  }
 
 	public void setup(BaseDialog to) {
 		to.clear();
