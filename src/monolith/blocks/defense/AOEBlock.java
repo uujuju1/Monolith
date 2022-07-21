@@ -106,7 +106,6 @@ public class AOEBlock extends Block {
 					craft.add(Core.bundle.get("stat.productiontime") + ": " + craftTime/60f +  " " + StatUnit.seconds.localized()).row();
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
 				}).row();
-				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots).row();
 				StatValues.items(req);
 			}).padBottom(5f).padTop(5f).row();
 		}
@@ -117,7 +116,7 @@ public class AOEBlock extends Block {
 		} 
 
 		public void shoot(AOEBlockBuild src) {
-			if (src.shots > 0 && src.reload <= 0) {
+			if (src.reload <= 0) {
 				shootEffect.at(src.x, src.y);
 				Damage.damage(src.team, src.x, src.y, range, damage);
 				src.reload = reloadTime;
