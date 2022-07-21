@@ -114,7 +114,7 @@ public class AOEBlock extends Block {
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
 				}).row();
 				table.add(Core.bundle.get("stat.itemcapacity") + ": " + maxShots);
-			}).row().padBottom(5f).padTop(5f);
+			}).padBottom(5f).padTop(5f).row();
 		}
 
 		public void button(Table t, AOEBlockBuild from) {
@@ -137,13 +137,13 @@ public class AOEBlock extends Block {
 		progress;
 
 		public int shots,
-		currentPlan = -1f;
+		currentPlan = -1;
 
 		@Override
 		public void updateTile() {
 			for (BulletRecipe plan : plans) {
-				if (e.items.has(plas.req)) {
-					accept = plans.indexOf(plan);
+				if (items.has(plan.req)) {
+					currentPlan = plans.indexOf(plan);
 				}
 			}
 
@@ -165,14 +165,6 @@ public class AOEBlock extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			table.button(b -> b.add(new Image(Core.atlas.find("monolith-icon-bullet"))).size(32f), () -> {
-				if (shots > 0 && reload <= 0) {
-					shootEffect.at(x, y);
-					shots--;
-					Damage.damage(team, x, y, range, damage);
-					reload = reloadTime;
-				}
-			});
 			plans.each(p -> p.button(table, this));
 		}
 
