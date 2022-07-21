@@ -7,6 +7,7 @@ import arc.util.*;
 import arc.struct.*;
 import arc.util.io.*;
 import arc.scene.ui.*;
+import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.scene.ui.layout.*;
 import mindustry.ui.*;
@@ -92,7 +93,7 @@ public class AOEBlock extends Block {
 			to.table(table -> {	
 				table.setBackground(Tex.whiteui);
 				table.setColor(Pal.darkestGray);
-				table.add(new Image(bullet.icon)).size(64f).padTop(10f).row();
+				table.add(new Image(icon)).size(64f).padTop(10f).row();
 	
 				table.table(desc -> {
 					desc.add(Core.bundle.get("bullet.monolith-" + name + ".name", "monolith-bullet-" + name)).color(Pal.accent).row();
