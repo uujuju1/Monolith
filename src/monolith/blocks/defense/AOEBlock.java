@@ -107,7 +107,7 @@ public class AOEBlock extends Block {
 					craft.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized());
 				}).row();
 				for (ItemStack stack : req) {
-					table.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5f);
+					table.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(0.5f).padRight(0.5f);
 				}
 			}).padBottom(5f).padTop(5f).row();
 		}
@@ -132,7 +132,7 @@ public class AOEBlock extends Block {
 
 		public float getReload() {
 			if (currentPlan == -1) return 60f;
-			return plans.get(currentPlan);
+			return plans.get(currentPlan).reloadTime;
 		}
 
 		@Override
