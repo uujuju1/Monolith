@@ -45,7 +45,7 @@ public class AOEBlock extends Block {
 	@Override
 	public void setBars() {
 		super.setBars();
-		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/plans.get(e.currentPlan).reloadTime));
+		addBar("reload", entity -> new Bar(Core.bundle.get("bar.reload"), Pal.turretHeat, () -> ((AOEBlockBuild) entity).reload/plans.get(entity.currentPlan).reloadTime));
 	}
 
 	@Override
