@@ -26,7 +26,7 @@ public class MonolithBlocks {
 	furnace,
 
 	move, accelerate,
-	monoplex;
+	caesar, vigenere;
 
 	public void load() {
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
@@ -204,7 +204,7 @@ public class MonolithBlocks {
 			);
 		}};
 
-		monoplex = new AOEBlock("monoplex") {{
+		caesar = new AOEBlock("caesar") {{
 			requirements(Category.units, with(
 				Items.silicon, 80,
 				Items.plastanium, 50,
@@ -212,22 +212,69 @@ public class MonolithBlocks {
 			));
 			size = 2;
 			health = 250;
-			consumePower(0.5f);
-			shootEffect = MonolithFx.aoeShoot;
+			itemCapacity = 20;
+			consumePower(2f);
 			plans.add(
-				new BulletRecipe("heavy", with(Items.graphite, 5, Items.thorium, 7)) {{
-					damage = 120f;
-					range = 80f;
-					reloadTime = 120f;
-					craftTime = 240f;
+				new BulletRecipe("standard", with(Items.copper, 12, Items.silicon, 6)) {{
+					damage = 45f;
+					range = 120f;
+					reloadTime = 180f;
 					shootEffect = MonolithFx.aoeShoot;
 				}},
-				new BulletRecipe("long", with(MonolithItems.macrosteel, 3, Items.silicon, 5)) {{
-					damage = 60f;
-					range = 160f;
-					reloadTime = 60f;
-					craftTime = 120f;
+				new BulletRecipe("heavy-graphite", with(Items.graphite, 16, Items.silicon, 8)) {{
+					damage = 90f;
+					range = 180f;
+					reloadTime = 240f;
 					shootEffect = MonolithFx.aoeShoot;
+				}},
+				new BulletRecipe("pyra", with(Items.pyratite, 14, Items.silicon, 7)) {{
+					damage = 30f;
+					range = 120f;
+					reloadTime = 60f;
+					shootEffect = MonolithFx.aoeShoot;
+					statuses = new StatusEffect[]{StatusEffects.flaming};
+					statusDurations = new float[]{30f};
+				}}
+			);
+		}};
+		vigenere = new AOEBlock("vigenere") {{
+			requirements(Category.units, with(
+				Items.thorium, 350,
+				Items.silicon, 460,
+				Items.titanium, 330,
+				Items.phaseFabric, 200,
+				MonolithItems.macrosteel, 660
+			));
+			size = 3;
+			health = 830;
+			itemCapacity = 30;
+			consumePower(5f);
+			plans.add(
+				new BulletRecipe("heavy-graphite", with(Items.graphite, 26, Items.silicon, 13)) {{
+					damage = 140f;
+					range = 200f;
+					reloadTime = 240f;
+					shootEffect = MonolithFx.aoeShoot;
+				}},
+				new BulletRecipe("heavy-thorium", with(Items.thorium, 30, Items.silicon, 15)) {{
+					damage = 200f;
+					range = 240f;
+					reloadTime = 320f;
+					shootEffect = MonolithFx.aoeShoot;
+				}},
+				new BulletRecipe("explosive", with(Items.blastCompound, 28, Items.silicon, 14)) {{
+					damage = 150f;
+					range = 220f;
+					reloadTime = 400f;
+					statuses = new StatusEffect[]{StatusEffects.blasted};
+					statusDurations = new float[]{120f}; 
+				}},
+				new BulletRecipe("cryo", with(Items.titanium, 28, Items.silicon, 14)) {{
+					damage = 150f;
+					range = 220f;
+					reloadTime = 400f;
+					statuses = new StatusEffect[]{StatusEffects.freezing};
+					statusDurations = new float[]{120f}; 
 				}}
 			);
 		}};

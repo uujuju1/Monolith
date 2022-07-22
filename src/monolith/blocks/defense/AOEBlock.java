@@ -22,15 +22,6 @@ import mindustry.ui.dialogs.*;
 import mindustry.world.consumers.*;
 
 public class AOEBlock extends Block {
-	public float 
-	craftTime = 60f,
-	reloadTime = 60f,
-	updateEffectChance = 0.04f,
-	damage = 10,
-	range = 80;
-
-	public Effect	shootEffect = Fx.none;
-
 	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
 	public Seq<BulletRecipe> plans = new Seq<>();
 
@@ -63,10 +54,9 @@ public class AOEBlock extends Block {
 		public String name;
 		public TextureRegion icon;
 		public ItemStack[] req;
-		public Effect
-		shootEffect = Fx.none,
-		craftEffect = Fx.none;
-
+		public Effect	shootEffect = Fx.none;
+		public StatusEffect[] statuses;
+		public float[] statusDurations;
 		public float
 		damage = 10f,
 		range = 80f,
@@ -75,7 +65,15 @@ public class AOEBlock extends Block {
 		public BulletRecipe(String name, ItemStack[] requirements) {
 			this.name = name;
 			this.req = requirements;
-		} 
+		}
+
+		public void applyStatuses(Building src) {
+			if (statuses.length == 0 || statusDurations.length == 0) return;
+			int length = Math.min(statusDurations.length : statuses.length);
+			for (int i = 0; i < length; i++) {
+				Damage.status(src.team, src.x, src.y, range, statuses[i], statusDurations[i], true, true);
+			}
+		}
 
 		public void load() {
 			icon = Core.atlas.find("monolith-icon-bullet-" + name, "monolith-icon-bullet");
@@ -91,8 +89,6 @@ public class AOEBlock extends Block {
 			to.closeOnBack();
 
 			to.table(table -> {	
-				table.setBackground(Tex.whiteui);
-				table.setColor(Pal.darkestGray);
 				table.add(new Image(icon)).size(64f).padTop(10f).row();
 	
 				table.table(desc -> {
@@ -105,7 +101,6 @@ public class AOEBlock extends Block {
 					desc.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized()).row();
 	
 					desc.table(cost -> {
-						cost.setBackground(Tex.underline);
 						for (ItemStack stack : req) {
 							cost.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(2f).padRight(2f);
 						}
@@ -120,11 +115,11 @@ public class AOEBlock extends Block {
 				button.add(Core.bundle.get("stat.description"));
 			}), () -> {
 				to.show();
-			});
+			}).row();
 		}
 
 		public void button(Table t, AOEBlockBuild from) {
-			t.button(b -> b.add(new Image(icon)), () -> {
+			t.button(b -> b.add(new Image(icon)).size(48), () -> {
 				if (from.currentPlan != -1) {
 					if (plans.get(from.currentPlan) == this) {
 						shoot(from);
@@ -139,6 +134,7 @@ public class AOEBlock extends Block {
 				src.consume();
 				shootEffect.at(src.x, src.y);
 				Damage.damage(src.team, src.x, src.y, range, damage);
+				applyStatuses(src);
 				src.reload = reloadTime;
 			}
 		}
