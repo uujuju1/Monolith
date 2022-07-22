@@ -102,7 +102,7 @@ public class AOEBlock extends Block {
 
 					if (!(statuses.length == 0 || statusDurations.length == 0)) {
 						desc.table(status -> {
-							int lenth = Math.min(statusDurations.lenth, statuses.lenth);
+							int lenth = Math.min(statusDurations.length, statuses.length);
 							for (int i = 0; i < lenth; i++) {
 								status.add(new Image(statuses[i].uiIcon));
 								status.add(statuses[i].localizedName).color(Pal.accent);
