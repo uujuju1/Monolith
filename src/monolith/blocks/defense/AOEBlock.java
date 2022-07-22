@@ -69,7 +69,7 @@ public class AOEBlock extends Block {
 
 		public void applyStatuses(Building src) {
 			if (statuses.length == 0 || statusDurations.length == 0) return;
-			int length = Math.min(statusDurations.length : statuses.length);
+			int length = Math.min(statusDurations.length, statuses.length);
 			for (int i = 0; i < length; i++) {
 				Damage.status(src.team, src.x, src.y, range, statuses[i], statusDurations[i], true, true);
 			}
