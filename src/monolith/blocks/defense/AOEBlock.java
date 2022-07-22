@@ -55,8 +55,8 @@ public class AOEBlock extends Block {
 		public TextureRegion icon;
 		public ItemStack[] req;
 		public Effect	shootEffect = Fx.none;
-		public StatusEffect[] statuses = new StatusEffect[];
-		public float[] statusDurations = new Float[];
+		public StatusEffect[] statuses = new StatusEffect[]{};
+		public float[] statusDurations = new Float[]{};
 		public float
 		damage = 10f,
 		range = 80f,
