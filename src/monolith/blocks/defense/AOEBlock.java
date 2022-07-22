@@ -99,13 +99,27 @@ public class AOEBlock extends Block {
 					desc.add(Core.bundle.get("stat.range") + ": " + range/8f + " " + StatUnit.blocks.localized()).padBottom(15f).row();
 	
 					desc.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized()).row();
+
+					if (!(statuses.length == 0 || statusDurations.length == 0)) {
+						desc.table(status -> {
+							int lenth = Math.min(statusDurations.lenth, statuses.lenth);
+							for (int i = 0; i < lenth; i++) {
+								status.add(new Image(statuses[i].uiIcon));
+								status.add(statuses[i].localizedName).color(Pal.accent);
+								status.add(" -").color(Color.gray);
+								status.add(" " + statusDurations[i]/60f).color(Pal.accent);
+								status.add(StatUnit.seconds.localized()).color(Color.gray).row();
+							}
+						}).padTop(10f);
+					}
+					
 	
 					desc.table(cost -> {
 						for (ItemStack stack : req) {
 							cost.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(2f).padRight(2f);
 						}
 					});
-				}).pad(10).row();
+				}).pad(10f).row();
 				table.button("@back", Icon.left, () -> to.hide()).size(210f, 64f);
 			}).padBottom(16f).padTop(16f).row();
 
