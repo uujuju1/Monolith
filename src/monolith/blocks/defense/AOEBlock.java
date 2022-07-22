@@ -56,7 +56,7 @@ public class AOEBlock extends Block {
 		public ItemStack[] req;
 		public Effect	shootEffect = Fx.none;
 		public StatusEffect[] statuses = new StatusEffect[]{};
-		public float[] statusDurations = new Float[]{};
+		public float[] statusDurations = new float[]{};
 		public float
 		damage = 10f,
 		range = 80f,
