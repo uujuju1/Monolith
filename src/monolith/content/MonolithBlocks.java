@@ -266,6 +266,7 @@ public class MonolithBlocks {
 					damage = 150f;
 					range = 220f;
 					reloadTime = 400f;
+					shootEffect = MonolithFx.aoeShoot;
 					statuses = new StatusEffect[]{StatusEffects.blasted};
 					statusDurations = new float[]{120f}; 
 				}},
@@ -273,6 +274,7 @@ public class MonolithBlocks {
 					damage = 150f;
 					range = 220f;
 					reloadTime = 400f;
+					shootEffect = MonolithFx.aoeShoot;
 					statuses = new StatusEffect[]{StatusEffects.freezing};
 					statusDurations = new float[]{120f}; 
 				}}

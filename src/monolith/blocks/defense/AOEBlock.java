@@ -110,7 +110,7 @@ public class AOEBlock extends Block {
 								status.add(" " + statusDurations[i]/60f).color(Pal.accent);
 								status.add(StatUnit.seconds.localized()).color(Color.gray).row();
 							}
-						}).padTop(10f);
+						}).padTop(10f).row();
 					}
 					
 	
