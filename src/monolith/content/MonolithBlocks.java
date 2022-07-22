@@ -232,7 +232,7 @@ public class MonolithBlocks {
 					range = 120f;
 					reloadTime = 60f;
 					shootEffect = MonolithFx.aoeShoot;
-					statuses = new StatusEffect[]{StatusEffects.flaming};
+					statuses = new StatusEffect[]{StatusEffects.burning};
 					statusDurations = new float[]{30f};
 				}}
 			);
