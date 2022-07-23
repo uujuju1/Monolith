@@ -21,7 +21,7 @@ public class MonolithWeathers {
 			baseSpeed = 0.05f;
 			color = noiseColor = Color.valueOf("302E3B");
 			noiseScale = 1100f;
-			noisePath = "heavy-rain";
+			noisePath = "noiseAlpha";
 			drawNoise = true;
 			useWindVector = false;
 			xspeed = 2f;
