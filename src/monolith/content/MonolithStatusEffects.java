@@ -9,6 +9,8 @@ public class MonolithStatusEffects {
 	public void load() {
 		overrun = new StatusEffect("overrun") {{
 			damage = 5;
+			speedMultiplier = reloadMultiplier = reloadMultiplier = damageMultiplier = 0.3f;
+			healthMultiplier = 0.5f;
 			init(() -> {
 				opposite(StatusEffects.burning, StatusEffects.melting);
 			});
