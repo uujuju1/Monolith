@@ -1,4 +1,4 @@
-displayName: "[cyan]Monolith"
+displayName: "Monolith"
 name: "Monolith"
 author: "Uujuju"
 main: "monolith.Monolith"
