@@ -6,12 +6,13 @@ import mindustry.type.*;
 import mindustry.content.*;
 import mindustry.world.meta.*;
 import mindustry.type.weather.*;
+import monolith.type.weathers.*;
 
 public class MonolithWeathers {
 	public static Weather storm;
 
 	public void load() {
-		storm = new RainWeather("storm"){{
+		storm = new JupiterStormWeather("storm"){{
 			duration = 1.5f * (60f * 60f);
 			density = 150f;
 			xspeed = 10f;
