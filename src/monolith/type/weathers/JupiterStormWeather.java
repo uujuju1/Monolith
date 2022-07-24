@@ -15,7 +15,7 @@ public class JupiterStormWeather extends Weather {
 
 	public Vec2 
 	speed = new Vec2(50f, 5f),
-	noiseSpeed = new Vec2(4f, 5f);
+	noiseSpeed = new Vec2(2.5f, 0.25f);
 
 	public Liquid liquid = Liquids.water;
 
