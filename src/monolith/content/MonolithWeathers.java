@@ -14,9 +14,7 @@ public class MonolithWeathers {
 	public void load() {
 		storm = new JupiterStormWeather("storm"){{
 			duration = 1.5f * (60f * 60f);
-			density = 150f;
-			xspeed = 10f;
-			yspeed = 3f;
+			rainDensity = 150f;
 			attrs.set(Attribute.light, -0.3f);
 			attrs.set(Attribute.water, 2f);
 			status = MonolithStatusEffects.overrun;

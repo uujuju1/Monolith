@@ -1,9 +1,11 @@
 package monolith.type.weathers;
 
 import arc.*;
+import arc.util.*;
 import arc.graphics.*;
 import arc.math.geom.*;
 import arc.graphics.g2d.*;
+import arc.graphics.Texture.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.content.*;
@@ -32,7 +34,9 @@ public class JupiterStormWeather extends Weather {
 	noiseLayerSpeedM = 1.1f, 
 	noiseLayerAlphaM = 0.8f, 
 	noiseLayerSclM = 0.99f, 
-	noiseLayerColorM = 1f;
+	noiseLayerColorM = 1f,
+	noiseBaseSpeed = 6.1f,
+	noiseScale = 2000f;
 
 	public int noiseLayers = 1;
 
@@ -65,15 +69,15 @@ public class JupiterStormWeather extends Weather {
 	@Override
 	public void drawUnder(WeatherState state) {
 		drawNoise(state);
-		drawSplashes(splashes, sizeMax, density, state.intensity, state.opacity, splashScl, stroke, color, liquid);
+		drawSplashes(splashes, maxSize, rainDensity, state.intensity, state.opacity, splashScl, stroke, color, liquid);
 	}
 
 	public void drawNoise(WeatherState state) {
+		float windSpeed = noiseBaseSpeed * state.intensity;
+
 		float 
 		windx = noiseSpeed.x * windSpeed,
 		windy = noiseSpeed.y * windSpeed;
-
-		float windSpeed = baseSpeed * state.intensity;
 
 		if(noiseRegion == null){
 			noiseRegion = Core.assets.get("sprites/" + noisePath + ".png", Texture.class);
@@ -86,7 +90,7 @@ public class JupiterStormWeather extends Weather {
 		Color col = Tmp.c1.set(noiseColor);
 
 		for(int i = 0; i < noiseLayers; i++){
-			drawNoise(noise, noiseColor, noiseScale * sscl, state.opacity * salpha * opacityMultiplier, sspeed * baseSpeed, state.intensity, windx, windy, offset);
+			drawNoise(noiseRegion, noiseColor, noiseScale * sscl, state.opacity * salpha * opacityMultiplier, sspeed * noiseBaseSpeed, state.intensity, windx, windy, offset);
 			sspeed *= noiseLayerSpeedM;
 			salpha *= noiseLayerAlphaM;
 			sscl *= noiseLayerSclM;
