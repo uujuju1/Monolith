@@ -12,11 +12,9 @@ import monolith.content.*;
 public class Monolith extends Mod{
 
 	public boolean hasWeather(Weather in) {
-		Vars.state.rules.weather.each(w -> {
-			if (w.weather == in) {
-				return true;
-			}
-		});
+		for (WeatherEntry weather : Vars.state.rules.weather) {
+			if (weather.weather == in) return true;
+		}
 		return false;
 	}
 
