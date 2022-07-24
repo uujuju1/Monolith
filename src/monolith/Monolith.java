@@ -1,6 +1,6 @@
 package monolith;
 
-import arc.*
+import arc.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.mod.*;
