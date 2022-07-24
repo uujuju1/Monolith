@@ -4,16 +4,18 @@ import arc.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.mod.*;
-import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.type.Weather.*;
+import mindustry.game.EventType.*;
 import monolith.content.*;
 
 public class Monolith extends Mod{
 
 	public boolean hasWeather(Weather in) {
-		Vars.state.rules.weather.each(weather -> {
-			if (weather.weather == in) return true;
+		Vars.state.rules.weather.each(w -> {
+			if (w.weather == in) {
+				return true;
+			}
 		});
 		return false;
 	}
