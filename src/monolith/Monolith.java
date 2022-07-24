@@ -19,10 +19,11 @@ public class Monolith extends Mod{
 	}
 
 	public Monolith() {
+		Weather storm = MonolithWeathers.storm;
 		Events.on(WorldLoadEvent.class, () -> {
 			Time.runTask(60 * 2, () -> {
-				if(!(Vars.state.isMenu() || hasWeather(MonolithWeathers.storm))) {
-					Vars.state.rules.weather.add(new Weather.WeatherEntry(MonolithWeathers.storm, weather.duration * 6f, weather.duration * 12f, weather.duration / 2f, weather.duration * 1.5f));
+				if(!(Vars.state.isMenu() || hasWeather(storm))) {
+					Vars.state.rules.weather.add(new Weather.WeatherEntry(storm, storm.duration * 6f, storm.duration * 12f, storm.duration / 2f, storm.duration * 1.5f));
 				}
 			});
 		});
