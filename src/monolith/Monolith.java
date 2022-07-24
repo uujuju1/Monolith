@@ -22,15 +22,7 @@ public class Monolith extends Mod{
 		Events.on(WorldLoadEvent.class, () -> {
 			Time.runTask(60 * 2, () -> {
 				if(!(Vars.state.isMenu() || hasWeather(MonolithWeathers.storm))) {
-					Vars.state.rules.weather.add(
-						new Weather.WeatherEntry() {{
-							weather = MonolithWeathers.storm;
-							minFrequency = weather.duration * 6f;
-							cooldown = maxFrequency = weather.duration * 12f;
-							minDuration = weather.duration / 2f;
-							maxDuration = weather.duration * 1.5f;
-						}}
-					);
+					Vars.state.rules.weather.add(new Weather.WeatherEntry(MonolithWeathers.storm, weather.duration * 6f, weather.duration * 12f, weather.duration / 2f, weather.duration * 1.5f));
 				}
 			});
 		});
