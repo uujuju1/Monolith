@@ -51,7 +51,7 @@ public class JupiterStormWeather extends Weather {
 	@Override
 	public void load() {
 		super.load();
-		if(drawNoise && Core.assets != null){
+		if(Core.assets != null){
 			Core.assets.load("sprites/" + noisePath + ".png", Texture.class);
 		}
 		for (int i = 0; i < splashes.length; i++) {
