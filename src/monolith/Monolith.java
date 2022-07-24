@@ -6,6 +6,7 @@ import mindustry.*;
 import mindustry.mod.*;
 import mindustry.game.*;
 import mindustry.type.*;
+import mindustry.type.Weather.*;
 import monolith.content.*;
 
 public class Monolith extends Mod{
