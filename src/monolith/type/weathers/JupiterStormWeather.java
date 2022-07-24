@@ -51,10 +51,8 @@ public class JupiterStormWeather extends Weather {
 	@Override
 	public void load() {
 		super.load();
-		if(noiseRegion == null){
-			noiseRegion = Core.assets.get("sprites/" + noisePath + ".png", Texture.class);
-			noiseRegion.setWrap(TextureWrap.repeat);
-			noiseRegion.setFilter(TextureFilter.linear);
+		if(drawNoise && Core.assets != null){
+			Core.assets.load("sprites/" + noisePath + ".png", Texture.class);
 		}
 		for (int i = 0; i < splashes.length; i++) {
 			splashes[i] = Core.atlas.find("splash-" + i);
