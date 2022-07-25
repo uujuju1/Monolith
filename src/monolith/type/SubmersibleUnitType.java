@@ -44,7 +44,7 @@ public class SubmersibleUnitType extends UnitType {
 	public void update(Unit unit) {
 		super.update(unit);
 		if(Mathf.chanceDelta(submersedEffectChance) && getFloor(unit).drownTime == 0){
-			submersedEffect.at(unit.x + Mathf.range(unit.type.hitSize), unit.y + Mathf.range(unit.type.hitSizew), unit.rotation, getFloor(unit).mapColor);
+			submersedEffect.at(unit.x + Mathf.range(unit.type.hitSize), unit.y + Mathf.range(unit.type.hitSize), unit.rotation, getFloor(unit).mapColor);
 		}
 	}
 }
