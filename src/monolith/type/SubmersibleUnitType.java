@@ -29,13 +29,13 @@ public class SubmersibleUnitType extends UnitType {
 	@Override
 	public boolean targetable(Unit unit, Team targeter) {
 		if (getFloor(unit).isLiquid) return false;
-		super.targetable(unit, targeter);
+		return targetable || (vulnerableWithPayloads && unit instanceof Payloadc p && p.hasPayload());
 	}
 
 	@Override
 	public boolean hittable(Unit unit) {
 		if (getFloor(unit).isLiquid) return false;
-		super.hittable(unit);
+		return hittable || (vulnerableWithPayloads && unit instanceof Payloadc p && p.hasPayload());
 	}
 
 	@Override
