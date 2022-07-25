@@ -1,5 +1,6 @@
 package monolith.content;
 
+import mindustry.gen.*;
 import mindustry.type.*;
 import monolith.type.*;
 

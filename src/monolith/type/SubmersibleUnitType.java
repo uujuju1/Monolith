@@ -13,7 +13,7 @@ public class SubmersibleUnitType extends UnitType {
 	public Effect submersedEffect = new Effect(30f, e -> {
 		Draw.color(e.color);
 		Lines.stroke(e.foutpow());
-		Lines.circle(2f * e.finpow());
+		Lines.circle(e.x, e.y, 2f * e.finpow());
 	});
 	public float submersedEffectChance = 0.04f;
 
@@ -41,8 +41,8 @@ public class SubmersibleUnitType extends UnitType {
 	@Override
 	public void update(Unit unit) {
 		super.update(unit);
-		if(wasVisible && Mathf.chanceDelta(submersedEffectChance)){
-			submersedEffect.at(x + Mathf.range(unit.type.hitSize * 8f), y + Mathf.range(unit.type.hitSize * 8f));
+		if(Mathf.chanceDelta(submersedEffectChance)){
+			submersedEffect.at(unit.x + Mathf.range(unit.type.hitSize * 8f), unit.y + Mathf.range(unit.type.hitSize * 8f));
 		}
 	}
 }
