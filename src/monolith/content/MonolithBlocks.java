@@ -296,6 +296,6 @@ public class MonolithBlocks {
 			range = 200;
 			buildSpeed = 1.5f;
 			consumePower(3f);
-		}}
+		}};
 	}
 }
