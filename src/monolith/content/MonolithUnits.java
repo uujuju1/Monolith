@@ -6,10 +6,10 @@ import mindustry.entities.bullet.*;
 import monolith.type.*;
 
 public class MonolithUnits {
-	public static UnitType test;
+	public static UnitType shelter;
 
 	public void load() {
-		test = new SubmersibleUnitType("test") {{
+		shelter = new SubmersibleUnitType("shelter") {{
 			health = 1650;
 			speed = 1f;
 			range = maxRange = 25f * 8f;
