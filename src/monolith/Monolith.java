@@ -21,17 +21,18 @@ public class Monolith extends Mod{
 	public Monolith() {
 		Events.on(WorldLoadEvent.class, e -> {
 			Time.runTask(60 * 2, () -> {
-				if(!(Vars.state.isMenu() || hasWeather(MonolithWeathers.storm))) {
-					Vars.state.rules.weather.add(new Weather.WeatherEntry(MonolithWeathers.storm, MonolithWeathers.storm.duration * 6f, MonolithWeathers.storm.duration * 12f, MonolithWeathers.storm.duration / 2f, MonolithWeathers.storm.duration * 1.5f));
-				}
+				if(Vars.state.isMenu() || hasWeather(MonolithWeathers.storm) || !hasWeather(Weathers.rain)) return;
+				Vars.state.rules.weather.add(new Weather.WeatherEntry(MonolithWeathers.storm, MonolithWeathers.storm.duration * 6f, MonolithWeathers.storm.duration * 12f, MonolithWeathers.storm.duration / 2f, MonolithWeathers.storm.duration * 1.5f));
 			});
 		});
 	}
+	
 	@Override
 	public void loadContent(){
 		new MonolithStatusEffects().load();
 		new MonolithWeathers().load();
 		new MonolithItems().load();
+		new MonolithUnits().load();
 		new MonolithBlocks().load();
 	}
 }

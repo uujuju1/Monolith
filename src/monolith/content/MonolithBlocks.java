@@ -11,6 +11,7 @@ import mindustry.world.meta.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.pattern.*;
+import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
@@ -26,7 +27,9 @@ public class MonolithBlocks {
 	furnace,
 
 	move, accelerate,
-	caesar, vigenere;
+	caesar, vigenere,
+
+	artifact;
 
 	public void load() {
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
@@ -280,5 +283,19 @@ public class MonolithBlocks {
 				}}
 			);
 		}};
+
+		artifact = new BuildTurret("artifact") {{
+			requirements(Category.effect, with(
+				Items.plastanium, 150,
+				Items.silicon, 200,
+				Items.metaglass, 170,
+				MonolithItems.macrosteel, 180
+			));
+			size = 3;
+			health = 250;
+			range = 200;
+			buildSpeed = 1.5f;
+			consumePower(3f);
+		}}
 	}
 }
