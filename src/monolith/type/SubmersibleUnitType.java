@@ -21,7 +21,7 @@ public class SubmersibleUnitType extends UnitType {
 	public SubmersibleUnitType(String name) {
 		super(name);
 		canDrown = false;
-		immunitites.add(StatusEffects.wet);
+		immunities.add(StatusEffects.wet);
 	}
 
 	public Floor getFloor(Unit unit) {

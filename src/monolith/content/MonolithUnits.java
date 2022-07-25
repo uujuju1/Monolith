@@ -15,7 +15,7 @@ public class MonolithUnits {
 			range = maxRange = 25f * 8f;
 			hitSize = 12f;
 			constructor = MechUnit::create;
-			immunitites.add(MonolithStatusEffects.overrun);
+			immunities.add(MonolithStatusEffects.overrun);
 
 			weapons.add(
 				new Weapon("monolith-shelter-cannon") {{
@@ -23,7 +23,7 @@ public class MonolithUnits {
 					y = 0f;
 					reload = 60f;
 					recoil = 2f;
-					bullet = new BasicBuleltType(2.5f, 60) {{
+					bullet = new BasicBulletType(2.5f, 60) {{
 						lifetime = 80f;
 					}};
 				}},
@@ -32,7 +32,7 @@ public class MonolithUnits {
 					y = -6f;
 					reload = 30f;
 					recoil = 2f;
-					bullet = new BasicBuleltType(2.5f, 15) {{
+					bullet = new BasicBulletType(2.5f, 15) {{
 						lifetime = 80f;
 					}};
 				}}
