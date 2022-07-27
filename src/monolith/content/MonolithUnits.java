@@ -3,8 +3,9 @@ package monolith.content;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.content.*;
+import mindustry.graphics.*;
 import mindustry.entities.bullet.*;
-import mindustry.world.blocks.units.*;
+import mindustry.world.blocks.units.UnitFactory.*;
 import monolith.type.*;
 
 public class MonolithUnits {
@@ -47,6 +48,6 @@ public class MonolithUnits {
 		}};
 
 		// plans
-		Blocks.groundFactory.plans.addAll(new UnitPlan(shelter, 120 * 60, ItemStack.with(Items.silicon, 25, MonolithItems.macrosteel, 20)));
+		((UnitFactory) Blocks.groundFactory).plans.addAll(new UnitPlan(shelter, 120 * 60, ItemStack.with(Items.silicon, 25, MonolithItems.macrosteel, 20)));
 	}
 }
