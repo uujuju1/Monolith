@@ -1,4 +1,4 @@
-package monolith.world.dimension;
+package monolith.blocks.dimension;
 
 import mindustry.gen.*;
 import mindustry.world.*;

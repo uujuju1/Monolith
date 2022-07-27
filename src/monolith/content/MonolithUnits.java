@@ -5,7 +5,7 @@ import mindustry.type.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.entities.bullet.*;
-import mindustry.world.blocks.units.UnitFactory.*;
+import mindustry.world.blocks.units.UnitFactory;
 import monolith.type.*;
 
 public class MonolithUnits {
