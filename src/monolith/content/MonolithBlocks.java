@@ -16,6 +16,7 @@ import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
 import monolith.blocks.defense.*;
+import monolith.blocks.dimension.*;
 import monolith.blocks.distribution.*;
 
 import static mindustry.type.ItemStack.*;
@@ -29,7 +30,9 @@ public class MonolithBlocks {
 	move, accelerate,
 	caesar, vigenere,
 
-	artifact;
+	artifact,
+
+	test;
 
 	public void load() {
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
@@ -296,6 +299,14 @@ public class MonolithBlocks {
 			range = 200;
 			buildSpeed = 1.5f;
 			consumePower(3f);
+		}};
+
+		test = new DimensionBlock("test") {{
+			requirements(Category.units, with(
+				Items.copper, 1
+			));
+			size = 3;
+			health = 250;
 		}};
 	}
 }
