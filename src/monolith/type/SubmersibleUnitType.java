@@ -30,20 +30,20 @@ public class SubmersibleUnitType extends UnitType {
 
 	@Override
 	public boolean targetable(Unit unit, Team targeter) {
-		if (getFloor(unit).drownTime == 0) return false;
+		if (getFloor(unit).isDeep()) return false;
 		return targetable || (vulnerableWithPayloads && unit instanceof Payloadc p && p.hasPayload());
 	}
 
 	@Override
 	public boolean hittable(Unit unit) {
-		if (getFloor(unit).drownTime == 0) return false;
+		if (getFloor(unit).isDeep()) return false;
 		return hittable || (vulnerableWithPayloads && unit instanceof Payloadc p && p.hasPayload());
 	}
 
 	@Override
 	public void update(Unit unit) {
 		super.update(unit);
-		if(Mathf.chanceDelta(submersedEffectChance) && getFloor(unit).drownTime == 0){
+		if(Mathf.chanceDelta(submersedEffectChance) && getFloor(unit).isDeep()){
 			submersedEffect.at(unit.x + Mathf.range(unit.type.hitSize), unit.y + Mathf.range(unit.type.hitSize), unit.rotation, getFloor(unit).mapColor);
 		}
 	}

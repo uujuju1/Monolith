@@ -27,7 +27,7 @@ public class Monolith extends Mod{
 			});
 		});
 	}
-	
+
 	@Override
 	public void loadContent(){
 		new MonolithStatusEffects().load();

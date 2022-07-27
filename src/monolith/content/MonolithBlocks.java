@@ -291,7 +291,7 @@ public class MonolithBlocks {
 				Items.metaglass, 170,
 				MonolithItems.macrosteel, 180
 			));
-			size = 3;
+			size = 2;
 			health = 250;
 			range = 200;
 			buildSpeed = 1.5f;
