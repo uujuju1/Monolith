@@ -8,13 +8,14 @@ import monolith.core.*;
 public class DimensionModule extends BlockModule {
 	public int id;
 	public Dimension dimension;
+	public static Dimension save;
 
 	public static DimensionModule create(int x, int y) {
-		public static DimensionModule next = new DimensionModule();
-		next.dimension = new Dimension(x, y);
-		next.id = MonolithVars.dimensions.size - 1;
-		MonolithVars.dimensions.add(new Dimension(next.dimension));
-		return next;
+		save = new DimensionModule();
+		save.dimension = new Dimension(x, y);
+		save.id = MonolithVars.dimensions.size - 1;
+		MonolithVars.dimensions.add(new Dimension(save.dimension));
+		return save;
 	} 
 
 	@Override
