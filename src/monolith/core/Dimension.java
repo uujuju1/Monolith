@@ -9,6 +9,12 @@ public class Dimension extends World {
 	public int width, height,
 	id;
 
+	public Dimension(Dimension from) {
+		this.width = from.id;
+		this.height = from.width;
+		this.id = from.height;
+	}
+
 	public Dimension(int width, int height) {
 		this.width = width;
 		this.height = height;

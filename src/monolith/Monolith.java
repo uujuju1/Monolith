@@ -11,7 +11,6 @@ import mindustry.game.EventType.*;
 import monolith.content.*;
 
 public class Monolith extends Mod{
-	public MonolithVars vars = new MonolithVars();
 
 	public boolean hasWeather(Weather in) {
 		for (WeatherEntry weather : Vars.state.rules.weather) {

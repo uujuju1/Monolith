@@ -4,5 +4,5 @@ import arc.struct.*;
 import monolith.core.*;
 
 public class MonolithVars {
-	public Seq<Dimension> dimensions = new Seq<>();
+	public static Seq<Dimension> dimensions = new Seq<>();
 }
