@@ -1,5 +1,7 @@
 package monolith.blocks.dimension;
 
+import arc.util.*;
+import arc.util.io.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
@@ -19,7 +21,7 @@ public class DimensionBlock extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			table.add(new Image(new TilesDrawable(module.dimension.tiles)));
+			table.add(new Image(new TilesDrawable(module.dimension.tiles))).size(Math.max(dimensionW, dimensionH));
 		}
 	}
 }
