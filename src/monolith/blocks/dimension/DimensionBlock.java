@@ -21,7 +21,10 @@ public class DimensionBlock extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			table.add(new Image(new TilesDrawable(module.dimension.tiles))).size(Math.max(dimensionW, dimensionH));
+			TilesDialog dialog = new TilesDialog("Dimension");
+			table.button(Icon.settings, () -> {
+				dialog.show(module.dimension.tiles);
+			});
 		}
 	}
 }
