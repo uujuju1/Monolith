@@ -6,9 +6,12 @@ import monolith.*;
 import monolith.core.*;
 
 public class DimensionModule extends BlockModule {
+	// id for saving stuff
 	public int id;
+	// dimension
 	public Dimension dimension;
-	public static Dimension save;
+	// static variable used for saving stuff
+	public static DimensionModule save;
 
 	public static DimensionModule create(int x, int y) {
 		save = new DimensionModule();
