@@ -1,7 +1,8 @@
 package monolith;
 
 import arc.struct.*;
+import monolith.core.*;
 
-public class MonoltithVars {
-	public static Seq<Dimension> dimensions = new Seq<>();
+public class MonolithVars {
+	public Seq<Dimension> dimensions = new Seq<>();
 }

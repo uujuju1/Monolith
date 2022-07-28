@@ -17,7 +17,8 @@ public class TilesDrawable extends BaseDrawable implements TransformDrawable {
 	public void draw(float initx, float inity, float width, float height){
 		tiles.eachTile(tile -> {
 			boolean drawbuild = true;
-			drawx = initx - tiles.width/2f;
+			float 
+			drawx = initx - tiles.width/2f,
 			drawy = inity - tiles.height/2f;
 
 			Mathf.rand.setSeed(tile.pos());
