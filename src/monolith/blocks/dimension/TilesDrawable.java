@@ -29,9 +29,6 @@ public class TilesDrawable extends BaseDrawable implements TransformDrawable {
 				Draw.rect(tile.overlay().variantRegions[Mathf.randomSeed(tile.pos(), 0, Math.max(0, tile.overlay().variantRegions.length - 1))], drawx + tile.worldx(), drawy + tile.worldy());
 			}
 			if (tile.block() != null && tile.block() != Blocks.air) {
-				if (tile.build == null) {
-					Draw.rect(tile.overlay().variantRegions[Mathf.randomSeed(tile.pos(), 0, Math.max(0, tile.overlay().variantRegions.length - 1))], drawx + tile.worldx(), drawy + tile.worldy());
-				}
 				Draw.rect(tile.block().uiIcon, drawx + tile.worldx(), drawy + tile.worldy());
 			}
 		});
