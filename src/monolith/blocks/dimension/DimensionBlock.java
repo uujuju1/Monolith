@@ -6,6 +6,7 @@ import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 import mindustry.world.*;
+import monolith.ui.*;
 
 public class DimensionBlock extends Block {
 	public int dimensionW = 10, dimensionH = 10;
