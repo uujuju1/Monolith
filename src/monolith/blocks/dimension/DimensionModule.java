@@ -10,7 +10,7 @@ public class DimensionModule extends BlockModule {
 	public Dimension dimension;
 
 	public static DimensionModule create(int x, int y) {
-		static DimensionModule next = new DimensionModule();
+		public static DimensionModule next = new DimensionModule();
 		next.dimension = new Dimension(x, y);
 		next.id = MonolithVars.dimensions.size - 1;
 		MonolithVars.dimensions.add(new Dimension(next.dimension));
