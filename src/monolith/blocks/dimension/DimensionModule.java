@@ -16,8 +16,8 @@ public class DimensionModule extends BlockModule {
 	public static DimensionModule create(int x, int y) {
 		save = new DimensionModule();
 		save.dimension = new Dimension(x, y);
-		save.id = MonolithVars.dimensions.size - 1;
 		MonolithVars.dimensions.add(new Dimension(save.dimension));
+		save.id = MonolithVars.dimensions.size - 1;
 		return save;
 	} 
 
