@@ -24,7 +24,7 @@ public class DimensionModule extends BlockModule {
 	@Override
 	public void write(Writes write){
 		write.i(id);
-		MonolithVars.set(id, dimension);
+		MonolithVars.dimensions.set(id, dimension);
 	}
 
 	@Override

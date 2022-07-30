@@ -18,8 +18,8 @@ public class TilesDrawable extends BaseDrawable implements TransformDrawable {
 		tiles.eachTile(tile -> {
 			boolean drawbuild = true;
 			float 
-			drawx = (initx - tiles.width/2f) * 128f,
-			drawy = (inity - tiles.height/2f) * 128f;
+			drawx = initx - (tiles.width/2f) * 128f,
+			drawy = inity - (tiles.height/2f) * 128f;
 
 			Mathf.rand.setSeed(tile.pos());
 			if (tile.floor() != null && tile.floor() != Blocks.air) {
