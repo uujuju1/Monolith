@@ -16,7 +16,7 @@ public class TilesDialog extends BaseDialog {
 		cont.clear();
 		Table table = new Table();
 		table.margin(10);
-		table.add(new Image(new TilesDrawable(tiles))).size(Math.max(tiles.width, tiles.height) * 32);
+		table.add(new Image(new TilesDrawable(tiles))).size(Math.max(tiles.width, tiles.height) * 128);
 		ScrollPane pane = new ScrollPane(table);
 		cont.add(pane);
 		show();

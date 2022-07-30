@@ -19,11 +19,12 @@ public class DimensionModule extends BlockModule {
 		MonolithVars.dimensions.add(new Dimension(save.dimension));
 		save.id = MonolithVars.dimensions.size - 1;
 		return save;
-	} 
+	}
 
 	@Override
 	public void write(Writes write){
 		write.i(id);
+		MonolithVars.set(id, dimension);
 	}
 
 	@Override
