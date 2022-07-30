@@ -18,18 +18,18 @@ public class TilesDrawable extends BaseDrawable implements TransformDrawable {
 		tiles.eachTile(tile -> {
 			boolean drawbuild = true;
 			float 
-			drawx = initx - (tiles.width/2f),
-			drawy = inity - (tiles.height/2f);
+			drawx = (initx - (tiles.width/2f)) * 8,
+			drawy = (inity - (tiles.height/2f)) * 8;
 
 			Mathf.rand.setSeed(tile.pos());
 			if (tile.floor() != null && tile.floor() != Blocks.air) {
-				Draw.rect(tile.floor().variantRegions[Mathf.randomSeed(tile.pos(), 0, Math.max(0, tile.floor().variantRegions.length - 1))], drawx + tile.worldx(), drawy + tile.worldy());
+				Draw.rect(tile.floor().variantRegions[Mathf.randomSeed(tile.pos(), 0, Math.max(0, tile.floor().variantRegions.length - 1))], drawx + tile.worldx() * 8, drawy + tile.worldy() * 8);
 			}
 			if (tile.overlay() != null && tile.overlay() != Blocks.air) {
-				Draw.rect(tile.overlay().variantRegions[Mathf.randomSeed(tile.pos(), 0, Math.max(0, tile.overlay().variantRegions.length - 1))], drawx + tile.worldx(), drawy + tile.worldy());
+				Draw.rect(tile.overlay().variantRegions[Mathf.randomSeed(tile.pos(), 0, Math.max(0, tile.overlay().variantRegions.length - 1))], drawx + tile.worldx() * 8, drawy + tile.worldy() * 8);
 			}
 			if (tile.block() != null && tile.block() != Blocks.air) {
-				Draw.rect(tile.block().uiIcon, drawx + tile.worldx(), drawy + tile.worldy());
+				Draw.rect(tile.block().uiIcon, drawx + tile.worldx() * 8, drawy + tile.worldy() * 8);
 			}
 		});
 	}
