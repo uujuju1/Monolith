@@ -5,7 +5,7 @@ import arc.scene.ui.*;
 import arc.graphics.*;
 import arc.scene.ui.layout.*;
 import mindustry.ui.*;
-import mindustry.content.*;
+import mindustry.graphics.*;
 import mindustry.ui.dialogs.*;
 import mindustry.world.meta.*;
 import monolith.blocks.defense.AOEBlock.*;
