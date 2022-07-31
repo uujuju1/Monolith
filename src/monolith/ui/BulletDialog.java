@@ -44,7 +44,7 @@ public class BulletDialog extends BaseDialog {
 			}).left().padLeft(10).row();
 			desc.table(reloadStat -> {
 				reloadStat.add(Core.bundle.get("stat.reload") + ":").left().color(Color.lightGray);
-				reloadStat.add(" " + bullet.reload/60 + " " + StatUnit.seconds.localized()).left();
+				reloadStat.add(" " + bullet.reloadTime/60 + " " + StatUnit.seconds.localized()).left();
 			}).left().padLeft(10).row();
 			desc.table(reqsStat -> {
 				reqsStat.add(Core.bundle.get("stat.buildcost") + ":").left().color(Color.lightGray);
