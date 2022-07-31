@@ -84,51 +84,13 @@ public class AOEBlock extends Block {
 		}
 
 		public void display(Table t) {
-			BaseDialog to = new BaseDialog("ae");
-			to.clear();
-			to.closeOnBack();
-
-			to.table(table -> {	
-				table.add(new Image(icon)).size(64f).padTop(10f).row();
-	
-				table.table(desc -> {
-					desc.add(Core.bundle.get("bullet.monolith-" + name + ".name", "monolith-bullet-" + name)).color(Pal.accent).row();
-					desc.add(Core.bundle.get("bullet.monolith-" + name + ".description", "")).color(Color.gray).padBottom(15f).row();
-	
-					desc.add(Core.bundle.get("stat.damage") + ": " + damage).row();
-					desc.add(Core.bundle.get("stat.range") + ": " + range/8f + " " + StatUnit.blocks.localized()).padBottom(15f).row();
-	
-					desc.add(Core.bundle.get("stat.reload") + ": " + reloadTime/60f +  " " + StatUnit.seconds.localized()).row();
-
-					if (!(statuses.length == 0 || statusDurations.length == 0)) {
-						desc.table(status -> {
-							int lenth = Math.min(statusDurations.length, statuses.length);
-							for (int i = 0; i < lenth; i++) {
-								status.add(new Image(statuses[i].uiIcon));
-								status.add(statuses[i].localizedName).color(Pal.accent);
-								status.add(" -").color(Color.gray);
-								status.add(" " + statusDurations[i]/60f).color(Pal.accent);
-								status.add(StatUnit.seconds.localized()).color(Color.gray).row();
-							}
-						}).padTop(10f).row();
-					}
-					
-	
-					desc.table(cost -> {
-						for (ItemStack stack : req) {
-							cost.add(new ItemDisplay(stack.item, stack.amount, false)).padLeft(2f).padRight(2f);
-						}
-					});
-				}).pad(10f).row();
-				table.button("@back", Icon.left, () -> to.hide()).size(210f, 64f);
-			}).padBottom(16f).padTop(16f).row();
-
+			BulletDialog dialog = new BulletDialog();
 
 			t.button(b -> b.table(button -> {
 				button.add(new Image(icon)).padRight(10);
 				button.add(Core.bundle.get("stat.description"));
 			}), () -> {
-				to.show();
+				to.show(this);
 			}).row();
 		}
 

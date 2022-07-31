@@ -32,7 +32,7 @@ public class MonolithBlocks {
 
 	artifact,
 
-	test;
+	dimensionHodimensionHolder;
 
 	public void load() {
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
@@ -301,7 +301,7 @@ public class MonolithBlocks {
 			consumePower(3f);
 		}};
 
-		test = new DimensionBlock("test") {{
+		dimensionHolder = new DimensionBlock("dimension-holder") {{
 			requirements(Category.units, with(
 				Items.copper, 1
 			));
