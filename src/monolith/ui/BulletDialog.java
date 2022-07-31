@@ -5,8 +5,10 @@ import arc.scene.ui.*;
 import arc.graphics.*;
 import arc.scene.ui.layout.*;
 import mindustry.ui.*;
+import mindustry.content.*;
 import mindustry.ui.dialogs.*;
 import mindustry.world.meta.*;
+import monolith.blocks.defense.AOEBlock.*;
 
 public class BulletDialog extends BaseDialog {
 	public BulletDialog() {
@@ -20,7 +22,7 @@ public class BulletDialog extends BaseDialog {
 
 		table.margin(10);
 		table.table(name -> {
-			name.add(new Image(icon)).size(64);
+			name.add(new Image(bullet.icon)).size(64);
 			name.table(a -> {
 				a.add(Core.bundle.get("bullet.monolith-" + bullet.name + ".name", bullet.name) + "").color(Pal.accent).row();
 				a.add(bullet.name).color(Color.gray);
@@ -53,7 +55,7 @@ public class BulletDialog extends BaseDialog {
 	
 			desc.add(Core.bundle.get("stat.affinities") + "").left().color(Pal.accent).row();
 			desc.table(statusStat -> {
-				for (var i = 0; i < Math.min(bullet.statuses.length, statusDurations.length); i++) {
+				for (var i = 0; i < Math.min(bullet.statuses.length, bullet.statusDurations.length); i++) {
 					statusStat.add(new Image(bullet.statuses[i].uiIcon));
 					statusStat.add(bullet.statusDurations[i]/60 + " " + StatUnit.seconds.localized()).row();
 				}

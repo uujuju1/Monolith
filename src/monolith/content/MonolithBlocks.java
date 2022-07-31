@@ -32,7 +32,7 @@ public class MonolithBlocks {
 
 	artifact,
 
-	dimensionHodimensionHolder;
+	dimensionHolder;
 
 	public void load() {
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{

@@ -20,6 +20,7 @@ import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import mindustry.ui.dialogs.*;
 import mindustry.world.consumers.*;
+import monolith.ui.*;
 
 public class AOEBlock extends Block {
 	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
@@ -90,7 +91,7 @@ public class AOEBlock extends Block {
 				button.add(new Image(icon)).padRight(10);
 				button.add(Core.bundle.get("stat.description"));
 			}), () -> {
-				to.show(this);
+				dialog.show(this);
 			}).row();
 		}
 
