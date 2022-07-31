@@ -54,7 +54,7 @@ public class AOEBlock extends Block {
 	public class BulletRecipe {
 		public String name;
 		public TextureRegion icon;
-		public ItemStack[] req;
+		public ItemStack[] req = ItemStack.empty;
 		public Effect	shootEffect = Fx.none;
 		public StatusEffect[] statuses = new StatusEffect[]{};
 		public float[] statusDurations = new float[]{};

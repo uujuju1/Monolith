@@ -5,6 +5,7 @@ import arc.scene.ui.*;
 import arc.graphics.*;
 import arc.scene.ui.layout.*;
 import mindustry.ui.*;
+import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.ui.dialogs.*;
 import mindustry.world.meta.*;
@@ -21,11 +22,11 @@ public class BulletDialog extends BaseDialog {
 		Table table = new Table();
 
 		table.margin(10);
-		table.table(name -> {
-			name.add(new Image(bullet.icon)).size(64);
-			name.table(a -> {
-				a.add(Core.bundle.get("bullet.monolith-" + bullet.name + ".name", bullet.name) + "").color(Pal.accent).row();
-				a.add(bullet.name).color(Color.gray);
+		table.table(info -> {
+			info.add(new Image(bullet.icon)).size(64);
+			info.table(name -> {
+				name.add(Core.bundle.get("bullet.monolith-" + bullet.name + ".name", bullet.name) + "").left().color(Pal.accent).row();
+				name.add("monolith-bullet-" + bullet.name).left().color(Color.gray);
 			});
 		}).padBottom(10).row();
 		table.table(desc -> {
@@ -46,20 +47,26 @@ public class BulletDialog extends BaseDialog {
 				reloadStat.add(Core.bundle.get("stat.reload") + ":").left().color(Color.lightGray);
 				reloadStat.add(" " + bullet.reloadTime/60 + " " + StatUnit.seconds.localized()).left();
 			}).left().padLeft(10).row();
-			desc.table(reqsStat -> {
-				reqsStat.add(Core.bundle.get("stat.buildcost") + ":").left().color(Color.lightGray);
-				for(var i = 0; i < bullet.req.length; i++){
-					reqsStat.add(new ItemDisplay(bullet.req[i].item, bullet.req[i].amount, false)).padRight(5).padLeft(5);
-				}
-			}).left().padLeft(10).row();
+			if (bullet.req != ItemStack.empty) {
+				desc.table(reqsStat -> {
+					reqsStat.add(Core.bundle.get("stat.buildcost") + ":").left().color(Color.lightGray);
+					for(var i = 0; i < bullet.req.length; i++){
+						reqsStat.add(new ItemDisplay(bullet.req[i].item, bullet.req[i].amount, false)).padRight(5).padLeft(5);
+					}
+				}).left().padLeft(10).row();
+			}
+			
 	
-			desc.add(Core.bundle.get("stat.affinities") + "").left().color(Pal.accent).row();
-			desc.table(statusStat -> {
-				for (var i = 0; i < Math.min(bullet.statuses.length, bullet.statusDurations.length); i++) {
-					statusStat.add(new Image(bullet.statuses[i].uiIcon));
-					statusStat.add(bullet.statusDurations[i]/60 + " " + StatUnit.seconds.localized()).row();
-				}
-			}).left().padLeft(10).row();
+			if (!(bullet.statuses.length < 0 || bullet.statusDurations.length < 0)) {
+				desc.add(Core.bundle.get("stat.affinities") + "").left().color(Pal.accent).row();
+				desc.table(statusStat -> {
+					for (var i = 0; i < Math.min(bullet.statuses.length, bullet.statusDurations.length); i++) {
+						statusStat.add(new Image(bullet.statuses[i].uiIcon));
+						statusStat.add(bullet.statusDurations[i]/60 + " " + StatUnit.seconds.localized()).row();
+					}
+				}).left().padLeft(10).row();
+			}
+			
 		}).left();
 
 		ScrollPane pane = new ScrollPane(table);
