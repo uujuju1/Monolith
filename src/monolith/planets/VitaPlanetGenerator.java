@@ -34,7 +34,7 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 	}
 
 	Block getBlock(Vec3 pos) {
-		this(pos.x, pos.y, pos.z);
+		return getBlock(pos.x, pos.y, pos.z);
 	}
 	Block getBlock(float x, float y, float z) {
 		float 
