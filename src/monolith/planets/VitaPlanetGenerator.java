@@ -38,7 +38,7 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 		poles = Math.abs(y),
 		height = rawHeight(Tmp.v31.set(x, y, z));
 
-		Block res = arr[Mathf.clamp((height * arr.length) + poles, 0, arr.length - 1)];
+		Block res = arr[(int) Mathf.clamp((height * arr.length) + poles, 0, arr.length - 1)];
 		return res;
 	}
 
