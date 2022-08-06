@@ -14,7 +14,7 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 	public double octaves = 12, persistence = 0.75f, scale = 0.85f;
 	public float minHeight = 0.3f;
 
-	public Block[] arr = {Blocks.stone, Blocks.sand, Blocks.grass};
+	public Block[] arr = {Blocks.stone, Blocks.sand, Blocks.grass, Blocks.basalt, Blocks.ice};
 
 	public VitaPlanetGenerator() {
 		seed = 5;
@@ -22,8 +22,7 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 
 	@Override
 	public Color getColor(Vec3 pos) {
-		Block block = getBlock(pos.x, pos.y, pos.z);
-		return Tmp.c1.set(block.mapColor).a(1f - block.albedo);
+		return getBlock(pos).mapColor.cpy();
 	}
 
 	float rawHeight(Vec3 pos) {
@@ -34,6 +33,9 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 		return Math.min(minHeight, rawHeight(pos));
 	}
 
+	Block getBlock(Vec3 pos) {
+		this(pos.x, pos.y, pos.z);
+	}
 	Block getBlock(float x, float y, float z) {
 		float 
 		poles = Math.abs(y),
@@ -46,7 +48,7 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 	@Override
 	public void generate() {
 		pass((x, y) -> {
-			floor = getBlock(sector.tile.v.x, sector.tile.v.y, sector.tile.v.z);
+			floor = getBlock(sector.tile.v);
 		});
 		Schematics.placeLaunchLoadout(50, 50);
 	}
