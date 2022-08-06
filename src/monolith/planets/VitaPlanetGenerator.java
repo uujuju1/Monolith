@@ -6,6 +6,7 @@ import arc.math.geom.*;
 import arc.util.noise.*;
 import mindustry.content.*;
 import mindustry.game.*;
+import mindustry.world.*;
 import mindustry.maps.generators.*;
 
 public class VitaPlanetGenerator extends PlanetGenerator {
@@ -42,6 +43,6 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 		pass((x, y) -> {
 			floor = Blocks.stone;
 		});
-		Schematics.placeLauchLoadout(50, 50);
+		Schematics.placeLaunchLoadout(50, 50);
 	}
 }
