@@ -10,7 +10,7 @@ public class MonolithPlanets {
 	public void load() {
 		vita = new Planet("vita", Planets.sun, 1f, 2) {{
 			generator = new VitaPlanetGenerator();
-			accessible = true;
+			accessible = alwaysUnlocked = true;
 		}};
 	}
 }

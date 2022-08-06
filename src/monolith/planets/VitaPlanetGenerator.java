@@ -22,7 +22,8 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 
 	@Override
 	public Color getColor(Vec3 pos) {
-		return Color.white;
+		Block block = getBlock(pos.x, pos.y, pos.z);
+		return Tmp.c1.set(block.mapColor).a(1f - block.albedo);
 	}
 
 	float rawHeight(Vec3 pos) {
