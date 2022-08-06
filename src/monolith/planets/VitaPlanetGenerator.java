@@ -36,6 +36,7 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 		float 
 		poles = Math.abs(y),
 		height = rawHeight(Tmp.v31.set(x, y, z));
+		return Blocks.stone;
 	}
 
 	@Override
