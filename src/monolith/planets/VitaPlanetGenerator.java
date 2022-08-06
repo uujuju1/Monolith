@@ -1,6 +1,7 @@
 package monolith.planets;
 
 import arc.util.*;
+import arc.math.*;
 import arc.graphics.*;
 import arc.math.geom.*;
 import arc.util.noise.*;
@@ -36,7 +37,7 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 		float 
 		poles = Math.abs(y),
 		height = rawHeight(Tmp.v31.set(x, y, z));
-		
+
 		Block res = arr[Mathf.clamp((height * arr.length) + poles, 0, arr.length - 1)];
 		return res;
 	}
