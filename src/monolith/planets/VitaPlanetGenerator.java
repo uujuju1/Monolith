@@ -36,13 +36,15 @@ public class VitaPlanetGenerator extends PlanetGenerator {
 		float 
 		poles = Math.abs(y),
 		height = rawHeight(Tmp.v31.set(x, y, z));
-		return Blocks.stone;
+		
+		Block res = arr[Mathf.clamp((height * arr.length) + poles, 0, arr.length - 1)];
+		return res;
 	}
 
 	@Override
 	public void generate() {
 		pass((x, y) -> {
-			floor = Blocks.stone;
+			floor = getBlock(sector.tile.v.x, sector.tile.v.y, sector.tile.v.z);
 		});
 		Schematics.placeLaunchLoadout(50, 50);
 	}
