@@ -21,6 +21,7 @@ import mindustry.world.meta.*;
 import mindustry.ui.dialogs.*;
 import mindustry.world.consumers.*;
 import monolith.ui.*;
+import mindustry.type.*;
 import mindustry.type.modifiers.*;
 
 public class AOEBlock extends Block {
