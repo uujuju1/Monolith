@@ -21,6 +21,7 @@ import mindustry.world.meta.*;
 import mindustry.ui.dialogs.*;
 import mindustry.world.consumers.*;
 import monolith.ui.*;
+import mindustry.type.modifiers.*;
 
 public class AOEBlock extends Block {
 	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
