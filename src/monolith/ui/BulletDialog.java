@@ -9,7 +9,7 @@ import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.ui.dialogs.*;
 import mindustry.world.meta.*;
-import monolith.blocks.defense.AOEBlock.*;
+import monolith.type.*;
 
 public class BulletDialog extends BaseDialog {
 	public BulletDialog() {

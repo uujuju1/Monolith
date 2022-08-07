@@ -58,11 +58,11 @@ public class BulletRecipe {
 	public void button(Table t, AOEBlockBuild from) {
 		t.button(b -> b.add(new Image(icon)).size(48), () -> {
 			if (from.currentPlan != -1) {
-				if (from.block.plans.get(from.currentPlan) == this) {
+				if (((AOEBlock) from.block).plans.get(from.currentPlan) == this) {
 					shoot(from);
 				}
 			}
-			from.currentPlan = from.block.plans.indexOf(this);
+			from.currentPlan = ((AOEBlock) from.block).plans.indexOf(this);
 		}).size(48f);
 	}
 
