@@ -9,7 +9,6 @@ import mindustry.type.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import monolith.ui.*;
-import monolith.type.modifiers.*;
 import monolith.blocks.defense.*;
 import monolith.blocks.defense.AOEBlock.*;
 
@@ -59,11 +58,11 @@ public class BulletRecipe {
 	public void button(Table t, AOEBlockBuild from) {
 		t.button(b -> b.add(new Image(icon)).size(48), () -> {
 			if (from.currentPlan != -1) {
-				if (plans.get(from.currentPlan) == this) {
+				if (from.plans.get(from.currentPlan) == this) {
 					shoot(from);
 				}
 			}
-			from.currentPlan = plans.indexOf(this);
+			from.currentPlan = from.plans.indexOf(this);
 		}).size(48f);
 	}
 
