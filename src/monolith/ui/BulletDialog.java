@@ -57,7 +57,7 @@ public class BulletDialog extends BaseDialog {
 			}
 			
 	
-			if (!(bullet.statuses.length < 0 || bullet.statusDurations.length < 0)) {
+			if (!(bullet.statuses.length <= 0 || bullet.statusDurations.length <= 0)) {
 				desc.add(Core.bundle.get("stat.affinities") + "").left().color(Pal.accent).row();
 				desc.table(statusStat -> {
 					for (var i = 0; i < Math.min(bullet.statuses.length, bullet.statusDurations.length); i++) {

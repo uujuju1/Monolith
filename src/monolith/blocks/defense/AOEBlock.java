@@ -22,7 +22,6 @@ import mindustry.ui.dialogs.*;
 import mindustry.world.consumers.*;
 import monolith.ui.*;
 import monolith.type.*;
-import monolith.type.modifiers.*;
 
 public class AOEBlock extends Block {
 	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
@@ -55,7 +54,8 @@ public class AOEBlock extends Block {
 
 	public class AOEBlockBuild extends Building {
 		public float reload;
-		public int currentPlan = -1;
+		public int 
+		currentPlan = -1;
 
 		@Override
 		public boolean acceptItem(Building source, Item item){
@@ -70,11 +70,6 @@ public class AOEBlock extends Block {
 		@Override
 		public void buildConfiguration(Table table) {
 			plans.each(p -> p.button(table, this));
-		}
-
-		@Override
-		public void draw() {
-			drawer.get(this);
 		}
 
 		@Override
