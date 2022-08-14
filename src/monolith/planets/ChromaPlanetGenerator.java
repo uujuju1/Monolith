@@ -3,7 +3,7 @@ package monolith.planets;
 import arc.graphics.*;
 import arc.math.geom.*;
 import arc.util.noise.*;
-import mindustry.maps.generator.*;
+import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
 

@@ -1,6 +1,7 @@
 package monolith.content;
 
 import mindustry.type.*;
+import mindustry.content.*;
 import mindustry.graphics.g3d.*;
 import monolith.planets.*;
 
