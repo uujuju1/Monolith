@@ -9,23 +9,23 @@ import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
 
-	// float rawHeight(Vec3 pos) {
-	// 	return Simplex.noise3d(seed, 12, 0.6f, 0.9f, pos.x, pos.y, pos.z);
-	// }
-	// @Override
-	// public float getHeight(Vec3 pos) {
-	// 	return Math.max(0.1f, rawHeight(pos));
-	// }
+	float rawHeight(Vec3 pos) {
+		return Simplex.noise3d(seed, 12, 0.6f, 0.9f, pos.x, pos.y, pos.z);
+	}
+	@Override
+	public float getHeight(Vec3 pos) {
+		return Math.max(0.1f, rawHeight(pos));
+	}
 
-	// @Override
-	// public Color getColor(Vec3 pos) {
-	// 	return Color.red;
-	// }
+	@Override
+	public Color getColor(Vec3 pos) {
+		return Color.red;
+	}
 
-	// @Override
-	// public Block getBlock(Vec3 pos) {
-	// 	return Blocks.grass;
-	// }
+	@Override
+	public Block getBlock(Vec3 pos) {
+		return Blocks.grass;
+	}
 
 	// @Override
 	// protected void generate() {
