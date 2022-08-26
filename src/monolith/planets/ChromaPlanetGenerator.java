@@ -27,7 +27,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 
 	@Override
 	public Color getColor(Vec3 pos) {
-		if (rawTemp() < 0.5f) {
+		if (rawTemp(pos) < 0.5f) {
 			return Color.yellow;
 		}
 		return Color.red.cpy().lerp(Color.blue, rawHeight(pos));
