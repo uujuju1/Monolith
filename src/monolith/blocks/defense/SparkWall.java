@@ -1,4 +1,4 @@
-package monolth.blocks.defense;
+package monolith.blocks.defense;
 
 import arc.math.*;
 import mindustry.content.*;
