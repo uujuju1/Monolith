@@ -3,6 +3,8 @@ package monolith.planets;
 import arc.graphics.*;
 import arc.math.geom.*;
 import arc.util.noise.*;
+import mindustry.world.*;
+import mindustry.content.*;
 import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
@@ -18,5 +20,17 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 	@Override
 	public Color getColor(Vec3 pos) {
 		return Color.red;
+	}
+
+	@Override
+	public Block getBlock(Vec3 pos) {
+		return Blocks.grass;
+	}
+
+	@Override
+	protected void generate() {
+		pass((x, y) -> {
+			floor = getBlock(sector.tile.v);
+		});
 	}
 }

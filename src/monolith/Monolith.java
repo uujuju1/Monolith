@@ -35,6 +35,6 @@ public class Monolith extends Mod{
 		new MonolithItems().load();
 		new MonolithUnits().load();
 		new MonolithBlocks().load();
-		new MonolithPlanets().load();
+		// new MonolithPlanets().load();
 	}
 }

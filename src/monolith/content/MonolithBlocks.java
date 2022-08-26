@@ -31,6 +31,8 @@ public class MonolithBlocks {
 	move, accelerate,
 	caesar, vigenere,
 
+	sparkWall, 
+
 	artifact,
 
 	dimensionHolder;
@@ -286,6 +288,22 @@ public class MonolithBlocks {
 					statusDurations = new float[]{120f}; 
 				}}
 			);
+		}};
+
+		sparkWall = new SparkWall("spark-wall") {{
+			requirements(Category.defense, with(
+				MonolithItems.lithium, 12,
+				Items.metaglass, 12
+			));
+			size = 2;
+			health = 440 * 4;
+			envDisabled |= Env.scorching;
+			shoot = new BasicBulletType(2f, 25) {{
+				lifetime = 40f * 2f;
+				width = height = 10f;
+				frontColor = Color.white;
+				backColor = hitColor = Pal.accent;
+			}};
 		}};
 
 		artifact = new BuildTurret("artifact") {{
