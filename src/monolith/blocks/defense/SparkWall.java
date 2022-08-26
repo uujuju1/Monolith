@@ -23,21 +23,17 @@ public class SparkWall extends Wall {
 	}
 
 	public class SparkWallBuild extends Wall.WallBuild {
-		public float lastHealth;
-
 		@Override
 		public void drawSelect(){
 			Drawf.dashCircle(x, y, shoot.lifetime/shoot.speed, team.color);
 		}
 
-		public void updateTile() {
-			super.updateTile();
-			if (lastHealth - minDamage < health) {
-				float rnd = Mathf.random(360f);
-				shoot.create(this, x, y, rnd);
-				shoot.shootEffect.at(x, y, rnd, shoot.hitColor);
-			}
-			lastHealth = health;
+		public boolean collision(Bullet bullet) {
+			float rnd = Mathf.random(360f);
+			shoot.create(this, x, y, rnd);
+			shoot.shootEffect.at(x, y, rnd, shoot.hitColor);
+			super.collision(bullet);
+			return true;
 		}
 	}
 }
