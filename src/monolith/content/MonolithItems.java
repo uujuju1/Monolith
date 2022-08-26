@@ -8,7 +8,7 @@ public class MonolithItems {
 
 	public void load() {
 		macrosteel = new Item("macrosteel", Color.valueOf("6E7080"));
-		lithium = new Item("lithium", Color.velueOf("696464")) {{
+		lithium = new Item("lithium", Color.valueOf("877D7D")) {{
 			flammability = 0.3f;
 		}};
 	}

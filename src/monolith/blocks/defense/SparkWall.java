@@ -4,8 +4,8 @@ import arc.math.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.entities.bullet.*;
-import mindustry.world.blocks.denfense.*;
-import static mindustry.Vars;
+import mindustry.world.blocks.defense.*;
+import static mindustry.Vars.*;
 
 public class SparkWall extends Wall {
 	public BulletType shoot = Bullets.placeholder;
@@ -22,7 +22,7 @@ public class SparkWall extends Wall {
 		Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, shoot.lifetime/shoot.speed, Pal.placing);
 	}
 
-	public class SparkWallBuild extends WallBuild {
+	public class SparkWallBuild extends Wall.WallBuild {
 		public float lastHealth;
 
 		@Override
@@ -33,7 +33,9 @@ public class SparkWall extends Wall {
 		public void updateTile() {
 			super.updateTile();
 			if (lastHealth - minDamage < health) {
-				shoot.create(this, x, y, Mathf.random(360f));
+				float rnd = Mathf.random(360f)
+				shoot.create(this, x, y, rnd);
+				shoot.shootEffect.at(x, y, rnd, shoot.hitColor);
 			}
 			lastHealth = health;
 		}

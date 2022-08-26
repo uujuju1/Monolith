@@ -6,6 +6,7 @@ import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.*;
+import mindustry.graphics.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.entities.bullet.*;
@@ -303,6 +304,7 @@ public class MonolithBlocks {
 				width = height = 10f;
 				frontColor = Color.white;
 				backColor = hitColor = Pal.accent;
+				shootEffect = Fx.colorSpark;
 			}};
 		}};
 
