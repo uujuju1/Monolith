@@ -22,15 +22,14 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 		return Color.red;
 	}
 
-	@Override
-	public Block getBlock(Vec3 pos) {
+	Block getBlock(Vec3 pos) {
 		return Blocks.grass;
 	}
 
-	// @Override
-	// protected void generate() {
-	// 	pass((x, y) -> {
-	// 		floor = getBlock(sector.tile.v);
-	// 	});
-	// }
+	@Override
+	protected void generate() {
+		pass((x, y) -> {
+			floor = getBlock(sector.tile.v);
+		});
+	}
 }
