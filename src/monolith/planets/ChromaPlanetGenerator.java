@@ -8,9 +8,10 @@ import mindustry.content.*;
 import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
+	public double octaves = 1, persistence = 1f, scale = 1f;
 
 	float rawHeight(Vec3 pos) {
-		return Simplex.noise3d(seed, 1, 1f, 0.9f, pos.x, pos.y, pos.z);
+		return Simplex.noise3d(seed, octaves, persistence, scale, pos.x, pos.y, pos.z);
 	}
 	@Override
 	public float getHeight(Vec3 pos) {
