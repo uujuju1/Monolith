@@ -33,7 +33,7 @@ public class SparkWall extends Wall {
 		public void updateTile() {
 			super.updateTile();
 			if (lastHealth - minDamage < health) {
-				float rnd = Mathf.random(360f)
+				float rnd = Mathf.random(360f);
 				shoot.create(this, x, y, rnd);
 				shoot.shootEffect.at(x, y, rnd, shoot.hitColor);
 			}
