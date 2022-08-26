@@ -1,6 +1,7 @@
 package monolith.blocks.defense;
 
 import arc.math.*;
+import mindustry.gen.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.entities.bullet.*;
