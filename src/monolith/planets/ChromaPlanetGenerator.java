@@ -1,5 +1,6 @@
 package monolith.planets;
 
+import arc.math.*;
 import arc.graphics.*;
 import arc.math.geom.*;
 import arc.util.noise.*;
