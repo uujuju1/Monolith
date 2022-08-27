@@ -39,8 +39,8 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				return Blocks.ice;
 			}
 		}
-		if (rawTemp(pos) < tempTresh - 0.1f) {
-			if (rawTemp(pos) < tempTresh) {
+		if (rawTemp(pos) > tempTresh - 0.1f) {
+			if (rawTemp(pos) > tempTresh) {
 				return Blocks.snow;
 			}
 			return Blocks.iceSnow;
