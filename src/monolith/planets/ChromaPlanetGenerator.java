@@ -12,7 +12,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 	public double octaves = 1f, persistence = 1f, scale = 1f;
 	public float minHeight = 0.4f, tempTresh = 0.7f;
 
-	public Block[] arr = {Blocks.rhyolite, Blocks.rhyolite, Blocks.rhyolite, Blocks.rhyolite, Blocks.yellowStone, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
+	public Block[] arr = {Blocks.rhyolite, Blocks.rhyolite, Blocks.rhyolite, Blocks.rhyolite, Blocks.yellowStone, Blocks.carbonStone, Blocks.carbonStone, Blocks.carbonStone};
 
 	float rawHeight(Vec3 pos) {
 		return Simplex.noise3d(seed, 7, 0.5f, 2.3f, pos.x, pos.y, pos.z);
@@ -38,6 +38,12 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 			} else {
 				return Blocks.ice;
 			}
+		}
+		if (rawTemp(pos) < tempTresh) {
+			if (rawTemp(pos) < tempTresh - 0.25f) {
+				return Blocks.iceSnow;
+			}
+			return Blocks.snow;
 		}
 		return arr[Mathf.clamp((int)(rawHeight(pos) * arr.length), 0, arr.length - 1)];
 	}
