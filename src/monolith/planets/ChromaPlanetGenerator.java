@@ -9,9 +9,9 @@ import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
 	public double octaves = 1f, persistence = 1f, scale = 1f;
-	public float minHeight = 0.3f;
+	public float minHeight = 0.4f, tempTresh = 0.7f;
 
-	public Block[] arr = {Blocks.regolith, Blocks.regolith, Blocks.regolith, Blocks.regolith, Blocks.yellowStone, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
+	public Block[] arr = {Blocks.rhyolite, Blocks.rhyolite, Blocks.rhyolite, Blocks.rhyolite, Blocks.yellowStone, Blocks.rhyolite, Blocks.rhyolite, Blocks.carbonStone};
 
 	float rawHeight(Vec3 pos) {
 		return Simplex.noise3d(seed, 7, 0.5f, 2.3f, pos.x, pos.y, pos.z);
@@ -27,14 +27,18 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 
 	@Override
 	public Color getColor(Vec3 pos) {
-		if (rawTemp(pos) < 0.5f) {
-			return Color.yellow;
-		}
-		return Color.red.cpy().lerp(Color.blue, rawHeight(pos));
+		return getBlock(pos).mapColor.cpy();
 	}
 
 	Block getBlock(Vec3 pos) {
-		return Blocks.grass;
+		if (rawHeight(pos) < minHeight) {
+			if (rawTemp(pos) < tempTresh) {
+				return Blocks.water;
+			} else {
+				return Blocks.ice;
+			}
+		}
+		return arr[Mathf.clamp((int)(rawHeight(pos) * arr.length), 0, arr.length - 1)];
 	}
 
 	@Override
