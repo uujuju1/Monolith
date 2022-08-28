@@ -9,7 +9,7 @@ import mindustry.content.*;
 import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
-	public double octaves = 3f, persistence = 0.8f, scale = 1f;
+	public double octaves = 3f, persistence = 0.8f, scale = 0.01f;
 	public float minHeight = 0.4f, noiseTresh = 0.5f, mag = 1f;
 
 	public Block[] arr = {Blocks.dirt, Blocks.dirt, Blocks.basalt};
@@ -60,6 +60,12 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				if (noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag) > noiseTresh) {
 					floor = Blocks.dirt;
 				}
+			}
+			if (x < 10 || x > width - 10 || y < 10 || y > height - 10 ||) {
+				floor = Blocks.dirtWall;
+			}
+			if (x < 7 || x > width - 7 || y < 7 || y > height - 7 ||) {
+				floor = Blocks.dirtWall;
 			}
 		});
 	}
