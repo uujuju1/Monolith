@@ -10,7 +10,7 @@ import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
 	public double octaves = 3f, persistence = 0.8f, scale = 1f;
-	public float minHeight = 0.4f, tempTresh = 0.5f;
+	public float minHeight = 0.4f, noiseTresh = 0.5f, mag = 1f;
 
 	public Block[] arr = {Blocks.dirt, Blocks.dirt, Blocks.basalt};
 
@@ -19,7 +19,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 	}
 	float rawTemp(Vec3 pos) {
 		float poles = Math.abs(pos.y);
-		return Simplex.noise3d(seed + 2, octaves, persistence, scale, pos.x, pos.y, pos.z) * poles;
+		return Simplex.noise3d(seed + 2, 3f, 0.8f, 1, pos.x, pos.y, pos.z) * poles;
 	}
 	@Override
 	public float getHeight(Vec3 pos) {
@@ -33,14 +33,14 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 
 	Block getBlock(Vec3 pos) {
 		if (rawHeight(pos) < minHeight) {
-			if (rawTemp(pos) < tempTresh) {
+			if (rawTemp(pos) < 0.5f) {
 				return Blocks.water;
 			} else {
 				return Blocks.ice;
 			}
 		}
-		if (rawTemp(pos) > tempTresh - 0.1f) {
-			if (rawTemp(pos) > tempTresh) {
+		if (rawTemp(pos) > 0.5f - 0.1f) {
+			if (rawTemp(pos) > 0.5f) {
 				return Blocks.snow;
 			}
 			return Blocks.iceSnow;
@@ -48,10 +48,19 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 		return arr[Mathf.clamp((int)(rawHeight(pos) * arr.length), 0, arr.length - 1)];
 	}
 
+	public float noise2d(float x, float y, double octaves, double persistence, double scale, float mag) {
+		return Simplex.noise2d(seed, octaves, persistence, scale, x, y) * mag;
+	}
+
 	@Override
 	protected void generate() {
 		pass((x, y) -> {
 			floor = getBlock(sector.tile.v);
+			if (floor == Blocks.water) {
+				if (noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag) > noiseTresh) {
+					floor = Blocks.dirt;
+				}
+			}
 		});
 	}
 }

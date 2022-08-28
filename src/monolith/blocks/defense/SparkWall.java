@@ -20,13 +20,13 @@ public class SparkWall extends Wall {
 	@Override
 	public void drawPlace(int x, int y, int rotation, boolean valid){
 		super.drawPlace(x, y, rotation, valid);
-		Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, shoot.lifetime/shoot.speed, Pal.placing);
+		Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, shoot.lifetime*shoot.speed, Pal.placing);
 	}
 
 	public class SparkWallBuild extends Wall.WallBuild {
 		@Override
 		public void drawSelect(){
-			Drawf.dashCircle(x, y, shoot.lifetime/shoot.speed, team.color);
+			Drawf.dashCircle(x, y, shoot.lifetime*shoot.speed, team.color);
 		}
 
 		public boolean collision(Bullet bullet) {
