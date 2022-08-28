@@ -24,7 +24,6 @@ import monolith.ui.*;
 import monolith.type.*;
 
 public class AOEBlock extends Block {
-	public Cons<Building> drawer = build -> {Draw.rect(region, build.x, build.y, rotate ? build.rotdeg() : 0);};
 	public Seq<BulletRecipe> plans = new Seq<>();
 
 	public AOEBlock(String name) {
@@ -73,17 +72,17 @@ public class AOEBlock extends Block {
 		}
 
 		@Override
-		public void write(Writes w) {		
+		public void write(Writes w) {
+			super.write(w);
 			w.f(reload);
 			w.i(currentPlan);
-			super.write(w);
 		}
 
 		@Override
-		public void read(Reads r) {
+		public void read(Reads r, byte revision) {
+			super.read(r, revision);
 			reload = r.f();
 			currentPlan = r.i();
-			super.read(r);
 		}
 	}
 }
