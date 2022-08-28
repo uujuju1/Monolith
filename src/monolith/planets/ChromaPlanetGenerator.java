@@ -60,6 +60,12 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				if (noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag) > noiseTresh) {
 					floor = Blocks.dirt;
 				}
+				if (noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag) > noiseTresh + (noiseTresh/4)) {
+					block = Blocks.dirtWall;
+				}
+				if (noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag) > noiseTresh + (noiseTresh/2)) {
+					block = Blocks.duneWall;
+				}
 			}
 			if (x < 10 || x > width - 10 || y < 10 || y > height - 10) {
 				floor = Blocks.dirt;
@@ -68,5 +74,6 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				block = Blocks.dirtWall;
 			}
 		});
+		distort(14f, 4f);
 	}
 }
