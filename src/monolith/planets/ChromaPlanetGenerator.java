@@ -62,7 +62,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				}
 			}
 			if (x < 10 || x > width - 10 || y < 10 || y > height - 10) {
-				floor = Blocks.dirtWall;
+				floor = Blocks.dirt;
 			}
 			if (x < 7 || x > width - 7 || y < 7 || y > height - 7) {
 				floor = Blocks.dirtWall;
