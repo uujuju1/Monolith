@@ -27,9 +27,10 @@ public class MonolithBlocks {
 	public static Block 
 	itemLiquidJunction,
 
-	furnace,
+	furnace, lithiumWeaver,
 
 	move, accelerate,
+	revenant,
 	caesar, vigenere,
 
 	sparkWall, 
@@ -72,8 +73,8 @@ public class MonolithBlocks {
 				}}
 			);
 			consumeItems(with(
-				Items.sand, 1,
-				Items.coal, 1,
+				Items.sand, 2,
+				Items.coal, 2,
 				Items.metaglass, 1
 			));
 			consumePower(0.5f);
@@ -81,6 +82,28 @@ public class MonolithBlocks {
 				MonolithItems.macrosteel, 1,
 				Items.silicon, 1
 			);
+		}};
+		lithiumWeaver = new GenericCrafter("lithium-weaver") {{
+			requirements(Category.crafting, with(
+				Items.graphite, 120,
+				Items.silicon, 100,
+				MonolithItems.macrosteel, 70
+			));
+			size = 3;
+			health = 200;
+			craftTime = 60f;
+			craftEffect = Fx.smelt;
+			drawer = new DrawMulti(
+				new DrawRegion("-bottom"),
+				new DrawWeave(),
+				new DrawDefault()
+			);
+			consumeItems(
+				MonolithItems.macrosteel, 1,
+				Items.titanium, 2
+			);
+			consumePower(1f);
+			outputItems = with(MonolithItems.lithium, 2);
 		}};
 
 		move = new ItemTurret("move") {{
@@ -210,6 +233,36 @@ public class MonolithBlocks {
 					shootEffect = MonolithFx.shootDiamondColor;
 					hitEffect = despawnEffect = Fx.hitBulletColor;
 					knockback = 7f;
+				}}
+			);
+		}};
+		revenant = new ItemTurret("revenant") {{
+			requirements(Category.turret, with(
+				MonolithItems.lithium, 75,
+				MonolithItems.macrosteel, 125,
+				Items.silicon, 50
+			));
+			size = 2;
+			health = 650;
+			reload = 60;
+			range = 15f * 8f;
+			recoil = 1.5f;
+			rotateSpeed = 1f;
+			shootSound = Sounds.shotgun;
+			ammo(
+				Items.silicon, new ShrapnelBulletType() {{
+					length = range;
+					damage = 60;
+					ammoMultiplier = 2;
+					width = 20;
+					toColor = Color.white;
+				}},
+				Items.titanium, new ShrapnelBulletType() {{
+					length = range + 16f;
+					damage = 100;
+					ammoMultiplier = 4;
+					width = 20;
+					rangeChange = 16f;
 				}}
 			);
 		}};
