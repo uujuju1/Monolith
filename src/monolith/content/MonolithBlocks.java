@@ -98,10 +98,10 @@ public class MonolithBlocks {
 				new DrawWeave(),
 				new DrawDefault()
 			);
-			consumeItems(
+			consumeItems(with(
 				MonolithItems.macrosteel, 1,
 				Items.titanium, 2
-			);
+			));
 			consumePower(1f);
 			outputItems = with(MonolithItems.lithium, 2);
 		}};
