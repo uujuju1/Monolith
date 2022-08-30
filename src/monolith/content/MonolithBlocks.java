@@ -92,7 +92,6 @@ public class MonolithBlocks {
 			size = 3;
 			health = 200;
 			craftTime = 60f;
-			craftEffect = Fx.smelt;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
 				new DrawWeave(),
