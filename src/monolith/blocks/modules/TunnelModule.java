@@ -21,24 +21,23 @@ public class TunnelModule extends BlockModule {
 	}
 
 	public void updateModule(TunnelBuild s) {
-		Vec2 angle = new Vec2();
 		start = s;
 
 		if (s.block instanceof Tunnel) {
-			for(int i = 0; i < ((Tunnel)s.block).maxTravelLength; i++) {
+			for(int i = 0; i < ((Tunnel)s.block).maxRange; i++) {
+				Vec2 angle = new Vec2(i, 0);
+				angle.rotate(s.rotdeg());
 	
-				angle.trns(i, s.rotdeg());
-	
-				Building next = world.tiles.getn((int)((s.x + angle.x)/tilesize), (int)((s.y + angle.y)/tilesize)).build;
+				Building next = world.tiles.getn((int)((s.x/tilesize) + angle.x), (int)((s.y/tilesize) + angle.y)).build;
 	
 				if (next instanceof TunnelBuild) {
 					end = (TunnelBuild) next;
 					end.module = this;
 					travelTime = i * ((Tunnel) s.block).travelTime;
+					break;
 				}
 			}
-		}
-		
+		}	
 	}
 
 	// put here cause the start tunnel uses it
