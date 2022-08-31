@@ -51,7 +51,7 @@ public class MonolithBlocks {
 			size = 1;
 			health = 60;
 		}};
-		standardTunnel = new ItemLiquidJunction("standard-tunnel") {{
+		standardTunnel = new Tunnel("standard-tunnel") {{
 			requirements(Category.distribution, with(
 				MonolithItems.lithium, 60,
 				Items.titanium, 40,
