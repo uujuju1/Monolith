@@ -32,6 +32,15 @@ public class Tunnel extends Block {
 		}
 
 		@Override
+		public void updateTile() {
+			super.updateTile() {
+				if (module.start == this) {
+					module.update();
+				}
+			}
+		}
+
+		@Override
 		public void draw() {
 			super.draw();
 			if (module.start == this) {

@@ -29,7 +29,7 @@ public class TunnelModule extends BlockModule {
 	
 				angle.trns(i, s.rotdeg());
 	
-				Building next = world.tiles.getn((int)(s.x + angle.x), (int)(s.y + angle.y)).build;
+				Building next = world.tiles.getn((int)(s.x + angle.x)/tilesize, (int)(s.y + angle.y)/tilesize).build;
 	
 				if (next instanceof TunnelBuild) {
 					end = (TunnelBuild) next;
@@ -43,7 +43,9 @@ public class TunnelModule extends BlockModule {
 
 	// put here cause the start tunnel uses it
 	public void update() {
-
+		if (end == null) {
+			updateModule(start);
+		}
 	}
 
 	public void draw() {
