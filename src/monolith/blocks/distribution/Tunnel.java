@@ -1,6 +1,7 @@
 package monolith.blocks.distribution;
 
 import mindustry.gen.*;
+import mindustry.type.*;
 import mindustry.world.*;
 import monolith.blocks.modules.*;
 

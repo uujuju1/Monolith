@@ -4,11 +4,13 @@ import arc.util.*;
 import arc.util.io.*;
 import arc.math.geom.*;
 import mindustry.gen.*;
+import mindustry.world.modules.*;
 import monolith.blocks.distribution.*;
+import monolith.blocks.distribution.Tunnel.*;
 
-import static mindustry.Vars;
+import static mindustry.Vars.*;
 
-public class TunnelModule  extends BlockModule {
+public class TunnelModule extends BlockModule {
 	public @Nullable TunnelBuild start, end;
 
 	public float travelTime = 0f;
