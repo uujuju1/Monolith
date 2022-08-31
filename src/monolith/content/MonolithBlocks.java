@@ -27,6 +27,8 @@ public class MonolithBlocks {
 	public static Block 
 	itemLiquidJunction,
 
+	standardTunnel,
+
 	furnace, lithiumWeaver,
 
 	move, accelerate,
@@ -48,6 +50,16 @@ public class MonolithBlocks {
 			));
 			size = 1;
 			health = 60;
+		}};
+		standardTunnel = new ItemLiquidJunction("standard-tunnel") {{
+			requirements(Category.distribution, with(
+				MonolithItems.lithium, 60,
+				Items.titanium, 40,
+				Items.graphite, 50
+			));
+			size = 1;
+			health = 160;
+			
 		}};
 
 		furnace = new GenericCrafter("furnace") {{

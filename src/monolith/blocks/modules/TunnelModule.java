@@ -43,7 +43,10 @@ public class TunnelModule extends BlockModule {
 	}
 
 	public void draw() {
-
+		Lines.stroke(3f);
+		if (!(start == null || end == null)) {
+			Lines.line(start.x, start.y, end.x, end.y);
+		}
 	}
 
 	// saving

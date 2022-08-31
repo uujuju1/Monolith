@@ -20,6 +20,7 @@ public class Tunnel extends Block {
 	public class TunnelBuild extends Building {
 		public TunnelModule module = new TunnelModule(this);
 
+		@Override
 		public boolean acceptItem(Building source, Item item) {
 			if (module.start == this) {
 				return true;
@@ -28,6 +29,14 @@ public class Tunnel extends Block {
 				return true;
 			}
 			return false;
+		}
+
+		@Override
+		public void draw() {
+			super.draw();
+			if (module.start == this) {
+				module.draw();
+			}
 		}
 	}
 }
