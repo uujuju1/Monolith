@@ -27,7 +27,7 @@ public class TunnelModule extends BlockModule {
 
 			angle.trns(i, s.rotdeg());
 
-			Building next = world.tiles.getn((int)(s.x + angle.x), (int)(s.y + angle.y));
+			Building next = world.tiles.getn((int)(s.x + angle.x), (int)(s.y + angle.y)).build;
 
 			if (next instanceof TunnelBuild) {
 				end = (TunnelBuild) next;
