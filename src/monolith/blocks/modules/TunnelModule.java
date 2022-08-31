@@ -27,12 +27,12 @@ public class TunnelModule extends BlockModule {
 
 			angle.trns(i, s.rotdeg());
 
-			Building next = tiles.getn((int)s.x + angle.x, (int)s.y + angle.y);
+			Building next = world.tiles.getn((int)s.x + angle.x, (int)s.y + angle.y);
 
 			if (next instanceof TunnelBuild) {
 				end = (TunnelBuild) next;
 				end.module = this;
-				travelTime = i * s.travelTime;
+				travelTime = i * s.block.travelTime;
 			}
 		}
 	}

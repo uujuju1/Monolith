@@ -27,6 +27,7 @@ public class Tunnel extends Block {
 			if (source == module.start) {
 				return true;
 			}
+			return false;
 		}
 	}
 }
