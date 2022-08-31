@@ -20,16 +20,6 @@ public class Tunnel extends Block {
 	public class TunnelBuild extends Building {
 		public TunnelModule module = new TunnelModule(this);
 
-		public boolean validPos(int x, int y, int ex, int ey) {
-			if(x == ex) {
-				return Math.abs(x - ex) < range;
-			}
-			if(y == ey) {
-				return Math.abs(y - ey) < range;
-			}
-			return false;
-		}
-
 		@Override
 		public boolean acceptItem(Building source, Item item) {
 			if (module.start == this) {
