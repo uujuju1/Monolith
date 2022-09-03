@@ -12,11 +12,6 @@ public class GravityGraph {
 	ultilizers = new Seq<>();
 
 	public GravityGraph(GravityBuild start) {
-		addBuild(start);
-	}
-
-	public void addBuild(GravityBuild build) {
-		build.graph = this;
 		if (build.block instanceof GravityBlock) {
 			builds.add(build);
 			if (((GravityBlock) build.block).producesGravity) {
@@ -28,12 +23,26 @@ public class GravityGraph {
 		}
 	}
 
-	public void mergeGraph(GravityGraph graph) {
-		if (graph == this) return;
+	public void addBuild(GravityBuild build) {
+		if (build.graph == this) return;
+		if (build.block instanceof GravityBlock) {
+			builds.add(build);
+			if (((GravityBlock) build.block).producesGravity) {
+				sources.add(build);
+			}
+			if (((GravityBlock) build.block).usesGravity) {
+				ultilizers.add(build);
+			}
+		}
+		build.graph = this;
+	}
 
-		graph.builds.each(b -> addBuild(b));
-		graph.sources.each(b -> addBuild(b));
-		graph.ultilizers.each(b -> addBuild(b));		
+	public void mergeGraph(GravityGraph ngraph) {
+		if (ngraph == this) return;
+
+		ngraph.builds.each(b -> {
+			addBuild(b)
+		});
 	}
 
 	public void removeBuild(GravityBuild build) {
