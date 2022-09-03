@@ -16,7 +16,6 @@ public class GravityGraph {
 	}
 
 	public void addBuild(GravityBuild build) {
-		if (build.graph == this) return;
 		build.graph = this;
 		if (build.block instanceof GravityBlock) {
 			builds.add(build);
@@ -27,6 +26,14 @@ public class GravityGraph {
 				ultilizers.add(build);
 			}
 		}
+	}
+
+	public void mergeGraph(GravityGraph graph) {
+		if (graph == this) return;
+
+		graph.builds.each(b -> addBuild(b));
+		graph.sources.each(b -> addBuild(b));
+		graph.ultilizers.each(b -> addBuild(b));		
 	}
 
 	public void removeBuild(GravityBuild build) {

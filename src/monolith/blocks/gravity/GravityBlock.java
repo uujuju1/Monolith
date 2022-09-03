@@ -19,7 +19,7 @@ public class GravityBlock extends Block {
 		public void updateTile() {
 			for (int i = 0; i < proximity.size; i++) {
 				if (proximity.get(i) instanceof GravityBuild) {
-					graph.addBuild((GravityBuild) proximity.get(i));
+					graph.mergeGraph(((GravityBuild) proximity.get(i)).graph);
 				}
 			}
 		}
