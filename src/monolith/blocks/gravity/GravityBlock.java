@@ -1,6 +1,6 @@
 package monolith.blocks.gravity;
 
-import mindustry.gen;*;
+import mindustry.gen.*;
 import mindustry.world.*;
 import monolith.blocks.graph.*;
 
