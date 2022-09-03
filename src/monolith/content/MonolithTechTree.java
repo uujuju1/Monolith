@@ -1,9 +1,9 @@
 package monolith.content;
 
 import arc.struct.*;
-import mindustry.game.*;
 import mindustry.content.*;
 
+import static mindustry.game.Objectives.*;
 import static mindustry.content.TechTree.*;
 
 public class MonolithTechTree {
