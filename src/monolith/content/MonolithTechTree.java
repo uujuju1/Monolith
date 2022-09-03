@@ -8,9 +8,11 @@ import static mindustry.content.TechTree.*;
 
 public class MonolithTechTree {
 	public void load() {
-		MonolithPlanets.chroma.techtree = nodeRoot("chroma", MonolithBlocks.furnace, true, () -> {
+		MonolithPlanets.chroma.techTree = nodeRoot("chroma", MonolithBlocks.furnace, true, () -> {
 			nodeProduce(MonolithItems.macrosteel, () -> {
-				nodeProduce(MonolithItems.lithium);
+				nodeProduce(MonolithItems.lithium, () -> {
+					
+				});
 			});
 
 			node(MonolithBlocks.itemLiquidJunction, Seq.with(MonolithItems.macrosteel));
