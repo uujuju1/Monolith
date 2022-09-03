@@ -41,7 +41,7 @@ public class GravityGraph {
 		if (ngraph == this) return;
 
 		ngraph.builds.each(b -> {
-			addBuild(b)
+			addBuild(b);
 		});
 	}
 
