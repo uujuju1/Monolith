@@ -16,6 +16,7 @@ public class GravityGraph {
 	}
 
 	public void addBuild(GravityBuild build) {
+		if (build.graph != this) return;
 		build.graph = this;
 		if (build.block instanceof GravityBlock) {
 			builds.add(build);
