@@ -37,7 +37,7 @@ public class MonolithBlocks {
 
 	artifact,
 
-	test, consumer, producer
+	test, consumer, producer,
 
 	dimensionHolder;
 
@@ -389,7 +389,7 @@ public class MonolithBlocks {
 			));
 			size = 1;
 			health = 100;
-			usesGravity = true;
+			producesGravity = true;
 		}};
 		consumer = new GravityBlock("consumer") {{
 			requirements(Category.distribution, with(
@@ -397,7 +397,7 @@ public class MonolithBlocks {
 			));
 			size = 1;
 			health = 100;
-			producesGravity = true;
+			usesGravity = true;
 		}};
 
 		dimensionHolder = new DimensionBlock("dimension-holder") {{
