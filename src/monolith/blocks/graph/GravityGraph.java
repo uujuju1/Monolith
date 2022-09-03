@@ -12,19 +12,20 @@ public class GravityGraph {
 	ultilizers = new Seq<>();
 
 	public GravityGraph(GravityBuild start) {
-		if (build.block instanceof GravityBlock) {
-			builds.add(build);
-			if (((GravityBlock) build.block).producesGravity) {
-				sources.add(build);
+		if (start.block instanceof GravityBlock) {
+			builds.add(start);
+			if (((GravityBlock) start.block).producesGravity) {
+				sources.add(start);
 			}
-			if (((GravityBlock) build.block).usesGravity) {
-				ultilizers.add(build);
+			if (((GravityBlock) start.block).usesGravity) {
+				ultilizers.add(start);
 			}
 		}
 	}
 
 	public void addBuild(GravityBuild build) {
 		if (build.graph == this) return;
+
 		if (build.block instanceof GravityBlock) {
 			builds.add(build);
 			if (((GravityBlock) build.block).producesGravity) {
