@@ -13,7 +13,7 @@ public class MonolithTechTree {
 				nodeProduce(MonolithItems.lithium, () -> {});
 			});
 
-			node(MonolithBlocks.itemLiquidJunction, Seq.with(MonolithItems.macrosteel), () -> {});
+			node(MonolithBlocks.itemLiquidJunction, Seq.with(new Produce(MonolithItems.macrosteel)), () -> {});
 
 			node(MonolithBlocks.lithiumWeaver, Seq.with(new Produce(MonolithItems.macrosteel)), () -> {});
 
