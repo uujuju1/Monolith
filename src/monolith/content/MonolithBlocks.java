@@ -27,8 +27,6 @@ public class MonolithBlocks {
 	public static Block 
 	itemLiquidJunction,
 
-	standardTunnel,
-
 	furnace, lithiumWeaver,
 
 	move, accelerate,
@@ -38,6 +36,8 @@ public class MonolithBlocks {
 	sparkWall, 
 
 	artifact,
+
+	test, consumer, producer
 
 	dimensionHolder;
 
@@ -50,16 +50,6 @@ public class MonolithBlocks {
 			));
 			size = 1;
 			health = 60;
-		}};
-		standardTunnel = new Tunnel("standard-tunnel") {{
-			requirements(Category.distribution, with(
-				MonolithItems.lithium, 60,
-				Items.titanium, 40,
-				Items.graphite, 50
-			));
-			size = 1;
-			health = 160;
-			
 		}};
 
 		furnace = new GenericCrafter("furnace") {{
@@ -384,6 +374,30 @@ public class MonolithBlocks {
 			range = 200;
 			buildSpeed = 1.5f;
 			consumePower(3f);
+		}};
+
+		test = new GravityBlock("test") {{
+			requirements(Category.distribution, with(
+				Items.copper, 1
+			));
+			size = 1;
+			health = 100;
+		}};
+		producer = new GravityBlock("producer") {{
+			requirements(Category.distribution, with(
+				Items.copper, 1
+			));
+			size = 1;
+			health = 100;
+			usesGravity = true;
+		}};
+		consumer = new GravityBlock("consumer") {{
+			requirements(Category.distribution, with(
+				Items.copper, 1
+			));
+			size = 1;
+			health = 100;
+			producesGravity = true;
 		}};
 
 		dimensionHolder = new DimensionBlock("dimension-holder") {{
