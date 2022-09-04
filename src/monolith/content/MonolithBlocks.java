@@ -17,7 +17,6 @@ import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
 import monolith.type.*;
-import monolith.blocks.gravity.*;
 import monolith.blocks.defense.*;
 import monolith.blocks.dimension.*;
 import monolith.blocks.distribution.*;
@@ -35,10 +34,6 @@ public class MonolithBlocks {
 	caesar, vigenere,
 
 	sparkWall, 
-
-	artifact,
-
-	test, consumer, producer,
 
 	dimensionHolder;
 
