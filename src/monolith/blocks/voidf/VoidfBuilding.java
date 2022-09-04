@@ -7,9 +7,9 @@ public interface VoidfBuilding {
 	default VoidfModule voidfModule() {return null;}
 
 	// manipulation of the void value
-	default void addVoidf(float voidf, Building src) {voidfModule().voidf += void;}
-	default void subVoidf(float voidf, Building src) {voidfModule().voidf -= void;}
-	default void setVoidf(float voidf, Building src) {voidfModule().voidf = void; }
+	default void addVoidf(float voidf, Building src) {voidfModule().voidf += voidf;}
+	default void subVoidf(float voidf, Building src) {voidfModule().voidf -= voidf;}
+	default void setVoidf(float voidf, Building src) {voidfModule().voidf = voidf; }
 
 	// checks if void transfer is possible
 	default boolean acceptsVoidf(float voidf, Building src) {}
