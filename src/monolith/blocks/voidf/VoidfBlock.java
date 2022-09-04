@@ -20,6 +20,7 @@ public class VoidfBlock extends Block {
 
 	@Override
 	public void load() {
+		super.load();
 		voidfRegion = Core.atlas.find(name + "-voidf");
 	}
 
