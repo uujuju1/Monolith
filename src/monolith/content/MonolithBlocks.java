@@ -17,6 +17,7 @@ import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
 import monolith.type.*;
+import monolith.blocks.voidf.*;
 import monolith.blocks.defense.*;
 import monolith.blocks.dimension.*;
 import monolith.blocks.distribution.*;
