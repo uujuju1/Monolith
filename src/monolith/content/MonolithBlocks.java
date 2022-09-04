@@ -37,6 +37,8 @@ public class MonolithBlocks {
 
 	artifact,
 
+	test,
+
 	dimensionHolder;
 
 	public void load() {
@@ -372,6 +374,14 @@ public class MonolithBlocks {
 			range = 200;
 			buildSpeed = 1.5f;
 			consumePower(3f);
+		}};
+
+		test = new VoidfBlock("void-conveyor") {{
+			requirements(Category.units, with(
+				Items.copper, 1
+			));
+			size = 1;
+			health = 250;
 		}};
 
 		dimensionHolder = new DimensionBlock("dimension-holder") {{
