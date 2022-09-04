@@ -35,6 +35,8 @@ public class MonolithBlocks {
 
 	sparkWall, 
 
+	artifact,
+
 	dimensionHolder;
 
 	public void load() {
@@ -370,30 +372,6 @@ public class MonolithBlocks {
 			range = 200;
 			buildSpeed = 1.5f;
 			consumePower(3f);
-		}};
-
-		test = new GravityBlock("test") {{
-			requirements(Category.distribution, with(
-				Items.copper, 1
-			));
-			size = 1;
-			health = 100;
-		}};
-		producer = new GravityBlock("producer") {{
-			requirements(Category.distribution, with(
-				Items.copper, 1
-			));
-			size = 1;
-			health = 100;
-			producesGravity = true;
-		}};
-		consumer = new GravityBlock("consumer") {{
-			requirements(Category.distribution, with(
-				Items.copper, 1
-			));
-			size = 1;
-			health = 100;
-			usesGravity = true;
 		}};
 
 		dimensionHolder = new DimensionBlock("dimension-holder") {{

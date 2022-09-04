@@ -14,21 +14,28 @@ public class VoidfBlock extends Block {
 		super(name);
 	}
 
-	public class VoidfBuild extends Building implements VoidfBuilding {
+	public class VoidfBuild extends Building {
 		public VoidfModule module = new VoidfModule();
 
-		@Override
 		public VoidfModule voidfModule() {
 			return module;
 		}
 
-		@Override
 		public boolean acceptsVoidf(float voidf, Building src) {
 			return acceptVoidf;
 		}
-		@Override
 		public boolean outputsVoidf(float voidf, Building src) {
 			return outputVoidf;
+		}
+
+		public void addVoidf(float voidf, Building src) {
+			module.voidf += voidf;
+		}
+		public void subVoidf(float voidf, Building src) {
+			module.voidf -= voidf;
+		}
+		public void setVoidf(float voidf, Building src) {
+			module.voidf = voidf;
 		}
 	}
 }
