@@ -18,11 +18,17 @@ public class VoidfBlock extends Block {
 		public VoidfModule module = new VoidfModule();
 
 		@Override
-		public VoidfModule voidfModule() {return module;}
+		public VoidfModule voidfModule() {
+			return module;
+		}
 
 		@Override
-		public boolean acceptsVoidf(float heat, Building src) {return acceptVoidf;}
+		public boolean acceptsVoidf(float voidf, Building src) {
+			return acceptVoidf;
+		}
 		@Override
-		public boolean outputsVoidf(float heat, Building src) {return outputVoidf;}
+		public boolean outputsVoidf(float voidf, Building src) {
+			return outputVoidf;
+		}
 	}
 }
