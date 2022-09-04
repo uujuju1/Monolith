@@ -1,4 +1,4 @@
-package monolith.block.voidf;
+package monolith.blocks.voidf;
 
 import arc.*;
 import arc.graphics.*;
@@ -26,7 +26,7 @@ public class VoidfBlock extends Block {
 	@Override
 	public void setBars() {
 		super.setBars();
-		addBar("voidf", build -> new Bar(Core.bundle.get("bar.voidf"), voidfColor, () -> (build.voidfModule().voidf + minVoidf)/(maxVoidf + minVoidf)));
+		addBar("voidf", build -> new Bar(Core.bundle.get("bar.voidf"), voidfColor, () -> (((VoidfBuild) build).voidfModule().voidf + minVoidf)/(maxVoidf + minVoidf)));
 	}
 
 	public class VoidfBuild extends Building {
@@ -67,7 +67,7 @@ public class VoidfBlock extends Block {
 		public void drawVoidf(Color color) {
 			Draw.color(color);
 			Draw.alpha((voidfModule().voidf + minVoidf)/(maxVoidf + minVoidf));
-			Draw.rect(voidfRegion, x, y, block.rotate ? build.rotdeg() : 0);
+			Draw.rect(voidfRegion, x, y, block.rotate ? rotdeg() : 0);
 		}
 
 		@Override
