@@ -16,6 +16,8 @@ public class VoidfBlock extends Block {
 
 	public VoidfBlock(String name) {
 		super(name);
+		solid = destructible = true;
+		update = sync = true;
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public class VoidfBlock extends Block {
 	@Override
 	public void setBars() {
 		super.setBars();
-		addBar("voidf", build -> new Bar(Core.bundle.get("bar.voidf"), voidfColor, () -> (((VoidfBuild) build).voidfModule().voidf + minVoidf)/(maxVoidf + minVoidf)));
+		addBar("voidf", build -> new Bar(Core.bundle.get("bar.voidf"), voidfColor, () -> ((VoidfBuild) build).voidfF()));
 	}
 
 	public class VoidfBuild extends Building {
@@ -36,6 +38,11 @@ public class VoidfBlock extends Block {
 		// get module
 		public VoidfModule voidfModule() {
 			return module;
+		}
+
+		// get percentage from 0 - 1
+		public float voidfF() {
+			return (voidfModule().voidf + Math.abs(minVoidf)) / (maxVoidf + Math.abs(minVoidf));
 		}
 
 		// input voidf check
@@ -67,7 +74,7 @@ public class VoidfBlock extends Block {
 		// drawing voidf stuff
 		public void drawVoidf(Color color) {
 			Draw.color(color);
-			Draw.alpha((voidfModule().voidf + minVoidf)/(maxVoidf + minVoidf));
+			Draw.alpha(voidfF());
 			Draw.rect(voidfRegion, x, y, block.rotate ? rotdeg() : 0);
 		}
 
