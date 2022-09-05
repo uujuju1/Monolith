@@ -14,7 +14,7 @@ public class MonolithDrawf {
 		float len = rand.random(baseSize/2f, baseSize) * fin;
 		float
 		trnsx = x + Angles.trnsx(angle, len, rand.random(-baseSize/2f, baseSize/2f)),
-		trsny = y + Angles.trnsy(angle, len, rand.random(-baseSize/2f, baseSize/2f));
+		trnsy = y + Angles.trnsy(angle, len, rand.random(-baseSize/2f, baseSize/2f));
 		Fill.circle(trnsx, trnsy, Interp.sine.apply(fin * 2f) * particleSize);
 	}
 }

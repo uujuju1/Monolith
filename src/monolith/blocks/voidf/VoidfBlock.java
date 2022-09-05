@@ -1,11 +1,13 @@
 package monolith.blocks.voidf;
 
 import arc.*;
+import arc.math.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
-import mindustry.world.*;
+import mindustry.world.*; 
+import monolith.graphics.*;
 import monolith.blocks.modules.*;
 
 public class VoidfBlock extends Block {
@@ -82,15 +84,13 @@ public class VoidfBlock extends Block {
 		@Override
 		public void updateTile() {
 			overflowVoidf();
-			if (outputsVoidf(Mathf.clamp(voidfModule().voidf, ((VoidfBlock) next.block).minVoidf, ((VoidfBlock) next.block).maxVoidf), this)) {
-				for (int i = 0; i < proximity.size; i++) {
-					if (proximity.get(i) instanceof VoidfBuild) {
-						VoidfBuild next = (VoidfBuild) proximity.get(i);
-						if (next.acceptsVoidf(0, this)) {
-							float amount = Mathf.clamp(voidfModule().voidf, ((VoidfBlock) next.block).minVoidf, ((VoidfBlock) next.block).maxVoidf);
-							next.addVoidf(amount, this);
-							subVoidf(amount, this);
-						}
+			for (int i = 0; i < proximity.size; i++) {
+				if (proximity.get(i) instanceof VoidfBuild) {
+					VoidfBuild next = (VoidfBuild) proximity.get(i);
+					if (next.acceptsVoidf(0, this) && outputsVoidf(Mathf.clamp(voidfModule().voidf, ((VoidfBlock) next.block).minVoidf, ((VoidfBlock) next.block).maxVoidf), this)) {
+						float amount = Mathf.clamp(voidfModule().voidf, ((VoidfBlock) next.block).minVoidf, ((VoidfBlock) next.block).maxVoidf);
+						next.addVoidf(amount, this);
+						subVoidf(amount, this);
 					}
 				}
 			}
