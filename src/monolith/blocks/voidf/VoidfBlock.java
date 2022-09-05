@@ -10,7 +10,7 @@ import monolith.blocks.modules.*;
 
 public class VoidfBlock extends Block {
 	public boolean acceptVoidf = false, outputVoidf = false;
-	public float minVoidf = -100, maxVoidf = 100;
+	public float minVoidf = 0, maxVoidf = 100;
 	public Color voidfColor = Color.white;
 	public TextureRegion voidfRegion;
 
@@ -81,6 +81,18 @@ public class VoidfBlock extends Block {
 		@Override
 		public void updateTile() {
 			overflowVoidf();
+			if (outputsVoidf) {
+				for (int i = 0; i < proximity.size; i++) {
+					if (proximity.get(i) instanceof VoidfBuild) {
+						VoidfBuild next = (VoidfBuild) proximity.get(i);
+						if (next.acceptsVoidf(0, this)) {
+							float amount = Mathf.clamp(voidfModule().voidf, ((VoidfBlock) next.block).minVoidf, ((VoidfBlock) next.block).maxVoidf);
+							next.addVoidf(amount, this);
+							subVoidf(amount, this);
+						}
+					}
+				}
+			}
 		}
 
 		@Override

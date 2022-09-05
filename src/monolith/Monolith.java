@@ -36,5 +36,6 @@ public class Monolith extends Mod{
 		new MonolithUnits().load();
 		new MonolithBlocks().load();
 		new MonolithPlanets().load();
+		new MonolithTechTree().load();
 	}
 }

@@ -21,6 +21,7 @@ import monolith.blocks.voidf.*;
 import monolith.blocks.defense.*;
 import monolith.blocks.dimension.*;
 import monolith.blocks.distribution.*;
+import monolith.blocks.voidf.sandbox.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -38,7 +39,7 @@ public class MonolithBlocks {
 
 	artifact,
 
-	test,
+	test, voidVoid, voidSource,
 
 	dimensionHolder;
 
@@ -378,7 +379,22 @@ public class MonolithBlocks {
 		}};
 
 		test = new VoidfBlock("void-conveyor") {{
-			requirements(Category.units, with(
+			requirements(Category.distribution, with(
+				Items.copper, 1
+			));
+			acceptVoidf = outputVoidf = true;
+			size = 1;
+			health = 250;
+		}};
+		voidVoid = new VoidfVoid("void-void") {{
+			requirements(Category.distribution, with(
+				Items.copper, 1
+			));
+			size = 1;
+			health = 250;
+		}};
+		voidSource = new VoidfSource("void-source") {{
+			requirements(Category.distribution, with(
 				Items.copper, 1
 			));
 			size = 1;
