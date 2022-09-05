@@ -12,7 +12,8 @@ import monolith.blocks.modules.*;
 
 public class VoidfBlock extends Block {
 	public boolean acceptVoidf = false, outputVoidf = false;
-	public float minVoidf = 0, maxVoidf = 100;
+	public float minVoidf = 0, maxVoidf = 100,
+	transferRate = 0.5f;
 	public Color voidfColor = Color.valueOf("515CAE");
 	public TextureRegion voidfRegion;
 
@@ -47,9 +48,14 @@ public class VoidfBlock extends Block {
 			return (voidfModule().voidf + Math.abs(minVoidf)) / (maxVoidf + Math.abs(minVoidf));
 		}
 
+		// get transfer amount 
+		public float voidfTransfer() {
+			return voidfModule().voidf * transferRate;
+		}
+
 		// input voidf check
 		public boolean acceptsVoidf(float voidf, Building src) {
-			return acceptVoidf;
+			return voidf + voidfModule().voidf < block.maxVoidf && acceptsVoidf;
 		}
 		public boolean outputsVoidf(float voidf, Building src) {
 			return outputVoidf;
@@ -78,19 +84,22 @@ public class VoidfBlock extends Block {
 			Draw.color(color);
 			Draw.alpha(voidfF());
 			Draw.rect(voidfRegion, x, y, block.rotate ? rotdeg() : 0);
+			Draw.color(color.cpy().mul(1.2f));
+			Draw.alpha(voidfF());
 			MonolithDrawf.voidfSmoke(id, x, y, block.size * 10, block.size, 60f, block.size * 4f);
+			Draw.reset();
 		}
 
 		@Override
 		public void updateTile() {
 			overflowVoidf();
+			float t = voidfTransfer();
 			for (int i = 0; i < proximity.size; i++) {
 				if (proximity.get(i) instanceof VoidfBuild) {
 					VoidfBuild next = (VoidfBuild) proximity.get(i);
-					if (next.acceptsVoidf(0, this) && outputsVoidf(Mathf.clamp(voidfModule().voidf, ((VoidfBlock) next.block).minVoidf, ((VoidfBlock) next.block).maxVoidf), this)) {
-						float amount = Mathf.clamp(voidfModule().voidf, ((VoidfBlock) next.block).minVoidf, ((VoidfBlock) next.block).maxVoidf);
-						next.addVoidf(amount, this);
-						subVoidf(amount, this);
+					if (next.acceptsVoidf(t, this) && outputsVoidf(t, this)) {
+						next.addVoidf(t, this);
+						subVoidf(t, this);
 					}
 				}
 			}
@@ -98,7 +107,6 @@ public class VoidfBlock extends Block {
 
 		@Override
 		public void draw() {
-			super.draw();
 			drawVoidf(voidfColor);
 		}
 	}

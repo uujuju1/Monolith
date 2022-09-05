@@ -13,7 +13,6 @@ public class VoidfSource extends VoidfBlock {
 	public class VoidfSourceBuild extends VoidfBuild {
 		@Override
 		public void updateTile() {
-			super.updateTile();
 			for (int i = 0; i < proximity.size; i++) {
 				if (proximity.get(i) instanceof VoidfBuild) {
 					VoidfBuild next = (VoidfBuild) proximity.get(i);

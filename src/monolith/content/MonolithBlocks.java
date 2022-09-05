@@ -22,6 +22,7 @@ import monolith.blocks.defense.*;
 import monolith.blocks.dimension.*;
 import monolith.blocks.distribution.*;
 import monolith.blocks.voidf.sandbox.*;
+import monolith.blocks.voidf.distribution.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -39,7 +40,7 @@ public class MonolithBlocks {
 
 	artifact,
 
-	test, voidVoid, voidSource,
+	voidfConveyor, voidVoid, voidSource,
 
 	dimensionHolder;
 
@@ -378,7 +379,7 @@ public class MonolithBlocks {
 			consumePower(3f);
 		}};
 
-		test = new VoidfBlock("void-conveyor") {{
+		voidfConveyor = new VoidfConveyor("void-conveyor") {{
 			requirements(Category.distribution, with(
 				Items.copper, 1
 			));
