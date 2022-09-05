@@ -55,7 +55,7 @@ public class VoidfBlock extends Block {
 
 		// input voidf check
 		public boolean acceptsVoidf(float voidf, Building src) {
-			return voidf + voidfModule().voidf < block.maxVoidf && acceptsVoidf;
+			return voidf + voidfModule().voidf < maxVoidf && acceptVoidf;
 		}
 		public boolean outputsVoidf(float voidf, Building src) {
 			return outputVoidf;

@@ -1,4 +1,4 @@
-package monolith.blocks.voidf.distribuion;
+package monolith.blocks.voidf.distribution;
 
 import arc.Core;
 import arc.graphics.g2d.*;
@@ -24,7 +24,7 @@ public class VoidfConveyor extends VoidfBlock {
 		@Override
 		public boolean acceptsVoidf(float voidf, Building src) {
 			if (back() == src) {
-				return acceptVoidf;
+				super.acceptsVoidf(voidf, src);
 			}
 			return false;
 		}
