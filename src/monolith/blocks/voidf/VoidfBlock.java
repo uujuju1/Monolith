@@ -11,7 +11,7 @@ import monolith.blocks.modules.*;
 public class VoidfBlock extends Block {
 	public boolean acceptVoidf = false, outputVoidf = false;
 	public float minVoidf = 0, maxVoidf = 100;
-	public Color voidfColor = Color.white;
+	public Color voidfColor = Color.valueOf("515CAE");
 	public TextureRegion voidfRegion;
 
 	public VoidfBlock(String name) {
@@ -76,12 +76,13 @@ public class VoidfBlock extends Block {
 			Draw.color(color);
 			Draw.alpha(voidfF());
 			Draw.rect(voidfRegion, x, y, block.rotate ? rotdeg() : 0);
+			MonolithDrawf.voidfSmoke(id, x, y, block.size * 10, block.size, 60f, block.size * 4f);
 		}
 
 		@Override
 		public void updateTile() {
 			overflowVoidf();
-			if (outputsVoidf) {
+			if (outputsVoidf(Mathf.clamp(voidfModule().voidf, ((VoidfBlock) next.block).minVoidf, ((VoidfBlock) next.block).maxVoidf), this)) {
 				for (int i = 0; i < proximity.size; i++) {
 					if (proximity.get(i) instanceof VoidfBuild) {
 						VoidfBuild next = (VoidfBuild) proximity.get(i);
