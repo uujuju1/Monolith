@@ -1,8 +1,10 @@
 package monolith.blocks.voidf.sandbox;
 
+import arc.math.*;
 import monolith.blocks.voidf.VoidfBlock;
 
 public class VoidfSource extends VoidfBlock {
+
 	public VoidfSource(String name) {
 		super(name);
 		outputVoidf = true;
