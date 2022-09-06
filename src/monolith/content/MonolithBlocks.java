@@ -386,7 +386,7 @@ public class MonolithBlocks {
 
 		voidfConveyor = new VoidfConveyor("void-conveyor") {{
 			requirements(Category.distribution, with(
-				MonolithItems.lithium, 1
+				MonolithItems.lithium, 1,
 				Items.graphite, 1
 			));
 			size = 1;
@@ -394,7 +394,7 @@ public class MonolithBlocks {
 		}};
 		voidfRouter = new VoidfRouter("void-router") {{
 			requirements(Category.distribution, with(
-				MonolithItems.lithium, 3
+				MonolithItems.lithium, 3,
 				Items.graphite, 3
 			));
 			size = 1;
@@ -403,7 +403,7 @@ public class MonolithBlocks {
 
 		voidfTank = new VoidfRouter("void-tank") {{
 			requirements(Category.distribution, with(
-				MonolithItems.lithium, 75
+				MonolithItems.lithium, 75,
 				Items.graphite, 12,
 				Items.metaglass, 13
 			));
