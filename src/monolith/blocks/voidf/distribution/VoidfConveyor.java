@@ -10,6 +10,7 @@ public class VoidfConveyor extends VoidfBlock {
 
 	public VoidfConveyor(String name) {
 		super(name);
+		rotate = acceptVoidf = outputVoidf = true;
 	}
 
 	@Override
@@ -23,8 +24,8 @@ public class VoidfConveyor extends VoidfBlock {
 		
 		@Override
 		public boolean acceptsVoidf(float voidf, Building src) {
-			if (back() == src) {
-				super.acceptsVoidf(voidf, src);
+			if (back() == src && voidf + voidfModule().voidf < maxVoidf) {
+				return true;
 			}
 			return false;
 		}
@@ -47,7 +48,7 @@ public class VoidfConveyor extends VoidfBlock {
 			super.draw();
 			float rot = (rotdeg() + 90f) % 180f - 90f;
 			Draw.rect(region, x, y, rot);
-			Draw.rect(dirRegion, x, y, rot);
+			Draw.rect(dirRegion, x, y, rotdeg());
 		}
 	}
 }

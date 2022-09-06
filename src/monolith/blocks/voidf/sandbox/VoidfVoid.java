@@ -14,5 +14,10 @@ public class VoidfVoid extends VoidfBlock {
 			super.updateTile();
 			setVoidf(((VoidfBlock) block).minVoidf, this);
 		}
+		@Override
+		public void draw() {
+			Draw.rect(region, x, y, rotdeg());
+			super.draw();
+		}
 	}
 }

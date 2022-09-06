@@ -383,7 +383,6 @@ public class MonolithBlocks {
 			requirements(Category.distribution, with(
 				Items.copper, 1
 			));
-			acceptVoidf = outputVoidf = true;
 			size = 1;
 			health = 250;
 		}};

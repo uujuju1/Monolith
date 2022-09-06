@@ -16,11 +16,14 @@ public class VoidfSource extends VoidfBlock {
 			for (int i = 0; i < proximity.size; i++) {
 				if (proximity.get(i) instanceof VoidfBuild) {
 					VoidfBuild next = (VoidfBuild) proximity.get(i);
-					if (next.acceptsVoidf(0, this)) {
-						next.setVoidf(((VoidfBlock) next.block).maxVoidf, this);
-					}
+					next.setVoidf(((VoidfBlock) next.block).maxVoidf, this);
 				}
 			}
+		}
+		@Override
+		public void draw() {
+			Draw.rect(region, x, y, rotdeg());
+			super.draw();
 		}
 	}
 }
