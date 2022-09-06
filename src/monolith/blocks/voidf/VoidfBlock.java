@@ -13,9 +13,9 @@ import monolith.blocks.modules.*;
 public class VoidfBlock extends Block {
 	public boolean acceptVoidf = false, outputVoidf = false;
 	public float minVoidf = 0, maxVoidf = 100,
-	transferRate = 0.5f;
+	transferRate = 0.1f;
 	public Color voidfColor = Color.valueOf("515CAE");
-	public TextureRegion voidfRegion;
+	public TextureRegion voidfRegion, bottomRegion;
 
 	public VoidfBlock(String name) {
 		super(name);
@@ -26,7 +26,13 @@ public class VoidfBlock extends Block {
 	@Override
 	public void load() {
 		super.load();
+		bottomRegion = Core.atlas.find(name + "-bottom");
 		voidfRegion = Core.atlas.find(name + "-voidf");
+	}
+
+	@Override
+	public TextureRegion[] icons() {
+		return new TextureRegion[]{bottomRegion, region};
 	}
 
 	@Override

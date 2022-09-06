@@ -6,7 +6,7 @@ import mindustry.gen.*;
 import monolith.blocks.voidf.*;
 
 public class VoidfConveyor extends VoidfBlock {
-	public TextureRegion bottomRegion, dirRegion;
+	public TextureRegion dirRegion;
 
 	public VoidfConveyor(String name) {
 		super(name);
@@ -16,8 +16,12 @@ public class VoidfConveyor extends VoidfBlock {
 	@Override
 	public void load() {
 		super.load();
-		bottomRegion = Core.atlas.find(name + "-bottom");
 		dirRegion = Core.atlas.find(name + "-dir");
+	}
+
+	@Override
+	public TextureRegion[] icons() {
+		return new TextureRegion[]{bottomRegion, region, dirRegion};
 	}
 
 	public class VoidfConveyorBuild extends VoidfBuild {

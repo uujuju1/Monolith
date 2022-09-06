@@ -12,13 +12,11 @@ public class VoidfVoid extends VoidfBlock {
 	public class VoidfVoidBuild extends VoidfBuild {
 		@Override
 		public void updateTile() {
-			super.updateTile();
 			setVoidf(((VoidfBlock) block).minVoidf, this);
 		}
 		@Override
 		public void draw() {
-			Draw.rect(region, x, y, rotdeg());
-			super.draw();
+			Draw.rect(region, x, y, 0);
 		}
 	}
 }

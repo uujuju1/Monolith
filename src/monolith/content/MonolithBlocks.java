@@ -40,7 +40,9 @@ public class MonolithBlocks {
 
 	artifact,
 
-	voidfConveyor, voidVoid, voidSource,
+	voidfConveyor, 
+	voidfRouter,
+	voidfVoid, voidfSource,
 
 	dimensionHolder;
 
@@ -386,14 +388,22 @@ public class MonolithBlocks {
 			size = 1;
 			health = 250;
 		}};
-		voidVoid = new VoidfVoid("void-void") {{
+		voidfRouter = new VoidfBlock("void-router") {{
 			requirements(Category.distribution, with(
 				Items.copper, 1
 			));
 			size = 1;
 			health = 250;
 		}};
-		voidSource = new VoidfSource("void-source") {{
+		
+		voidfVoid = new VoidfVoid("void-void") {{
+			requirements(Category.distribution, with(
+				Items.copper, 1
+			));
+			size = 1;
+			health = 250;
+		}};
+		voidfSource = new VoidfSource("void-source") {{
 			requirements(Category.distribution, with(
 				Items.copper, 1
 			));

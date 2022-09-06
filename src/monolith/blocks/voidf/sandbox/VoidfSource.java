@@ -23,8 +23,7 @@ public class VoidfSource extends VoidfBlock {
 		}
 		@Override
 		public void draw() {
-			Draw.rect(region, x, y, rotdeg());
-			super.draw();
+			Draw.rect(region, x, y, 0);
 		}
 	}
 }
