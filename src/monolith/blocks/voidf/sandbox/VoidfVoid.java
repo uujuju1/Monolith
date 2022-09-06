@@ -1,5 +1,6 @@
 package monolith.blocks.voidf.sandbox;
 
+import arc.graphics.g2d.*;
 import monolith.blocks.voidf.VoidfBlock;
 
 public class VoidfVoid extends VoidfBlock {
