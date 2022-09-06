@@ -22,6 +22,7 @@ import monolith.blocks.defense.*;
 import monolith.blocks.dimension.*;
 import monolith.blocks.distribution.*;
 import monolith.blocks.voidf.sandbox.*;
+import monolith.blocks.voidf.production.*;
 import monolith.blocks.voidf.distribution.*;
 
 import static mindustry.type.ItemStack.*;
@@ -44,6 +45,8 @@ public class MonolithBlocks {
 	voidfRouter,
 
 	voidfTank,
+
+	neurovoidfFactory,
 
 	voidfVoid, voidfSource,
 
@@ -390,7 +393,7 @@ public class MonolithBlocks {
 				Items.graphite, 1
 			));
 			size = 1;
-			health = 250;
+			health = 40;
 		}};
 		voidfRouter = new VoidfRouter("void-router") {{
 			requirements(Category.distribution, with(
@@ -398,7 +401,7 @@ public class MonolithBlocks {
 				Items.graphite, 3
 			));
 			size = 1;
-			health = 250;
+			health = 60;
 		}};
 
 		voidfTank = new VoidfRouter("void-tank") {{
@@ -408,18 +411,37 @@ public class MonolithBlocks {
 				Items.metaglass, 13
 			));
 			size = 2;
-			health = 250;
+			health = 350;
 		}};
 
 		voidfVoid = new VoidfVoid("void-void") {{
 			buildVisibility = BuildVisibility.sandboxOnly;
 			size = 1;
-			health = 250;
+			health = 1000000000;
 		}};
 		voidfSource = new VoidfSource("void-source") {{
 			buildVisibility = BuildVisibility.sandboxOnly;
 			size = 1;
+			health = 1000000000;
+		}};
+
+		neurovoidfFactory = new VoidfCrafter("neurovoid-factory") {{
+			requirements(Category.crafting, with(
+				MonolithItems.lithium, 150,
+				MonolithItems.macrosteel, 200,
+				Items.silicon, 125,
+				Items.graphite, 125
+			));
+			size = 3;
 			health = 250;
+			craftTime = 10;
+			drawer = new DrawMulti(new DrawDefault());
+			consumeItems(
+				Items.plastanium, 1,
+				Items.coal, 2
+			);
+			consumeLiquid(Liquids.water, 0.1f);
+			outputVoidf = 10;
 		}};
 
 		dimensionHolder = new DimensionBlock("dimension-holder") {{

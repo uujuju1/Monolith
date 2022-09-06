@@ -92,7 +92,7 @@ public class VoidfBlock extends Block {
 			Draw.rect(voidfRegion, x, y, block.rotate ? rotdeg() : 0);
 			Draw.color(color.cpy().mul(1.2f));
 			Draw.alpha(voidfF());
-			MonolithDrawf.voidfSmoke(id, x, y, block.size * 10, block.size, 60f, block.size * 4f);
+			MonolithDrawf.voidfSmoke(id, x, y, block.size * 10, block.size/2f, 60f, block.size * 4f);
 			Draw.reset();
 		}
 

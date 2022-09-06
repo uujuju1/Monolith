@@ -35,8 +35,8 @@ public class VoidfCrafter extends VoidfBlock{
 	craftTime = 80,
 	updateEffectChance = 0.04f,
 	warmupSpeed = 0.019f,
-	voidfConsumption = 10f,
-	voidfOutput = 10f;
+	voidfConsumption = 0f,
+	voidfOutput = 0f;
 
 	public Effect 
 	craftEffect = Fx.none,
@@ -162,6 +162,7 @@ public class VoidfCrafter extends VoidfBlock{
 
 		@Override
 		public void draw(){
+			super.draw();
 			drawer.draw(this);
 		}
 
