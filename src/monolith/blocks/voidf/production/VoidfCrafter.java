@@ -52,6 +52,7 @@ public class VoidfCrafter extends VoidfBlock{
 		ambientSoundVolume = 0.03f;
 		flags = EnumSet.of(BlockFlag.factory);
 		drawArrow = false;
+
 	}
 
 	@Override
@@ -113,6 +114,7 @@ public class VoidfCrafter extends VoidfBlock{
 
 		if(outputItems != null) hasItems = true;
 		if(outputLiquids != null) hasLiquids = true;
+		if(voidfOutput > 0) outputVoidf = true; 
 
 		super.init();
 	}
@@ -162,6 +164,7 @@ public class VoidfCrafter extends VoidfBlock{
 
 		@Override
 		public void draw(){
+			Draw.rect(bottomRegion, x, y, 0);
 			super.draw();
 			drawer.draw(this);
 		}
@@ -174,7 +177,7 @@ public class VoidfCrafter extends VoidfBlock{
 
 		@Override
 		public boolean shouldConsume(){
-			if (block instanceof VoidfBlock) {
+			if (!(block instanceof VoidfBlock)) {
 				return false;
 			} else if (voidfModule().voidf + voidfOutput > ((VoidfBlock) block).maxVoidf) {
 				return false;
@@ -211,6 +214,7 @@ public class VoidfCrafter extends VoidfBlock{
 
 		@Override
 		public void updateTile(){
+			super.updateTile();
 			if(efficiency > 0){
 
 				progress += getProgressIncrease(craftTime);
