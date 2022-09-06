@@ -26,7 +26,7 @@ public class VoidfBlock extends Block {
 	@Override
 	public void load() {
 		super.load();
-		bottomRegion = Core.atlas.find(name + "-bottom");
+		bottomRegion = Core.atlas.find(name + "-bottom", region);
 		voidfRegion = Core.atlas.find(name + "-voidf");
 	}
 

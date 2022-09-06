@@ -42,6 +42,9 @@ public class MonolithBlocks {
 
 	voidfConveyor, 
 	voidfRouter,
+
+	voidTank,
+
 	voidfVoid, voidfSource,
 
 	dimensionHolder;
@@ -383,30 +386,38 @@ public class MonolithBlocks {
 
 		voidfConveyor = new VoidfConveyor("void-conveyor") {{
 			requirements(Category.distribution, with(
-				Items.copper, 1
+				MonolithItems.lithium, 1
+				Items.graphite, 1
 			));
 			size = 1;
 			health = 250;
 		}};
-		voidfRouter = new VoidfBlock("void-router") {{
+		voidfRouter = new VoidfRouter("void-router") {{
 			requirements(Category.distribution, with(
-				Items.copper, 1
+				MonolithItems.lithium, 3
+				Items.graphite, 3
 			));
 			size = 1;
 			health = 250;
 		}};
-		
+
+		voidfTank = new VoidfRouter("void-tank") {{
+			requirements(Category.distribution, with(
+				MonolithItems.lithium, 75
+				Items.graphite, 12,
+				Items.metaglass, 13
+			));
+			size = 2;
+			health = 250;
+		}};
+
 		voidfVoid = new VoidfVoid("void-void") {{
-			requirements(Category.distribution, with(
-				Items.copper, 1
-			));
+			buildVisibility = BuildVisibility.sandboxOnly;
 			size = 1;
 			health = 250;
 		}};
 		voidfSource = new VoidfSource("void-source") {{
-			requirements(Category.distribution, with(
-				Items.copper, 1
-			));
+			buildVisibility = BuildVisibility.sandboxOnly;
 			size = 1;
 			health = 250;
 		}};
