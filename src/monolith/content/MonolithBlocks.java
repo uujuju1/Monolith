@@ -436,12 +436,12 @@ public class MonolithBlocks {
 			health = 250;
 			craftTime = 10;
 			drawer = new DrawMulti(new DrawDefault());
-			consumeItems(
+			consumeItems(with(
 				Items.plastanium, 1,
 				Items.coal, 2
-			);
+			));
 			consumeLiquid(Liquids.water, 0.1f);
-			outputVoidf = 10;
+			voidfOutput = 10f;
 		}};
 
 		dimensionHolder = new DimensionBlock("dimension-holder") {{
