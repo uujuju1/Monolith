@@ -1,18 +1,19 @@
 package mindustry.world.blocks.production;
 
-import arc.graphics.g2d.*;
-import arc.math.*;
-import arc.math.geom.*;
-import arc.struct.*;
 import arc.util.*;
+import arc.math.*;
+import arc.struct.*;
 import arc.util.io.*;
+import arc.math.geom.*;
+import arc.graphics.g2d.*;
+import mindustry.gen.*;
+import mindustry.type.*;
+import mindustry.logic.*;
 import mindustry.content.*;
 import mindustry.entities.*;
-import mindustry.entities.units.*;
-import mindustry.logic.*;
-import mindustry.type.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
+import mindustry.entities.units.*;
 import monolith.blocks.voidf.*;
 
 import static mindustry.Vars.*;

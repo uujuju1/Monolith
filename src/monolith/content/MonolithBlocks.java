@@ -43,7 +43,7 @@ public class MonolithBlocks {
 	voidfConveyor, 
 	voidfRouter,
 
-	voidTank,
+	voidfTank,
 
 	voidfVoid, voidfSource,
 
