@@ -413,6 +413,8 @@ public class MonolithBlocks {
 			));
 			size = 2;
 			health = 350;
+			maxVoidf = 1000;
+			transferRate = 0.01f;
 		}};
 
 		voidfVoid = new VoidfVoid("void-void") {{
