@@ -125,10 +125,10 @@ public class VoidfCrafter extends VoidfBlock {
 	}
 
 	@Override
-	public TextureRegion[] icons(){
+	public TextureRegion[] icons() {
 		TextureRegion[] out = new TextureRegion[drawer.finalIcons(this).length + 1];
 		out[0] = bottomRegion;
-		for(int i = 1; i < out.length; i++){
+		for(int i = 1; i < out.length; i++) {
 			out[i] = drawer.finalIcons(this)[i - 1];
 		}
 		return out;

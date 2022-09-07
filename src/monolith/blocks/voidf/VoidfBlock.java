@@ -31,7 +31,7 @@ public class VoidfBlock extends Block {
 	}
 
 	@Override
-	public TextureRegion[] icons() 
+	public TextureRegion[] icons() {
 		return new TextureRegion[]{bottomRegion, region};
 	}
 
