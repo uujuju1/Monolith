@@ -461,7 +461,7 @@ public class MonolithBlocks {
 			consumeItems(with(
 				MonolithItems.lithium, 3,
 				Items.graphite, 5,
-				Items.sand 7
+				Items.sand, 7
 			));
 			consumePower(3f);
 			consumeVoidf = 25;
