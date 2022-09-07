@@ -14,7 +14,7 @@ public class VoidfBlock extends Block {
 	public boolean acceptVoidf = false, outputVoidf = false;
 	public float minVoidf = 0, maxVoidf = 100,
 	transferRate = 0.1f;
-	public Color voidfColor = Color.valueOf("515CAE");
+	public Color voidfColor = Color.valueOf("722EC0");
 	public TextureRegion voidfRegion, bottomRegion;
 
 	public VoidfBlock(String name) {
@@ -31,7 +31,7 @@ public class VoidfBlock extends Block {
 	}
 
 	@Override
-	public TextureRegion[] icons() {
+	public TextureRegion[] icons() 
 		return new TextureRegion[]{bottomRegion, region};
 	}
 

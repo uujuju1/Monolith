@@ -47,6 +47,7 @@ public class MonolithBlocks {
 	voidfTank,
 
 	neurovoidfFactory,
+	macroSmelter,
 
 	voidfVoid, voidfSource,
 
@@ -441,7 +442,30 @@ public class MonolithBlocks {
 				Items.coal, 2
 			));
 			consumeLiquid(Liquids.water, 0.1f);
+			consumePower(2f);
 			voidfOutput = 10f;
+		}};
+		macroSmelter = new VoidfCrafter("macro-smelter") {{
+			requirements(Category.crafting, with(
+				MonolithItems.lithium, 150,
+				Items.silicon, 200,
+				Items.graphite, 250,
+				Items.lead, 150,
+				Items.copper, 200
+			));
+			size = 3;
+			health = 300;
+			craftTime = 120;
+			itemCapacity = 30;
+			drawer = new DrawMulti(new DrawDefault());
+			consumeItems(with(
+				MonolithItems.lithium, 3,
+				Items.graphite, 5,
+				Items.sand 7
+			));
+			consumePower(3f);
+			consumeVoidf = 25;
+			outputItems = with(MonolithItems.macrosteel, 5, Items.silicon, 6);
 		}};
 
 		dimensionHolder = new DimensionBlock("dimension-holder") {{
