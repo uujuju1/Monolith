@@ -45,6 +45,6 @@ public class MonolithStatusValues {
 					}).pad(10f);
 				}
 			}).pad(4f);
-		}
+		};
 	}
 }
