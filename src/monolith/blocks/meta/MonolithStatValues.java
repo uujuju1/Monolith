@@ -3,6 +3,7 @@ package monolith.blocks.meta;
 import arc.*;
 import arc.util.*;
 import arc.graphics.*;
+import arc.scene.style.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
@@ -19,9 +20,9 @@ public class MonolithStatValues {
 
 	public static StatValue voidfUnit(VoidfBlock block) {
 		return table -> {
-			table.background(Tex.whiteui.tint(0.27f, 0.27f, 0.27f, 1f));
+			table.background(((TextureRegionDrawable) Tex.whiteui).tint(0.27f, 0.27f, 0.27f, 1f));
 			table.table(t -> {
-				t.background(Tex.whiteui.tint(0f, 0f, 0f, 1f));
+				t.background(((TextureRegionDrawable) Tex.whiteui).tint(0f, 0f, 0f, 1f));
 				t.add(Core.bundle.get("stat.voidfModule")).color(Pal.accent).center().pad(10f).row();
 				t.table(stats -> {
 					stats.background(Tex.underline);
