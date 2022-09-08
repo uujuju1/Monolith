@@ -115,6 +115,7 @@ public class VoidfCrafter extends VoidfBlock {
 		if(outputItems != null) hasItems = true;
 		if(outputLiquids != null) hasLiquids = true;
 		if(voidfOutput > 0) outputVoidf = true; 
+		if(voidfConsumption > 0) acceptVoidf = true; 
 
 		super.init();
 	}

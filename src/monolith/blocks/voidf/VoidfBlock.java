@@ -8,6 +8,7 @@ import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.world.*; 
 import monolith.graphics.*;
+import monolith.blocks.meta.*;
 import monolith.blocks.modules.*;
 
 public class VoidfBlock extends Block {
@@ -39,6 +40,12 @@ public class VoidfBlock extends Block {
 	public void setBars() {
 		super.setBars();
 		addBar("voidf", build -> new Bar(Core.bundle.get("bar.voidf"), voidfColor, () -> ((VoidfBuild) build).voidfF()));
+	}
+
+	@Override
+	public void setStats() {
+		super.setStats();
+		stats.add(Stat.abilities, MonolithStatValues.voidfUnit);
 	}
 
 	public class VoidfBuild extends Building {
