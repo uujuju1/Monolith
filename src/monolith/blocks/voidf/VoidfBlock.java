@@ -45,7 +45,7 @@ public class VoidfBlock extends Block {
 	@Override
 	public void setStats() {
 		super.setStats();
-		stats.add(Stat.abilities, MonolithStatValues.voidfUnit);
+		stats.add(Stat.abilities, MonolithStatValues.voidfUnit(this));
 	}
 
 	public class VoidfBuild extends Building {
