@@ -7,6 +7,7 @@ import arc.graphics.g2d.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.world.*; 
+import mindustry.world.meta.*;
 import monolith.graphics.*;
 import monolith.blocks.meta.*;
 import monolith.blocks.modules.*;
