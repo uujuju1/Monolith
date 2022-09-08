@@ -9,7 +9,7 @@ import mindustry.world.meta.*;
 import monolith.blocks.voidf.*;
 import monolith.blocks.voidf.production.*;
 
-public class MonolithStatusValues {
+public class MonolithStatValues {
 
 	// yoinked from source, might remove later
 	public static String fixValue(float value){
