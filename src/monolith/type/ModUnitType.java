@@ -1,6 +1,7 @@
 package monolith.type;
 
 import arc.*;
+import arc.math.*;
 import arc.util.*;
 import arc.struct.*;
 import arc.graphics.g2d.*;
@@ -32,15 +33,15 @@ public class ModUnitType extends UnitType {
 
 	public void drawRotors(Unit unit) {
 		rotors.each(rotor -> {
-			if (back) {
-				Draw.z(Layer.flyingUnitLow - 0.01);
+			if (rotor.back) {
+				Draw.z(Layer.flyingUnitLow - 0.01f);
 			} else {
-				Draw.z(Layer.flyingUnitLow + 0.01);
+				Draw.z(Layer.flyingUnitLow + 0.01f);
 			}
 			Draw.alpha(1);
-			Draw.rect(region, unit.x + Angles.trnsx(unit.rotation - 90, x, y), unit.y + Angles.trnsx(unit.rotation - 90, x, y), Time.time + unit.id);
+			Draw.rect(region, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
 			Draw.alpha(0);
-			Draw.rect(blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, x, y), unit.y + Angles.trnsy(unit.rotation - 90, x, y), Time.time + unit.id);
+			Draw.rect(blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
 		});
 	}
 
