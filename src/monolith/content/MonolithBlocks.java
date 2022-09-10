@@ -507,12 +507,12 @@ public class MonolithBlocks {
 			));
 			size = 2;
 			health = 350;
-			consumeVoidf = 10f
+			consumeVoidf = 10f;
 			action = build -> {
 				Damage.status(build.team, build.x, build.y, range, MonolithStatusEffects.isolated, 60f, true, true);
 			};
 		}};
-		magnetar new VoidfSprayer("magnetar") {{
+		magnetar =  new VoidfSprayer("magnetar") {{
 			requirements(Category.crafting, with(
 				MonolithItems.lithium, 225,
 				Items.plastanium, 175,
