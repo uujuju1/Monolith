@@ -15,8 +15,10 @@ import monolith.blocks.modules.*;
 
 public class VoidfBlock extends Block {
 	public boolean acceptVoidf = false, outputVoidf = false;
-	public float minVoidf = 0, maxVoidf = 100,
-	transferRate = 0.1f;
+	public float 
+	minVoidf = 0, maxVoidf = 100,
+	transferRate = 0.1f,
+	consumeVoidf = -1f;
 	public TextureRegion voidfRegion, bottomRegion;
 
 	public VoidfBlock(String name) {

@@ -499,7 +499,7 @@ public class MonolithBlocks {
 		}};
 
 		coreollis = new VoidfSprayer("coreollis") {{
-			requirements(Category.crafting, with(
+			requirements(Category.turret, with(
 				MonolithItems.lithium, 125,
 				Items.plastanium, 75,
 				Items.titanium, 100,
@@ -513,14 +513,14 @@ public class MonolithBlocks {
 			};
 		}};
 		magnetar =  new VoidfSprayer("magnetar") {{
-			requirements(Category.crafting, with(
+			requirements(Category.turret, with(
 				MonolithItems.lithium, 225,
 				Items.plastanium, 175,
 				Items.titanium, 200,
 				Items.thorium, 150,
 				Items.graphite, 180
 			));
-			size = 2;
+			size = 3;
 			health = 750;
 			consumeVoidf = 10f;
 			range = 160f;

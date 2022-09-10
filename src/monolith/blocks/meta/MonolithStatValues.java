@@ -37,13 +37,15 @@ public class MonolithStatValues {
 						stats.add(block.transferRate + "").color(Color.gray).left().row();
 					}).pad(10f).row();
 					
-					if (block instanceof VoidfCrafter) {
+					if (block.consumeVoidf > 0 || block instanceof VoidfCrafter) {
 						t.add(Core.bundle.get("category.crafting")).color(Pal.accent).center().pad(10f).row();
 						t.table(input -> {
-							input.add(Core.bundle.get("stat.voidfConsumption") + ": ").left();
-							input.add(((VoidfCrafter) block).voidfConsumption + "").color(Color.gray).left().row();
-							input.add(Core.bundle.get("stat.voidfOutput") + ": ").left();
-							input.add(((VoidfCrafter) block).voidfOutput + "").color(Color.gray).left().row();
+							input.add(Core.bundle.get("stat.consumeVoidf") + ": ").left();
+							input.add(block.consumeVoidf + "").color(Color.gray).left().row();
+							if (block instanceof VoidfCrafter) {
+								input.add(Core.bundle.get("stat.voidfOutput") + ": ").left();
+								input.add(((VoidfCrafter) block).voidfOutput + "").color(Color.gray).left().row();					
+							}
 						}).pad(10f);
 					}
 				}).pad(4f);

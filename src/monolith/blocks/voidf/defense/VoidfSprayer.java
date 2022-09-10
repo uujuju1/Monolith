@@ -12,7 +12,6 @@ import monolith.blocks.voidf.*;
 public class VoidfSprayer extends VoidfBlock {
 	public float 
 	range = 80f,
-	consumeVoidf = 1f;
 	public Cons<VoidfBuild> action = build -> {};
 
 	public VoidfSprayer(String name) {
@@ -27,7 +26,7 @@ public class VoidfSprayer extends VoidfBlock {
 	}
 
 	public class VoidfSprayerBuild extends VoidfBuild {
-		float alpha = 0;
+		public float alpha;
 		@Override
 		public void drawSelect() {
 			Drawf.dashCircle(x, y, range, MonolithPal.voidf);
@@ -36,8 +35,8 @@ public class VoidfSprayer extends VoidfBlock {
 		@Override
 		public void updateTile() {
 			super.updateTile();
-			if (voidfModule().voidf > consumeVoidf * Time.delta) {
-				subVoidf(consumeVoidf/60f * Time.delta, this);
+			if (voidfModule().voidf > ((VoidfBlock) block).consumeVoidf * Time.delta) {
+				subVoidf(((VoidfBlock) block).consumeVoidf/60f * Time.delta, this);
 				action.get(this);
 				Mathf.approachDelta(alpha, 1f, 0.01f);
 			} else {
@@ -51,7 +50,7 @@ public class VoidfSprayer extends VoidfBlock {
 			super.draw();
 			Draw.rect(region, x, y, 0);
 
-			if (voidfModule().voidf > consumeVoidf * Time.delta) {
+			if (voidfModule().voidf > ((VoidfBlock) block).consumeVoidf * Time.delta) {
 				Draw.color(MonolithPal.voidf);
 				Lines.stroke(3f * alpha);
 				Lines.circle(x, y, range * alpha);

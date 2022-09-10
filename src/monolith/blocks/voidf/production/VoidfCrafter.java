@@ -39,7 +39,6 @@ public class VoidfCrafter extends VoidfBlock {
 		voidf consumption and production
 		unrelated to craftTime
 	*/
-	voidfConsumption = 0f,
 	voidfOutput = 0f;
 
 	public Effect 
