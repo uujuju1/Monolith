@@ -32,7 +32,11 @@ public class ModUnitType extends UnitType {
 
 	public void drawRotors(Unit unit) {
 		rotors.each(rotor -> {
-			Draw.z(back ? Layer.flyingUnitLow + 0.01 : Layer.flyingUnitLow - 0.01);
+			if (back) {
+				Draw.z(Layer.flyingUnitLow - 0.01);
+			} else {
+				Draw.z(Layer.flyingUnitLow + 0.01);
+			}
 			Draw.alpha(1);
 			Draw.rect(region, unit.x + Angles.trnsx(unit.rotation - 90, x, y), unit.y + Angles.trnsx(unit.rotation - 90, x, y), Time.time + unit.id);
 			Draw.alpha(0);
