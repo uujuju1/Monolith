@@ -500,7 +500,7 @@ public class MonolithBlocks {
 
 		coreollis = new VoidfSprayer("coreollis") {{
 			requirements(Category.crafting, with(
-				MonolithItems.lithium, 125
+				MonolithItems.lithium, 125,
 				Items.plastanium, 75,
 				Items.titanium, 100,
 				Items.graphite, 80
@@ -514,7 +514,7 @@ public class MonolithBlocks {
 		}};
 		magnetar new VoidfSprayer("magnetar") {{
 			requirements(Category.crafting, with(
-				MonolithItems.lithium, 225
+				MonolithItems.lithium, 225,
 				Items.plastanium, 175,
 				Items.titanium, 200,
 				Items.thorium, 150,

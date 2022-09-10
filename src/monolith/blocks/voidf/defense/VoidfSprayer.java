@@ -18,7 +18,7 @@ public class VoidfSprayer extends VoidfBlock {
 	}
 
 	@Override
-	public void drawPlace(int x, int y, int rotation boolean valid) {
+	public void drawPlace(int x, int y, int rotation, boolean valid) {
 		super.drawPlace(x, y, rotation, valid);
 		Drawf.dashCircle(x + Vars.tilesize * offset, y + Vars.tilesize * offset, range, MonolithPal.voidf);
 	}
@@ -33,7 +33,7 @@ public class VoidfSprayer extends VoidfBlock {
 		@Override
 		public void updateTile() {
 			super.updateTile();
-			if (voidfModule().void > consumeVoidf * Time.delta) {
+			if (voidfModule().voidf > consumeVoidf * Time.delta) {
 				subVoidf(consumeVoidf/60f * Time.delta);
 				action.get(this);
 				Mathf.approachDelta(alpha, 1f, 0.01f);
@@ -48,7 +48,7 @@ public class VoidfSprayer extends VoidfBlock {
 			super.draw();
 			Draw.rect(region, x, y, 0);
 
-			if (voidfModule().void > consumeVoidf * Time.delta) {
+			if (voidfModule().voidf > consumeVoidf * Time.delta) {
 				Draw.color(MonolithPal.voidf);
 				Lines.stroke(3f * alpha);
 				Lines.circle(x, y, range * alpha);
