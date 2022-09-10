@@ -54,7 +54,7 @@ public class MonolithUnits {
 			speed = 1f;
 			hitSize = 9f;
 			lowAltitude = true;
-			constructor = UnitEntity::create;
+			constructor = CopterComp::new;
 			immunities.add(MonolithStatusEffects.isolated);
 			rotors.add(
 				new Rotor("monolith-connect-rotor", 0, 4, 15, true),
