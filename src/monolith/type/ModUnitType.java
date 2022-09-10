@@ -6,7 +6,7 @@ import arc.struct.*;
 import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import mindustry.graphics.*.
+import mindustry.graphics.*;
 
 public class ModUnitType extends UnitType {
 	public Seq<Rotor> rotors = new Seq<>();
@@ -36,7 +36,7 @@ public class ModUnitType extends UnitType {
 			Draw.alpha(1);
 			Draw.rect(region, unit.x + Angles.trnsx(unit.rotation - 90, x, y), unit.y + Angles.trnsx(unit.rotation - 90, x, y), Time.time + unit.id);
 			Draw.alpha(0);
-			Draw.rect(blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, x, y), unit.y + Angles.trnsy(unit.rotation - 90, x, y), Time.time + unit.id)
+			Draw.rect(blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, x, y), unit.y + Angles.trnsy(unit.rotation - 90, x, y), Time.time + unit.id);
 		});
 	}
 
