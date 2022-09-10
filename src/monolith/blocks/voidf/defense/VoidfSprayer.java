@@ -36,8 +36,8 @@ public class VoidfSprayer extends VoidfBlock {
 		@Override
 		public void updateTile() {
 			super.updateTile();
-			if (voidfModule().voidf > consumeVoidf * Time.delta, this) {
-				subVoidf(consumeVoidf/60f * Time.delta);
+			if (voidfModule().voidf > consumeVoidf * Time.delta) {
+				subVoidf(consumeVoidf/60f * Time.delta, this);
 				action.get(this);
 				Mathf.approachDelta(alpha, 1f, 0.01f);
 			} else {
