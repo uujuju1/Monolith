@@ -2,8 +2,11 @@ package monolith.blocks.voidf.defense;
 
 import arc.util.*;
 import arc.func.*;
+import arc.math.*;
+import arc.graphics.g2d.*;
 import mindustry.*;
 import mindustry.graphics.*;
+import monolith.graphics.*;
 import monolith.blocks.voidf.*;
 
 public class VoidfSprayer extends VoidfBlock {
@@ -33,7 +36,7 @@ public class VoidfSprayer extends VoidfBlock {
 		@Override
 		public void updateTile() {
 			super.updateTile();
-			if (voidfModule().voidf > consumeVoidf * Time.delta) {
+			if (voidfModule().voidf > consumeVoidf * Time.delta, this) {
 				subVoidf(consumeVoidf/60f * Time.delta);
 				action.get(this);
 				Mathf.approachDelta(alpha, 1f, 0.01f);

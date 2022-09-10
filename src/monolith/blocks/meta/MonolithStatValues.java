@@ -20,7 +20,7 @@ public class MonolithStatValues {
 
 	public static StatValue voidfUnit(VoidfBlock block) {
 		return ta -> {
-			t.table(table -> {
+			ta.table(table -> {
 				table.background(((TextureRegionDrawable) Tex.whiteui).tint(0.27f, 0.27f, 0.27f, 1f));
 				table.table(t -> {
 					t.background(((TextureRegionDrawable) Tex.whiteui).tint(0f, 0f, 0f, 1f));

@@ -2,6 +2,7 @@ package monolith.blocks.voidf;
 
 import arc.*;
 import arc.math.*;
+import arc.util.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import mindustry.ui.*;
@@ -39,7 +40,7 @@ public class VoidfBlock extends Block {
 	@Override
 	public void setBars() {
 		super.setBars();
-		addBar("voidf", build -> new Bar(Core.bundle.get("bar.voidf"), voidfColor, () -> ((VoidfBuild) build).voidfF()));
+		addBar("voidf", build -> new Bar(Core.bundle.get("bar.voidf"), MonolithPal.voidf, () -> ((VoidfBuild) build).voidfF()));
 	}
 
 	@Override
