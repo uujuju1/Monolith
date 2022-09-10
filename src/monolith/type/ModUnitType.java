@@ -35,7 +35,7 @@ public class ModUnitType extends UnitType {
 
 	public void drawRotors(CopterComp unit) {
 		rotors.each(rotor -> {
-			int id;
+			int id rotors.indexOf(rotor);
 			if (rotor.back) {
 				Draw.z(Layer.flyingUnitLow - 0.01f);
 			} else {
@@ -51,7 +51,6 @@ public class ModUnitType extends UnitType {
 
 			Draw.alpha(unit.alphas[id]/rotor.blurTime);
 			Draw.rect(rotor.blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
-			id++;
 		});
 	}
 
