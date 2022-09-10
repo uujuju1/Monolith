@@ -39,9 +39,9 @@ public class ModUnitType extends UnitType {
 				Draw.z(Layer.flyingUnitLow + 0.01f);
 			}
 			Draw.alpha(1);
-			Draw.rect(region, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
+			Draw.rect(rotor.region, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
 			Draw.alpha(0);
-			Draw.rect(blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
+			Draw.rect(rotor.blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
 		});
 	}
 
