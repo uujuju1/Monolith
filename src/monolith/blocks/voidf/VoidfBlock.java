@@ -18,7 +18,7 @@ public class VoidfBlock extends Block {
 	public float 
 	minVoidf = 0, maxVoidf = 100,
 	transferRate = 0.1f,
-	consumeVoidf = -1f;
+	consumeVoidf = 0f;
 	public TextureRegion voidfRegion, bottomRegion;
 
 	public VoidfBlock(String name) {

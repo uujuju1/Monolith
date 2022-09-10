@@ -11,6 +11,8 @@ import mindustry.ui.dialogs.*;
 import mindustry.world.meta.*;
 import monolith.type.*;
 
+import static mindustry.world.meta.StatValues.*;
+
 public class BulletDialog extends BaseDialog {
 	public BulletDialog() {
 		super(Core.bundle.get("info.title") + "");
@@ -37,15 +39,15 @@ public class BulletDialog extends BaseDialog {
 	
 			desc.table(damageStat -> {
 				damageStat.add(Core.bundle.get("stat.damage") + ":").left().color(Color.lightGray);
-				damageStat.add(" " + bullet.damage).left();
+				damageStat.add(fixValue(bullet.damage)).left();
 			}).left().padLeft(10).row();
 			desc.table(rangeStat -> {
 				rangeStat.add(Core.bundle.get("stat.range") + ":").left().color(Color.lightGray);
-				rangeStat.add(" " + bullet.range/8 + " " + StatUnit.blocks.localized()).left();
+				rangeStat.add(fixValue(bullet.range/8) + " " + StatUnit.blocks.localized()).left();
 			}).left().padLeft(10).row();
 			desc.table(reloadStat -> {
 				reloadStat.add(Core.bundle.get("stat.reload") + ":").left().color(Color.lightGray);
-				reloadStat.add(" " + bullet.reloadTime/60 + " " + StatUnit.seconds.localized()).left();
+				reloadStat.add(fixValue(bullet.reloadTime/60) + " " + StatUnit.seconds.localized()).left();
 			}).left().padLeft(10).row();
 			if (bullet.req != ItemStack.empty) {
 				desc.table(reqsStat -> {

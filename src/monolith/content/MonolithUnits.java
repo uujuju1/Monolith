@@ -8,9 +8,10 @@ import mindustry.entities.bullet.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
 import monolith.type.*;
+import monolith.type.ModUnitType.*;
 
 public class MonolithUnits {
-	public static UnitType shelter;
+	public static UnitType shelter, connect;
 
 	public void load() {
 		// units
@@ -48,7 +49,21 @@ public class MonolithUnits {
 			);
 		}};
 
+		connect = new ModUnitType("connect") {{
+			health = 450;
+			speed = 1f;
+			hitSize = 9f;
+			lowAltitude = true;
+			constructor = UnitEntity::create;
+			immunities.add(MonolithStatusEffects.isolated);
+			rotors.add(
+				new Rotor("monolith-connect-rotor", 0, 4, 15, true),
+				new Rotor("monolith-connect-rotor-small", 0, -7, 15, false)
+			);
+		}};
+
 		// plans
 		((UnitFactory) Blocks.groundFactory).plans.addAll(new UnitPlan(shelter, 120 * 60, ItemStack.with(Items.silicon, 25, MonolithItems.macrosteel, 20)));
+		((UnitFactory) Blocks.airFactory).plans.addAll(new UnitPlan(connect, 120 * 60, ItemStack.with(Items.silicon, 25, MonolithItems.lithium, 20, Items.plastanium, 15)));
 	}
 }

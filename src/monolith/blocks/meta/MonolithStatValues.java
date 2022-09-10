@@ -10,13 +10,9 @@ import mindustry.world.meta.*;
 import monolith.blocks.voidf.*;
 import monolith.blocks.voidf.production.*;
 
-public class MonolithStatValues {
+import static mindustry.world.meta.StatValues.*;
 
-	// yoinked from source, might remove later
-	public static String fixValue(float value){
-		int precision = Math.abs((int)value - value) <= 0.001f ? 0 : Math.abs((int)(value * 10) - value * 10) <= 0.001f ? 1 : 2;
-		return Strings.fixed(value, precision);
-	}
+public class MonolithStatValues {
 
 	public static StatValue voidfUnit(VoidfBlock block) {
 		return ta -> {
@@ -28,23 +24,25 @@ public class MonolithStatValues {
 					t.table(stats -> {
 						stats.background(Tex.underline);
 						stats.add(Core.bundle.get("stat.minVoidf") + ": ").left();
-						stats.add(block.minVoidf + "").color(Color.gray).left().row();
+						stats.add(fixValue(block.minVoidf)).color(Color.gray).left().row();
 				
 						stats.add(Core.bundle.get("stat.maxVoidf") + ": ").left();
-						stats.add(block.maxVoidf + "").color(Color.gray).left().row();
-				
-						stats.add(Core.bundle.get("stat.transferRate") + ": ").left();
-						stats.add(block.transferRate + "").color(Color.gray).left().row();
+						stats.add(fixValue(block.maxVoidf)).color(Color.gray).left().row();
+						if (block.outputVoidf) {
+							stats.add(Core.bundle.get("stat.transferRate") + ": ").left();
+							stats.add(fixValue(block.transferRate)).color(Color.gray).left().row();
+						}
+						
 					}).pad(10f).row();
 					
 					if (block.consumeVoidf > 0 || block instanceof VoidfCrafter) {
 						t.add(Core.bundle.get("category.crafting")).color(Pal.accent).center().pad(10f).row();
 						t.table(input -> {
 							input.add(Core.bundle.get("stat.consumeVoidf") + ": ").left();
-							input.add(block.consumeVoidf + "").color(Color.gray).left().row();
+							input.add(fixValue(block.consumeVoidf)).color(Color.gray).left().row();
 							if (block instanceof VoidfCrafter) {
 								input.add(Core.bundle.get("stat.voidfOutput") + ": ").left();
-								input.add(((VoidfCrafter) block).voidfOutput + "").color(Color.gray).left().row();					
+								input.add(fixValue(((VoidfCrafter) block).voidfOutput)).color(Color.gray).left().row();					
 							}
 						}).pad(10f);
 					}

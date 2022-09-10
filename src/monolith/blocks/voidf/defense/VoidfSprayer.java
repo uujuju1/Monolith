@@ -38,9 +38,9 @@ public class VoidfSprayer extends VoidfBlock {
 			if (voidfModule().voidf > ((VoidfBlock) block).consumeVoidf * Time.delta) {
 				subVoidf(((VoidfBlock) block).consumeVoidf/60f * Time.delta, this);
 				action.get(this);
-				alpha = Mathf.approachDelta(alpha, 1f, 0.01f);
+				alpha = Mathf.lerp(alpha, 1f, 0.01f);
 			} else {
-				alpha = Mathf.approachDelta(alpha, 0f, 0.01f);
+				alpha = Mathf.lerp(alpha, 0f, 0.01f);
 			}
 		}
 
