@@ -50,7 +50,7 @@ public class BulletDialog extends BaseDialog {
 			if (bullet.req != ItemStack.empty) {
 				desc.table(reqsStat -> {
 					reqsStat.add(Core.bundle.get("stat.buildcost") + ":").left().color(Color.lightGray);
-					for(var i = 0; i < bullet.req.length; i++){
+					for(int i = 0; i < bullet.req.length; i++){
 						reqsStat.add(new ItemDisplay(bullet.req[i].item, bullet.req[i].amount, false)).padRight(5).padLeft(5);
 					}
 				}).left().padLeft(10).row();
@@ -60,7 +60,7 @@ public class BulletDialog extends BaseDialog {
 			if (!(bullet.statuses.length <= 0 || bullet.statusDurations.length <= 0)) {
 				desc.add(Core.bundle.get("stat.affinities") + "").left().color(Pal.accent).row();
 				desc.table(statusStat -> {
-					for (var i = 0; i < Math.min(bullet.statuses.length, bullet.statusDurations.length); i++) {
+					for (int i = 0; i < Math.min(bullet.statuses.length, bullet.statusDurations.length); i++) {
 						statusStat.add(new Image(bullet.statuses[i].uiIcon));
 						statusStat.add(bullet.statusDurations[i]/60 + " " + StatUnit.seconds.localized()).row();
 					}

@@ -19,33 +19,35 @@ public class MonolithStatValues {
 	}
 
 	public static StatValue voidfUnit(VoidfBlock block) {
-		return table -> {
-			table.background(((TextureRegionDrawable) Tex.whiteui).tint(0.27f, 0.27f, 0.27f, 1f));
-			table.table(t -> {
-				t.background(((TextureRegionDrawable) Tex.whiteui).tint(0f, 0f, 0f, 1f));
-				t.add(Core.bundle.get("stat.voidfModule")).color(Pal.accent).center().pad(10f).row();
-				t.table(stats -> {
-					stats.background(Tex.underline);
-					stats.add(Core.bundle.get("stat.minVoidf") + ": ").left();
-					stats.add(block.minVoidf + "").color(Color.gray).left().row();
-			
-					stats.add(Core.bundle.get("stat.maxVoidf") + ": ").left();
-					stats.add(block.maxVoidf + "").color(Color.gray).left().row();
-			
-					stats.add(Core.bundle.get("stat.transferRate") + ": ").left();
-					stats.add(block.transferRate + "").color(Color.gray).left().row();
-				}).pad(10f).row();
+		return ta -> {
+			t.table(table -> {
+				table.background(((TextureRegionDrawable) Tex.whiteui).tint(0.27f, 0.27f, 0.27f, 1f));
+				table.table(t -> {
+					t.background(((TextureRegionDrawable) Tex.whiteui).tint(0f, 0f, 0f, 1f));
+					t.add(Core.bundle.get("stat.voidfModule")).color(Pal.accent).center().pad(10f).row();
+					t.table(stats -> {
+						stats.background(Tex.underline);
+						stats.add(Core.bundle.get("stat.minVoidf") + ": ").left();
+						stats.add(block.minVoidf + "").color(Color.gray).left().row();
 				
-				if (block instanceof VoidfCrafter) {
-					t.add(Core.bundle.get("category.crafting")).color(Pal.accent).center().pad(10f).row();
-					t.table(input -> {
-						input.add(Core.bundle.get("stat.voidfConsumption") + ": ").left();
-						input.add(((VoidfCrafter) block).voidfConsumption + "").color(Color.gray).left().row();
-						input.add(Core.bundle.get("stat.voidfOutput") + ": ").left();
-						input.add(((VoidfCrafter) block).voidfOutput + "").color(Color.gray).left().row();
-					}).pad(10f);
-				}
-			}).pad(4f);
+						stats.add(Core.bundle.get("stat.maxVoidf") + ": ").left();
+						stats.add(block.maxVoidf + "").color(Color.gray).left().row();
+				
+						stats.add(Core.bundle.get("stat.transferRate") + ": ").left();
+						stats.add(block.transferRate + "").color(Color.gray).left().row();
+					}).pad(10f).row();
+					
+					if (block instanceof VoidfCrafter) {
+						t.add(Core.bundle.get("category.crafting")).color(Pal.accent).center().pad(10f).row();
+						t.table(input -> {
+							input.add(Core.bundle.get("stat.voidfConsumption") + ": ").left();
+							input.add(((VoidfCrafter) block).voidfConsumption + "").color(Color.gray).left().row();
+							input.add(Core.bundle.get("stat.voidfOutput") + ": ").left();
+							input.add(((VoidfCrafter) block).voidfOutput + "").color(Color.gray).left().row();
+						}).pad(10f);
+					}
+				}).pad(4f);
+			});
 		};
 	}
 }

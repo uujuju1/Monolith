@@ -16,7 +16,6 @@ public class VoidfBlock extends Block {
 	public boolean acceptVoidf = false, outputVoidf = false;
 	public float minVoidf = 0, maxVoidf = 100,
 	transferRate = 0.1f;
-	public Color voidfColor = Color.valueOf("722EC0");
 	public TextureRegion voidfRegion, bottomRegion;
 
 	public VoidfBlock(String name) {
@@ -64,7 +63,7 @@ public class VoidfBlock extends Block {
 
 		// get transfer amount 
 		public float voidfTransfer() {
-			return voidfModule().voidf * transferRate;
+			return voidfModule().voidf * transferRate * Time.delta;
 		}
 
 		// input voidf check
@@ -121,7 +120,7 @@ public class VoidfBlock extends Block {
 
 		@Override
 		public void draw() {
-			drawVoidf(voidfColor);
+			drawVoidf(MonolithPal.voidf);
 		}
 	}
 }

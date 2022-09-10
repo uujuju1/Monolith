@@ -35,6 +35,10 @@ public class VoidfCrafter extends VoidfBlock {
 	craftTime = 80,
 	updateEffectChance = 0.04f,
 	warmupSpeed = 0.019f,
+	/* 
+		voidf consumption and production
+		unrelated to craftTime
+	*/
 	voidfConsumption = 0f,
 	voidfOutput = 0f;
 
@@ -80,7 +84,7 @@ public class VoidfCrafter extends VoidfBlock {
 			removeBar("liquid");
 
 			//then display output buffer
-			for(var stack : outputLiquids){
+			for(LiquidStack stack : outputLiquids){
 				addLiquidBar(stack.liquid);
 			}
 		}
@@ -190,7 +194,7 @@ public class VoidfCrafter extends VoidfBlock {
 			}
 
 			if(outputItems != null){
-				for(var output : outputItems){
+				for(ItemStack output : outputItems){
 					if(items.get(output.item) + output.amount > itemCapacity){
 						return false;
 					}
@@ -198,7 +202,7 @@ public class VoidfCrafter extends VoidfBlock {
 			}
 			if(outputLiquids != null && !ignoreLiquidFullness){
 				boolean allFull = true;
-				for(var output : outputLiquids){
+				for(LiquidStack output : outputLiquids){
 					if(liquids.get(output.liquid) >= liquidCapacity - 0.001f){
 						if(!dumpExtraLiquid){
 							return false;
@@ -225,11 +229,13 @@ public class VoidfCrafter extends VoidfBlock {
 
 				progress += getProgressIncrease(craftTime);
 				warmup = Mathf.approachDelta(warmup, warmupTarget(), warmupSpeed);
+				subVoidf(voidfConsumption/60 * Time.delta, this);
+				addVoidf(voidfOutput/60 * Time.delta, this);
 
 				//continuously output based on efficiency
 				if(outputLiquids != null){
 					float inc = getProgressIncrease(1f);
-					for(var output : outputLiquids){
+					for(LiquidStack output : outputLiquids){
 						handleLiquid(this, output.liquid, Math.min(output.amount * inc, liquidCapacity - liquids.get(output.liquid)));
 					}
 				}
@@ -267,16 +273,15 @@ public class VoidfCrafter extends VoidfBlock {
 
 		public void craft(){
 			consume();
-			subVoidf(voidfConsumption, this);
 
 			if(outputItems != null){
-				for(var output : outputItems){
+				for(ItemStack output : outputItems){
 					for(int i = 0; i < output.amount; i++){
 						offload(output.item);
 					}
 				}
 			}
-			addVoidf(voidfOutput, this);
+			addVoidf(voidfOutput * Time.delta, this);
 
 			if(wasVisible){
 				craftEffect.at(x, y);

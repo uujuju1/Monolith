@@ -22,6 +22,7 @@ import monolith.blocks.defense.*;
 import monolith.blocks.dimension.*;
 import monolith.blocks.distribution.*;
 import monolith.blocks.voidf.sandbox.*;
+import monolith.blocks.voidf.defense.*;
 import monolith.blocks.voidf.production.*;
 import monolith.blocks.voidf.distribution.*;
 
@@ -46,8 +47,10 @@ public class MonolithBlocks {
 
 	voidfTank,
 
-	neurovoidfFactory,
+	voidfCrafter, voidfFactory,
 	macroSmelter,
+
+	coreollis, magnetar,
 
 	voidfVoid, voidfSource,
 
@@ -391,7 +394,8 @@ public class MonolithBlocks {
 		voidfConveyor = new VoidfConveyor("void-conveyor") {{
 			requirements(Category.distribution, with(
 				MonolithItems.lithium, 1,
-				Items.graphite, 1
+				Items.graphite, 1,
+				Items.plastanium, 1
 			));
 			size = 1;
 			health = 40;
@@ -399,7 +403,8 @@ public class MonolithBlocks {
 		voidfRouter = new VoidfRouter("void-router") {{
 			requirements(Category.distribution, with(
 				MonolithItems.lithium, 3,
-				Items.graphite, 3
+				Items.graphite, 3,
+				Items.plastanium, 1
 			));
 			size = 1;
 			health = 60;
@@ -409,7 +414,8 @@ public class MonolithBlocks {
 			requirements(Category.distribution, with(
 				MonolithItems.lithium, 75,
 				Items.graphite, 12,
-				Items.metaglass, 13
+				Items.metaglass, 13,
+				Items.plastanium, 25
 			));
 			size = 2;
 			health = 350;
@@ -428,12 +434,33 @@ public class MonolithBlocks {
 			health = 1000000000;
 		}};
 
-		neurovoidfFactory = new VoidfCrafter("neurovoid-factory") {{
+		voidfCrafter = new VoidfCrafter("void-crafter") {{
 			requirements(Category.crafting, with(
 				MonolithItems.lithium, 150,
 				MonolithItems.macrosteel, 200,
 				Items.silicon, 125,
 				Items.graphite, 125
+			));
+			size = 2;
+			health = 160;
+			craftTime = 10;
+			drawer = new DrawMulti(new DrawDefault());
+			consumeItems(with(
+				Items.plastanium, 1,
+				Items.coal, 1
+			));
+			consumeLiquid(Liquids.water, 0.01f);
+			consumePower(2f);
+			voidfOutput = 10f;
+		}};
+		voidfFactory = new VoidfCrafter("void-factory") {{
+			requirements(Category.crafting, with(
+				MonolithItems.lithium, 150,
+				MonolithItems.macrosteel, 200,
+				Items.silicon, 125,
+				Items.graphite, 125,
+				Items.titanium, 175,
+				Items.plastanium, 200
 			));
 			size = 3;
 			health = 250;
@@ -445,8 +472,9 @@ public class MonolithBlocks {
 			));
 			consumeLiquid(Liquids.water, 0.1f);
 			consumePower(2f);
-			voidfOutput = 10f;
+			voidfOutput = 25f;
 		}};
+
 		macroSmelter = new VoidfCrafter("macro-smelter") {{
 			requirements(Category.crafting, with(
 				MonolithItems.lithium, 150,
@@ -468,6 +496,37 @@ public class MonolithBlocks {
 			consumePower(3f);
 			voidfConsumption = 25;
 			outputItems = with(MonolithItems.macrosteel, 5, Items.silicon, 6);
+		}};
+
+		coreollis = new VoidfSprayer("coreollis") {{
+			requirements(Category.crafting, with(
+				MonolithItems.lithium, 125
+				Items.plastanium, 75,
+				Items.titanium, 100,
+				Items.graphite, 80
+			));
+			size = 2;
+			health = 350;
+			consumeVoidf = 10f
+			action = build -> {
+				Damage.status(build.team, build.x, build.y, range, MonolithStatusEffects.isolated, 60f, true, true);
+			};
+		}};
+		magnetar new VoidfSprayer("magnetar") {{
+			requirements(Category.crafting, with(
+				MonolithItems.lithium, 225
+				Items.plastanium, 175,
+				Items.titanium, 200,
+				Items.thorium, 150,
+				Items.graphite, 180
+			));
+			size = 2;
+			health = 750;
+			consumeVoidf = 10f;
+			range = 160f;
+			action = build -> {
+				Damage.status(build.team, build.x, build.y, range, MonolithStatusEffects.isolated, 120f, true, true);
+			};
 		}};
 
 		dimensionHolder = new DimensionBlock("dimension-holder") {{
