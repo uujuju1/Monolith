@@ -494,7 +494,7 @@ public class MonolithBlocks {
 				Items.sand, 7
 			));
 			consumePower(3f);
-			voidfConsumption = 25;
+			consumeVoidf = 25;
 			outputItems = with(MonolithItems.macrosteel, 5, Items.silicon, 6);
 		}};
 
