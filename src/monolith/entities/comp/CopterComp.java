@@ -3,6 +3,7 @@ package monolith.entities.comp;
 import arc.math.*;
 import mindustry.gen.*;
 import monolith.type.*;
+import monolith.type.ModUnitType.*;
 
 public class CopterComp extends UnitEntity {
 	// you want more? That's the neat part, you dont.

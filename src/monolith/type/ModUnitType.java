@@ -8,7 +8,7 @@ import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
-import monolith.comp.*;
+import monolith.entities.comp.*;
 
 public class ModUnitType extends UnitType {
 	public Seq<Rotor> rotors = new Seq<>();
