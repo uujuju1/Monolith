@@ -8,6 +8,7 @@ import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
+import monolith.comp.*;
 
 public class ModUnitType extends UnitType {
 	public Seq<Rotor> rotors = new Seq<>();
@@ -25,10 +26,11 @@ public class ModUnitType extends UnitType {
 
 	@Override
 	public void draw(Unit unit) {
-		// if (!(unit instanceof CopterComp)) {
+		if (!(unit instanceof CopterComp)) {
 			super.draw(unit);
 			drawRotors(unit);
-		// }
+		}
+		super.draw(unit);
 	}
 
 	public void drawRotors(Unit unit) {
@@ -39,7 +41,10 @@ public class ModUnitType extends UnitType {
 				Draw.z(Layer.flyingUnitLow + 0.01f);
 			}
 			Draw.alpha(1);
-			Draw.rect(rotor.region, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
+			for (int i = 0; i < rotor.sides; i++) {
+				Draw.rect(rotor.outlineRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id * speed);
+				Draw.rect(rotor.region, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id * speed);
+			}
 			Draw.alpha(0);
 			Draw.rect(rotor.blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
 		});
@@ -47,7 +52,7 @@ public class ModUnitType extends UnitType {
 
 	public class Rotor {
 		public String name;
-		public TextureRegion region, blurRegion;
+		public TextureRegion region, blurRegion, outlineRegion;
 		public float 
 		x = 0, y = 0,
 		speed = 15f,
@@ -65,6 +70,7 @@ public class ModUnitType extends UnitType {
 		public void load() {
 			region = Core.atlas.find(name);
 			blurRegion = Core.atlas.find(name + "-blur");
+			outlineRegion = Core.atlas.find(name + "-outline");
 		}
 	}
 }
