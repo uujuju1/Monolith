@@ -35,7 +35,7 @@ public class ModUnitType extends UnitType {
 
 	public void drawRotors(CopterComp unit) {
 		rotors.each(rotor -> {
-			int id rotors.indexOf(rotor);
+			int id = rotors.indexOf(rotor);
 			if (rotor.back) {
 				Draw.z(Layer.flyingUnitLow - 0.01f);
 			} else {
