@@ -1,6 +1,6 @@
 package monolith.entities.comp;
 
-import arc.math.*.
+import arc.math.*;
 import mindustry.gen.*;
 import monolith.type.*;
 
@@ -11,7 +11,7 @@ public class CopterComp extends UnitEntity {
 	@Override
 	public void update() {
 		if (!(type instanceof ModUnitType)) return;
-		if (((ModUnitType) type).rotors.size => 16) return;
+		if (((ModUnitType) type).rotors.size >= 16) return;
 		for (int i = 0; i < ((ModUnitType) type).rotors.size; i++) {
 			Rotor r = ((ModUnitType) type).rotors.get(i);
 			if (dead) {
