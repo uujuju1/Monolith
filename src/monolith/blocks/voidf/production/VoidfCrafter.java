@@ -118,7 +118,7 @@ public class VoidfCrafter extends VoidfBlock {
 		if(outputItems != null) hasItems = true;
 		if(outputLiquids != null) hasLiquids = true;
 		if(voidfOutput > 0) outputVoidf = true; 
-		if(voidfConsumption > 0) acceptVoidf = true; 
+		if(consumeVoidf > 0) acceptVoidf = true; 
 
 		super.init();
 	}
@@ -228,7 +228,7 @@ public class VoidfCrafter extends VoidfBlock {
 
 				progress += getProgressIncrease(craftTime);
 				warmup = Mathf.approachDelta(warmup, warmupTarget(), warmupSpeed);
-				subVoidf(voidfConsumption/60 * Time.delta, this);
+				subVoidf(((VoidfBlock) block).consumeVoidf/60 * Time.delta, this);
 				addVoidf(voidfOutput/60 * Time.delta, this);
 
 				//continuously output based on efficiency

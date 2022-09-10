@@ -11,7 +11,7 @@ import monolith.blocks.voidf.*;
 
 public class VoidfSprayer extends VoidfBlock {
 	public float 
-	range = 80f,
+	range = 80f;
 	public Cons<VoidfBuild> action = build -> {};
 
 	public VoidfSprayer(String name) {
