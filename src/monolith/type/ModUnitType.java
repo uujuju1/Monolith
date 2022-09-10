@@ -28,25 +28,30 @@ public class ModUnitType extends UnitType {
 	public void draw(Unit unit) {
 		if (!(unit instanceof CopterComp)) {
 			super.draw(unit);
-			drawRotors(unit);
+			drawRotors((CopterComp) unit);
 		}
 		super.draw(unit);
 	}
 
-	public void drawRotors(Unit unit) {
+	public void drawRotors(CopterComp unit) {
 		rotors.each(rotor -> {
+			int id;
 			if (rotor.back) {
 				Draw.z(Layer.flyingUnitLow - 0.01f);
 			} else {
 				Draw.z(Layer.flyingUnitLow + 0.01f);
 			}
-			Draw.alpha(1);
+			Draw.alpha(1 - (unit.alpha[id]/rotor.blurTime));
 			for (int i = 0; i < rotor.sides; i++) {
-				Draw.rect(rotor.outlineRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id * speed);
-				Draw.rect(rotor.region, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id * speed);
+				Draw.rect(rotor.outlineRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id * speed + (360/rotor.sides * i));
 			}
-			Draw.alpha(0);
+			for (int i = 0; i < rotor.sides; i++) {
+				Draw.rect(rotor.region, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id * speed + (360/rotor.sides * i));
+			}			
+
+			Draw.alpha(unit.alpha[id]/rotor.blurTime);
 			Draw.rect(rotor.blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
+			id++;
 		});
 	}
 
@@ -57,6 +62,7 @@ public class ModUnitType extends UnitType {
 		x = 0, y = 0,
 		speed = 15f,
 		blurTime = 10f;
+		public int sides = 4;
 		public boolean back = false;
 
 		public Rotor(String name, float x, float y, float speed, boolean back) {
