@@ -38,9 +38,9 @@ public class VoidfSprayer extends VoidfBlock {
 			if (voidfModule().voidf > ((VoidfBlock) block).consumeVoidf * Time.delta) {
 				subVoidf(((VoidfBlock) block).consumeVoidf/60f * Time.delta, this);
 				action.get(this);
-				Mathf.approachDelta(alpha, 1f, 0.01f);
+				alpha = Mathf.approachDelta(alpha, 1f, 0.01f);
 			} else {
-				Mathf.approachDelta(alpha, 0f, 0.01f);
+				alpha = Mathf.approachDelta(alpha, 0f, 0.01f);
 			}
 		}
 
@@ -50,13 +50,11 @@ public class VoidfSprayer extends VoidfBlock {
 			super.draw();
 			Draw.rect(region, x, y, 0);
 
-			if (voidfModule().voidf > ((VoidfBlock) block).consumeVoidf * Time.delta) {
-				Draw.color(MonolithPal.voidf);
-				Lines.stroke(3f * alpha);
-				Lines.circle(x, y, range * alpha);
-				Draw.alpha(0.3f);
-				Fill.circle(x, y, range * alpha);
-			}
+			Draw.color(MonolithPal.voidf);
+			Lines.stroke(3f * alpha);
+			Lines.circle(x, y, range * alpha);
+			Draw.alpha(0.3f);
+			Fill.circle(x, y, range * alpha);
 		}
 	}
 }
