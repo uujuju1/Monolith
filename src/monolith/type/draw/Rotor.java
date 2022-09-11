@@ -11,7 +11,7 @@ import monolith.entities.comp.*;
 
 public class Rotor {
 	public String suffix;
-	public TextureRegion region, topRegion, blurRegion, outlineRegion;
+	public TextureRegion region, topRegion, blurRegion;
 	public float 
 	x = 0, y = 0,
 	speed = 15f,
@@ -44,22 +44,16 @@ public class Rotor {
 		// Draw.alpha(1);
 		for (int i = 0; i < sides; i++) {
 			Draw.rect(
-				outlineRegion,
-				x, y,
-				Time.time * speed + unit.id + (360/sides * i)
-			);
-		}
-		for (int i = 0; i < sides; i++) {
-			Draw.rect(
 				region,
 				x, y,
 				Time.time * speed + unit.id + (360/sides * i)
 			);
 		}
 
-		// if (!back) {
-		// 	Draw.rect(topRegion, x, y, unit.rotation - 90);
-		// }
+		Draw.alpha(1);
+		if (!back) {
+			Draw.rect(topRegion, x, y, unit.rotation - 90);
+		}
 		Draw.reset();
 	}
 
@@ -67,6 +61,5 @@ public class Rotor {
 		region = Core.atlas.find(type.name + suffix);
 		topRegion = Core.atlas.find(type.name + suffix + "-top");
 		blurRegion = Core.atlas.find(type.name + suffix + "-blur");
-		outlineRegion = Core.atlas.find(type.name + suffix + "-outline");
 	}
 }
