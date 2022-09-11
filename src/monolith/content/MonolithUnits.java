@@ -58,15 +58,15 @@ public class MonolithUnits {
 			constructor = CopterComp::new;
 			immunities.add(MonolithStatusEffects.isolated);
 			rotors.add(
-				new Rotor("monolith-connect-rotor", 0, 4, 15, false),
-				new Rotor("monolith-connect-rotor-small", 0, -7, 15, true)
+				new Rotor("-rotor", 0, 4, 15, false),
+				new Rotor("-rotor-small", 0, -7, 15, true)
 			);
 			weapons.addAll(
 				new Weapon("monolith-connect-weapon") {{
 					x = 5f;
 					y = 0f;
 					reload = 60f;
-					recoil = Bullets.placeHolder;
+					recoil = Bullets.placeholder;
 				}}
 			);
 		}};

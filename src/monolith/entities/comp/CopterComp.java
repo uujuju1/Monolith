@@ -1,6 +1,7 @@
 package monolith.entities.comp;
 
 import arc.math.*;
+import arc.util.io.*;
 import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import monolith.type.*;

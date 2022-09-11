@@ -25,13 +25,13 @@ public class ModUnitType extends UnitType {
 	}
 
 	public void drawRotors(CopterComp unit) {
-		rotors.each(rotor -> {
-			int id = rotors.indexOf(rotor);
+		// rotors.each(rotor -> {
+		// 	int id = rotors.indexOf(rotor);
 				
 
-			Draw.alpha(unit.alphas[id]/rotor.blurTime);
-			Draw.rect(rotor.blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
-		});
+		// 	Draw.alpha(unit.alphas[id]/rotor.blurTime);
+		// 	Draw.rect(rotor.blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
+		// });
 	}
 
 	public class Rotor {
@@ -81,8 +81,8 @@ public class ModUnitType extends UnitType {
 				);
 			}
 
-			if (back) {
-				
+			if (!back) {
+				Draw.rect(topRegion, x, y, unit.rotation - 90);
 			}
 			Draw.reset();
 		}
