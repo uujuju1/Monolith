@@ -1,6 +1,7 @@
 package monolith.entities.comp;
 
 import arc.math.*;
+import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import monolith.type.*;
 import monolith.type.ModUnitType.*;
@@ -11,8 +12,8 @@ public class CopterComp extends UnitEntity {
 
 	@Override
 	public void update() {
-		if (!(type instanceof ModUnitType)) return;
-		if (((ModUnitType) type).rotors.size >= 16) return;
+		// if (!(type instanceof ModUnitType)) return;
+		// if (((ModUnitType) type).rotors.size >= 16) return;
 		for (int i = 0; i < ((ModUnitType) type).rotors.size; i++) {
 			Rotor r = ((ModUnitType) type).rotors.get(i);
 			if (dead) {
@@ -22,5 +23,30 @@ public class CopterComp extends UnitEntity {
 			}
 		}
 		super.update();
+	}
+
+	@Override
+	public void draw(){
+		super.draw();
+		if (type instanceof ModUnitType) {
+			((ModUnitType) type).rotors.each(rotor -> {
+				int id = rotors.indexOf(rotor);
+				if (rotor.back) {
+					Draw.z(Layer.flyingUnitLow - 0.01f);
+				} else {
+					Draw.z(Layer.flyingUnitLow + 0.01f);
+				}
+				Draw.alpha(1 - (unit.alphas[id]/rotor.blurTime));
+				for (int i = 0; i < rotor.sides; i++) {
+					Draw.rect(rotor.outlineRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id * speed + (360/rotor.sides * i));
+				}
+				for (int i = 0; i < rotor.sides; i++) {
+					Draw.rect(rotor.region, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id * speed + (360/rotor.sides * i));
+				}			
+	
+				Draw.alpha(unit.alphas[id]/rotor.blurTime);
+				Draw.rect(rotor.blurRegion, unit.x + Angles.trnsx(unit.rotation - 90, rotor.x, rotor.y), unit.y + Angles.trnsy(unit.rotation - 90, rotor.x, rotor.y), Time.time + unit.id);
+			});
+		}
 	}
 }

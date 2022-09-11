@@ -26,10 +26,6 @@ public class ModUnitType extends UnitType {
 
 	@Override
 	public void draw(Unit unit) {
-		if (!(unit instanceof CopterComp)) {
-			super.draw(unit);
-			drawRotors((CopterComp) unit);
-		}
 		super.draw(unit);
 	}
 
