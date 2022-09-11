@@ -25,16 +25,4 @@ public class CopterComp extends UnitEntity {
 		super.draw();
 		((ModUnitType) type).rotors.each(rotor -> rotor.draw(this));
 	}
-
-	@Override
-	public void write(Writes w) {
-		super.write(w);
-		w.f(alpha);
-	}
-
-	@Override
-	public void read(Reads r, boolean revision) {
-		super.read(r, revision);
-		alpha = r.f();
-	}
 }

@@ -66,7 +66,8 @@ public class MonolithUnits {
 					x = 5f;
 					y = 0f;
 					reload = 60f;
-					recoil = Bullets.placeholder;
+					recoil = 1f;
+					bullet = Bullets.placeholder;
 				}}
 			);
 		}};
