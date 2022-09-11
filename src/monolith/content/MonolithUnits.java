@@ -54,12 +54,12 @@ public class MonolithUnits {
 			health = 450;
 			speed = 1f;
 			hitSize = 9f;
-			lowAltitude = true;
+			flying = lowAltitude = true;
 			constructor = CopterComp::new;
 			immunities.add(MonolithStatusEffects.isolated);
 			rotors.add(
-				new Rotor("monolith-connect-rotor", 0, 4, 15, true),
-				new Rotor("monolith-connect-rotor-small", 0, -7, 15, false)
+				new Rotor("monolith-connect-rotor", 0, 4, 15, false),
+				new Rotor("monolith-connect-rotor-small", 0, -7, 15, true)
 			);
 		}};
 
