@@ -21,5 +21,6 @@ public class CopterComp extends UnitEntity {
 				alphas[i] = Mathf.approachDelta(alphas[i], 0, 0.008f);
 			}
 		}
+		super.update();
 	}
 }
