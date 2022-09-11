@@ -68,6 +68,7 @@ public class MonolithUnits {
 					y = 4.5f;
 					reload = 60f;
 					recoil = 1f;
+					shootSound = Sounds.mediumCannon;
 					bullet = Bullets.placeholder;
 				}}
 			);

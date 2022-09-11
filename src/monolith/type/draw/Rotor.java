@@ -41,7 +41,7 @@ public class Rotor {
 		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
 		y = unit.y + Angles.trnsy(unit.rotation - 90, this.x, this.y);
 
-		// Draw.alpha(1);
+		Draw.alpha(type.alpha);
 		for (int i = 0; i < sides; i++) {
 			Draw.rect(
 				region,
@@ -49,6 +49,8 @@ public class Rotor {
 				Time.time * speed + unit.id + (360/sides * i)
 			);
 		}
+		Draw.alpha(1 - type.alpha);
+		Draw.rect(blurRegion, x, y, Time.time * (speed * 2) + unit.id + (360/sides * i));
 
 		Draw.alpha(1);
 		if (!back) {
