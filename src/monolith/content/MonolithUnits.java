@@ -8,6 +8,7 @@ import mindustry.entities.bullet.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
 import monolith.type.*;
+import monolith.entities.comp.*;
 import monolith.type.ModUnitType.*;
 
 public class MonolithUnits {
