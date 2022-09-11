@@ -7,20 +7,14 @@ import monolith.type.*;
 import monolith.type.ModUnitType.*;
 
 public class CopterComp extends UnitEntity {
-	// you want more? That's the neat part, you dont.
-	public float[] alphas = new float[16];
+	public float alpha;
 
 	@Override
 	public void update() {
-		// if (!(type instanceof ModUnitType)) return;
-		// if (((ModUnitType) type).rotors.size >= 16) return;
-		for (int i = 0; i < ((ModUnitType) type).rotors.size; i++) {
-			Rotor r = ((ModUnitType) type).rotors.get(i);
-			if (dead) {
-				alphas[i] = Mathf.approachDelta(alphas[i], r.blurTime, 0.008f);
-			} else {
-				alphas[i] = Mathf.approachDelta(alphas[i], 0, 0.008f);
-			}
+		if (dead) {
+			alpha = Mathf.approachDelta(alpha, 1f, type.fallSpeed + 0.003f);	
+		} else {
+			alpha = Mathf.approachDelta(alpha, 0f, type.fallSpeed + 0.003f);	
 		}
 		super.update();
 	}
@@ -28,6 +22,18 @@ public class CopterComp extends UnitEntity {
 	@Override
 	public void draw(){
 		super.draw();
-		((ModUnitType) type).drawRotors(this);
+		((ModUnitType) type).rotors.each(rotor -> rotor.draw(this));
+	}
+
+	@Override
+	public void write(Writes w) {
+		super.write(w);
+		w.f(alpha);
+	}
+
+	@Override
+	public void read(Reads r, boolean revision) {
+		super.read(r, revision);
+		alpha = r.f();
 	}
 }

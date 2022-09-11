@@ -61,6 +61,14 @@ public class MonolithUnits {
 				new Rotor("monolith-connect-rotor", 0, 4, 15, false),
 				new Rotor("monolith-connect-rotor-small", 0, -7, 15, true)
 			);
+			weapons.addAll(
+				new Weapon("monolith-connect-weapon") {{
+					x = 5f;
+					y = 0f;
+					reload = 60f;
+					recoil = Bullets.placeHolder;
+				}}
+			);
 		}};
 
 		// plans
