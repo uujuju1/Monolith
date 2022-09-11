@@ -8,6 +8,7 @@ import mindustry.entities.bullet.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
 import monolith.type.*;
+import monolith.type.draw.*;
 import monolith.entities.comp.*;
 import monolith.type.ModUnitType.*;
 
@@ -63,8 +64,8 @@ public class MonolithUnits {
 			);
 			weapons.addAll(
 				new Weapon("monolith-connect-weapon") {{
-					x = 5f;
-					y = 0f;
+					x = 5.75f;
+					y = 4.5f;
 					reload = 60f;
 					recoil = 1f;
 					bullet = Bullets.placeholder;
