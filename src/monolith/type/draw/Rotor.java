@@ -38,17 +38,17 @@ public class Rotor {
 		}
 
 		float
-		x = Angles.trnsx(unit.rotation - 90, this.x, this.y),
-		y = Angles.trnsy(unit.rotation - 90, this.x, this.y);
+		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
+		y = unit.y + Angles.trnsy(unit.rotation - 90, this.x, this.y);
 
 		// Draw.alpha(1);
-		// for (int i = 0; i < sides; i++) {
-		// 	Draw.rect(
-		// 		outlineRegion,
-		// 		x, y,
-		// 		Time.time * speed + unit.id + (360/sides * i)
-		// 	);
-		// }
+		for (int i = 0; i < sides; i++) {
+			Draw.rect(
+				outlineRegion,
+				x, y,
+				Time.time * speed + unit.id + (360/sides * i)
+			);
+		}
 		for (int i = 0; i < sides; i++) {
 			Draw.rect(
 				region,
