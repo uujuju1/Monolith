@@ -28,25 +28,6 @@ public class CopterComp extends UnitEntity {
 	@Override
 	public void draw(){
 		super.draw();
-		if (type instanceof ModUnitType) {
-			((ModUnitType) type).rotors.each(rotor -> {
-				int id = rotors.indexOf(rotor);
-				if (rotor.back) {
-					Draw.z(Layer.flyingUnitLow - 0.01f);
-				} else {
-					Draw.z(Layer.flyingUnitLow + 0.01f);
-				}
-				Draw.alpha(1 - (alphas[id]/rotor.blurTime));
-				for (int i = 0; i < rotor.sides; i++) {
-					Draw.rect(rotor.outlineRegion, x + Angles.trnsx(rotation - 90, rotor.x, rotor.y), y + Angles.trnsy(rotation - 90, rotor.x, rotor.y), Time.time + id * speed + (360/rotor.sides * i));
-				}
-				for (int i = 0; i < rotor.sides; i++) {
-					Draw.rect(rotor.region, x + Angles.trnsx(rotation - 90, rotor.x, rotor.y), y + Angles.trnsy(rotation - 90, rotor.x, rotor.y), Time.time + id * speed + (360/rotor.sides * i));
-				}			
-	
-				Draw.alpha(alphas[id]/rotor.blurTime);
-				Draw.rect(rotor.blurRegion, x + Angles.trnsx(rotation - 90, rotor.x, rotor.y), y + Angles.trnsy(rotation - 90, rotor.x, rotor.y), Time.time + id);
-			});
-		}
+		((ModUnitType) type).drawRotors(this);
 	}
 }
