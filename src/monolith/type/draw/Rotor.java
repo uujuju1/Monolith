@@ -50,7 +50,7 @@ public class Rotor {
 			);
 		}
 		Draw.alpha(1 - type.alpha);
-		Draw.rect(blurRegion, x, y, Time.time * (speed * 2) + unit.id + (360/sides * i));
+		Draw.rect(blurRegion, x, y, Time.time * (speed * 2) + unit.id);
 
 		Draw.alpha(1);
 		if (!back) {
