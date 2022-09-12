@@ -34,7 +34,7 @@ public class ModUnitType extends UnitType {
 	}
 
 	public static class PressureEngine extends UnitEngine {
-		public static Rand rand;
+		public static Rand rand = new Rand();
 		public float length;
 		public int amount;
 
