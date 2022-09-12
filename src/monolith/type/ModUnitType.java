@@ -27,7 +27,7 @@ public class ModUnitType extends UnitType {
 
 	@Override
 	public void draw(Unit unit){
-		super.draw();
+		super.draw(unit);
 		if (unit instanceof CopterComp) {
 			rotors.each(rotor -> rotor.draw((CopterComp) unit));
 		}
@@ -53,7 +53,7 @@ public class ModUnitType extends UnitType {
 				fin = Time.time/length % 1,
 				trnsx = Tmp.v1.x + Angles.trnsx(rotation, fin, rand.random(-radius/2f, radius/2f)),
 				trnsy = Tmp.v1.y + Angles.trnsy(rotation, fin, rand.random(-radius/2f, radius/2f));
-				Fill.circle(trnsx, trnsy, 1 - fin * width/8);
+				Fill.circle(trnsx, trnsy, 1 - fin * radius/8);
 			}
 		}
 	}
