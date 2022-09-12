@@ -19,7 +19,6 @@ import mindustry.world.blocks.defense.turrets.*;
 import monolith.type.*;
 import monolith.blocks.voidf.*;
 import monolith.blocks.defense.*;
-import monolith.blocks.dimension.*;
 import monolith.blocks.distribution.*;
 import monolith.blocks.voidf.sandbox.*;
 import monolith.blocks.voidf.defense.*;
@@ -52,9 +51,7 @@ public class MonolithBlocks {
 
 	coreollis, magnetar,
 
-	voidfVoid, voidfSource,
-
-	dimensionHolder;
+	voidfVoid, voidfSource;
 
 	public void load() {
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
@@ -512,7 +509,7 @@ public class MonolithBlocks {
 				Damage.status(build.team, build.x, build.y, range, MonolithStatusEffects.isolated, 60f, true, true);
 			};
 		}};
-		magnetar =  new VoidfSprayer("magnetar") {{
+		magnetar = new VoidfSprayer("magnetar") {{
 			requirements(Category.turret, with(
 				MonolithItems.lithium, 225,
 				Items.plastanium, 175,
@@ -527,14 +524,6 @@ public class MonolithBlocks {
 			action = build -> {
 				Damage.status(build.team, build.x, build.y, range, MonolithStatusEffects.isolated, 120f, true, true);
 			};
-		}};
-
-		dimensionHolder = new DimensionBlock("dimension-holder") {{
-			requirements(Category.units, with(
-				Items.copper, 1
-			));
-			size = 3;
-			health = 250;
 		}};
 	}
 }

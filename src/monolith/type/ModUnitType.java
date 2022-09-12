@@ -52,7 +52,7 @@ public class ModUnitType extends UnitType {
 				fin = rand.random(0.7f, 1) * (Time.time/length) % 1,
 				trnsx = unit.x + Angles.trnsx(unit.rotation - 90, x, y) + Angles.trnsx(rotation + unit.rotation, fin * length, rand.random(-radius/2f, radius/2f)),
 				trnsy = unit.y + Angles.trnsy(unit.rotation - 90, x, y) + Angles.trnsy(rotation + unit.rotation, fin * length, rand.random(-radius/2f, radius/2f));
-				Draw.color(Pal.smoke);
+				Draw.color(Pal.shadow);
 				Fill.circle(trnsx, trnsy, 1 - fin * radius/8);
 			}
 		}
