@@ -13,9 +13,9 @@ public class CopterComp extends UnitEntity {
 	@Override
 	public void update() {
 		if (dead) {
-			alpha = Mathf.lerpDelta(alpha, 1f, type.fallSpeed + 0.003f);	
+			alpha = Mathf.lerpDelta(alpha, 1f, type.fallSpeed + 0.007f);	
 		} else {
-			alpha = Mathf.lerpDelta(alpha, 0f, type.fallSpeed + 0.003f);	
+			alpha = Mathf.lerpDelta(alpha, 0f, type.fallSpeed + 0.007f);	
 		}
 		super.update();
 	}
