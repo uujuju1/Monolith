@@ -61,6 +61,9 @@ public class MonolithUnits {
 			flying = lowAltitude = true;
 			constructor = CopterComp::new;
 			immunities.add(MonolithStatusEffects.isolated);
+			setEnginesMirror(
+				new PressureEngine(4f, 0f, 15, 4f, 8f, 135f)
+			);
 			rotors.add(
 				new Rotor("-rotor", 0, 4, 15, false),
 				new Rotor("-rotor-small", 0, -7, -15, true)

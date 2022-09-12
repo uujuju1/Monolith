@@ -32,4 +32,29 @@ public class ModUnitType extends UnitType {
 			rotors.each(rotor -> rotor.draw((CopterComp) unit));
 		}
 	}
+
+	public static class PressureEngine extends UnitEngine {
+		public static Rand rand;
+		public float length;
+		public int amount;
+
+		public PressureEngine(float x, float y, int amount, float width, float length, float rotation) {
+			super(x, y, width, rotation);
+			this.amount = amount;
+			this.length = length;
+		}
+
+		@Override
+		public void draw(Unit unit) {
+			rand.setSeed(unit.id);
+			for (int i = 0; i < amount; i++) {
+				Tmp.v1.set(unit.x + x, unit.y + y).rotate(unit.rotation - 90);
+				float
+				fin = Time.time/length % 1,
+				trnsx = Tmp.v1.x + Angles.trnsx(rotation, fin, rand.random(-width/2f, width/2f)),
+				trnsy = Tmp.v1.y + Angles.trnsy(rotation, fin, rand.random(-width/2f, width/2f));
+				Fill.circle(trnsx, trnsy, 1 - fin * width/8);
+			}
+		}
+	}
 }
