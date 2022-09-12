@@ -27,6 +27,19 @@ public class MonolithTechTree {
 				node(MonolithBlocks.revenant, Seq.with(new Produce(MonolithItems.lithium)), () -> {});
 			});
 
+			node(MonolithBlocks.voidfCrafter, Seq.with(new Produce(MonolithItems.lithium)), () -> {
+				node(MonolithBlocks.voidfFactory, Seq.with(new Produce(Items.plastanium)), () -> {});
+				node(MonolithBlocks.macroSmelter, () -> {});
+				node(MonolithBlocks.voidfConveyor, Seq.with(new Produce(Items.plastanium)), () -> {
+					node(MonolithBlocks.voidfRouter, () -> {
+						node(MonolithBlocks.voidfTank, () -> {});
+					});
+				});
+				node(MonolithBlocks.coreollis, Seq.with(new Research(MonolithBlocks.voidfConveyor)), () -> {
+					node(MonolithBlocks.magnetar, Seq.with(new Research(MonolithBlocks.voidfTank), new Produce(Items.thorium)), () -> {});
+				});
+			});
+
 			node(MonolithBlocks.artifact, Seq.with(new Produce(Items.plastanium)), () -> {});
 
 			node(MonolithBlocks.sparkWall, Seq.with(new Produce(MonolithItems.lithium)), () -> {});
