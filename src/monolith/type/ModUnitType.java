@@ -49,8 +49,8 @@ public class ModUnitType extends UnitType {
 			rand.setSeed(unit.id);
 			for (int i = 0; i < amount; i++) {
 				float
-				dx = unit.x + Angles.trnsx(unit.rotation - 90, x, y);
-				dy = unit.y + Angles.trnsy(unit.rotation - 90, x, y);
+				dx = unit.x + Angles.trnsx(unit.rotation - 90, x, y),
+				dy = unit.y + Angles.trnsy(unit.rotation - 90, x, y),
 				fin = Time.time/length % 1,
 				trnsx = dx + Angles.trnsx(rotation, fin, rand.random(-radius/2f, radius/2f)),
 				trnsy = dx + Angles.trnsy(rotation, fin, rand.random(-radius/2f, radius/2f));
