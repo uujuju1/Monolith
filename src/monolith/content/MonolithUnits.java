@@ -55,12 +55,15 @@ public class MonolithUnits {
 			health = 450;
 			speed = 1f;
 			hitSize = 9f;
+			engineSize = 0f;
+			fallSpeed = 0.007f;
+			range = maxRange = 135f;
 			flying = lowAltitude = true;
 			constructor = CopterComp::new;
 			immunities.add(MonolithStatusEffects.isolated);
 			rotors.add(
 				new Rotor("-rotor", 0, 4, 15, false),
-				new Rotor("-rotor-small", 0, -7, 15, true)
+				new Rotor("-rotor-small", 0, -7, -15, true)
 			);
 			weapons.addAll(
 				new Weapon("monolith-connect-weapon") {{
@@ -68,8 +71,20 @@ public class MonolithUnits {
 					y = 4.5f;
 					reload = 60f;
 					recoil = 1f;
+					shootCone = 2f;
+					ignoreRotation = false;
 					shootSound = Sounds.mediumCannon;
-					bullet = Bullets.placeholder;
+					bullet = new BasicBulletType(6f, 20) {{
+						lifetime = 22.5f;
+						frontColor = Color.valueOf("FFCBDD");
+						backColor = trailColor = Color.valueOf("CF85CB");
+						width = 10f;
+						height = 12.5f;
+						trailWidth = 2;
+						trailLength = 10;
+						status = MonolithStatusEffects.isolated;
+						statusDuration = 180f;
+					}};
 				}}
 			);
 		}};

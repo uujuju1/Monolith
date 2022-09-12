@@ -24,4 +24,12 @@ public class ModUnitType extends UnitType {
 		super.load();
 		rotors.each(r -> r.load(this));
 	}
+
+	@Override
+	public void draw(Unit unit){
+		super.draw();
+		if (unit instanceof CopterComp) {
+			rotors.each(rotor -> rotor.draw((CopterComp) unit));
+		}
+	}
 }

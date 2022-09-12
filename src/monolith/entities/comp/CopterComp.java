@@ -19,10 +19,4 @@ public class CopterComp extends UnitEntity {
 		}
 		super.update();
 	}
-
-	@Override
-	public void draw(){
-		super.draw();
-		((ModUnitType) type).rotors.each(rotor -> rotor.draw(this));
-	}
 }
