@@ -49,11 +49,9 @@ public class ModUnitType extends UnitType {
 			rand.setSeed(unit.id);
 			for (int i = 0; i < amount; i++) {
 				float
-				dx = unit.x + Angles.trnsx(unit.rotation - 90, x, y),
-				dy = unit.y + Angles.trnsy(unit.rotation - 90, x, y),
-				fin = Time.time/length % 1,
-				trnsx = dx + Angles.trnsx(rotation, fin, rand.random(-radius/2f, radius/2f)),
-				trnsy = dx + Angles.trnsy(rotation, fin, rand.random(-radius/2f, radius/2f));
+				fin = rand.random(0.7f, 1) * (Time.time/length) % 1,
+				trnsx = unit.x + Angles.trnsx(unit.rotation - 90, x, y) + Angles.trnsx(rotation, fin * length, rand.random(-radius/2f, radius/2f)),
+				trnsy = unit.y + Angles.trnsy(unit.rotation - 90, x, y) + Angles.trnsy(rotation, fin * length, rand.random(-radius/2f, radius/2f));
 				Fill.circle(trnsx, trnsy, 1 - fin * radius/8);
 			}
 		}
