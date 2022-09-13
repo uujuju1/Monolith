@@ -37,7 +37,8 @@ public class MonolithBlocks {
 	revenant,
 	caesar, vigenere,
 
-	sparkWall, 
+	sparkWall,
+	meaniumWall, meaniumWallLarge,
 
 	artifact,
 
@@ -372,6 +373,20 @@ public class MonolithBlocks {
 				backColor = hitColor = Pal.accent;
 				shootEffect = Fx.colorSpark;
 			}};
+		}};
+		meaniumWall = new Wall("meanium-wall") {{
+			requirements(Category.defense, with(
+				MonolithItems.meanium, 6
+			));
+			size = 1;
+			health = 500;
+		}};
+		meaniumWallLarge = new Wall("meanium-wall-large") {{
+			requirements(Category.defens, with(
+				MonolithItems.meanium, 24
+			));
+			size = 2;
+			health = 2000;
 		}};
 
 		artifact = new BuildTurret("artifact") {{

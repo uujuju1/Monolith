@@ -2,7 +2,7 @@ displayName: "Monolith"
 name: "Monolith"
 author: "Uujuju"
 main: "monolith.Monolith"
-description: "Can this be considered a 'vanilla' mod?"
-version: Ancient
-minGameVersion: 136
+description: "Sometimes glitchy ideas."
+version: v0.2
+minGameVersion: 138
 java: true

@@ -54,7 +54,9 @@ public class MonolithUnits {
 
 		connect = new ModUnitType("connect") {{
 			health = 450;
-			speed = 1f;
+			speed = 2f;
+			accel = 0.1f;
+			drag = 0.06f;
 			hitSize = 9f;
 			engineSize = 0f;
 			fallSpeed = 0.007f;
