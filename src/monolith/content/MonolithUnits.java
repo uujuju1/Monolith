@@ -65,6 +65,7 @@ public class MonolithUnits {
 			setEnginesMirror(
 				new PressureEngine(4f, 0f, 15, 4f, 8f, 135f)
 			);
+			engines.get(1).rotation = -135f;
 			rotors.add(
 				new Rotor("-rotor", 0, 4, 15, false),
 				new Rotor("-rotor-small", 0, -7, -15, true)
