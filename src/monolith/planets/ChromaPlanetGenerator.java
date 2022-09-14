@@ -59,16 +59,16 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 			float noise = noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag);
 			floor = getBlock(sector.tile.v);
 			if (floor == Blocks.water) {
-				if (noise > noiseTresh/2) {
+				if (noise < 0.5/1.5f) {
 					floor = Blocks.deepwater;
 				}
-				if (noise > noiseTresh) {
+				if (noise > 0.5) {
 					floor = Blocks.dirt;
 				}
-				if (noise > noiseTresh + (noiseTresh/4)) {
+				if (noise > 0.5 + (0.5/4)) {
 					block = Blocks.dirtWall;
 				}
-				if (noise > noiseTresh + (noiseTresh/2)) {
+				if (noise > 0.5 + (0.5/2)) {
 					block = Blocks.duneWall;
 				}
 			}
@@ -79,7 +79,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				block = Blocks.dirtWall;
 			}
 
-			if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 149d, 1f) > 0.5f && floor == Blocks.dirt) {
+			if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 0.01d, 1f) > 0.5f && floor == Blocks.dirt) {
 				floor = Blocks.carbonStone;
 				if (block == Blocks.dirtWall) block = Blocks.carbonWall;
 				if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
@@ -103,7 +103,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 
 		pass((x, y) -> {
 			for (Block ore : ores) {
-				if (noise(x, y, 2, 0.7, 1) > 0.8f) {
+				if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 0.1d, 1f) > 0.8f) {
 					ore = ore;
 				}
 			}

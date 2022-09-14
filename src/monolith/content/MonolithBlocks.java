@@ -31,7 +31,7 @@ public class MonolithBlocks {
 	public static Block 
 	itemLiquidJunction,
 
-	furnace, lithiumWeaver,
+	furnace, lithiumWeaver, alloyInfuser,
 
 	move, accelerate,
 	revenant,
@@ -118,6 +118,27 @@ public class MonolithBlocks {
 			));
 			consumePower(1f);
 			outputItems = with(MonolithItems.lithium, 2);
+		}};
+		alloyInfuser = new GenericCrafter("alloy-infuser") {{
+			requirements(Category.crafting, wiht(
+				Items.titanium, 30,
+				Items.silicon, 45,
+				Items.graphite, 40,
+				MonolithItems.macrosteel, 50
+			));
+			size = 3;
+			health = 160;
+			craftTime = 60f;
+			drawer = new DrawMulti(
+				new DrawDefault(),
+				new DrawFlame(Color.valueOf("F7E97E"))
+			);
+			consumeItems(with(
+				Items.titanium, 1,
+				Items.graphite, 2
+			));
+			consumePower(1f);
+			outputItems = with(MonolithItems.meanium, 1);
 		}};
 
 		move = new ItemTurret("move") {{
