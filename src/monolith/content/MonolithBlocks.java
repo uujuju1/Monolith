@@ -382,7 +382,7 @@ public class MonolithBlocks {
 			health = 500;
 		}};
 		meaniumWallLarge = new Wall("meanium-wall-large") {{
-			requirements(Category.defens, with(
+			requirements(Category.defense, with(
 				MonolithItems.meanium, 24
 			));
 			size = 2;

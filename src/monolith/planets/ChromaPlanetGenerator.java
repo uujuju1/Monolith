@@ -55,15 +55,19 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 	@Override
 	protected void generate() {
 		pass((x, y) -> {
+			float noise = noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag);
 			floor = getBlock(sector.tile.v);
 			if (floor == Blocks.water) {
-				if (noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag) > noiseTresh) {
+				if (noise > noiseTresh/2) {
+					floor = Blocks.deepWater;
+				}
+				if (noise > noiseTresh) {
 					floor = Blocks.dirt;
 				}
-				if (noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag) > noiseTresh + (noiseTresh/4)) {
+				if (noise > noiseTresh + (noiseTresh/4)) {
 					block = Blocks.dirtWall;
 				}
-				if (noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag) > noiseTresh + (noiseTresh/2)) {
+				if (noise > noiseTresh + (noiseTresh/2)) {
 					block = Blocks.duneWall;
 				}
 			}
@@ -73,7 +77,35 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 			if (x < 7 || x > width - 7 || y < 7 || y > height - 7) {
 				block = Blocks.dirtWall;
 			}
+
+			if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3f, 0.5f, 149f) > 0.5f && floor == Blocks.dirt) {
+				floor = Blocks.carbonStone;
+				if (block == Blocks.dirtWall) Blocks.carbonWall;
+				if (block == Blocks.duneWall) Blocks.ferricStoneWall;
+			}
 		});
 		distort(14f, 4f);
+
+		public Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead);
+
+		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z) > 0.25f){
+			ores.add(Blocks.oreCoal);
+		}
+
+		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x + 1, sector.tile.v.y, sector.tile.v.z) > 0.5f){
+			ores.add(Blocks.oreTitanium);
+		}
+
+		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z) > 0.7f){
+			ores.add(Blocks.oreThorium);
+		}
+
+		pass((x, y) -> {
+			for (Block ore : ores) {
+				if (noise(x, y, 2f, 0.7f, 1) > 0.8f) {
+					ore = ore;
+				}
+			}
+		});
 	}
 }
