@@ -79,7 +79,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				block = Blocks.dirtWall;
 			}
 
-			if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3, 0.5, 149f) > 0.5f && floor == Blocks.dirt) {
+			if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 149d, 1f) > 0.5f && floor == Blocks.dirt) {
 				floor = Blocks.carbonStone;
 				if (block == Blocks.dirtWall) block = Blocks.carbonWall;
 				if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
