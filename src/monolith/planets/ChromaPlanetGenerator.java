@@ -80,13 +80,13 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 
 			if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3f, 0.5f, 149f) > 0.5f && floor == Blocks.dirt) {
 				floor = Blocks.carbonStone;
-				if (block == Blocks.dirtWall) Blocks.carbonWall;
-				if (block == Blocks.duneWall) Blocks.ferricStoneWall;
+				if (block == Blocks.dirtWall) {Blocks.carbonWall;}
+				if (block == Blocks.duneWall) {Blocks.ferricStoneWall;}
 			}
 		});
 		distort(14f, 4f);
 
-		public Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead);
+		Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead);
 
 		if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z) > 0.25f){
 			ores.add(Blocks.oreCoal);
