@@ -80,8 +80,8 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 
 			if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3f, 0.5f, 149f) > 0.5f && floor == Blocks.dirt) {
 				floor = Blocks.carbonStone;
-				if (block == Blocks.dirtWall) {Blocks.carbonWall;}
-				if (block == Blocks.duneWall) {Blocks.ferricStoneWall;}
+				if (block == Blocks.dirtWall) block = Blocks.carbonWall;
+				if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
 			}
 		});
 		distort(14f, 4f);
