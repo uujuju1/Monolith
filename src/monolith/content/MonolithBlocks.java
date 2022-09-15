@@ -123,7 +123,7 @@ public class MonolithBlocks {
 			outputItems = with(MonolithItems.lithium, 2);
 		}};
 		alloyInfuser = new GenericCrafter("alloy-infuser") {{
-			requirements(Category.crafting, wiht(
+			requirements(Category.crafting, with(
 				Items.titanium, 30,
 				Items.silicon, 45,
 				Items.graphite, 40,
