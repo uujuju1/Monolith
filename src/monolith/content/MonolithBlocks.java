@@ -129,7 +129,7 @@ public class MonolithBlocks {
 				Items.graphite, 40,
 				MonolithItems.macrosteel, 50
 			));
-			size = 3;
+			size = 2;
 			health = 160;
 			craftTime = 60f;
 			drawer = new DrawMulti(

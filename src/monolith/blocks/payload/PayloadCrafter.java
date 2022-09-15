@@ -9,6 +9,7 @@ public class PayloadCrafter extends PayloadBlock {
 	public PayloadCrafter(String name) {
 		super(name);
 		solid = destructible = true;
+		outputsPayload = true;
 	}
 
 	public class PayloadCrafterBuild extends PayloadBlockBuild<BuildPayload> {
@@ -16,7 +17,7 @@ public class PayloadCrafter extends PayloadBlock {
 
 		@Override
 		public void updateTile() {
-			if (efficiency > 0f && payload != null) {
+			if (efficiency > 0f && payload == null) {
 				progress += edelta();
 				if (progress >= output.buildCost) {
 					consume();
@@ -26,6 +27,12 @@ public class PayloadCrafter extends PayloadBlock {
 				}
 			}
 			moveOutPayload();
+		}
+
+		@Override
+		public void draw() {
+			super.draw();
+			drawPayload();
 		}
 	}
 }
