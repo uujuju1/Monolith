@@ -18,7 +18,7 @@ public class PayloadCrafter extends PayloadBlock {
 		public void updateTile() {
 			if (efficiency > 0f && payload != null) {
 				progress += edelta();
-				if (progress => output.buildCost) {
+				if (progress >= output.buildCost) {
 					consume();
 					payload = new BuildPayload(output, team);
 					payVector.setZero();

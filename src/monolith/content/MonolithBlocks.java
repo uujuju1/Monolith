@@ -19,6 +19,7 @@ import mindustry.world.blocks.defense.turrets.*;
 import monolith.type.*;
 import monolith.blocks.voidf.*;
 import monolith.blocks.defense.*;
+import monolith.blocks.payload.*;
 import monolith.blocks.distribution.*;
 import monolith.blocks.voidf.sandbox.*;
 import monolith.blocks.voidf.defense.*;
@@ -39,6 +40,8 @@ public class MonolithBlocks {
 
 	sparkWall,
 	meaniumWall, meaniumWallLarge,
+
+	batteryCrafter,
 
 	artifact,
 
@@ -408,6 +411,15 @@ public class MonolithBlocks {
 			));
 			size = 2;
 			health = 2000;
+		}};
+
+		batteryCrafter = new PayloadCrafter("test") {{
+			requirements(Category.units, with(
+				Items.copper, 1
+			));
+			size = 3;
+			health = 260;
+			consumeItems(with(Items.copper, 1));
 		}};
 
 		artifact = new BuildTurret("artifact") {{
