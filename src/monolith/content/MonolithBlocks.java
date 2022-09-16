@@ -419,6 +419,10 @@ public class MonolithBlocks {
 			));
 			size = 3;
 			health = 260;
+			recipes.addAll(
+				new Recipe(meaniumWallLarge, with(Items.titanium, 16, Items.coal, 40), 120f),
+				new Recipe(Blocks.container, with(Items.titanium, 50, Items.silicon, 25), 180f)
+			);
 			consumeItems(with(Items.copper, 1));
 		}};
 
