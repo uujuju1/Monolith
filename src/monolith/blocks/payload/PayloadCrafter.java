@@ -31,7 +31,7 @@ public class PayloadCrafter extends PayloadBlock {
 		stats.add(Stat.output, t -> {
 			t.table(table -> {
 				for (Recipe r : plans) {
-					table.add(t.display());
+					table.add(r.display());
 				}
 			});
 		});
