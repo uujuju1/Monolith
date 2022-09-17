@@ -166,7 +166,7 @@ public class PayloadCrafter extends PayloadBlock {
 			if (efficiency > 0f && currentPlan != -1) {
 				if (plans.get(currentPlan).input == null && payload == null) produce();
 				if (payload instanceof BuildPayload) {
-					if (plans.get(currentPlan).input != null && ((BuildPayload) payload).block == plans.get(currentPlan).input) produce();
+					if (plans.get(currentPlan).input != null && ((BuildPayload) payload).build.block == plans.get(currentPlan).input) produce();
 				}
 			}
 		}
