@@ -421,7 +421,8 @@ public class MonolithBlocks {
 			health = 260;
 			plans.addAll(
 				new Recipe(meaniumWallLarge, with(Items.titanium, 16, Items.coal, 40), 120f),
-				new Recipe(Blocks.container, with(Items.titanium, 50, Items.silicon, 25), 180f)
+				new Recipe(Blocks.container, with(Items.titanium, 50, Items.silicon, 25), 180f),
+				new Recipe(Blocks.reinforcedContainer, with(Items.tungsten, 10), 60f) {{input = Blocks.container;}}
 			);
 			itemCapacity = 100;
 		}};

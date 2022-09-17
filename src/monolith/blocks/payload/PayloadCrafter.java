@@ -79,24 +79,33 @@ public class PayloadCrafter extends PayloadBlock {
 		}
 
 		public Table display() {
-			Table table = new Table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray));
-			table.table(name -> {
-				name.background(Tex.underline);
-				name.add(new Image(output.uiIcon)).size(48f);
-				name.add(output.localizedName).padLeft(10f);
-			}).row();
-			table.table(input -> {
-				input.add(Core.bundle.get("stat.input") + ":");
-				for (int i = 0; i < requirements.length; i++) {
-					input.add(new ItemDisplay(requirements[i].item, requirements[i].amount, false)).padLeft(5);
+			Table res = new Table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray));
+
+			res.table(table -> {
+				table.table(name -> {
+					name.background(Tex.underline);
+					name.add(new Image(output.unlockedNow() ? output.uiIcon : Icon.cancel)).size(48, 48).color(unlocked ? Color.white : Color.scarlet);
+					name.add(output.localizedName).padLeft(10f);
+				}).growX().row();
+				if (output.unlockedNow()) {
+					table.table(input -> {
+						input.add(Core.bundle.get("stat.input") + ":");
+						for (int i = 0; i < requirements.length; i++) {
+							input.add(new ItemDisplay(requirements[i].item, requirements[i].amount, false)).padLeft(5);
+						}
+					}).left().padTop(5f).row();
+					tabl.table(pinput -> {
+						pinput.add(Core.bundle.get("stat.input") + ":");
+						pinput.add(new Image(input.unlockedNow() ? input.uiIcon : Icon.cancel)).size(32f, 32f).color(input.unlockedNow() ? Color.white : Color.scarlet).padLeft(5);
+					}).left().padTop(5).row();
+					table.table(craft -> {
+						craft.add(Core.bundle.get("stat.productiontime") + ": ");
+						craft.add(StatValues.fixValue(craftTime)).color(Color.gray);
+					}).left().row();
+					table.margin(10f);
 				}
-			}).left().padTop(5f).row();
-			table.table(craft -> {
-				craft.add(Core.bundle.get("stat.productiontime") + ": ");
-				craft.add(StatValues.fixValue(craftTime)).color(Color.gray);
-			}).left().row();
-			table.margin(10f);
-			return table;
+			}).minSize(302, 192);
+			return res;
 		}
 	}
 
@@ -145,9 +154,9 @@ public class PayloadCrafter extends PayloadBlock {
 		public void updateTile() {
 			moveOutPayload();
 			if (efficiency > 0f && currentPlan != -1) {
-				if (plans.get(i).input == null && payload == null) produce();
-				if (payload instanceof BuildPayload) {
-					if (plans.get(i).input != null && payload.block == plans.get(i).input) produce();
+				if (plans.get(currentPlan).input == null && payload == null) produce();
+				if (payload instanceof T) {
+					if (plans.get(currentPlan).input != null && ((T) payload).block == plans.get(currentPlan).input) produce();
 				}
 			}
 		}
