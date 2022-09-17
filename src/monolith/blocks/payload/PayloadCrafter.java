@@ -23,7 +23,7 @@ public class PayloadCrafter extends PayloadBlock {
 	public PayloadCrafter(String name) {
 		super(name);
 		solid = destructible = rotate = true;
-		outputsPayload = configuable = true;
+		outputsPayload = configurable = true;
 
 		config(Integer.class, (PayloadCrafterBuild tile, Integer i) -> {
 			if(!configurable) return;
@@ -36,7 +36,7 @@ public class PayloadCrafter extends PayloadBlock {
 		config(Block.class, (PayloadCrafterBuild tile, Block val) -> {
 			if(!configurable) return;
 
-			int next = plans.indexOf(p -> p.unit == val);
+			int next = plans.indexOf(r -> r.block == val);
 			if(tile.currentPlan == next) return;
 			tile.currentPlan = next;
 			tile.progress = 0;
@@ -110,7 +110,7 @@ public class PayloadCrafter extends PayloadBlock {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			Seq<Block> blocks = Seq.with(plans).map(r -> r.output).filter(b -> b.unlockedNow() && !b.isBanned());
+			Seq<Block> blocks = Seq.with(plans).map(r -> r.output).filter(b -> b.unlockedNow());
 
 			if (blocks.any()) {
 				ItemSelection.buildTable(PayloadCrafter.this, table, blocks, () -> currentPlan == -1 ? null : plans.get(currentPlan).output, block -> configure(plans.indexOf(r -> r.output == block)));

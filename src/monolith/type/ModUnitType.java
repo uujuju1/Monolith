@@ -4,9 +4,11 @@ import arc.*;
 import arc.math.*;
 import arc.util.*;
 import arc.struct.*;
+import arc.graphics.*;
 import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import mindustry.type.*;
+import mindustry.graphics.*;
 import monolith.type.draw.*;
 
 public class ModUnitType extends UnitType {
@@ -31,6 +33,7 @@ public class ModUnitType extends UnitType {
 
 	public static class PressureEngine extends UnitEngine {
 		public static Rand rand = new Rand();
+		public Color color;
 		public float length;
 		public int amount;
 
@@ -38,6 +41,7 @@ public class ModUnitType extends UnitType {
 			super(x, y, width, rotation);
 			this.amount = amount;
 			this.length = length;
+			this.color = color;
 		}
 
 		@Override
