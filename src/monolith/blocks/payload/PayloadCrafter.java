@@ -42,7 +42,7 @@ public class PayloadCrafter extends PayloadBlock {
 			tile.progress = 0;
 		});
 
-		// consume(new ConsumeItemDynamic((PayloadCrafterBuild e) -> e.currentPlan != -1 ? plans.get(Math.min(e.currentPlan, plans.size - 1)).requirements : ItemStack.empty));
+		consume(new ConsumeItemDynamic((PayloadCrafterBuild e) -> e.currentPlan != -1 ? plans.get(Math.min(e.currentPlan, plans.size - 1)).requirements : ItemStack.empty));
 	}
 
 	@Override
@@ -58,6 +58,7 @@ public class PayloadCrafter extends PayloadBlock {
 	}
 
 	public class Recipe {
+		public @Nullable Block input = Blocks.router;
 		public Block output = Blocks.router;
 		public ItemStack[] requirements = ItemStack.empty;
 		public float craftTime = 60f;
@@ -94,13 +95,17 @@ public class PayloadCrafter extends PayloadBlock {
 		public float progress;
 		public int currentPlan = -1;
 
+		public float currentTime() {
+			return currentPlan == -1 ? 0f : plans.get(currentPlan).craftTime;
+		}
+
 		@Override
 		public void updateTile() {
-			if (efficiency > 0f && payload == null) {
+			if (efficiency > 0f && payload == null && currentPlan != -1) {
 				progress += edelta();
-				if (progress >= output.buildCost) {
+				if (progress >= currentTime()) {
 					consume();
-					payload = new BuildPayload(output, team);
+					payload = new BuildPayload(plans.get(currentPlan).output, team);
 					payVector.setZero();
 					progress %= 1f;
 				}
@@ -121,8 +126,33 @@ public class PayloadCrafter extends PayloadBlock {
 
 		@Override
 		public void draw() {
-			super.draw();
+			Draw.rect(region, x, y, 0f);
+			if (currentPlan != -1) {
+				if (plans.get(currentPlan).input != null) {
+					for(int i = 0; i < 4; i++){
+						if(blends(i) && i != rotation){
+							Draw.rect(inRegion, x, y, (i * 90) - 180);
+						}
+					}
+				}
+			}
+			Draw.rect(outRegion, x, y, rotdeg());
 			drawPayload();
+			Draw.rect(topRegion, x, y, 0f);
+		}
+
+		@Override
+		public void write(Writes write) {
+			super.write(write);
+			write.f(progress);
+			write.i(currentPlan);
+		}
+
+		@Override
+		public void read(Reads read, boolean revision) {
+			super(read, revision);
+			progress = read.f();
+			currentPlan = read.i();
 		}
 	}
 }

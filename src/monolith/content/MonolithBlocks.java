@@ -41,7 +41,7 @@ public class MonolithBlocks {
 	sparkWall,
 	meaniumWall, meaniumWallLarge,
 
-	batteryCrafter,
+	payloadCrucible,
 
 	artifact,
 
@@ -413,7 +413,7 @@ public class MonolithBlocks {
 			health = 2000;
 		}};
 
-		batteryCrafter = new PayloadCrafter("test") {{
+		payloadCrucible = new PayloadCrafter("payload-crucible") {{
 			requirements(Category.units, with(
 				Items.copper, 1
 			));
