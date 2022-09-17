@@ -1,10 +1,13 @@
 package monolith.blocks.payload;
 
 import arc.*;
+import arc.util.*;
 import arc.struct.*;
+import arc.util.io.*;
 import arc.scene.ui.*;
 import arc.graphics.*;
 import arc.scene.style.*;
+import arc.graphics.g2d.*;
 import arc.scene.ui.layout.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
@@ -14,6 +17,7 @@ import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import mindustry.world.blocks.*;
+import mindustry.world.consumers.*;
 import mindustry.world.blocks.payloads.*;
 
 public class PayloadCrafter extends PayloadBlock {
@@ -149,8 +153,8 @@ public class PayloadCrafter extends PayloadBlock {
 		}
 
 		@Override
-		public void read(Reads read, boolean revision) {
-			super(read, revision);
+		public void read(Reads read, byte revision) {
+			super.read(read, revision);
 			progress = read.f();
 			currentPlan = read.i();
 		}
