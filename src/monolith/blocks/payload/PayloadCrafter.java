@@ -61,8 +61,13 @@ public class PayloadCrafter extends PayloadBlock {
 		});
 	}
 
+	@Override
+	public TextureRegion[] icons() {
+		return new TextureRegion[]{region, outRegion};
+	}
+
 	public class Recipe {
-		public @Nullable Block input = Blocks.router;
+		public @Nullable Block input = null;
 		public Block output = Blocks.router;
 		public ItemStack[] requirements = ItemStack.empty;
 		public float craftTime = 60f;
@@ -104,20 +109,6 @@ public class PayloadCrafter extends PayloadBlock {
 		}
 
 		@Override
-		public void updateTile() {
-			if (efficiency > 0f && payload == null && currentPlan != -1) {
-				progress += edelta();
-				if (progress >= currentTime()) {
-					consume();
-					payload = new BuildPayload(plans.get(currentPlan).output, team);
-					payVector.setZero();
-					progress %= 1f;
-				}
-			}
-			moveOutPayload();
-		}
-
-		@Override
 		public void buildConfiguration(Table table) {
 			Seq<Block> blocks = Seq.with(plans).map(r -> r.output).filter(b -> b.unlockedNow());
 
@@ -126,7 +117,12 @@ public class PayloadCrafter extends PayloadBlock {
 			} else {
 				table.table(Styles.black3, t -> t.add("").color(Color.lightGray));
 			}
-		} 
+		}
+
+		@Override
+		public boolean acceptItem(Building source, Item item){
+			return currentPlan != -1 && items.get(item) < getMaximumAccepted(item) &&	Structs.contains(plans.get(currentPlan).requirements, stack -> stack.item == item);
+		}
 
 		@Override
 		public void draw() {
@@ -143,6 +139,27 @@ public class PayloadCrafter extends PayloadBlock {
 			Draw.rect(outRegion, x, y, rotdeg());
 			drawPayload();
 			Draw.rect(topRegion, x, y, 0f);
+		}
+
+		@Override
+		public void updateTile() {
+			moveOutPayload();
+			if (efficiency > 0f && currentPlan != -1) {
+				if (plans.get(i).input == null && payload == null) produce();
+				if (payload instanceof BuildPayload) {
+					if (plans.get(i).input != null && payload.block == plans.get(i).input) produce();
+				}
+			}
+		}
+
+		public void produce() {
+			progress += edelta();
+			if (progress >= currentTime()) {
+				consume();
+				payload = new BuildPayload(plans.get(currentPlan).output, team);
+				payVector.setZero();
+				progress %= 1f;
+			}
 		}
 
 		@Override

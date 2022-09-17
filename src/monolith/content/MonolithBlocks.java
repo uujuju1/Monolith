@@ -423,7 +423,7 @@ public class MonolithBlocks {
 				new Recipe(meaniumWallLarge, with(Items.titanium, 16, Items.coal, 40), 120f),
 				new Recipe(Blocks.container, with(Items.titanium, 50, Items.silicon, 25), 180f)
 			);
-			consumeItems(with(Items.copper, 1));
+			itemCapacity = 100;
 		}};
 
 		artifact = new BuildTurret("artifact") {{
