@@ -113,7 +113,7 @@ public class PayloadCrafter extends PayloadBlock {
 			Seq<Block> blocks = Seq.with(plans).map(r -> r.output).filter(b -> b.unlockedNow() && !b.isBanned());
 
 			if (blocks.any()) {
-				ItemSelection.buildTable(PayloadCrafter.this, table, blocks, () -> currentPlan == -1 ? null : plans.get(currentPlan).output, block -> configure(plans.indexOf(r -> r.output == block)))
+				ItemSelection.buildTable(PayloadCrafter.this, table, blocks, () -> currentPlan == -1 ? null : plans.get(currentPlan).output, block -> configure(plans.indexOf(r -> r.output == block)));
 			} else {
 				table.table(Styles.black3, t -> t.add("").color(Color.lightGray));
 			}
