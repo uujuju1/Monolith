@@ -36,7 +36,7 @@ public class PayloadCrafter extends PayloadBlock {
 		config(Block.class, (PayloadCrafterBuild tile, Block val) -> {
 			if(!configurable) return;
 
-			int next = plans.indexOf(r -> r.block == val);
+			int next = plans.indexOf(r -> r.output == val);
 			if(tile.currentPlan == next) return;
 			tile.currentPlan = next;
 			tile.progress = 0;
