@@ -7,7 +7,6 @@ import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
-import monolith.entities.comp.*;
 
 public class Rotor {
 	public String suffix;
@@ -28,7 +27,6 @@ public class Rotor {
 	}
 
 	public void draw(Unit unit) {
-		CopterComp type = ((CopterComp) unit);
 		Draw.reset();
 
 		if (back) {
@@ -41,15 +39,11 @@ public class Rotor {
 		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
 		y = unit.y + Angles.trnsy(unit.rotation - 90, this.x, this.y);
 
-		Draw.alpha(type.alpha);
+		Draw.alpha(unit.elevation);
 		for (int i = 0; i < sides; i++) {
-			Draw.rect(
-				region,
-				x, y,
-				Time.time * speed + unit.id + (360/sides * i)
-			);
+			Draw.rect(region, x, y, Time.time * speed + unit.id + (360/sides * i));
 		}
-		Draw.alpha(1 - type.alpha);
+		Draw.alpha(1 - unit.elevation);
 		Draw.rect(blurRegion, x, y, Time.time * (speed * 2) + unit.id);
 
 		Draw.alpha(1);

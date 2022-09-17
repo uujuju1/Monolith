@@ -13,6 +13,7 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
+import mindustry.world.blocks.*;
 import mindustry.world.blocks.payloads.*;
 
 public class PayloadCrafter extends PayloadBlock {
@@ -22,7 +23,26 @@ public class PayloadCrafter extends PayloadBlock {
 	public PayloadCrafter(String name) {
 		super(name);
 		solid = destructible = rotate = true;
-		outputsPayload = true;
+		outputsPayload = configuable = true;
+
+		config(Integer.class, (PayloadCrafterBuild tile, Integer i) -> {
+			if(!configurable) return;
+
+			if(tile.currentPlan == i) return;
+			tile.currentPlan = i < 0 || i >= plans.size ? -1 : i;
+			tile.progress = 0;
+		});
+
+		config(Block.class, (PayloadCrafterBuild tile, Block val) -> {
+			if(!configurable) return;
+
+			int next = plans.indexOf(p -> p.unit == val);
+			if(tile.currentPlan == next) return;
+			tile.currentPlan = next;
+			tile.progress = 0;
+		});
+
+		// consume(new ConsumeItemDynamic((PayloadCrafterBuild e) -> e.currentPlan != -1 ? plans.get(Math.min(e.currentPlan, plans.size - 1)).requirements : ItemStack.empty));
 	}
 
 	@Override
@@ -31,7 +51,7 @@ public class PayloadCrafter extends PayloadBlock {
 		stats.add(Stat.output, t -> {
 			t.table(table -> {
 				for (Recipe r : plans) {
-					table.add(r.display());
+					table.add(r.display()).pad(10f).row();
 				}
 			});
 		});
@@ -54,7 +74,7 @@ public class PayloadCrafter extends PayloadBlock {
 				name.background(Tex.underline);
 				name.add(new Image(output.uiIcon)).size(48f);
 				name.add(output.localizedName).padLeft(10f);
-			});
+			}).row();
 			table.table(input -> {
 				input.add(Core.bundle.get("stat.input") + ":");
 				for (int i = 0; i < requirements.length; i++) {
@@ -72,6 +92,7 @@ public class PayloadCrafter extends PayloadBlock {
 
 	public class PayloadCrafterBuild extends PayloadBlockBuild<BuildPayload> {
 		public float progress;
+		public int currentPlan = -1;
 
 		@Override
 		public void updateTile() {
@@ -86,6 +107,17 @@ public class PayloadCrafter extends PayloadBlock {
 			}
 			moveOutPayload();
 		}
+
+		@Override
+		public void buildConfiguration(Table table) {
+			Seq<Block> blocks = Seq.with(plans).map(r -> r.output).filter(b -> b.unlockedNow() && !b.isBanned());
+
+			if (blocks.any()) {
+				ItemSelection.buildTable(PayloadCrafter.this, table, blocks, () -> currentPlan == -1 ? null : plans.get(currentPlan).output, block -> configure(plans.indexOf(r -> r.output == block)))
+			} else {
+				table.table(Styles.black3, t -> t.add("").color(Color.lightGray));
+			}
+		} 
 
 		@Override
 		public void draw() {

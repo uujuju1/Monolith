@@ -10,7 +10,6 @@ import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
 import monolith.type.*;
 import monolith.type.draw.*;
-import monolith.entities.comp.*;
 import monolith.type.ModUnitType.*;
 
 public class MonolithUnits {
@@ -62,11 +61,9 @@ public class MonolithUnits {
 			fallSpeed = 0.007f;
 			range = maxRange = 135f;
 			flying = lowAltitude = true;
-			constructor = CopterComp::new;
+			constructor = UnitEntity::create;
 			immunities.add(MonolithStatusEffects.isolated);
-			setEnginesMirror(
-				new PressureEngine(4f, 0f, 15, 4f, 8f, 135f)
-			);
+			setEnginesMirror(new PressureEngine(4f, 0f, 15, 4f, 8f, 135f, Color.gray));
 			engines.get(1).rotation = -135f;
 			rotors.add(
 				new Rotor("-rotor", 0, 4, 15, false),

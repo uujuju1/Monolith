@@ -7,9 +7,7 @@ import arc.struct.*;
 import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import mindustry.graphics.*;
 import monolith.type.draw.*;
-import monolith.entities.comp.*;
 
 public class ModUnitType extends UnitType {
 	public Seq<Rotor> rotors = new Seq<>();
@@ -28,9 +26,7 @@ public class ModUnitType extends UnitType {
 	@Override
 	public void draw(Unit unit){
 		super.draw(unit);
-		if (unit instanceof CopterComp) {
-			rotors.each(rotor -> rotor.draw((CopterComp) unit));
-		}
+		rotors.each(rotor -> rotor.draw(unit));
 	}
 
 	public static class PressureEngine extends UnitEngine {
@@ -38,7 +34,7 @@ public class ModUnitType extends UnitType {
 		public float length;
 		public int amount;
 
-		public PressureEngine(float x, float y, int amount, float width, float length, float rotation) {
+		public PressureEngine(float x, float y, int amount, float width, float length, float rotation, Color color) {
 			super(x, y, width, rotation);
 			this.amount = amount;
 			this.length = length;
@@ -52,7 +48,7 @@ public class ModUnitType extends UnitType {
 				fin = rand.random(0.7f, 1) * (Time.time/length) % 1,
 				trnsx = unit.x + Angles.trnsx(unit.rotation - 90, x, y) + Angles.trnsx(rotation + unit.rotation, fin * length, rand.random(-radius/2f, radius/2f)),
 				trnsy = unit.y + Angles.trnsy(unit.rotation - 90, x, y) + Angles.trnsy(rotation + unit.rotation, fin * length, rand.random(-radius/2f, radius/2f));
-				Draw.color(Pal.shadow);
+				Draw.color(color);
 				Fill.circle(trnsx, trnsy, 1 - fin * radius/8);
 			}
 		}
