@@ -68,7 +68,7 @@ public class PayloadCrafter extends PayloadBlock {
 
 	@Override
 	public TextureRegion[] icons() {
-		return new TextureRegion[]{region, outRegion};
+		return new TextureRegion[]{region, outRegion, topRegion};
 	}
 
 	public class Recipe {

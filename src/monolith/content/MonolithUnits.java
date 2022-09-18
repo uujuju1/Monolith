@@ -108,7 +108,7 @@ public class MonolithUnits {
 			fallSpeed = 0.005f;
 			range = maxRange = 0f;
 			flying = true;
-
+			constructor = UnitEntity::add;
 			rotors.add(
 				new Rotor("-rotor", 0, 0, 18) {{
 					layerOffset = 0.001f;
