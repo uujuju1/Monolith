@@ -64,9 +64,12 @@ public class MonolithUnits {
 			range = maxRange = 135f;
 			flying = lowAltitude = true;
 			constructor = UnitEntity::create;
+
 			immunities.add(MonolithStatusEffects.isolated);
-			setEnginesMirror(new PressureEngine(4f, 0f, 15, 4f, 8f, 135f, Color.gray));
-			engines.get(1).rotation = -135f;
+
+			setEnginesMirror(new PressureEngine(4f, 0f, 15, 4f, 8f, 160f, Color.gray));
+			engines.get(1).rotation = -160f;
+
 			rotors.add(
 				new Rotor("-rotor", 0, 4, 15) {{
 					layerOffset = 0.001f;
@@ -75,6 +78,7 @@ public class MonolithUnits {
 					layerOffset = -0.001f;
 				}}
 			);
+
 			weapons.addAll(
 				new Weapon("monolith-connect-weapon") {{
 					x = 5.75f;
@@ -111,16 +115,21 @@ public class MonolithUnits {
 			range = maxRange = 0f;
 			flying = true;
 			constructor = UnitEntity::create;
+
+			immunities.add(MonolithStatusEffects.isolated);
+
 			rotors.add(
 				new Rotor("-rotor", 0, 0, 18) {{
 					layerOffset = 0.001f;
+					doubleRot = true;
 				}}
 			);
+
 			for (int i : Mathf.signs) {
 				weapons.addAll(
 					new Weapon("monolith-remnant-weapon") {{
-						x = 12f * i;
-						y = 0f;
+						x = 8f * i;
+						y = 4f;
 						reload = 30f;
 						baseRotation = -45 * i;
 						shootCone = 180f;
@@ -130,7 +139,7 @@ public class MonolithUnits {
 	
 						parts.addAll(
 							new RegionPart("-blade") {{
-								moveRot = 15f;
+								moveRot = -15f;
 								mirror = true;
 							}}
 						);
