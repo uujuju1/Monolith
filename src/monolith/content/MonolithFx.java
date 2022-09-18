@@ -26,6 +26,14 @@ public class MonolithFx {
 		Lines.circle(e.x, e.y, 40f * e.finpow());
 	}),
 
+	crucibleCraft = new Effect(30f, e -> {
+		Angles.randLenVectors(e.id, 20, e.finpow() * 40f, (x, y) -> {
+			Fill.circle(e.x + x, e.y + y, e.foutpow() * 4f);
+		});
+		Lines.stroke(e.foutpow() * 3f);
+		Lines.circle(e.x, e.y, e.finpow() * 40f);
+	}),
+
 	shootDiamondColor = new Effect(30f, e -> {
 		Draw.color(e.color, Color.gray, e.finpow());
 		Angles.randLenVectors(e.id, 10, 40f * e.finpow(), 0, 15, (x, y) -> {

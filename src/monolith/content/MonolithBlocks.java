@@ -415,14 +415,20 @@ public class MonolithBlocks {
 
 		payloadCrucible = new PayloadCrafter("payload-crucible") {{
 			requirements(Category.units, with(
-				Items.copper, 1
+				Items.silicon, 250,
+				Items.graphite, 180,
+				Items.titanium, 100,
+				MonolithItems.meanium, 200,
+				MonolithItems.lithium, 150,
+				MonolithItems.macrosteel, 230
 			));
 			size = 3;
 			health = 260;
+			craftEffect = MonolithFx.crucibleCraft;
+			updateEffect = Fx.smoke;
 			plans.addAll(
-				new Recipe(meaniumWallLarge, with(Items.titanium, 16, Items.coal, 40), 120f),
-				new Recipe(Blocks.container, with(Items.titanium, 50, Items.silicon, 25), 180f),
-				new Recipe(Blocks.reinforcedContainer, with(Items.tungsten, 10), 60f) {{input = Blocks.container;}}
+				new Recipe(meaniumWallLarge, with(Items.titanium, 16, Items.coal, 40), 600f),
+				new Recipe(Blocks.container, with(Items.titanium, 50, Items.silicon, 25), 180f)
 			);
 			itemCapacity = 100;
 		}};

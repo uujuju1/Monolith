@@ -71,18 +71,17 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				if (noise > 0.5 + (0.5/2)) {
 					block = Blocks.duneWall;
 				}
-			}
-			if (x < 10 || x > width - 10 || y < 10 || y > height - 10) {
-				floor = Blocks.dirt;
-			}
-			if (x < 7 || x > width - 7 || y < 7 || y > height - 7) {
-				block = Blocks.dirtWall;
-			}
-
-			if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 0.01d, 1f) > 0.5f && floor == Blocks.dirt) {
-				floor = Blocks.carbonStone;
-				if (block == Blocks.dirtWall) block = Blocks.carbonWall;
-				if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
+				if (x < 10 || x > width - 10 || y < 10 || y > height - 10) {
+					floor = Blocks.dirt;
+				}
+				if (x < 7 || x > width - 7 || y < 7 || y > height - 7) {
+					block = Blocks.dirtWall;
+				}
+				if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 0.01d, 1f) > 0.5f && floor == Blocks.dirt) {
+					floor = Blocks.carbonStone;
+					if (block == Blocks.dirtWall) block = Blocks.carbonWall;
+					if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
+				}
 			}
 		});
 		distort(14f, 4f);

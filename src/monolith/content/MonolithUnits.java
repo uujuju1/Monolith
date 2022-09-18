@@ -13,7 +13,7 @@ import monolith.type.draw.*;
 import monolith.type.ModUnitType.*;
 
 public class MonolithUnits {
-	public static UnitType shelter, connect;
+	public static UnitType shelter, connect, remnant;
 
 	public void load() {
 		// units
@@ -66,8 +66,12 @@ public class MonolithUnits {
 			setEnginesMirror(new PressureEngine(4f, 0f, 15, 4f, 8f, 135f, Color.gray));
 			engines.get(1).rotation = -135f;
 			rotors.add(
-				new Rotor("-rotor", 0, 4, 15, false),
-				new Rotor("-rotor-small", 0, -7, -15, true)
+				new Rotor("-rotor", 0, 4, 15) {{
+					layerOffset = 0.001f;
+				}},
+				new Rotor("-rotor-small", 0, -7, -15) {{
+					layerOffset = -0.001f;
+				}}
 			);
 			weapons.addAll(
 				new Weapon("monolith-connect-weapon") {{
@@ -78,8 +82,51 @@ public class MonolithUnits {
 					shootCone = 2f;
 					ignoreRotation = false;
 					shootSound = Sounds.mediumCannon;
+
 					bullet = new BasicBulletType(6f, 20) {{
 						lifetime = 22.5f;
+						frontColor = Color.valueOf("FFCBDD");
+						backColor = trailColor = Color.valueOf("CF85CB");
+						width = 10f;
+						height = 12.5f;
+						trailWidth = 2;
+						trailLength = 10;
+						status = MonolithStatusEffects.isolated;
+						statusDuration = 180f;
+					}};
+				}}
+			);
+		}};
+
+		remnant = new ModUnitType("remnant") {{
+			health = 1450;
+			speed = 1.8f;
+			accel = 0.1f;
+			drag = 0.06f;
+			hitSize = 12f;
+			engineSize = 0f;
+			fallSpeed = 0.005f;
+			range = maxRange = 0f;
+			flying = true;
+
+			rotors.add(
+				new Rotor("-rotor", 0, 0, 18) {{
+					layerOffset = 0.001f;
+				}}
+			);
+			weapons.addAll(
+				new Weapon("monolith-remnant-weapon") {{
+					x = 12f;
+					y = 0f;
+					baseRotation = -45f;
+					shootCone = 360f;
+					layerOffset = -0.001f;
+					shootSound = Sounds.mediumCannon;
+
+					bullet = new BasicBulletType(4f, 50) {{
+						lifetime = 45f;
+						homingPower = 0.25f;
+						homingDelay = 4f;
 						frontColor = Color.valueOf("FFCBDD");
 						backColor = trailColor = Color.valueOf("CF85CB");
 						width = 10f;

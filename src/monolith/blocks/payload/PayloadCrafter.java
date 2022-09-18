@@ -14,6 +14,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
+import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import mindustry.world.blocks.*;
@@ -22,7 +23,10 @@ import mindustry.world.blocks.payloads.*;
 
 public class PayloadCrafter extends PayloadBlock {
 	public Seq<Recipe> plans = new Seq<>();
-	public Block output = Blocks.router;
+	public Effect 
+	craftEffect = Fx.none,
+	updateEffect = Fx.none;
+	public float updateEffectChance = 0.04f;
 
 	public PayloadCrafter(String name) {
 		super(name);
@@ -102,9 +106,9 @@ public class PayloadCrafter extends PayloadBlock {
 						table.table(pinput -> {
 							pinput.add(Core.bundle.get("stat.input") + ":");
 							if (input.unlockedNow()) {
-								pinput.add(new Image(input.uiIcon)).size(48f, 48f);
+								pinput.add(new Image(input.uiIcon)).size(32f, 32f);
 							} else {
-								pinput.image(Icon.cancel).size(48f, 48f).color(Color.scarlet);
+								pinput.image(Icon.cancel).size(32f, 32f).color(Color.scarlet);
 							}
 						}).left().padTop(5f).row();	
 					}
@@ -114,7 +118,7 @@ public class PayloadCrafter extends PayloadBlock {
 					}).left().row();
 					table.margin(10f);
 				}
-			}).minSize(302f, 192f);
+			}).minSize(302f, 0f);
 			return res;
 		}
 	}
@@ -157,13 +161,18 @@ public class PayloadCrafter extends PayloadBlock {
 			}
 			Draw.rect(outRegion, x, y, rotdeg());
 			drawPayload();
+			Draw.z(Layer.blockOver + 0.1f);
 			Draw.rect(topRegion, x, y, 0f);
 		}
 
 		@Override
 		public void updateTile() {
-			moveOutPayload();
+			if (currentPlan != -1) {
+				if (((BuildPayload) payload).build.block == plans.get(currentPlan).output) moveOutPayload();
+			}
+
 			if (efficiency > 0f && currentPlan != -1) {
+				if (Mathf.chanceDelta(updateEffectChance)) updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4f));
 				if (plans.get(currentPlan).input == null && payload == null) produce();
 				if (payload instanceof BuildPayload) {
 					if (plans.get(currentPlan).input != null && ((BuildPayload) payload).build.block == plans.get(currentPlan).input) produce();
@@ -175,6 +184,7 @@ public class PayloadCrafter extends PayloadBlock {
 			progress += edelta();
 			if (progress >= currentTime()) {
 				consume();
+				craftEffect.at(x, y);
 				payload = new BuildPayload(plans.get(currentPlan).output, team);
 				payVector.setZero();
 				progress %= 1f;
