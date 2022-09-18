@@ -28,7 +28,7 @@ public class Rotor {
 	public void draw(Unit unit) {
 		Draw.reset();
 
-		Draw.z((unit.type.lowAltitude ? Layer.flyingUnitLow : Layer.flyingUnit) + layerOffset - (1 - unit.elevation));
+		Draw.z((unit.type.lowAltitude ? Layer.flyingUnitLow : Layer.flyingUnit) + layerOffset);
 
 		float
 		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
@@ -44,7 +44,7 @@ public class Rotor {
 		}
 
 		Draw.alpha(1);
-		if (layerOffset < 0) {
+		if (layerOffset >= 0f) {
 			Draw.rect(topRegion, x, y, unit.rotation - 90);
 		}
 		Draw.reset();

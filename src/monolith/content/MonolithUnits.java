@@ -115,38 +115,41 @@ public class MonolithUnits {
 					layerOffset = 0.001f;
 				}}
 			);
-			weapons.addAll(
-				new Weapon("monolith-remnant-weapon") {{
-					x = 12f;
-					y = 0f;
-					baseRotation = -45f;
-					shootCone = 360f;
-					layerOffset = -0.001f;
-					mirror = true;
-					shootSound = Sounds.mediumCannon;
-
-					parts.addAll(
-						new RegionPart("-blade") {{
-							moveRot = 15f;
-							mirror = true;
-						}}
-					);
-
-					bullet = new BasicBulletType(4f, 50) {{
-						lifetime = 45f;
-						homingPower = 0.25f;
-						homingDelay = 4f;
-						frontColor = Color.valueOf("FFCBDD");
-						backColor = trailColor = Color.valueOf("CF85CB");
-						width = 10f;
-						height = 12.5f;
-						trailWidth = 2;
-						trailLength = 10;
-						status = MonolithStatusEffects.isolated;
-						statusDuration = 180f;
-					}};
-				}}
-			);
+			for (int i : Mathf.signs) {
+				weapons.addAll(
+					new Weapon("monolith-remnant-weapon") {{
+						x = 12f * i;
+						y = 0f;
+						reload = 30f;
+						baseRotation = -45 * i;
+						shootCone = 180f;
+						layerOffset = -0.001f;
+						shootSound = Sounds.mediumCannon;
+						mirror = false;
+	
+						parts.addAll(
+							new RegionPart("-blade") {{
+								moveRot = 15f;
+								mirror = true;
+							}}
+						);
+	
+						bullet = new BasicBulletType(4f, 50) {{
+							lifetime = 45f;
+							homingPower = 0.25f;
+							homingDelay = 4f;
+							frontColor = Color.valueOf("FFCBDD");
+							backColor = trailColor = Color.valueOf("CF85CB");
+							width = 10f;
+							height = 12.5f;
+							trailWidth = 2;
+							trailLength = 10;
+							status = MonolithStatusEffects.isolated;
+							statusDuration = 180f;
+						}};
+					}}
+				);
+			}
 		}};
 
 		// plans

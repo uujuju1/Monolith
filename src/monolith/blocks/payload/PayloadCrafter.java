@@ -168,7 +168,7 @@ public class PayloadCrafter extends PayloadBlock {
 
 		@Override
 		public void updateTile() {
-			if (currentPlan != -1) {
+			if (currentPlan != -1 && payload != null) {
 				if (((BuildPayload) payload).build.block == plans.get(currentPlan).output) moveOutPayload();
 			}
 
