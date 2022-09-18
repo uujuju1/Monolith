@@ -5,6 +5,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
+import mindustry.entities.part.*;
 import mindustry.entities.bullet.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
@@ -108,7 +109,7 @@ public class MonolithUnits {
 			fallSpeed = 0.005f;
 			range = maxRange = 0f;
 			flying = true;
-			constructor = UnitEntity::add;
+			constructor = UnitEntity::create;
 			rotors.add(
 				new Rotor("-rotor", 0, 0, 18) {{
 					layerOffset = 0.001f;
@@ -121,7 +122,15 @@ public class MonolithUnits {
 					baseRotation = -45f;
 					shootCone = 360f;
 					layerOffset = -0.001f;
+					mirror = true;
 					shootSound = Sounds.mediumCannon;
+
+					parts.addAll(
+						new RegionPart("-blade") {{
+							moveRot = 15f;
+							mirror = true;
+						}}
+					);
 
 					bullet = new BasicBulletType(4f, 50) {{
 						lifetime = 45f;
