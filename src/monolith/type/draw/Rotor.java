@@ -28,7 +28,7 @@ public class Rotor {
 	public void draw(Unit unit) {
 		Draw.reset();
 
-		Draw.z((unit.type.lowAltitude ? Layer.flyingUnitLow : Layer.flyingUnit) + layerOffset - (1 - Unit.elevation));
+		Draw.z((unit.type.lowAltitude ? Layer.flyingUnitLow : Layer.flyingUnit) + layerOffset - (1 - unit.elevation));
 
 		float
 		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
