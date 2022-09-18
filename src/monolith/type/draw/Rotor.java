@@ -34,7 +34,7 @@ public class Rotor {
 		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
 		y = unit.y + Angles.trnsy(unit.rotation - 90, this.x, this.y);
 
-		drawRot(unit speed);
+		drawRot(unit, speed);
 		if (doubleRot) drawRot(unit, -speed);
 
 		Draw.alpha(1);
