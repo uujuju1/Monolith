@@ -1,5 +1,6 @@
 package monolith.content;
 
+import arc.math.*;
 import arc.graphics.*;
 import mindustry.gen.*;
 import mindustry.type.*;
