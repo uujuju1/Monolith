@@ -113,10 +113,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 					if (block == Blocks.dirtWall) block = Blocks.carbonWall;
 					if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
 				}
-			}
-
-			// dirt region
-			if (floor == Blocks.dirt) {
+			} else if (floor == Blocks.dirt) {
 				float noise = noise2d(sector.tile.v.x + x, sector.tile.v.y + y, 3f, 0.8f, 0.1f, 1);
 
 				if (noise > 0.625f) {
@@ -134,10 +131,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 					if (block == Blocks.dirtWall) block = Blocks.carbonWall;
 					if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
 				}
-			}
-
-			// ice region
-			if (floor == Blocks.ice || floor == Blocks.iceSnow) {
+			} else if (floor == Blocks.ice || floor == Blocks.iceSnow) {
 				float[] noises = new float[]{
 					noise(x + 999, y + 999, octaves, persistence, scale, 1),
 					noise(x + 1500, y + 999, octaves, persistence, scale, 1),
@@ -149,6 +143,6 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				}
 			}
 		});
-		distort(184f, 42f);
+		distort(48f, 30f);
 	}
 }
