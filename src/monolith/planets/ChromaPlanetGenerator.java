@@ -51,10 +51,27 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 	}
 
 	public float noise2d(int seed, float x, float y, double octaves, double persistence, double scale, float mag) {
-		return Simplex.noise2d(seed, octaves, persistence, scale, x, y) * mag;
+		return Simplex.noise2d(seed, 3f, 0.8f, 0.01f, x, y) * mag;
 	}
 	public float noise2d(float x, float y, double octaves, double persistence, double scale, float mag) {
-		return Simplex.noise2d(seed, octaves, persistence, scale, x, y) * mag;
+		return Simplex.noise2d(seed, 3f, 0.8f, 0.01f, x, y) * mag;
+	}
+
+	public Seq<Block> getOres() {
+		Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead);
+
+		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x, sector.tile.v.y + 2, sector.tile.v.z + 2) > 0.25f || forceOres){
+			ores.add(Blocks.oreCoal);
+		}
+
+		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x + 1, sector.tile.v.y + 1, sector.tile.v.z) > 0.5f || forceOres){
+			ores.add(Blocks.oreTitanium);
+		}
+
+		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z + 1) > 0.7f || forceOres){
+			ores.add(Blocks.oreThorium);
+		}
+		return ores;
 	}
 
 	@Override
@@ -62,17 +79,19 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 		pass((x, y) -> {
 			float noise = noise2d(sector.tile.v.x + x, sector.tile.v.y + y, 3f, 0.8f, 0.01f, 1);
 			floor = getBlock(sector.tile.v);
+
+			// water region
 			if (floor == Blocks.water) {
 				if (noise < 0.5/1.5f) {
 					floor = Blocks.deepwater;
 				}
-				if (noise > 0.5) {
+				if (noise > 0.5f) {
 					floor = Blocks.dirt;
 				}
-				if (noise > 0.5 + (0.5/4)) {
+				if (noise > 0.625f) {
 					block = Blocks.dirtWall;
 				}
-				if (noise > 0.5 + (0.5/2)) {
+				if (noise > 0.75f) {
 					block = Blocks.duneWall;
 				}
 				if (x < 10 || x > width - 10 || y < 10 || y > height - 10) {
@@ -87,29 +106,42 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 					if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
 				}
 			}
-		});
-		distort(14f, 4f);
 
-		Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead);
+			// dirt region
+			if (floor = Blocks.dirt) {
+				if (noise > 0.625f) {
+					block = Blocks.dirtWall;
+				}
+				if (noise > 0.75f) {
+					block = Blocks.duneWall;
+				}
+				if (x < 10 || x > width - 10 || y < 10 || y > height - 10) {
+					floor = Blocks.dirt;
+				}
+				if (x < 7 || x > width - 7 || y < 7 || y > height - 7) {
+					block = Blocks.dirtWall;
+				}
+				if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 0.01d, 1f) > 0.5f && floor == Blocks.dirt) {
+					floor = Blocks.carbonStone;
+					if (block == Blocks.dirtWall) block = Blocks.carbonWall;
+					if (block == Blocks.duneWall) block = Blocks.ferricStoneWall;
+				}
+			}
 
-		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z) > 0.25f || forceOres){
-			ores.add(Blocks.oreCoal);
-		}
+			// ice region
+			if (floor == Blocks.ice || floor == Blocks.iceSnow) {
+				float noises = new float[]{
+					noise(x, y, octaves, falloff, scale, 1),
+					noise(x + 500, y, octaves, falloff, scale, 1),
+					noise(x, y + 500, octaves, falloff, scale, 1),
+				};
 
-		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x + 1, sector.tile.v.y, sector.tile.v.z) > 0.5f || forceOres){
-			ores.add(Blocks.oreTitanium);
-		}
-
-		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z) > 0.7f || forceOres){
-			ores.add(Blocks.oreThorium);
-		}
-
-		pass((x, y) -> {
-			for (Block ore : ores) {
-				if (noise2d(1241, x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 0.1d, 1f) > noiseTresh) {
-					ore = ore;
+				if (noises[0] > noiseTresh) {
+					block = Blocks.iceWall;
 				}
 			}
 		});
+		distort(14f, 4f);
+		ores(getOres());
 	}
 }
