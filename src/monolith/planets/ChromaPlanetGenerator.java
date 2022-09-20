@@ -12,6 +12,7 @@ import mindustry.maps.generators.*;
 public class ChromaPlanetGenerator extends PlanetGenerator {
 	public double octaves = 3f, persistence = 0.8f, scale = 0.01f;
 	public float minHeight = 0.4f, noiseTresh = 0.5f, mag = 1f;
+	public boolean forceOres = true;
 
 	public Block[] arr = {Blocks.dirt, Blocks.dirt, Blocks.basalt};
 
@@ -49,6 +50,9 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 		return arr[Mathf.clamp((int)(rawHeight(pos) * arr.length), 0, arr.length - 1)];
 	}
 
+	public float noise2d(int seed, float x, float y, double octaves, double persistence, double scale, float mag) {
+		return Simplex.noise2d(seed, octaves, persistence, scale, x, y) * mag;
+	}
 	public float noise2d(float x, float y, double octaves, double persistence, double scale, float mag) {
 		return Simplex.noise2d(seed, octaves, persistence, scale, x, y) * mag;
 	}
@@ -56,7 +60,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 	@Override
 	protected void generate() {
 		pass((x, y) -> {
-			float noise = noise2d(sector.tile.v.x + x, sector.tile.v.y + y, octaves, persistence, scale, mag);
+			float noise = noise2d(sector.tile.v.x + x, sector.tile.v.y + y, 3f, 0.8f, 0.01f, 1);
 			floor = getBlock(sector.tile.v);
 			if (floor == Blocks.water) {
 				if (noise < 0.5/1.5f) {
@@ -88,21 +92,21 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 
 		Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead);
 
-		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z) > 0.25f){
+		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z) > 0.25f || forceOres){
 			ores.add(Blocks.oreCoal);
 		}
 
-		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x + 1, sector.tile.v.y, sector.tile.v.z) > 0.5f){
+		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x + 1, sector.tile.v.y, sector.tile.v.z) > 0.5f || forceOres){
 			ores.add(Blocks.oreTitanium);
 		}
 
-		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z) > 0.7f){
+		if(Simplex.noise3d(seed, 2, 0.5, 1, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z) > 0.7f || forceOres){
 			ores.add(Blocks.oreThorium);
 		}
 
 		pass((x, y) -> {
 			for (Block ore : ores) {
-				if (noise2d(x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 0.1d, 1f) > 0.8f) {
+				if (noise2d(1241, x + sector.tile.v.x, y + sector.tile.v.y, 3d, 0.5d, 0.1d, 1f) > noiseTresh) {
 					ore = ore;
 				}
 			}

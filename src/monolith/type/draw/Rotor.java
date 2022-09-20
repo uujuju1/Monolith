@@ -29,14 +29,8 @@ public class Rotor {
 		Draw.reset();
 
 		Draw.z((unit.type.lowAltitude ? Layer.flyingUnitLow : Layer.flyingUnit) + layerOffset);
-
-		float
-		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
-		y = unit.y + Angles.trnsy(unit.rotation - 90, this.x, this.y);
-
 		drawRot(unit, speed);
 		if (doubleRot) drawRot(unit, -speed);
-
 		Draw.alpha(1);
 		if (layerOffset >= 0f) {
 			Draw.rect(topRegion, x, y, unit.rotation - 90);
@@ -45,6 +39,10 @@ public class Rotor {
 	}
 
 	public void drawRot(Unit unit, float speed) {
+		float
+		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
+		y = unit.y + Angles.trnsy(unit.rotation - 90, this.x, this.y);
+		
 		Draw.alpha(1 - unit.elevation);
 		for (int i = 0; i < sides; i++) {
 			Draw.rect(region, x, y, Time.time * speed + unit.id + (360/sides * i));
