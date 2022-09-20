@@ -108,7 +108,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 			}
 
 			// dirt region
-			if (floor = Blocks.dirt) {
+			if (floor == Blocks.dirt) {
 				if (noise > 0.625f) {
 					block = Blocks.dirtWall;
 				}
@@ -130,10 +130,10 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 
 			// ice region
 			if (floor == Blocks.ice || floor == Blocks.iceSnow) {
-				float noises = new float[]{
-					noise(x, y, octaves, falloff, scale, 1),
-					noise(x + 500, y, octaves, falloff, scale, 1),
-					noise(x, y + 500, octaves, falloff, scale, 1),
+				float[] noises = new float[]{
+					noise(x, y, octaves, persistence, scale, 1),
+					noise(x + 500, y, octaves, persistence, scale, 1),
+					noise(x, y + 500, octaves, persistence, scale, 1),
 				};
 
 				if (noises[0] > noiseTresh) {

@@ -28,6 +28,10 @@ public class Rotor {
 	public void draw(Unit unit) {
 		Draw.reset();
 
+		float
+		x = unit.x + Angles.trnsx(unit.rotation - 90, this.x, this.y),
+		y = unit.y + Angles.trnsy(unit.rotation - 90, this.x, this.y);
+
 		Draw.z((unit.type.lowAltitude ? Layer.flyingUnitLow : Layer.flyingUnit) + layerOffset);
 		drawRot(unit, speed);
 		if (doubleRot) drawRot(unit, -speed);
