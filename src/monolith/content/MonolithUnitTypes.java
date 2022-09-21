@@ -118,6 +118,8 @@ public class MonolithUnits {
 
 			immunities.add(MonolithStatusEffects.isolated);
 
+			abilities.add(new MoveLightningAbility(25, 10, 0.5f, hitSize, 0, 5, Pal.accent, "monolith-remnant-shield"));
+
 			rotors.add(
 				new Rotor("-rotor", 0, 0, 18) {{
 					layerOffset = 0.001f;

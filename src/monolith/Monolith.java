@@ -32,7 +32,7 @@ public class Monolith extends Mod{
 		new MonolithStatusEffects().load();
 		new MonolithWeathers().load();
 		new MonolithItems().load();
-		new MonolithUnits().load();
+		new MonolithUnitTypes().load();
 		new MonolithBlocks().load();
 		new MonolithPlanets().load();
 		new MonolithTechTree().load();

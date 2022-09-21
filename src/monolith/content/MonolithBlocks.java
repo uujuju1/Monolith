@@ -18,6 +18,7 @@ import mindustry.world.blocks.defense.turrets.*;
 
 import monolith.type.*;
 import monolith.blocks.voidf.*;
+import monolith.blocks.units.*;
 import monolith.blocks.defense.*;
 import monolith.blocks.payload.*;
 import monolith.blocks.distribution.*;
@@ -44,6 +45,8 @@ public class MonolithBlocks {
 	payloadCrucible,
 
 	artifact,
+
+	remnantFactory,
 
 	voidfConveyor, 
 	voidfRouter,
@@ -414,7 +417,7 @@ public class MonolithBlocks {
 		}};
 
 		payloadCrucible = new PayloadCrafter("payload-crucible") {{
-			requirements(Category.units, with(
+			requirements(Category.crafting, with(
 				Items.silicon, 250,
 				Items.graphite, 180,
 				Items.titanium, 100,
@@ -444,6 +447,24 @@ public class MonolithBlocks {
 			health = 250;
 			range = 200;
 			buildSpeed = 1.5f;
+			consumePower(3f);
+		}};
+
+		remnantFactory = new SingleUnitFactory("remnant-factory") {{
+			requirements(Category.units, with(
+				Items.graphite, 150,
+				Items.thorium, 200,
+				Items.titanium, 350,
+				Items.silicon, 250,
+				MonolithItems.meanium, 400
+			));
+			size = 5;
+			health = 450;
+			craftTime = 60f * 60f * 3f;
+			unit = MonolithUnitTypes.remnamt;
+			itemCapacity = 100;
+			consumeItems(Items.silicon, 25, MonolithItems.meanium, 50);
+			consumeLiquid(Liquids.oil, 0.5f);
 			consumePower(3f);
 		}};
 

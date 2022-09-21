@@ -144,5 +144,6 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 			}
 		});
 		distort(48f, 30f);
+		distort(48f, 30f);
 	}
 }
