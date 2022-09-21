@@ -16,13 +16,13 @@ public class SingleUnitFactory extends Block {
 	public SingleUnitFactory(String name) {
 		super(name);
 		destructible = update = sync = true;
-		hasItems = hasLiquqids = hasPower = true;
+		hasItems = hasLiquids = hasPower = true;
 	}
 
 	@Override
 	public void setBars() {
 		super.setBars();
-		addBar("progress", b -> new Bar(Core.bundle.get("bar.progress"), Pal.accent, () -> b.time/craftTime));
+		addBar("progress", b -> new Bar(Core.bundle.get("bar.progress"), Pal.accent, () -> ((SingleUnitFactoryBuild)b).time/craftTime));
 	}
 
 	public class SingleUnitFactoryBuild extends Building {
@@ -34,7 +34,7 @@ public class SingleUnitFactory extends Block {
 			if (time >= craftTime) {
 				consume();
 				// craftEffect.at(x, y);
-				unit.create(team, x, y);
+				unit.spawn(team, x, y);
 				time %= 1f;
 			}
 		}

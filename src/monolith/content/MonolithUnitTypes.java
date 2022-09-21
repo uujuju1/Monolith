@@ -8,13 +8,14 @@ import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.entities.part.*;
 import mindustry.entities.bullet.*;
+import mindustry.entities.abilities.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
 import monolith.type.*;
 import monolith.type.draw.*;
 import monolith.type.ModUnitType.*;
 
-public class MonolithUnits {
+public class MonolithUnitTypes {
 	public static UnitType shelter, connect, remnant;
 
 	public void load() {

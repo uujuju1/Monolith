@@ -463,7 +463,7 @@ public class MonolithBlocks {
 			craftTime = 60f * 60f * 3f;
 			unit = MonolithUnitTypes.remnamt;
 			itemCapacity = 100;
-			consumeItems(Items.silicon, 25, MonolithItems.meanium, 50);
+			consumeItems(with(Items.silicon, 25, MonolithItems.meanium, 50));
 			consumeLiquid(Liquids.oil, 0.5f);
 			consumePower(3f);
 		}};
