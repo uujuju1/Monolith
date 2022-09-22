@@ -10,7 +10,7 @@ import mindustry.content.*;
 import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
-	public double octaves = 3f, persistence = 0.8f, scale = 150f;
+	public double octaves = 12f, persistence = 0.8f, scale = 100f;
 	public float minHeight = 0.4f, noiseTresh = 0.5f, mag = 1f;
 	public boolean forceOres = true;
 
@@ -74,7 +74,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 		
 		pass((x, y) -> {
 			for (int i = 0; i < ores.size; i++) {
-				if (noise(x + i*999, y + 1*-999, 2f, 0.2f, 30f, 1f) > 0.8f + (i * 2)) {
+				if (noise(x + i*512, y + i*1024, 2f, 0.2f, 10f, 1f) > 0.7f + (i * 2)) {
 					ore = ores.get(i);
 				}
 			}
@@ -116,10 +116,11 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 			} else if (floor == Blocks.dirt) {
 				float noise = noise2d(sector.tile.v.x + x, sector.tile.v.y + y, 3f, 0.8f, 0.1f, 1);
 
-				if (noise > 0.625f) {
+				if (noise > 0.325f) {
 					block = Blocks.dirtWall;
 				}
-				if (noise > 0.75f) {
+				if (noise > 0.
+					5f) {
 					block = Blocks.duneWall;
 				}
 
@@ -143,8 +144,9 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				}
 			}
 		});
-		// distort(30f, 30f);
-		// distort(30f, 30f);
 		getOres();
+		distort(40f, 5f);
+		distort(20f, 8f);
+		median(5, 0.5f)
 	}
 }

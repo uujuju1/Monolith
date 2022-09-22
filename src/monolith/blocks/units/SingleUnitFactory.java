@@ -1,6 +1,7 @@
 package monolith.blocks.units;
 
 import arc.*;
+import arc.util.*;
 import arc.util.io.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
@@ -31,13 +32,21 @@ public class SingleUnitFactory extends Block {
 
 		@Override
 		public void updateTile() {
-			time += edelta();
-			if (time >= craftTime && team.data().countType(unit) < Units.getCap(team)) {
-				consume();
-				// craftEffect.at(x, y);
-				unit.spawn(team, x, y);
-				time %= 1f;
+			if (efficiency > 0 && team.data().countType(unit) < Units.getCap(team)) {
+				time += edelta() * Vars.state.rules.unitBuildSpeed(team);
+				if (time >= craftTime) {
+					consume();
+					// craftEffect.at(x, y);
+					unit.spawn(team, x, y);
+					time %= 1f;
+				}
 			}
+		}
+
+		@Override
+		public void draw() {
+			super.draw();
+			Draw.draw(Layer.blockOver, () -> Drawf.construct(this, unit, -90f, time / craftTime, efficiency, Time.time));
 		}
 
 		@Override
