@@ -146,6 +146,6 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 		getOres();
 		distort(40f, 5f);
 		distort(20f, 8f);
-		median(5, 0.5f)
+		median(5, 0.5f);
 	}
 }
