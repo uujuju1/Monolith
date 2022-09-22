@@ -8,6 +8,7 @@ import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
+import mindustry.entities.*;
 
 public class SingleUnitFactory extends Block {
 	public UnitType unit = UnitTypes.dagger;
@@ -31,7 +32,7 @@ public class SingleUnitFactory extends Block {
 		@Override
 		public void updateTile() {
 			time += edelta();
-			if (time >= craftTime) {
+			if (time >= craftTime && team.data().countType(unit) < Units.getCap(team)) {
 				consume();
 				// craftEffect.at(x, y);
 				unit.spawn(team, x, y);

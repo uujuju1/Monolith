@@ -107,9 +107,9 @@ public class MonolithUnitTypes {
 
 		remnant = new ModUnitType("remnant") {{
 			health = 1450;
-			speed = 1.8f;
-			accel = 0.1f;
-			drag = 0.06f;
+			speed = 3f;
+			accel = 0.01f;
+			drag = 0.01f;
 			hitSize = 12f;
 			engineSize = 0f;
 			fallSpeed = 0.005f;
@@ -119,7 +119,7 @@ public class MonolithUnitTypes {
 
 			immunities.add(MonolithStatusEffects.isolated);
 
-			abilities.add(new MoveLightningAbility(25, 10, 0.5f, hitSize, 0, 5, Pal.accent, "monolith-remnant-shield"));
+			abilities.add(new MoveLightningAbility(25, 10, 0.1f, hitSize, 2, 5, Pal.accent, "monolith-remnant-shield"));
 
 			rotors.add(
 				new Rotor("-rotor", 0, 0, 18) {{
@@ -151,8 +151,8 @@ public class MonolithUnitTypes {
 							lifetime = 45f;
 							homingPower = 0.25f;
 							homingDelay = 4f;
-							frontColor = Color.valueOf("FFCBDD");
-							backColor = trailColor = Color.valueOf("CF85CB");
+							frontColor = Color.white;
+							backColor = trailColor = Pal.accent;
 							width = 10f;
 							height = 12.5f;
 							trailWidth = 2;

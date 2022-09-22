@@ -10,7 +10,7 @@ import mindustry.content.*;
 import mindustry.maps.generators.*;
 
 public class ChromaPlanetGenerator extends PlanetGenerator {
-	public double octaves = 3f, persistence = 0.8f, scale = 0.01f;
+	public double octaves = 3f, persistence = 0.8f, scale = 150f;
 	public float minHeight = 0.4f, noiseTresh = 0.5f, mag = 1f;
 	public boolean forceOres = true;
 
@@ -143,7 +143,8 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				}
 			}
 		});
-		distort(48f, 30f);
-		distort(48f, 30f);
+		// distort(30f, 30f);
+		// distort(30f, 30f);
+		getOres();
 	}
 }
