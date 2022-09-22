@@ -119,8 +119,7 @@ public class ChromaPlanetGenerator extends PlanetGenerator {
 				if (noise > 0.325f) {
 					block = Blocks.dirtWall;
 				}
-				if (noise > 0.
-					5f) {
+				if (noise > 0.5f) {
 					block = Blocks.duneWall;
 				}
 
