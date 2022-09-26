@@ -66,7 +66,7 @@ public class MultiCrafter extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			Seq<Item> items = Seq.with(recipes).map(i -> (i.outputItems != null ? i.outputItems[0].item : null) == i.item);
+			Seq<Item> items = Seq.with(recipes).map(i -> (i.outputItems != null ? i.outputItems[0].item : null) == i.outputItems[0].item);
 
 			for (Item item : items) {
 				table.button(b -> {
