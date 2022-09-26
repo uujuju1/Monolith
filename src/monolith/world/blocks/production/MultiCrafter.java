@@ -41,6 +41,12 @@ public class MultiCrafter extends Block {
 		updateEffectChance = 0.03f,
 		warmupSpeed = 0.019f,
 		craftTime = 60f;
+
+		public @Nullable Item firstOutput() {
+			if (outputItems == null) return null;
+			if (outputItems.length == 0) return null;
+			return outputItems[0].item; 
+		}
 	}
 
 	public class MultiCrafterBuild extends Building {
@@ -66,7 +72,7 @@ public class MultiCrafter extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			Seq<Item> items = Seq.with(recipes).map(i -> (i.outputItems != null ? i.outputItems[0].item : null) == i.outputItems[0].item);
+			Seq<Item> items = Seq.with(recipes).map(i -> i.firstOutput()).filter(item -> item.unlockedNow());
 
 			for (Item item : items) {
 				table.button(b -> {
