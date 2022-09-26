@@ -22,6 +22,9 @@ public class MultiCrafter extends Block {
 		configurable = true;
 		hasItems = true;
 		solid = update = sync = destructible = true;
+
+		consume(new ConsumeItemDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeItems : ItemStack.empty));
+		consume(new ConsumePowerDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumePower : 0f))
 	}
 
 	public class ItemRecipe {
@@ -38,6 +41,7 @@ public class MultiCrafter extends Block {
 		updateEffect = Fx.none;
 
 		public float 
+		consumePower = 1f;
 		updateEffectChance = 0.03f,
 		warmupSpeed = 0.019f,
 		craftTime = 60f;
@@ -48,6 +52,7 @@ public class MultiCrafter extends Block {
 			return outputItems[0].item; 
 		}
 	}
+
 
 	public class MultiCrafterBuild extends Building {
 		public int currentPlan = -1;
@@ -88,10 +93,10 @@ public class MultiCrafter extends Block {
 		public void updateTile() {
 			if (efficiency > 0 && getRecipe() != null) {
 				warmup = Mathf.approachDelta(warmup, 1f, getRecipe().warmupSpeed);
-				progress = getProgressIncrease(getRecipe().craftTime) * warmup;
+				progress += getProgressIncrease(getRecipe().craftTime) * warmup;
 				totalProgres += edelta() * warmup;
 
-				if (wasVisible && Mathf.chance(getRecipe().updateEffectChance)) getRecipe().updateEffect.at(x, y);
+				if (wasVisible && Mathf.chance(getRecipe().updateEffectChance)) getRecipe().updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4f));
 
 				if (progress >= 1f) {
 					progress %= 1f;
