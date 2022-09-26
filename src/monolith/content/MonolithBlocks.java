@@ -157,13 +157,8 @@ public class MonolithBlocks {
 			health = 400;
 			recipes.addAll(
 				new ItemRecipe() {{
-					consumeItems = with(
-						MonolithItems.meanium, 2,
-						Items.lead, 2
-					);
-					outputItems = with(
-						MonolithItems.lathanium, 1
-					);
+					consumeItems = with(MonolithItems.meanium, 2, Items.lead, 2);
+					outputItems = with(MonolithItems.lathanium, 1);
 					craftTime = 45f;
 				}}
 			);

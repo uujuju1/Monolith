@@ -1,11 +1,15 @@
 package monolith.world.blocks.production;
 
 import arc.math.*;
+import arc.util.*;
 import arc.struct.*;
+import arc.scene.ui.*;
+import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.world.*;
-import mindustry.entities
+import mindustry.content.*;
+import mindustry.entities.*;
 /** 
 	* TODO might extend both from {@link GenericCrafter} later
 	* @author Uujuju
@@ -35,7 +39,7 @@ public class MultiCrafter extends Block {
 
 		public float 
 		updateEffectChance = 0.03f,
-		warmupSpeed = 0.019f;
+		warmupSpeed = 0.019f,
 		craftTime = 60f;
 	}
 
@@ -70,7 +74,7 @@ public class MultiCrafter extends Block {
 				}, () -> {
 					currentPlan = recipes.indexOf(item);
 					progress = 0f;
-				})
+				});
 			}
 		}
 
