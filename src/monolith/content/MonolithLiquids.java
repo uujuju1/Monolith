@@ -12,7 +12,7 @@ public class MonolithLiquids {
 			flammability = 0.3f;
 		}};
 		markyic = new Liquid("makyic", Color.valueOf("925439"));
-		hydroxia = new Liquid("hydroxia", Color.valueOf("CEB2FE")) {{gas = true}};
-		methane = new Liquid("methane", Color.valueOf("84F491")) {{gas = true}};
+		hydroxia = new Liquid("hydroxia", Color.valueOf("CEB2FE")) {{gas = true;}};
+		methane = new Liquid("methane", Color.valueOf("84F491")) {{gas = true;}};
 	}
 }

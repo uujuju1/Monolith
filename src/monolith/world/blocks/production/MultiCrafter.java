@@ -24,7 +24,7 @@ public class MultiCrafter extends Block {
 		solid = update = sync = destructible = true;
 
 		consume(new ConsumeItemDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeItems : ItemStack.empty));
-		consume(new ConsumePowerDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumePower : 0f))
+		consume(new ConsumePowerDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumePower : 0f));
 	}
 
 	public class ItemRecipe {
@@ -41,7 +41,7 @@ public class MultiCrafter extends Block {
 		updateEffect = Fx.none;
 
 		public float 
-		consumePower = 1f;
+		consumePower = 1f,
 		updateEffectChance = 0.03f,
 		warmupSpeed = 0.019f,
 		craftTime = 60f;
