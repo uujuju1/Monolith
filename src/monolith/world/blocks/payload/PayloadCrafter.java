@@ -1,4 +1,4 @@
-package monolith.blocks.payload;
+package monolith.world.blocks.payload;
 
 import arc.*;
 import arc.util.*;

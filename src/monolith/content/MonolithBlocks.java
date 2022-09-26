@@ -17,23 +17,26 @@ import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
 import monolith.type.*;
-import monolith.blocks.voidf.*;
-import monolith.blocks.units.*;
-import monolith.blocks.defense.*;
-import monolith.blocks.payload.*;
-import monolith.blocks.distribution.*;
-import monolith.blocks.voidf.sandbox.*;
-import monolith.blocks.voidf.defense.*;
-import monolith.blocks.voidf.production.*;
-import monolith.blocks.voidf.distribution.*;
+import monolith.world.blocks.voidf.*;
+import monolith.world.blocks.units.*;
+import monolith.world.blocks.defense.*;
+import monolith.world.blocks.payload.*;
+import monolith.world.blocks.production.*;
+import monolith.world.blocks.distribution.*;
+import monolith.world.blocks.voidf.sandbox.*;
+import monolith.world.blocks.voidf.defense.*;
+import monolith.world.blocks.voidf.production.*;
+import monolith.world.blocks.voidf.distribution.*;
 
 import static mindustry.type.ItemStack.*;
 
 public class MonolithBlocks {
 	public static Block 
+	// transportation
 	itemLiquidJunction,
 
 	furnace, lithiumWeaver, alloyInfuser,
+	industrialPress,
 
 	move, accelerate,
 	revenant,
@@ -145,6 +148,26 @@ public class MonolithBlocks {
 			));
 			consumePower(1f);
 			outputItems = with(MonolithItems.meanium, 1);
+		}};
+		industrialPress = new MultiCrafter("industrial-press") {{
+			requirements(Category.crafting, with(
+				Items.copper, 1
+			));
+			size = 5;
+			health = 400;
+			recipes.addAll(
+				new ItemRecipe() {{
+					consumeItems = with(
+						MonolithItems.meanium, 2,
+						Items.lead, 2
+					);
+					outputItems = with(
+						MonolithItems.lathanium, 1
+					);
+					craftTime = 45f;
+				}}
+			);
+			consumePower(3f);
 		}};
 
 		move = new ItemTurret("move") {{

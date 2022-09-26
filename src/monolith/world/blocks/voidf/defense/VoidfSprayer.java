@@ -1,4 +1,4 @@
-package monolith.blocks.voidf.defense;
+package monolith.world.blocks.voidf.defense;
 
 import arc.util.*;
 import arc.func.*;
@@ -7,7 +7,7 @@ import arc.graphics.g2d.*;
 import mindustry.*;
 import mindustry.graphics.*;
 import monolith.graphics.*;
-import monolith.blocks.voidf.*;
+import monolith.world.blocks.voidf.*;
 
 public class VoidfSprayer extends VoidfBlock {
 	public float 

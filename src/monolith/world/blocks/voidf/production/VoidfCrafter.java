@@ -1,4 +1,4 @@
-package monolith.blocks.voidf.production;
+package monolith.world.blocks.voidf.production;
 
 import arc.util.*;
 import arc.math.*;
@@ -14,7 +14,7 @@ import mindustry.entities.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.entities.units.*;
-import monolith.blocks.voidf.*;
+import monolith.world.blocks.voidf.*;
 
 import static mindustry.Vars.*;
 

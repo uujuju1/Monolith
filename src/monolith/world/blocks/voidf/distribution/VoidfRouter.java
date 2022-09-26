@@ -1,7 +1,7 @@
-package monolith.blocks.voidf.distribution;
+package monolith.world.blocks.voidf.distribution;
 
 import arc.graphics.g2d.*;
-import monolith.blocks.voidf.VoidfBlock;
+import monolith.world.blocks.voidf.VoidfBlock;
 
 public class VoidfRouter extends VoidfBlock {
 

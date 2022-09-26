@@ -9,8 +9,8 @@ import mindustry.type.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import monolith.ui.*;
-import monolith.blocks.defense.*;
-import monolith.blocks.defense.AOEBlock.*;
+import monolith.world.blocks.defense.*;
+import monolith.world.blocks.defense.AOEBlock.*;
 
 public class BulletRecipe {
 	public String name;

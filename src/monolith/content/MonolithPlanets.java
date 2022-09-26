@@ -15,9 +15,7 @@ public class MonolithPlanets {
 			meshLoader = () -> new HexMesh(this, 6);
 			startSector = 15;
 			alwaysUnlocked = accessible = true;
-			atmosphereRadIn = 0.1f;
-			atmosphereRadOut = 0.3f;
-			atmosphereColor = new Color(0.3f, 0.7f, 1f, 0.7f);
+			hasAtmosphere = false;
 		}};
 	}
 }

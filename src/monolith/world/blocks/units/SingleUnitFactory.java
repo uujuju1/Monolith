@@ -1,4 +1,4 @@
-package monolith.blocks.units;
+package monolith.world.blocks.units;
 
 import arc.*;
 import arc.util.*;
@@ -30,25 +30,28 @@ public class SingleUnitFactory extends Block {
 	}
 
 	public class SingleUnitFactoryBuild extends Building {
-		public float time;
+		public float time, warmup;
 
 		@Override
 		public void updateTile() {
 			if (efficiency > 0 && team.data().countType(unit) < Units.getCap(team)) {
 				time += edelta() * Vars.state.rules.unitBuildSpeed(team);
+				warmup = Mathf.lerpDelta(warmup, 1f, 0.05f);
 				if (time >= craftTime) {
 					consume();
 					// craftEffect.at(x, y);
 					unit.spawn(team, x, y);
 					time %= 1f;
 				}
+			} else {
+				warmup = Mathf.lerpDelta(warmup, 0f, 0.05f);
 			}
 		}
 
 		@Override
 		public void draw() {
 			super.draw();
-			Draw.draw(Layer.blockOver, () -> Drawf.construct(this, unit, -90f, time / craftTime, efficiency, Time.time));
+			Draw.draw(Layer.blockOver, () -> Drawf.construct(this, unit, -90f, time / craftTime, warmup, Time.time));
 		}
 
 		@Override

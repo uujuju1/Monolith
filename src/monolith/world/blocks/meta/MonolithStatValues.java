@@ -1,4 +1,4 @@
-package monolith.blocks.meta;
+package monolith.world.blocks.meta;
 
 import arc.*;
 import arc.util.*;
@@ -7,8 +7,8 @@ import arc.scene.style.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
-import monolith.blocks.voidf.*;
-import monolith.blocks.voidf.production.*;
+import monolith.world.blocks.voidf.*;
+import monolith.world.blocks.voidf.production.*;
 
 import static mindustry.world.meta.StatValues.*;
 

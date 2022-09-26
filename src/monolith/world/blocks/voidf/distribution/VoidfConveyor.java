@@ -1,9 +1,9 @@
-package monolith.blocks.voidf.distribution;
+package monolith.world.blocks.voidf.distribution;
 
 import arc.Core;
 import arc.graphics.g2d.*;
 import mindustry.gen.*;
-import monolith.blocks.voidf.*;
+import monolith.world.blocks.voidf.*;
 
 public class VoidfConveyor extends VoidfBlock {
 	public TextureRegion dirRegion;

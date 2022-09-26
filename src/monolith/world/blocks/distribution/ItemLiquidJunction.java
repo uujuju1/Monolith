@@ -1,4 +1,4 @@
-package monolith.blocks.distribution;
+package monolith.world.blocks.distribution;
 
 import arc.*;
 import arc.graphics.g2d.*;

@@ -1,4 +1,4 @@
-package monolith.blocks.modules;
+package monolith.world.blocks.modules;
 
 import arc.util.io.*;
 import mindustry.world.modules.*;
