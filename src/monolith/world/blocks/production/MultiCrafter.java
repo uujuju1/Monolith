@@ -58,7 +58,7 @@ public class MultiCrafter extends Block {
 		public void dumpOutputs() {
 			if(getRecipe() != null && timer(timerDump, dumpTime / timeScale)){
 				if (getRecipe().outputItems == null) return; 
-				for(ItemStack output : outputItems){
+				for(ItemStack output : getRecipe().outputItems){
 					dump(output.item);
 				}
 			}
@@ -66,13 +66,13 @@ public class MultiCrafter extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			Seq<Item> items = Seq.with(recipes).map(i -> (i.outputItems != null ? outputItems[0].item : null) == item).filter(i -> i.unlockedNow());
+			Seq<Item> items = Seq.with(recipes).map(i -> (i.outputItems != null ? i.outputItems[0].item : null) == i.item);
 
 			for (Item item : items) {
 				table.button(b -> {
 					b.add(new Image(item.uiIcon));
 				}, () -> {
-					currentPlan = recipes.indexOf(item);
+					currentPlan = items.indexOf(item);
 					progress = 0f;
 				});
 			}
@@ -85,7 +85,7 @@ public class MultiCrafter extends Block {
 				progress = getProgressIncrease(getRecipe().craftTime) * warmup;
 				totalProgres += edelta() * warmup;
 
-				if (wasVisible && Mathf.chance(getRecipe().updateEffectChance)) updateEffect.at(x, y);
+				if (wasVisible && Mathf.chance(getRecipe().updateEffectChance)) getRecipe().updateEffect.at(x, y);
 
 				if (progress >= 1f) {
 					progress %= 1f;
@@ -93,7 +93,7 @@ public class MultiCrafter extends Block {
 					if (getRecipe().outputItems != null) {
 						for (ItemStack out : getRecipe().outputItems) {
 							for (int i = 0; i < out.amount; i++) {
-								offload(out);
+								offload(out.item);
 							}
 						}	
 					}
