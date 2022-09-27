@@ -10,6 +10,7 @@ import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.*;
+import mindustry.world.consumers.*;
 /** 
 	* TODO might extend both from {@link GenericCrafter} later
 	* @author Uujuju
