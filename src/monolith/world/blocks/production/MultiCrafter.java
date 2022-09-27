@@ -68,7 +68,7 @@ public class MultiCrafter extends Block {
 		}
 
 		public float getPowerCons() {
-			return getRecipe() != null ? getRecipe.consumePower : 0f;
+			return getRecipe() != null ? getRecipe().consumePower : 0f;
 		}
 
 		public void dumpOutputs() {
