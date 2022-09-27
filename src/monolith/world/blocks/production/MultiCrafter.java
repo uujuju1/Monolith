@@ -25,7 +25,7 @@ public class MultiCrafter extends Block {
 		solid = update = sync = destructible = true;
 
 		consume(new ConsumeItemDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeItems : ItemStack.empty));
-		consume(new ConsumePowerDynamic((MultiCrafterBuild e) -> e.getPowerCons()));
+		consume(new ConsumePowerDynamic(e -> ((MultiCrafterBuild) e).getPowerCons()));
 	}
 
 	public class ItemRecipe {
