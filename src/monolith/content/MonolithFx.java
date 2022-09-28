@@ -57,7 +57,7 @@ public class MonolithFx {
 		}); 
 	}),
 
-	lathaniumCraft = new Effect(60f e -> {
+	lathaniumCraft = new Effect(60f, e -> {
 		Lines.stroke(e.foutpow());
 		Lines.circle(e.x, e.y, 40 * e.finpow());
 		
