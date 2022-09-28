@@ -29,6 +29,12 @@ public class MultiCrafter extends Block {
 		consume(new ConsumePowerDynamic(e -> ((MultiCrafterBuild) e).getPowerCons()));
 	}
 
+	@Override
+	public void setStats() {
+		super.setStats();
+		stat.add(Stat.output, MonolithStatValues.itemRecipe(recipes));
+	}
+
 	public class ItemRecipe {
 		public @Nullable ItemStack[]
 		consumeItems,

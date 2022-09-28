@@ -165,7 +165,7 @@ public class MonolithBlocks {
 					updateEffect = Fx.smoke;
 				}},
 				new ItemRecipe() {{
-					consumeItems = with(MonolithItems.vakyite, 3, Items.silicon, 2);
+					consumeItems = with(MonolithItems.vakyite, 3, Items.silicon, 2, Items.thorium, 1);
 					outputItems = with(MonolithItems.venera, 2);
 					craftTime = 30f;
 					consumePower = 2f;

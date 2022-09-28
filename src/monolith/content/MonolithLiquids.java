@@ -8,11 +8,20 @@ public class MonolithLiquids {
 
 	public void load() {
 		pitch = new Liquid("pitch", Color.valueOf("232B23")) {{
-			viscosity = 1.7f;
+			viscosity = 0.9f;
 			flammability = 0.3f;
 		}};
-		markyic = new Liquid("makyic", Color.valueOf("925439"));
-		hydroxia = new Liquid("hydroxia", Color.valueOf("CEB2FE")) {{gas = true;}};
-		methane = new Liquid("methane", Color.valueOf("84F491")) {{gas = true;}};
+		markyic = new Liquid("makyic", Color.valueOf("925439")) {{
+			temperature = 0.2f;
+			viscosity = 0.2f/
+		}};
+		hydroxia = new Liquid("hydroxia", Color.valueOf("CEB2FE")) {{
+			gas = true;
+			moveThroughBlocks = true;
+		}};
+		methane = new Liquid("methane", Color.valueOf("84F491")) {{
+			gas = true;
+			flammability = 0.4f;
+		}};
 	}
 }

@@ -9,6 +9,7 @@ import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import monolith.world.blocks.voidf.*;
 import monolith.world.blocks.voidf.production.*;
+import monolith.world.blocks.production.MultiCrafter.ItemRecipe;
 
 import static mindustry.world.meta.StatValues.*;
 
@@ -48,6 +49,59 @@ public class MonolithStatValues {
 					}
 				}).pad(4f);
 			});
+		};
+	}
+
+	public static StatValue ItemRecipe(Seq<ItemRecipe> recipes) {
+		return t -> {
+			for(ItemRecipe reicpe : recipes) {
+				t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), table -> {
+					table.table(Tex.underline, recipe -> {
+						recipe.table(input -> {
+							if (recipe.outputItems != null) {
+								for (ItemStack stack : recipe.outputItems) {
+									input.add(new ItemDisplay(stack.item, stack.amount, true)).pad(5f).left();
+								}
+							}
+							
+							/* input.row();
+
+							if (recipe.outputLiquds != null) {
+								for (LiquidStack stack : recipe.outputLiquds) {
+									input.add(new LiquidDisplay(stack.liquid, stack.amount * 60f, false)).pad(5).left();
+								}
+							}
+
+							*/
+						});
+						
+						recipe.image(Icon.right).color(Color.gray).pad(5f);
+
+						recipe.table(output -> {
+							if (recipe.outputItems != null) {
+								for (ItemStack stack : recipe.outputItems) {
+									output.add(new ItemDisplay(stack.item, stack.amount, true)).pad(5f).left();
+								}
+							}
+
+							/* input.row();
+
+							if (recipe.outputLiquds != null) {
+								for (LiquidStack stack : recipe.outputLiquds) {
+									input.add(new LiquidDisplay(stack.liquid, stack.amount * 60f, false)).pad(5).left();
+								}
+							}
+
+							*/
+						});
+					}).pad(10f).row();
+
+					table.table(stats -> {
+						stats.add(Core.bundle.get("stat.productiontime") + ": ");	
+						stats.add(fixValue(recipe.craftTime)).color(Color.gray);
+					}).padBottom(10f);
+				}).growX();
+			}
 		};
 	}
 }
