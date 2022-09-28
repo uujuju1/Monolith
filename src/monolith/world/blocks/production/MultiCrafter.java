@@ -93,7 +93,7 @@ public class MultiCrafter extends Block {
 		}
 
 		@Override
-		public void shouldConsume() {
+		public boolean shouldConsume() {
 			if (getRecipe() == null) return false;
 			if (getRecipe().consumeItems == null) return false;
 			return enabled;
