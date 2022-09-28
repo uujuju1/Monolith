@@ -12,6 +12,7 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.world.consumers.*;
 import monolith.ui.*;
+import monolith.world.blocks.meta.*;
 /** 
 	* TODO might extend both from {@link GenericCrafter} later
 	* @author Uujuju
