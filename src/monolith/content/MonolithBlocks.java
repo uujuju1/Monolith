@@ -160,9 +160,15 @@ public class MonolithBlocks {
 					consumeItems = with(MonolithItems.meanium, 2, Items.lead, 2);
 					outputItems = with(MonolithItems.lathanium, 1);
 					craftTime = 45f;
+					consumePower = 2.5f;
+				}},
+				new ItemRecipe() {{
+					consumeItems = with(MonolithItems.vakyite, 3, Items.silicon, 2);
+					outputItems = with(MonolithItems.venera, 2);
+					craftTime = 30f;
+					consumePower = 2f;
 				}}
 			);
-			consumePower(3f);
 		}};
 
 		move = new ItemTurret("move") {{

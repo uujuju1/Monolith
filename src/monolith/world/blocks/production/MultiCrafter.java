@@ -11,6 +11,7 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.world.consumers.*;
+import monolith.ui.*;
 /** 
 	* TODO might extend both from {@link GenericCrafter} later
 	* @author Uujuju
@@ -82,16 +83,13 @@ public class MultiCrafter extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			Seq<Item> items = Seq.with(recipes).map(i -> i.firstOutput()).filter(item -> item.unlockedNow());
+			TableSelection.itemRecipeSelection(recipes, table, recipe -> currentPlan = recipes.indexOf(recipe), () -> getRecipe());
+		}
 
-			for (Item item : items) {
-				table.button(b -> {
-					b.add(new Image(item.uiIcon));
-				}, () -> {
-					currentPlan = items.indexOf(item);
-					progress = 0f;
-				});
-			}
+		@Override
+		public boolean acceptItem(Building source, Item item) {
+			if (getRecipe() == null) return false;
+			return items.get(item) < getMaximumAccepted(item) &&	Structs.contains(getRecipe().consumeItems, stack -> stack.item == item);
 		}
 
 		@Override
