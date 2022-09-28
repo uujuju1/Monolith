@@ -12,7 +12,7 @@ import monolith.world.blocks.production.MultiCrafter.ItemRecipe;
 public class TableSelection {
 	public static void itemRecipeSelection(Seq<ItemRecipe> recipes, Table table, Cons<ItemRecipe> consumer, Prov<ItemRecipe> provider) {
 		for (ItemRecipe recipe : recipes) {
-			ImageButton button = (ImageButton) table.button(b -> {
+			Button button = (ImageButton) table.button(b -> {
 				if (recipe.consumeItems != null) {
 					for (ItemStack stack : recipe.consumeItems) {
 						b.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5);
