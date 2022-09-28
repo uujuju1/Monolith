@@ -24,7 +24,7 @@ public class TableSelection {
 						b.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5);
 					}
 				}
-			}, Styles.clearTogglei, () -> {}).left();
+			}, Styles.clearTogglei, () -> {}).left().get();
 			table.row();
 
 			button.changed(() -> consumer.get(button.isChecked() ? recipe : null));
