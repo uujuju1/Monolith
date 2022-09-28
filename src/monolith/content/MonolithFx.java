@@ -55,5 +55,37 @@ public class MonolithFx {
 		Angles.randLenVectors(e.id, 15, 40f * e.finpow(), (x, y) -> {
 			Fill.circle(e.x + x, e.y + y, 3f * e.foutpow());
 		}); 
+	}),
+
+	lathaniumCraft = new Effect(60f e -> {
+		Lines.stroke(e.foutpow());
+		Lines.circle(e.x, e.y, 40 * e.finpow());
+		
+		Angles.randLenVectors(e.id, 20, 40 * e.finpow(), (x, y) -> {
+			Fill.circle(e.x + x, e.y + y, 2 * e.foutpow());
+		});
+		
+		Angles.randLenVectors(e.id + 2, 10, 40 * e.finpow(), (x, y) -> {
+			Fill.circle(e.x + x, e.y + y, 3 * Interp.pow3InInverse.apply(e.fout()));
+		});
+		
+		Draw.alpha(e.finpow());
+		Angles.randLenVectors(e.id + 1, 10, 40 * e.foutpow(), (x, y) -> {
+			Fill.circle(e.x + x, e.y + y, 3 * e.fout());
+		});
+	}),
+
+	veneraCraft = new Effect(60f, e -> {
+		Draw.color(Pal.redSpark);
+		Lines.stroke(e.foutpow());
+		Lines.circle(e.x, e.y, 40 * e.finpow());
+		
+		Angles.randLenVectors(e.id, 20, 40 * e.finpow(), (x, y) -> {
+			Fill.circle(e.x + x, e.y + y, 2 * e.foutpow());
+		});
+		
+		Angles.randLenVectors(e.id + 2, 10, 40 * e.finpow(), (x, y) -> {
+			Fill.circle(e.x + x, e.y + y, 3 * Interp.pow3InInverse.apply(e.fout()));
+		});
 	});
 }

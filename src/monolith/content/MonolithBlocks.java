@@ -161,12 +161,16 @@ public class MonolithBlocks {
 					outputItems = with(MonolithItems.lathanium, 1);
 					craftTime = 45f;
 					consumePower = 2.5f;
+					craftEffect = MonolithFx.lathaniumCraft;
+					updateEffect = Fx.smoke;
 				}},
 				new ItemRecipe() {{
 					consumeItems = with(MonolithItems.vakyite, 3, Items.silicon, 2);
 					outputItems = with(MonolithItems.venera, 2);
 					craftTime = 30f;
 					consumePower = 2f;
+					craftEffect = MonolithFx.veneraCraft;
+					updateEffect = Fx.smoke;
 				}}
 			);
 		}};

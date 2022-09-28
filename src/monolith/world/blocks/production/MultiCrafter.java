@@ -93,6 +93,13 @@ public class MultiCrafter extends Block {
 		}
 
 		@Override
+		public void shouldConsume() {
+			if (getRecipe() == null) return false;
+			if (getRecipe().consumeItems == null) return false;
+			return enabled;
+		}
+
+		@Override
 		public void updateTile() {
 			if (efficiency > 0 && getRecipe() != null) {
 				warmup = Mathf.approachDelta(warmup, 1f, getRecipe().warmupSpeed);
@@ -103,6 +110,7 @@ public class MultiCrafter extends Block {
 
 				if (progress >= 1f) {
 					progress %= 1f;
+					consume();
 					if (wasVisible) getRecipe().craftEffect.at(x, y);
 					if (getRecipe().outputItems != null) {
 						for (ItemStack out : getRecipe().outputItems) {
