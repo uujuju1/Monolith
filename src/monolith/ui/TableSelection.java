@@ -6,6 +6,7 @@ import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
+import mindustry.type.*;
 import monolith.world.blocks.production.MultiCrafter.ItemRecipe;
 
 public class TableSelection {
@@ -23,7 +24,8 @@ public class TableSelection {
 						b.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5);
 					}
 				}
-			}, Styles.clearTogglei, () -> {}).left().row();
+			}, Styles.clearTogglei, () -> {}).left();
+			table.row();
 
 			button.changed(() -> consumer.get(button.isChecked() ? recipe : null));
 			button.update(() -> button.setChecked(provider.get() == recipe));
