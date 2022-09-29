@@ -18,7 +18,7 @@ public class MechanicalArm extends Block {
 		super(name);
 		solid = destructible = true;
 		update = sync = rotate = true;
-		acceptsItem = false;
+		acceptsItems = false;
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class MechanicalArm extends Block {
 		@Override
 		public void updateTile() {
 			if (grabbed) {
-				armRotation = Mathf.approachDelta(armRrotation, 180f, armSpeed);
+				armRotation = Mathf.approachDelta(armRotation, 180f, armSpeed);
 			} else {
 				armRotation = Mathf.approachDelta(armRotation, 0f, armSpeed);
 			}
