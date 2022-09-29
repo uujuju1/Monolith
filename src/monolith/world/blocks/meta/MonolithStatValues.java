@@ -2,9 +2,12 @@ package monolith.world.blocks.meta;
 
 import arc.*;
 import arc.util.*;
+import arc.struct.*;
 import arc.graphics.*;
 import arc.scene.style.*;
+import mindustry.ui.*;
 import mindustry.gen.*;
+import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import monolith.world.blocks.voidf.*;
@@ -52,9 +55,9 @@ public class MonolithStatValues {
 		};
 	}
 
-	public static StatValue ItemRecipe(Seq<ItemRecipe> recipes) {
+	public static StatValue itemRecipe(Seq<ItemRecipe> recipes) {
 		return t -> {
-			for(ItemRecipe reicpe : recipes) {
+			for(ItemRecipe recipe : recipes) {
 				t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), table -> {
 					table.table(Tex.underline, recipe -> {
 						recipe.table(input -> {
