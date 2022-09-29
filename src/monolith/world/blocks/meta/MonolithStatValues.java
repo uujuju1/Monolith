@@ -59,8 +59,8 @@ public class MonolithStatValues {
 		return t -> {
 			for(ItemRecipe recipe : recipes) {
 				t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), table -> {
-					table.table(Tex.underline, recipe -> {
-						recipe.table(input -> {
+					table.table(Tex.underline, plan -> {
+						plan.table(input -> {
 							if (recipe.outputItems != null) {
 								for (ItemStack stack : recipe.outputItems) {
 									input.add(new ItemDisplay(stack.item, stack.amount, true)).pad(5f).left();
@@ -78,9 +78,9 @@ public class MonolithStatValues {
 							*/
 						});
 						
-						recipe.image(Icon.right).color(Color.gray).pad(5f);
+						plan.image(Icon.right).color(Color.gray).pad(5f);
 
-						recipe.table(output -> {
+						plan.table(output -> {
 							if (recipe.outputItems != null) {
 								for (ItemStack stack : recipe.outputItems) {
 									output.add(new ItemDisplay(stack.item, stack.amount, true)).pad(5f).left();
