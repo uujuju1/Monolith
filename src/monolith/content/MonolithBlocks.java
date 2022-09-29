@@ -32,9 +32,11 @@ import static mindustry.type.ItemStack.*;
 
 public class MonolithBlocks {
 	public static Block 
-	// transportation
+	// distribution
 	itemLiquidJunction,
+	lathaniumArm,
 
+	// production
 	furnace, lithiumWeaver, alloyInfuser,
 	industrialPress,
 
@@ -64,6 +66,7 @@ public class MonolithBlocks {
 	voidfVoid, voidfSource;
 
 	public void load() {
+		// distribution
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
 			requirements(Category.liquid, with(
 				Items.metaglass, 2,
@@ -74,6 +77,17 @@ public class MonolithBlocks {
 			health = 60;
 		}};
 
+		lathaniumArm = new MechanicalArm("lathanium-arm") {{
+			requirements(Category.distribution, with(
+				Items.silicon, 5,
+				MonolithItems.lathanium, 10
+			));
+			size = 1;
+			health = 60;
+			
+		}};
+
+		// production
 		furnace = new GenericCrafter("furnace") {{
 			requirements(Category.crafting, with(
 				Items.graphite, 120,

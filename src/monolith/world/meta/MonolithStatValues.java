@@ -1,4 +1,4 @@
-package monolith.world.blocks.meta;
+package monolith.world.meta;
 
 import arc.*;
 import arc.util.*;
@@ -57,6 +57,7 @@ public class MonolithStatValues {
 
 	public static StatValue itemRecipe(Seq<ItemRecipe> recipes) {
 		return t -> {
+			t.row();
 			for(ItemRecipe recipe : recipes) {
 				t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), table -> {
 					table.table(Tex.underline, plan -> {

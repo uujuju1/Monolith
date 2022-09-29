@@ -10,7 +10,7 @@ import mindustry.gen.*;
 import mindustry.world.*; 
 import mindustry.world.meta.*;
 import monolith.graphics.*;
-import monolith.world.blocks.meta.*;
+import monolith.world.meta.*;
 import monolith.world.blocks.modules.*;
 
 public class VoidfBlock extends Block {
