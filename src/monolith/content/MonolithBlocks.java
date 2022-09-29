@@ -151,7 +151,11 @@ public class MonolithBlocks {
 		}};
 		industrialPress = new MultiCrafter("industrial-press") {{
 			requirements(Category.crafting, with(
-				Items.copper, 1
+				MonolithItems.lithium, 250,
+				MonolithItems.macrosteel, 200,
+				Items.silicon, 300,
+				Items.titanium, 175,
+				Items.graphite, 275
 			));
 			size = 5;
 			health = 400;

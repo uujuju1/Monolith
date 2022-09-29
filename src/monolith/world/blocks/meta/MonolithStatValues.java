@@ -61,8 +61,8 @@ public class MonolithStatValues {
 				t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), table -> {
 					table.table(Tex.underline, plan -> {
 						plan.table(input -> {
-							if (recipe.outputItems != null) {
-								for (ItemStack stack : recipe.outputItems) {
+							if (recipe.consumeItems != null) {
+								for (ItemStack stack : recipe.consumeItems) {
 									input.add(new ItemDisplay(stack.item, stack.amount, true)).pad(5f).left();
 								}
 							}
@@ -101,9 +101,9 @@ public class MonolithStatValues {
 
 					table.table(stats -> {
 						stats.add(Core.bundle.get("stat.productiontime") + ": ");	
-						stats.add(fixValue(recipe.craftTime)).color(Color.gray);
+						stats.add(StatValues.fixValue(craftTime/60) + StatUnit.seconds).color(Color.gray);
 					}).padBottom(10f);
-				}).growX();
+				}).growX().pad(10).row();
 			}
 		};
 	}
