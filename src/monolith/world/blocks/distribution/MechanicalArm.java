@@ -46,26 +46,29 @@ public class MechanicalArm extends Block {
 			} else {
 				armRotation = Mathf.approachDelta(armRotation, 0f, armSpeed);
 			}
+
 			if (previous() != null && next() != null) {
 				if (armRotation < 1 && previous().items.get(Items.copper) > block.itemCapacity) {
 					grabbed = true;
 					previous().removeStack(Items.copper, block.itemCapacity);
-					handleStack(Items.copper, block.itemCapacity, previous());
+					handleStack(Items.copper, block.itemCapacity, null);
 				}
 				if (armRotation > 179 && items.get(Items.copper) > block.itemCapacity) {
 					grabbed = false;
 					removeStack(Items.copper, block.itemCapacity);
-					next().handleStack(Items.copper, block.itemCapacity, this);
+					next().handleStack(Items.copper, block.itemCapacity, null);
 				}
 			}
 		}
 
 		@Override
 		public void draw() {
-			Draw.rect(region, x, y, 0);
-			Tmp.v1.set(armLength * 4f, 0).rotate(armRotation);
-			Draw.rect(armRegion, x + Tmp.v1.x, y + Tmp.v1.y, rotation + 90);
-			Draw.rect(topRegion, x, y, 0);
+			super.draw();
+			float
+			dx = x + Angles.trnsx(armRotation, armLength * 4f, 0f),
+			dy = y + Angles.trnsy(armRotation, armLength * 4f, 0f);
+			Draw.rect(armRegion, dx, dy, armRotation);
+			Draw.rect(topRegion, x, y, 0f);
 		}
 	}
 }
