@@ -81,7 +81,7 @@ public class AOEBlock extends Block {
 			getRecipe().shootEffect.at(x, y);
 			Damage.damage(team, x, y, getRecipe().range, getRecipe().damage);
 			getRecipe().statuses.each(s -> {
-				Damage.status(team, x, y, range, s.key, s.value, true, true);
+				Damage.status(team, x, y, getRecipe().range, s.key, s.value, true, true);
 			});
 			reload = 0f;
 		}

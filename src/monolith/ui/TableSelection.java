@@ -12,8 +12,9 @@ import monolith.world.blocks.production.MultiCrafter.ItemRecipe;
 
 public class TableSelection {
 	public static void itemRecipeSelection(Seq<ItemRecipe> recipes, Table table, Cons<ItemRecipe> consumer, Prov<ItemRecipe> provider) {
+		Table cont = new Table();
 		for (ItemRecipe recipe : recipes) {
-			Button button = table.button(b -> {
+			Button button = cont.button(b -> {
 				if (recipe.consumeItems != null) {
 					for (ItemStack stack : recipe.consumeItems) {
 						b.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5);
@@ -26,14 +27,18 @@ public class TableSelection {
 					}
 				}
 			}, Styles.clearTogglei, () -> {}).left().growX().get();
-			table.row();
+			cont.row();
 
 			button.changed(() -> consumer.get(button.isChecked() ? recipe : null));
 			button.update(() -> button.setChecked(provider.get() == recipe));
 		}
+
+		table.add(cont);
 	}
-	public static void bulletRecipeSelection(Seq<BulletRecipe> recipes, Table table, Cons<BulletRecipe> consumer, Prov<ItemRecipe> provider) {
+	public static void bulletRecipeSelection(Seq<BulletRecipe> recipes, Table table, Cons<BulletRecipe> consumer, Prov<BulletRecipe> provider) {
 		int i = 0;
+		Table cont = new Table();
+		cont.defaults().size(40);
 		for (BulletRecipe recipe : recipes) {
 			Button button = cont.button(b -> {
 				b.image(recipe.uiIcon).size(32f);
@@ -45,5 +50,7 @@ public class TableSelection {
 			button.changed(() -> consumer.get(button.isChecked() ? recipe : null));
 			button.update(() -> button.setChecked(provider.get() == recipe));
 		}
+
+		table.add(cont);
 	}
 }

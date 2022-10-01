@@ -114,16 +114,16 @@ public class MonolithStatValues {
 		return t -> {
 			t.row();
 			for (BulletRecipe recipe : recipes) {
-				t.table(Tex.whiteui.tint(Pal.darkestGray), table -> {
+				t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), table -> {
 					table.table(Tex.underline, main -> {
 						main.table(name -> {
-							name.image(uiIcon).size(64f).left();
+							name.image(recipe.uiIcon).size(64f).left();
 							name.add(Core.bundle.get("bullet.monolith-standard.name")).padLeft(10f).color(Pal.accent);
 						}).left();
 				
 						main.table(req -> {
 							req.right();
-							for (ItemStack stacks : recipe.requirements) {
+							for (ItemStack stack : recipe.requirements) {
 								req.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5);
 							}
 						}).right().growX();
@@ -138,17 +138,17 @@ public class MonolithStatValues {
 						extra.table(stats -> {
 							stats.table(dmg -> {
 								dmg.add(Core.bundle.get("stat.damage") + ": ");
-								dmg.add(StatValues.fixValue(damage)).color(Color.gray);
+								dmg.add(StatValues.fixValue(recipe.damage)).color(Color.gray);
 							}).left().row();
 
 							stats.table(rel -> {
 								rel.add(Core.bundle.get("stat.reload") + ": ");
-								rel.add(StatValues.fixValue(reload/60f) + " " + StatUnit.seconds.localized()).color(Color.gray);
+								rel.add(StatValues.fixValue(recipe.reload/60f) + " " + StatUnit.seconds.localized()).color(Color.gray);
 							}).left().row();
 
 							stats.table(ran -> {
 								ran.add(Core.bundle.get("stat.range") + ": ");
-								ran.add(StatValues.fixValue(range/8f) + " " + StatUnit.blocks.localized()).color(Color.gray);
+								ran.add(StatValues.fixValue(recipe.range/8f) + " " + StatUnit.blocks.localized()).color(Color.gray);
 							}).left();
 						}).padRight(20f).growX().left();
 				
