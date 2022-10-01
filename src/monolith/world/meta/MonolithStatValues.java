@@ -109,7 +109,7 @@ public class MonolithStatValues {
 		};
 	}
 
-	public bulletRecipe(Seq<BulletRecipe> recipes) {
+	public static StatValue bulletRecipe(Seq<BulletRecipe> recipes) {
 		return t -> {
 			t.row();
 			for (BulletRecipe recipe : recipes) {
@@ -160,7 +160,7 @@ public class MonolithStatValues {
 				
 					}).left().pad(10f);
 				}).row();		
-			}	
+			};
 		}
 	}
 }

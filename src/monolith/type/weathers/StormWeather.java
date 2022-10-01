@@ -40,11 +40,11 @@ public class StormWeather extends Weather {
 
 	public int noiseLayers = 1;
 
-	public JupiterStormWeather(String name, String noisePath) {
+	public StormWeather(String name, String noisePath) {
 		super(name);
 		this.noisePath = noisePath;
 	}
-	public JupiterStormWeather(String name) {
+	public StormWeather(String name) {
 		this(name, "noiseAlpha");
 	}
 
