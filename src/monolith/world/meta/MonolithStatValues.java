@@ -160,7 +160,7 @@ public class MonolithStatValues {
 				
 					}).left().pad(10f);
 				}).row();		
-			};
-		}
+			}
+		};
 	}
 }
