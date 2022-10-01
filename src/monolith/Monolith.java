@@ -31,7 +31,6 @@ public class Monolith extends Mod{
 	public void loadContent(){
 		new MonolithStatusEffects().load();
 		new MonolithWeathers().load();
-		new MonolithIsotope().load();
 		new MonolithItems().load();
 		new MonolithLiquids().load();
 		new MonolithUnitTypes().load();
