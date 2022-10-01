@@ -6,6 +6,7 @@ import arc.util.*;
 import arc.struct.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
+import mindustry.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
@@ -13,10 +14,15 @@ import monolith.type.draw.*;
 
 public class ModUnitType extends UnitType {
 	public Seq<Rotor> rotors = new Seq<>();
+	public Effect submersedEffect = new Effect(30f, e -> {
+		Draw.color(e.color);
+		Lines.stroke(e.foutpow());
+		Lines.circle(e.x, e.y, 5f * e.finpow());
+	});
+	public float submersedEffectChance = 0.04f;
 
 	public ModUnitType(String name) {
 		super(name);
-		outlineColor = Pal.darkOutline;
 	}
 
 	@Override
@@ -26,9 +32,33 @@ public class ModUnitType extends UnitType {
 	}
 
 	@Override
+	public void update(Unit unit) {
+		super.update(unit);
+		if(Mathf.chanceDelta(submersedEffectChance) && getFloor(unit).isDeep()){
+			submersedEffect.at(unit.x + Mathf.range(unit.type.hitSize), unit.y + Mathf.range(unit.type.hitSize), unit.rotation, getFloor(unit).mapColor);
+		}
+	}
+
+	@Override
 	public void draw(Unit unit){
 		super.draw(unit);
 		rotors.each(rotor -> rotor.draw(unit));
+	}
+
+	@Override
+	public boolean targetable(Unit unit, Team targeter) {
+		if (getFloor(unit).isDeep()) return false;
+		return super.targetable(unit, targeter);
+	}
+
+	@Override
+	public boolean hittable(Unit unit) {
+		if (getFloor(unit).isDeep()) return false;
+		return super.hittable(unit);
+	}
+
+	public Floor getFloor(Unit unit) {
+		return Vars.world.floorWorld(unit.x, unit.y);
 	}
 
 	public static class PressureEngine extends UnitEngine {

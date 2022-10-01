@@ -20,12 +20,13 @@ public class MonolithUnitTypes {
 
 	public void load() {
 		// units
-		shelter = new SubmersibleUnitType("shelter") {{
+		shelter = new ModUnitType("shelter") {{
 			health = 1650;
 			speed = 1f;
 			range = maxRange = 25f * 8f;
 			hitSize = 12f;
 			outlineColor = Pal.darkOutline;
+			canDrown = false;
 			constructor = MechUnit::create;
 			immunities.add(MonolithStatusEffects.overrun);
 
@@ -63,6 +64,7 @@ public class MonolithUnitTypes {
 			engineSize = 0f;
 			fallSpeed = 0.007f;
 			range = maxRange = 135f;
+			outlineColor = Pal.darkOutline;
 			flying = lowAltitude = true;
 			constructor = UnitEntity::create;
 

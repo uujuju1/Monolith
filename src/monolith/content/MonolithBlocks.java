@@ -77,16 +77,6 @@ public class MonolithBlocks {
 			health = 60;
 		}};
 
-		lathaniumArm = new MechanicalArm("lathanium-arm") {{
-			requirements(Category.distribution, with(
-				Items.silicon, 5,
-				MonolithItems.lathanium, 10
-			));
-			size = 1;
-			health = 60;
-			
-		}};
-
 		// production
 		furnace = new GenericCrafter("furnace") {{
 			requirements(Category.crafting, with(

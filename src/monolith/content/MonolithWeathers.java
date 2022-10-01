@@ -12,7 +12,7 @@ public class MonolithWeathers {
 	public static Weather storm;
 
 	public void load() {
-		storm = new JupiterStormWeather("storm"){{
+		storm = new StormWeather("storm"){{
 			duration = 1.5f * (60f * 60f);
 			rainDensity = 150f;
 			noiseSpeed.set(0.125f, 0.0125f);

@@ -3,6 +3,7 @@ package monolith.world.blocks.production;
 import arc.math.*;
 import arc.util.*;
 import arc.struct.*;
+import arc.util.io.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
@@ -132,6 +133,24 @@ public class MultiCrafter extends Block {
 				warmup = Mathf.approachDelta(warmup, 0f, 0.019f);
 			}
 			dumpOutputs();
+		}
+
+		@Override
+		public void write(Writes w) {
+			super.write(w);
+			w.f(warmup);
+			w.f(progress);
+			w.f(totalProgres);
+			w.i(currentPlan);
+		}
+
+		@Override
+		public void read(Reads r, byte revision) {
+			super.read(r, revision);
+			warmup = r.f();
+			progress = r.f();
+			totalProgres = r.f();
+			currentPlan = r.i();
 		}
 	}
 }

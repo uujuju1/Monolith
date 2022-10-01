@@ -18,10 +18,9 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
-import mindustry.ui.dialogs.*;
 import mindustry.world.consumers.*;
 import monolith.ui.*;
-import monolith.type.*;
+import monolith.world.meta.*;
 
 public class AOEBlock extends Block {
 	public Seq<BulletRecipe> plans = new Seq<>();
@@ -32,29 +31,59 @@ public class AOEBlock extends Block {
 		update = sync = true;
 		configurable = true;
 
-		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> e.currentPlan != -1 ? plans.get(Math.min(e.currentPlan, plans.size - 1)).req : ItemStack.empty));
+		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> e.currentPlan != -1 ? e.getRecipe().req : ItemStack.empty));
 	}
 
 	@Override
 	public void setStats() {
 		super.setStats();
-		stats.add(Stat.output, table -> {
-			table.table(t -> {
-				plans.each(bullet -> bullet.display(t));
-			});
-		});
+		stats.add(Stat.output, MonolithStatValues.bulletRecipe(plans));
 	}
 
 	@Override
 	public void load() {
 		super.load();
-		plans.each(p -> p.load());
+		plans.each(p -> p.uiIcon = Core.atlas.find(p.name));
+	}
+
+	public class BulletRecipe {
+		public String name;
+		public TextureRegion uiIcon;
+		public ItemStack[] requirements = ItemStack.empty;
+		public ObjectFloatMap<StatusEffect> statuses = new ObjectFloatMap<>();
+		public float 
+		damage = 10f,
+		reload = 60f,
+		range = 80f;
+
+		public BulletRecipe(String name) {
+			this.name = name;
+		}
+
+		public void status(StatusEffect effect, float duration) {
+			statuses.put(effect, duration);
+		}
 	}
 
 	public class AOEBlockBuild extends Building {
 		public float reload;
 		public int 
 		currentPlan = -1;
+
+		public @Nullable BulletRecipe getRecipe() {
+			if (currentPlan == -1) return null;
+			return plans.get(currentPlan);
+		}
+
+		public void shoot() {
+			consume();
+			getRecipe().shootEffect.at(x, y);
+			Damage.damage(src.team, src.x, src.y, range, damage);
+			getRecipe().statuses.each(s -> {
+				Damage.status(team, x, y, range, s.key, s.value, true, true);
+			});
+			reload = 0f;
+		}
 
 		@Override
 		public boolean acceptItem(Building source, Item item){
@@ -63,12 +92,19 @@ public class AOEBlock extends Block {
 
 		@Override
 		public void updateTile() {
-			reload -= Time.delta;
+			if (getRecipe() == null) return;
+			reload += edelta();
+			if (reload >= getRecipe().reload) {
+				shoot();
+			}
 		}
 
 		@Override
 		public void buildConfiguration(Table table) {
-			plans.each(p -> p.button(table, this));
+			TableSelection.bulletRecipeSelection(plans, table, plan -> {
+				reload = 0f;
+				currentPlan = plans.indexOf(plan);
+			}, () -> getRecipe());
 		}
 
 		@Override

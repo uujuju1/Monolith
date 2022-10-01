@@ -9,8 +9,8 @@ import arc.graphics.Texture.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.content.*;
-// rain with fog
-public class JupiterStormWeather extends Weather {
+
+public class StormWeather extends Weather {
 	public String noisePath;
 
 	public Vec2 

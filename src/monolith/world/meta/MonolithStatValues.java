@@ -102,10 +102,65 @@ public class MonolithStatValues {
 
 					table.table(stats -> {
 						stats.add(Core.bundle.get("stat.productiontime") + ": ");	
-						stats.add(StatValues.fixValue(recipe.craftTime/60) + StatUnit.seconds).color(Color.gray);
+						stats.add(StatValues.fixValue(recipe.craftTime/60) + StatUnit.seconds.localized()).color(Color.gray);
 					}).padBottom(10f);
 				}).growX().pad(10).row();
 			}
 		};
+	}
+
+	public bulletRecipe(Seq<BulletRecipe> recipes) {
+		return t -> {
+			t.row();
+			for (BulletRecipe recipe : recipes) {
+				t.table(Tex.whiteui.tint(Pal.darkestGray), table -> {
+					table.table(Tex.underline, main -> {
+						main.table(name -> {
+							name.image(uiIcon).size(64f).left();
+							name.add(Core.bundle.get("bullet.monolith-standard.name")).padLeft(10f).color(Pal.accent);
+						}).left();
+				
+						main.table(req -> {
+							req.right();
+							for (ItemStack stacks : recipe.requirements) {
+								req.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5);
+							}
+						}).right().growX();
+						
+					}).growX().pad(5f).row();
+
+					table.add(Core.bundle.get("bullet.monolith-standard.description")).pad(10f).row();
+
+					table.table(extra -> {
+						extra.left();
+
+						extra.table(stats -> {
+							stats.table(dmg -> {
+								dmg.add(Core.bundle.get("stat.damage") + ": ");
+								dmg.add(StatValues.fixValue(damage)).color(Color.gray);
+							}).left().row();
+
+							stats.table(rel -> {
+								rel.add(Core.bundle.get("stat.reload") + ": ");
+								rel.add(StatValues.fixValue(reload/60f) + " " + StatUnit.seconds.localized()).color(Color.gray);
+							}).left().row();
+
+							stats.table(ran -> {
+								ran.add(Core.bundle.get("stat.range") + ": ");
+								ran.add(StatValues.fixValue(range/8f) + " " + StatUnit.blocks.localized()).color(Color.gray);
+							}).left();
+						}).padRight(20f).growX().left();
+				
+						extra.table(statuses -> {
+							recipe.statuses.each(s -> {
+								statuses.image(s.key.uiIcon).pad(5f);
+								statuses.add(StatValues.fixValue(s.value/60f) + " " + StatUnit.seconds.localized()).color(Color.gray).row();
+							});
+						}).padLeft(20f).right();
+				
+					}).left().pad(10f);
+				}).row();		
+			}	
+		}
 	}
 }
