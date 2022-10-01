@@ -31,7 +31,7 @@ public class AOEBlock extends Block {
 		update = sync = true;
 		configurable = true;
 
-		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> e.currentPlan != -1 ? e.getRecipe().req : ItemStack.empty));
+		consume(new ConsumeItemDynamic((AOEBlockBuild e) -> e.currentPlan != -1 ? e.getRecipe().requirements : ItemStack.empty));
 	}
 
 	@Override
@@ -51,6 +51,7 @@ public class AOEBlock extends Block {
 		public TextureRegion uiIcon;
 		public ItemStack[] requirements = ItemStack.empty;
 		public ObjectFloatMap<StatusEffect> statuses = new ObjectFloatMap<>();
+		public Effect shootEffect = Fx.none;
 		public float 
 		damage = 10f,
 		reload = 60f,
@@ -78,7 +79,7 @@ public class AOEBlock extends Block {
 		public void shoot() {
 			consume();
 			getRecipe().shootEffect.at(x, y);
-			Damage.damage(src.team, src.x, src.y, range, damage);
+			Damage.damage(team, x, y, getRecipe().range, getRecipe().damage);
 			getRecipe().statuses.each(s -> {
 				Damage.status(team, x, y, range, s.key, s.value, true, true);
 			});

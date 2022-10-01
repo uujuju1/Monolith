@@ -8,8 +8,11 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import mindustry.*;
 import mindustry.gen.*;
+import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
+import mindustry.entities.*;
+import mindustry.world.blocks.environment.*;
 import monolith.type.draw.*;
 
 public class ModUnitType extends UnitType {

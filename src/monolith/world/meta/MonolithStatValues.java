@@ -12,6 +12,7 @@ import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import monolith.world.blocks.voidf.*;
 import monolith.world.blocks.voidf.production.*;
+import monolith.world.blocks.defense.AOEBlock.BulletRecipe;
 import monolith.world.blocks.production.MultiCrafter.ItemRecipe;
 
 import static mindustry.world.meta.StatValues.*;
