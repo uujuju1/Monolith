@@ -357,7 +357,7 @@ public class MonolithBlocks {
 					requirements = with(Items.copper, 12, Items.silicon, 6);
 					damage = 45f;
 					range = 120f;
-					reloadTime = 180f;
+					reload = 180f;
 					shootEffect = MonolithFx.aoeShoot;
 				}},
 				new BulletRecipe("heavy-graphite") {{

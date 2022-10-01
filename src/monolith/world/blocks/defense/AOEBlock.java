@@ -88,7 +88,7 @@ public class AOEBlock extends Block {
 
 		@Override
 		public boolean acceptItem(Building source, Item item){
-			return currentPlan != -1 && items.get(item) < getMaximumAccepted(item) &&	Structs.contains(plans.get(currentPlan).req, stack -> stack.item == item);
+			return currentPlan != -1 && items.get(item) < getMaximumAccepted(item) &&	Structs.contains(plans.get(currentPlan).requirements, stack -> stack.item == item);
 		}
 
 		@Override
