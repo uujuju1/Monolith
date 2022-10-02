@@ -109,7 +109,7 @@ public class MonolithUnitTypes {
 
 		remnant = new ModUnitType("remnant") {{
 			health = 1450;
-			speed = 3f;
+			speed = 5f;
 			accel = 0.01f;
 			drag = 0.01f;
 			hitSize = 12f;

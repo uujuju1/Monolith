@@ -36,7 +36,7 @@ public class MonolithBlocks {
 
 	// production
 	furnace, lithiumWeaver, alloyInfuser,
-	industrialPress,
+	industrialPress, sohritePress,
 
 	move, accelerate,
 	revenant,
@@ -85,6 +85,7 @@ public class MonolithBlocks {
 			health = 200;
 			craftTime = 120;
 			craftEffect = MonolithFx.furnaceSmelt;
+			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
 				new DrawArcSmelt() {{
@@ -118,6 +119,7 @@ public class MonolithBlocks {
 			size = 3;
 			health = 200;
 			craftTime = 60f;
+			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
 				new DrawWeave(),
@@ -140,6 +142,7 @@ public class MonolithBlocks {
 			size = 2;
 			health = 160;
 			craftTime = 60f;
+			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
 				new DrawDefault(),
 				new DrawFlame(Color.valueOf("F7E97E"))
@@ -179,6 +182,27 @@ public class MonolithBlocks {
 					updateEffect = Fx.smoke;
 				}}
 			);
+		}};
+		sohritePress = new GenericCrafter("sohrite-press") {{
+			requirements(Category.crafting, with(
+				MonolithItems.meanium, 150,
+				MonolithItems.macrosteel, 175,
+				MonolithItems.lithium, 125,
+				Items.graphite, 200,
+				Items.titanium, 225,
+				Items.silicon, 190
+			));
+			size = 3;
+			health = 200;
+			craftTime = 75f;
+			craftEffect = MonolithFx.sohriteCraft;
+			updateEffect = Fx.smoke;
+			consumeItems(with(
+				MonolithItems.macrosteel, 3,
+				MonolithItems.lithium, 2
+			));
+			consumePower(1.5f);
+			outputItems = with(MonolithItems.sohrite);
 		}};
 
 		move = new ItemTurret("move") {{
@@ -353,21 +377,21 @@ public class MonolithBlocks {
 			itemCapacity = 20;
 			consumePower(2f);
 			plans.add(
-				new BulletRecipe("standard") {{
+				new BulletRecipe("monolith-standard") {{
 					requirements = with(Items.copper, 12, Items.silicon, 6);
 					damage = 45f;
 					range = 120f;
 					reload = 180f;
 					shootEffect = MonolithFx.aoeShoot;
 				}},
-				new BulletRecipe("heavy-graphite") {{
+				new BulletRecipe("monolith-heavy-graphite") {{
 					requirements = with(Items.graphite, 16, Items.silicon, 8);
 					damage = 90f;
 					range = 180f;
 					reload = 240f;
 					shootEffect = MonolithFx.aoeShoot;
 				}},
-				new BulletRecipe("pyra") {{
+				new BulletRecipe("monolith-pyra") {{
 					requirements = with(Items.pyratite, 14, Items.silicon, 7);
 					damage = 30f;
 					range = 120f;
@@ -390,21 +414,21 @@ public class MonolithBlocks {
 			itemCapacity = 30;
 			consumePower(5f);
 			plans.add(
-				new BulletRecipe("heavy-graphite") {{
+				new BulletRecipe("monolith-heavy-graphite") {{
 					requirements = with(Items.graphite, 26, Items.silicon, 13);
 					damage = 140f;
 					range = 200f;
 					reload = 240f;
 					shootEffect = MonolithFx.aoeShoot;
 				}},
-				new BulletRecipe("heavy-thorium") {{
+				new BulletRecipe("monolith-heavy-thorium") {{
 					requirements = with(Items.thorium, 30, Items.silicon, 15);
 					damage = 200f;
 					range = 240f;
 					reload = 320f;
 					shootEffect = MonolithFx.aoeShoot;
 				}},
-				new BulletRecipe("explosive") {{
+				new BulletRecipe("monolith-explosive") {{
 					requirements = with(Items.blastCompound, 28, Items.silicon, 14);
 					damage = 150f;
 					range = 220f;
@@ -412,7 +436,7 @@ public class MonolithBlocks {
 					shootEffect = MonolithFx.aoeShoot;
 					status(StatusEffects.blasted, 120f);
 				}},
-				new BulletRecipe("cryo") {{
+				new BulletRecipe("monolith-cryo") {{
 					requirements = with(Items.titanium, 28, Items.silicon, 14);
 					damage = 150f;
 					range = 220f;
