@@ -29,7 +29,7 @@ allprojects{
 dependencies{
 
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
-    implementation 'com.github.Zelaux.ZelauxModCore:annotations:-SNAPSHOT'
+    implementation 'com.github.Zelaux.ZelauxModCore:annotations:60285a04edb'
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
     compileOnly "com.github.Anuken.Arc:flabel:v137"
