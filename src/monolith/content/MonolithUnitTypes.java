@@ -17,7 +17,7 @@ import monolith.type.draw.*;
 import monolith.type.ModUnitType.*;
 
 public class MonolithUnitTypes {
-	@EntityDef((Unitc.class, Mechc.class))
+	@EntityDef({Unitc.class, Mechc.class})
 	public static UnitType shelter;
 
 	public static UnitType connect, remnant;
