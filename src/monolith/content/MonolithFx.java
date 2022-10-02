@@ -60,7 +60,7 @@ public class MonolithFx {
 		});
 	}),
 
-	sohriteCraft = new Efect(30f, e -> {
+	sohriteCraft = new Effect(30f, e -> {
 		Draw.color();
 		Lines.stroke(e.fout());
 		Angles.randLenVectors(e.id, 20, 30 * e.finpow(), (x, y) -> {

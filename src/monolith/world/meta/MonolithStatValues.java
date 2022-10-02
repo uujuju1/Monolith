@@ -118,7 +118,7 @@ public class MonolithStatValues {
 					table.table(Tex.underline, main -> {
 						main.table(name -> {
 							name.image(recipe.uiIcon).size(64f).left();
-							name.add(Core.bundle.get("bullet." + name + ".name")).padLeft(10f).color(Pal.accent);
+							name.add(Core.bundle.get("bullet." + recipe.name + ".name")).padLeft(10f).color(Pal.accent);
 						}).left();
 				
 						main.table(req -> {
@@ -130,7 +130,7 @@ public class MonolithStatValues {
 						
 					}).growX().pad(5f).row();
 
-					table.add(Core.bundle.get("bullet." + name + ".description")).pad(10f).row();
+					table.add(Core.bundle.get("bullet." + recipe.name + ".description")).pad(10f).row();
 
 					table.table(extra -> {
 						extra.left();

@@ -9,6 +9,7 @@ import mindustry.graphics.*;
 import mindustry.entities.part.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.abilities.*;
+import mindustry.annotations.Annotations.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
 import monolith.type.*;
@@ -16,7 +17,10 @@ import monolith.type.draw.*;
 import monolith.type.ModUnitType.*;
 
 public class MonolithUnitTypes {
-	public static UnitType shelter, connect, remnant;
+	@EntityDef((Unitc.class, Mechc.class))
+	public static UnitType shelter;
+
+	public static UnitType connect, remnant;
 
 	public void load() {
 		// units
@@ -27,7 +31,7 @@ public class MonolithUnitTypes {
 			hitSize = 12f;
 			outlineColor = Pal.darkOutline;
 			canDrown = false;
-			constructor = MechUnit::create;
+			// constructor = MechUnit::create;
 			immunities.add(MonolithStatusEffects.overrun);
 
 			weapons.add(

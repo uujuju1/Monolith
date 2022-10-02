@@ -8,14 +8,14 @@ import static mindustry.content.TechTree.*;
 import static monolith.content.MonolithBlocks.*;
 import static monolith.content.MonolithItems.*;
 import static monolith.content.MonolithLiquids.*;
-import static monolith.content.MonolithUnits.*;
+import static monolith.content.MonolithUnitTypes.*;
 
 public class MonolithTechTree {
 	public void load() {
 		MonolithPlanets.chroma.techTree = nodeRoot("chroma", furnace, true, () -> {
 			nodeProduce(macrosteel, () -> {
 				nodeProduce(lithium, () -> {
-					nodeProduce(meaniunm, () -> {
+					nodeProduce(meanium, () -> {
 						nodeProduce(lathanium, () -> {
 							nodeProduce(karanite, () -> {
 								nodeProduce(natnium, () -> {});
@@ -35,7 +35,7 @@ public class MonolithTechTree {
 			node(lithiumWeaver, Seq.with(new Produce(macrosteel)), () -> {
 				node(alloyInfuser, Seq.with(new Produce(lithium)), () -> {
 					node(industrialPress, Seq.with(new Produce(Items.titanium)), () -> {});
-					node(sohritePress, Seq.withg(new Produce(Items.titanium)), () -> {});
+					node(sohritePress, Seq.with(new Produce(Items.titanium)), () -> {});
 				});
 			});
 
