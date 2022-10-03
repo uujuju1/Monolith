@@ -20,10 +20,10 @@ public class MonolithUnitTypes {
 	@MindustryEntityDef({Unitc.class, Mechc.class})
 	public static UnitType shelter;
 
+	@MindustryEntityDef({Unitc.class})
 	public static UnitType connect, remnant;
 
 	public static void load() {
-		// units
 		shelter = new ModUnitType("shelter") {{
 			health = 1650;
 			speed = 1f;
@@ -70,7 +70,6 @@ public class MonolithUnitTypes {
 			range = maxRange = 135f;
 			outlineColor = Pal.darkOutline;
 			flying = lowAltitude = true;
-			constructor = UnitEntity::create;
 
 			immunities.add(MonolithStatusEffects.isolated);
 
@@ -121,9 +120,6 @@ public class MonolithUnitTypes {
 			fallSpeed = 0.005f;
 			range = maxRange = 0f;
 			flying = true;
-			constructor = UnitEntity::create;
-
-			immunities.add(MonolithStatusEffects.isolated);
 
 			abilities.add(new MoveLightningAbility(25, 10, 0.1f, hitSize, 1, 5, Pal.accent, "monolith-remnant-shield"));
 
