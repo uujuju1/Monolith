@@ -9,7 +9,7 @@ import mindustry.entities.*;
 public class MonolithFx {
 	public static Effect 
 
-	furnaceSmelt = new Effect(60f, e -> {
+	macrosteelCraft = new Effect(60f, e -> {
 		for(int i = 0; i < 4; i++) {
 			float
 			dx = e.x + Angles.trnsx((i * 90f) + 45f, 10f, 0f),
@@ -27,7 +27,18 @@ public class MonolithFx {
 		Lines.stroke(2f * e.foutpow());
 		Lines.circle(e.x, e.y, 40f * e.finpow());
 	}),
-
+	lithiumCraft = new Effect(60f, e -> {
+		Draw.color(Pal.accent);
+		Lines.stroke(3 * e.fout());
+		Angles.randLenVectors(e.id, 20, 30 * e.finpow(), (x, y) -> {
+		  Lines.lineAngle(e.x + x, e.y + y, Angles.angle(e.x, e.y, e.x + x, e.y + y), 3 * e.fout());
+		});
+		
+		Draw.color(Color.gray);
+		Angles.randLenVectors(e.id + 1, 20, 40 * e.finpow(), (x, y) -> {
+		  Fill.circle(e.x + x, e.y + y, 10 * (1 - e.finpow()));
+		});
+	}),
 	lathaniumCraft = new Effect(60f, e -> {
 		Lines.stroke(e.foutpow());
 		Lines.circle(e.x, e.y, 40 * e.finpow());
@@ -45,7 +56,6 @@ public class MonolithFx {
 			Fill.circle(e.x + x, e.y + y, 3 * e.fout());
 		});
 	}),
-
 	veneraCraft = new Effect(60f, e -> {
 		Draw.color(Pal.redSpark);
 		Lines.stroke(e.foutpow());
@@ -59,7 +69,6 @@ public class MonolithFx {
 			Fill.circle(e.x + x, e.y + y, 3 * Interp.pow3InInverse.apply(e.fout()));
 		});
 	}),
-
 	sohriteCraft = new Effect(30f, e -> {
 		Draw.color();
 		Lines.stroke(e.fout());

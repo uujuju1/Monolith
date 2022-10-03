@@ -35,8 +35,8 @@ public class MonolithBlocks {
 	itemLiquidJunction,
 
 	// production
-	furnace, lithiumWeaver, alloyInfuser,
-	industrialPress, sohritePress,
+	macrosteelFurnace, lithiumWeaver, alloyInfuser,
+	industrialPress, sohritePress, karanitePress,
 
 	move, accelerate,
 	revenant,
@@ -76,7 +76,7 @@ public class MonolithBlocks {
 		}};
 
 		// production
-		furnace = new GenericCrafter("furnace") {{
+		macrosteelFurnace = new GenericCrafter("macrosteel-furnace") {{
 			requirements(Category.crafting, with(
 				Items.graphite, 120,
 				Items.silicon, 180
@@ -84,7 +84,7 @@ public class MonolithBlocks {
 			size = 3;
 			health = 200;
 			craftTime = 120;
-			craftEffect = MonolithFx.furnaceSmelt;
+			craftEffect = MonolithFx.macrosteelCraft;
 			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
@@ -119,6 +119,7 @@ public class MonolithBlocks {
 			size = 3;
 			health = 200;
 			craftTime = 60f;
+			craftEffect = MonolithFx.lithiumCraft;
 			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
@@ -203,6 +204,25 @@ public class MonolithBlocks {
 			));
 			consumePower(1.5f);
 			outputItems = with(MonolithItems.sohrite, 1);
+		}};
+		karanitePress = new GenericCrafter("karanite-press") {{
+			requirements(Category.crafting, with(
+				MonolithItems.meanium, 180,
+				MonolithItems.lathanium, 140,
+				Items.plastanium, 100,
+				Items.titanium, 150
+			));
+			size = 4;
+			craftTime = 90f;
+			updateEffect = Fx.smoke;
+			consumeItems(with(
+				Items.titanium, 2,
+				Items.silicon, 3,
+				MonolithItems.macrosteel, 1
+			));
+			consumeLiquids(with(Liquids.oil, 0.2f, Liquids.water, 0.1f));
+			consumePower(2f);
+			outputItems = with(MonolithItems.karanite, 2);
 		}};
 
 		move = new ItemTurret("move") {{

@@ -103,7 +103,7 @@ public class MonolithStatValues {
 
 					table.table(stats -> {
 						stats.add(Core.bundle.get("stat.productiontime") + ": ");	
-						stats.add(StatValues.fixValue(recipe.craftTime/60) + StatUnit.seconds.localized()).color(Color.gray);
+						stats.add(StatValues.fixValue(recipe.craftTime/60) + " " + StatUnit.seconds.localized()).color(Color.gray);
 					}).padBottom(10f);
 				}).growX().pad(10).row();
 			}

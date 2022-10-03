@@ -27,6 +27,12 @@ public class MonolithTechTree {
 							});
 						});
 					});
+					node(pitch, () -> {
+						node(hydroxia, () -> {
+							node(methane, () -> {});
+						});
+						node(makyic, () -> {});
+					});
 				});
 			});
 
@@ -34,7 +40,9 @@ public class MonolithTechTree {
 
 			node(lithiumWeaver, Seq.with(new Produce(macrosteel)), () -> {
 				node(alloyInfuser, Seq.with(new Produce(lithium)), () -> {
-					node(industrialPress, Seq.with(new Produce(Items.titanium)), () -> {});
+					node(industrialPress, Seq.with(new Produce(Items.titanium)), () -> {
+						node(karanitePress, Seq.with(new Produce(Items.plastanium)), () -> {});
+					});
 					node(sohritePress, Seq.with(new Produce(Items.titanium)), () -> {});
 				});
 			});
