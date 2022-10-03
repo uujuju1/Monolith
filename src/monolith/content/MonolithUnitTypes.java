@@ -12,7 +12,7 @@ import mindustry.entities.abilities.*;
 // import mindustry.annotations.Annotations.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
-import mma.annotations.Annotations.*;
+import mma.annotations.ModAnnotations.*;
 import monolith.type.*;
 import monolith.type.draw.*;
 import monolith.type.ModUnitType.*;
