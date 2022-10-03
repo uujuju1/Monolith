@@ -29,13 +29,13 @@ public class Monolith extends Mod{
 
 	@Override
 	public void loadContent(){
-		new MonolithStatusEffects().load();
-		new MonolithWeathers().load();
-		new MonolithItems().load();
-		new MonolithLiquids().load();
-		new MonolithUnitTypes().load();
-		new MonolithBlocks().load();
-		new MonolithPlanets().load();
-		new MonolithTechTree().load();
+		MonolithStatusEffects.load();
+		MonolithWeathers.load();
+		MonolithItems.load();
+		MonolithLiquids.load();
+		MonolithUnitTypes.load();
+		MonolithBlocks.load();
+		MonolithPlanets.load();
+		MonolithTechTree.load();
 	}
 }
