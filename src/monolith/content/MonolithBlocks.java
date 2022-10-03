@@ -220,7 +220,7 @@ public class MonolithBlocks {
 				Items.silicon, 3,
 				MonolithItems.macrosteel, 1
 			));
-			consumeLiquids(with(Liquids.oil, 0.2f, Liquids.water, 0.1f));
+			consumeLiquids(LiquidStack.with(Liquids.oil, 0.2f, Liquids.water, 0.1f));
 			consumePower(2f);
 			outputItems = with(MonolithItems.karanite, 2);
 		}};
