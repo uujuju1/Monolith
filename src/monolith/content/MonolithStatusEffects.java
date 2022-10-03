@@ -6,7 +6,7 @@ import mindustry.content.*;
 public class MonolithStatusEffects {
 	public static StatusEffect overrun, isolated;
 
-	public void load() {
+	public static void load() {
 		overrun = new StatusEffect("overrun") {{
 			damage = 5;
 			speedMultiplier = reloadMultiplier = damageMultiplier = 0.3f;

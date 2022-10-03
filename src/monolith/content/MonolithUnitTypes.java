@@ -22,7 +22,7 @@ public class MonolithUnitTypes {
 
 	public static UnitType connect, remnant;
 
-	public void load() {
+	public static void load() {
 		// units
 		shelter = new ModUnitType("shelter") {{
 			health = 1650;
@@ -31,7 +31,7 @@ public class MonolithUnitTypes {
 			hitSize = 12f;
 			outlineColor = Pal.darkOutline;
 			canDrown = false;
-			// constructor = MechUnit::create;
+			constructor = MechUnit::create;
 			immunities.add(MonolithStatusEffects.overrun);
 
 			weapons.add(

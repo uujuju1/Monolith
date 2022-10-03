@@ -63,7 +63,7 @@ public class MonolithBlocks {
 
 	voidfVoid, voidfSource;
 
-	public void load() {
+	public static void load() {
 		// distribution
 		itemLiquidJunction = new ItemLiquidJunction("item-liquid-junction") {{
 			requirements(Category.liquid, with(
@@ -202,7 +202,7 @@ public class MonolithBlocks {
 				MonolithItems.lithium, 2
 			));
 			consumePower(1.5f);
-			outputItems = with(MonolithItems.sohrite);
+			outputItems = with(MonolithItems.sohrite, 1);
 		}};
 
 		move = new ItemTurret("move") {{

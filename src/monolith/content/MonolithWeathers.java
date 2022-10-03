@@ -11,7 +11,7 @@ import monolith.type.weathers.*;
 public class MonolithWeathers {
 	public static Weather storm;
 
-	public void load() {
+	public static void load() {
 		storm = new StormWeather("storm"){{
 			duration = 1.5f * (60f * 60f);
 			rainDensity = 150f;

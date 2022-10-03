@@ -6,7 +6,7 @@ import mindustry.type.*;
 public class MonolithLiquids {
 	public static Liquid pitch, makyic, hydroxia, methane;
 
-	public void load() {
+	public static void load() {
 		pitch = new Liquid("pitch", Color.valueOf("232B23")) {{
 			viscosity = 0.9f;
 			flammability = 0.3f;

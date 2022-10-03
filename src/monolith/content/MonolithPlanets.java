@@ -9,7 +9,7 @@ import monolith.planets.*;
 public class MonolithPlanets {
 	public static Planet chroma;
 
-	public void load() {
+	public static void load() {
 		chroma = new Planet("chroma", Planets.sun, 1f, 3) {{
 			generator = new ChromaPlanetGenerator();
 			meshLoader = () -> new HexMesh(this, 6);
