@@ -9,18 +9,18 @@ import mindustry.graphics.*;
 import mindustry.entities.part.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.abilities.*;
-import mindustry.annotations.Annotations.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
+import mma.annotations.ModAnnotations.*;
 import monolith.type.*;
 import monolith.type.draw.*;
 import monolith.type.ModUnitType.*;
 
 public class MonolithUnitTypes {
-	@EntityDef({Unitc.class, Mechc.class})
+	@MindustryEntityDef({Unitc.class, Mechc.class})
 	public static UnitType shelter;
 
-	@EntityDef({Unitc.class})
+	@MindustryEntityDef({Unitc.class})
 	public static UnitType connect, vessel, remnant;
 
 	public static void load() {
