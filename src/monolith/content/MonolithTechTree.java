@@ -12,7 +12,7 @@ import static monolith.content.MonolithUnitTypes.*;
 
 public class MonolithTechTree {
 	public static void load() {
-		MonolithPlanets.chroma.techTree = nodeRoot("chroma", furnace, true, () -> {
+		MonolithPlanets.chroma.techTree = nodeRoot("chroma", macrosteelSmelter, true, () -> {
 			nodeProduce(macrosteel, () -> {
 				nodeProduce(lithium, () -> {
 					nodeProduce(meanium, () -> {

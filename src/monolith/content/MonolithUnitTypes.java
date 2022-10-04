@@ -21,7 +21,9 @@ public class MonolithUnitTypes {
 	public static UnitType shelter;
 
 	@MindustryEntityDef({Unitc.class})
-	public static UnitType connect, remnant;
+	public static UnitType 
+	connect, vessel,
+	remnant;
 
 	public static void load() {
 		shelter = new ModUnitType("shelter") {{
@@ -106,6 +108,57 @@ public class MonolithUnitTypes {
 						status = MonolithStatusEffects.isolated;
 						statusDuration = 180f;
 					}};
+				}}
+			);
+		}};
+		vessel = new ModUnitType("vessel") {{
+			health = 4350f;
+			speed = 3f;
+			accel = 0.1f;
+			drag = 0.06f;
+			hitSize = 21.5f;
+			engineSize = 0f;
+			fallSpeed = 0.003f;
+			range = maxRange = 160f;
+			outlineColor = Pal.darkOutline;
+			flying = true;
+
+			immunities.add(new MonolithStatusEffects.isolated);
+
+			rotors.add(
+				new Rotor("-rotor", 0f, 0f, 15f) {{
+					layerOffset = 0.001f;
+				}},
+				new Rotor("-rotor-back", 0f, 0f, -15f) {{
+					layerOffset = -0.001f;
+				}}
+			);
+
+			parts.addAll(
+				new RegionPart("-blade") {{
+					x = 0f;
+					y = 0f;
+					moveRot = 90f;
+					layerOffset = -0.001f;
+					outlineLayerOffset = -0.002f;
+				}}
+			);
+
+			weapons.add(
+				new Weapon() {{
+					x = 0f;
+					y = 20f;
+					recoil = 0f;
+					reload = 120f;
+					mirror = false;
+					bullet = Bullets.placeholder;
+				}},
+				new Weapon("monolith-vessel-cannon") {{
+					x = 20f;
+					y = 0f;
+					recoil = 2f;
+					reload = 60f;
+					bullet = Bullets.placeholder;
 				}}
 			);
 		}};
