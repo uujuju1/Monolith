@@ -18,6 +18,25 @@ ext{
     jabelVersion = "0.7.0"
     modCoreVersion = "a61878d7029"
     sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
+
+    writeProcessors = {
+        new File(rootDir, "annotations/src/main/resources/META-INF/services/").mkdirs()
+        def processorFile = new File(rootDir, "annotations/src/main/resources/META-INF/services/javax.annotation.processing.Processor")
+        def text = new StringBuilder()
+        def files = new File(rootDir, "annotations/src/main/java")
+        files.eachFileRecurse(
+                groovy.io.FileType.FILES
+        ){ file ->
+            boolean isProcessor = file.text.contains(" extends ModBaseProcessor") ||
+                    (file.text.contains(" extends AbstractProcessor") && !file.text.contains("abstract class")) ||
+                    file.text.contains("@ModAnnotations.AnnotationProcessor");
+            if(file.name.endsWith(".java") && isProcessor){
+                text.append(file.path.substring(files.path.length() + 1)).append("\n")
+            }
+        }
+
+        processorFile.text = text.toString().replace(".java", "").replace("/", ".").replace("\\", ".")
+    }
 }
 
 //java 8 backwards compatibility flag
@@ -25,6 +44,7 @@ allprojects{
     tasks.withType(JavaCompile){
         options.compilerArgs.addAll(['--release', '8'])
     }
+    writeProcessors()
 }
 
 dependencies{

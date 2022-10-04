@@ -29,7 +29,7 @@ public class MonolithUnitTypes {
 			hitSize = 12f;
 			outlineColor = Pal.darkOutline;
 			canDrown = false;
-			// constructor = MechUnit::create;
+			constructor = MechUnit::create;
 			immunities.add(MonolithStatusEffects.overrun);
 
 			weapons.add(
@@ -68,7 +68,7 @@ public class MonolithUnitTypes {
 			range = maxRange = 135f;
 			outlineColor = Pal.darkOutline;
 			flying = lowAltitude = true;
-			// constructor = UnitEntity::create;
+			constructor = UnitEntity::create;
 
 			immunities.add(MonolithStatusEffects.isolated);
 
@@ -119,7 +119,7 @@ public class MonolithUnitTypes {
 			range = maxRange = 160f;
 			outlineColor = Pal.darkOutline;
 			flying = true;
-			// constructor = UnitEntity::create;
+			constructor = UnitEntity::create;
 
 			immunities.add(MonolithStatusEffects.isolated);
 
@@ -171,7 +171,7 @@ public class MonolithUnitTypes {
 			fallSpeed = 0.005f;
 			range = maxRange = 0f;
 			flying = true;
-			// constructor = UnitEntity::create;
+			constructor = UnitEntity::create;
 
 			abilities.add(new MoveLightningAbility(25, 10, 0.1f, hitSize, 1, 5, Pal.accent, "monolith-remnant-shield"));
 
