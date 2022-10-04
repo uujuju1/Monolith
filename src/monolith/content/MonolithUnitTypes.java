@@ -140,7 +140,7 @@ public class MonolithUnitTypes {
 					mirror = true;
 					layerOffset = -0.001f;
 					outlineLayerOffset = -0.002f;
-					movers.add(new PartMove(PartProgress.reload, 0f, -1f, 0f));
+					moves.add(new PartMove(PartProgress.reload, 0f, -1f, 0f));
 				}}
 			);
 
