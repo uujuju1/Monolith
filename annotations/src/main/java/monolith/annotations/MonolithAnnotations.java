@@ -1,24 +1,7 @@
-package sunset.annotations;
+package monolith.annotations;
 
 import java.lang.annotation.*;
 
-public class SnAnnotations{
-    @Target(ElementType.TYPE)
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface BothExtends{
-        String[] classes();
+public class MonolithAnnotations{
 
-        String[] classNames() default {};
-        String packageName() default "\n\n";
-    }
-
-    @Target(ElementType.TYPE)
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface TestAnnotation{
-    }
-    @Target(ElementType.TYPE)
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface DataKeyType{
-        Class<?> value();
-    }
 }

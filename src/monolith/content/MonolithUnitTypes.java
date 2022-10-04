@@ -29,7 +29,7 @@ public class MonolithUnitTypes {
 			hitSize = 12f;
 			outlineColor = Pal.darkOutline;
 			canDrown = false;
-			// constructor = MechUnit::create;
+			constructor = MechUnit::create;
 			immunities.add(MonolithStatusEffects.overrun);
 
 			weapons.add(
