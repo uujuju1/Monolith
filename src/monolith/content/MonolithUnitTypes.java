@@ -9,7 +9,7 @@ import mindustry.graphics.*;
 import mindustry.entities.part.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.abilities.*;
-import mindustry.annotations.ModAnnotations.*;
+import mindustry.annotations.Annotations.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
 import monolith.type.*;
