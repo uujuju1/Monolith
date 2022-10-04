@@ -29,7 +29,7 @@ public class MonolithUnitTypes {
 			hitSize = 12f;
 			outlineColor = Pal.darkOutline;
 			canDrown = false;
-			constructor = MechUnit::create;
+			// constructor = MechUnit::create;
 			immunities.add(MonolithStatusEffects.overrun);
 
 			weapons.add(
@@ -124,36 +124,38 @@ public class MonolithUnitTypes {
 			immunities.add(MonolithStatusEffects.isolated);
 
 			rotors.add(
-				new Rotor("-rotor", 0f, 0f, 15f) {{
+				new Rotor("-rotor", 0f, 6f, 15f) {{
 					layerOffset = 0.001f;
 				}},
-				new Rotor("-rotor-back", 0f, 0f, -15f) {{
+				new Rotor("-rotor-back", -8f, 0f, -15f) {{
 					layerOffset = -0.001f;
 				}}
 			);
 
 			parts.addAll(
 				new RegionPart("-blade") {{
-					x = 0f;
-					y = 0f;
-					moveRot = 90f;
+					x = 2.25f;
+					y = 15.15f;
+					moveX = 2f;
+					mirror = true;
 					layerOffset = -0.001f;
 					outlineLayerOffset = -0.002f;
+					movers.add(new PartMove(PartProgress.reload, 0f, -1f, 0f));
 				}}
 			);
 
 			weapons.add(
 				new Weapon() {{
 					x = 0f;
-					y = 20f;
+					y = 15.15f;
 					recoil = 0f;
 					reload = 120f;
 					mirror = false;
 					bullet = Bullets.placeholder;
 				}},
 				new Weapon("monolith-vessel-cannon") {{
-					x = 20f;
-					y = 0f;
+					x = 10.75f;
+					y = 8f;
 					recoil = 2f;
 					reload = 60f;
 					bullet = Bullets.placeholder;
