@@ -21,9 +21,7 @@ public class MonolithUnitTypes {
 	public static UnitType shelter;
 
 	@EntityDef({Unitc.class})
-	public static UnitType 
-	connect, vessel,
-	remnant;
+	public static UnitType connect, vessel, remnant;
 
 	public static void load() {
 		shelter = new ModUnitType("shelter") {{
