@@ -9,19 +9,17 @@ import mindustry.graphics.*;
 import mindustry.entities.part.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.abilities.*;
+import mindustry.annotations.Annotations.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
-import mma.annotations.ModAnnotations.*;
 import monolith.type.*;
 import monolith.type.draw.*;
 import monolith.type.ModUnitType.*;
 
 public class MonolithUnitTypes {
-	@MindustryEntityDef({Unitc.class, Mechc.class})
-	public static UnitType shelter;
+	public static @EntityDef({Unitc.class, Mechc.class}) UnitType shelter;
 
-	@MindustryEntityDef({Unitc.class})
-	public static UnitType connect, vessel, remnant;
+	public static @EntityDef({Unitc.class}) UnitType connect, vessel, remnant;
 
 	public static void load() {
 		shelter = new ModUnitType("shelter") {{
@@ -31,7 +29,7 @@ public class MonolithUnitTypes {
 			hitSize = 12f;
 			outlineColor = Pal.darkOutline;
 			canDrown = false;
-			constructor = MechUnit::create;
+			// constructor = MechUnit::create;
 			immunities.add(MonolithStatusEffects.overrun);
 
 			weapons.add(
@@ -70,6 +68,7 @@ public class MonolithUnitTypes {
 			range = maxRange = 135f;
 			outlineColor = Pal.darkOutline;
 			flying = lowAltitude = true;
+			// constructor = UnitEntity::create;
 
 			immunities.add(MonolithStatusEffects.isolated);
 
@@ -120,6 +119,7 @@ public class MonolithUnitTypes {
 			range = maxRange = 160f;
 			outlineColor = Pal.darkOutline;
 			flying = true;
+			// constructor = UnitEntity::create;
 
 			immunities.add(MonolithStatusEffects.isolated);
 
@@ -171,6 +171,7 @@ public class MonolithUnitTypes {
 			fallSpeed = 0.005f;
 			range = maxRange = 0f;
 			flying = true;
+			// constructor = UnitEntity::create;
 
 			abilities.add(new MoveLightningAbility(25, 10, 0.1f, hitSize, 1, 5, Pal.accent, "monolith-remnant-shield"));
 
