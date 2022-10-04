@@ -123,7 +123,7 @@ public class MonolithUnitTypes {
 			outlineColor = Pal.darkOutline;
 			flying = true;
 
-			immunities.add(new MonolithStatusEffects.isolated);
+			immunities.add(MonolithStatusEffects.isolated);
 
 			rotors.add(
 				new Rotor("-rotor", 0f, 0f, 15f) {{
