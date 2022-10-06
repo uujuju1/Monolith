@@ -8,7 +8,10 @@ public interface PressureInterface {
 	default PressureGraph getGraph() {return getModule().graph;}
 	default PressureVertex getVertex() {return getModule().vertex;}
 
-	default void addPressure(float value) {getModule().add(value)}
-	default void subPressure(float value) {getModule().sub(value)}
-	default void setPressure(float value) {getModule().set(value)}
-}
+	default void addPressure(float value) {getModule().add(value);}
+	default void subPressure(float value) {getModule().sub(value);}
+	default void setPressure(float value) {getModule().set(value);}
+
+	default boolean acceptPressure(Building src, float amount) {return true;}
+	default boolean outputPressure(Building src, float amount) {return true;}
+} 
