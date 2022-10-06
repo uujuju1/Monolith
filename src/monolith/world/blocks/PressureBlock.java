@@ -7,11 +7,12 @@ import monolith.world.modules.*;
 
 public class PressureBlock extends Block {
 	public PressureBlock(String name) {
+		super(name);
 		update = sync = destructible = true;
 	}
 
 	public class PressureBuild extends Building {
-		public PressureModule pModule = new PressureModule();
+		public PressureModule pModule = new PressureModule(this);
 
 		public void graphProximity() {
 			for (Building build : proximity) {

@@ -1,17 +1,18 @@
 package monolith.world.modules;
 
 import arc.struct.*;
-import monolith.block.*;
+import mindustry.world.modules.*;
+import monolith.world.*;
 import monolith.world.graph.*;
 
 public class PressureModule extends BlockModule {
 	public float pressure = 0f;
 	public PressureGraph graph = new PressureGraph();
 	public PressureVertex vertex = new PressureVertex(this, graph);
-	public PressureBuild self;
+	public PressureBuild build;
 
-	public PressureModule(Build self) {
-		this.self = self;
+	public PressureModule(PressureBuild build) {
+		this.build = build;
 	}
 
 	public PressureBuild self() {return self;}
