@@ -32,7 +32,7 @@ public class PressureBlock extends Block {
 		}
 
 		@Override
-		public void getModule() {return pModule;}
+		public PressureModule getModule() {return pModule;}
 
 		@Override
 		public void onProximityAdded() {

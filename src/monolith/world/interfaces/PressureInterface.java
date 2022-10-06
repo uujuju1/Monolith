@@ -1,5 +1,6 @@
 package monolith.world.interfaces;
 
+import monolith.world.*;
 import monolith.world.graph.*;
 import monolith.world.modules.*;
 
@@ -12,6 +13,6 @@ public interface PressureInterface {
 	default void subPressure(float value) {getModule().sub(value);}
 	default void setPressure(float value) {getModule().set(value);}
 
-	default boolean acceptPressure(Building src, float amount) {return true;}
-	default boolean outputPressure(Building src, float amount) {return true;}
+	default boolean acceptPressure(PressureBuild src, float amount) {return true;}
+	default boolean outputPressure(PressureBuild src, float amount) {return true;}
 } 
