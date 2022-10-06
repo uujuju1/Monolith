@@ -127,7 +127,7 @@ public class MonolithUnitTypes {
 				new Rotor("-rotor", 0f, 6f, 15f) {{
 					layerOffset = 0.001f;
 				}},
-				new Rotor("-rotor-back", -8f, 0f, -15f) {{
+				new Rotor("-rotor-back", 0f, -8f, -15f) {{
 					layerOffset = -0.001f;
 				}}
 			);

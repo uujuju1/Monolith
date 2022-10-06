@@ -16,16 +16,12 @@ import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.defense.turrets.*;
 
-import monolith.world.blocks.voidf.*;
+import monolith.world.*;
 import monolith.world.blocks.units.*;
 import monolith.world.blocks.defense.*;
 import monolith.world.blocks.payload.*;
 import monolith.world.blocks.production.*;
 import monolith.world.blocks.distribution.*;
-import monolith.world.blocks.voidf.sandbox.*;
-import monolith.world.blocks.voidf.defense.*;
-import monolith.world.blocks.voidf.production.*;
-import monolith.world.blocks.voidf.distribution.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -51,15 +47,7 @@ public class MonolithBlocks {
 
 	remnantFactory,
 
-	voidfConveyor, 
-	voidfRouter,
-
-	voidfTank,
-
-	voidfCrafter, voidfFactory,
-	macroSmelter,
-
-	coreollis, magnetar,
+	test,
 
 	voidfVoid, voidfSource;
 
@@ -550,142 +538,10 @@ public class MonolithBlocks {
 			consumePower(3f);
 		}};
 
-		voidfConveyor = new VoidfConveyor("void-conveyor") {{
-			requirements(Category.distribution, with(
-				MonolithItems.lithium, 1,
-				Items.graphite, 1,
-				Items.plastanium, 1
-			));
+		test = new PressureBlock("test") {{
+			requirements(Category.distribution, with(Items.copper, 1));
 			size = 1;
-			health = 40;
-		}};
-		voidfRouter = new VoidfRouter("void-router") {{
-			requirements(Category.distribution, with(
-				MonolithItems.lithium, 3,
-				Items.graphite, 3,
-				Items.plastanium, 1
-			));
-			size = 1;
-			health = 60;
-		}};
-
-		voidfTank = new VoidfRouter("void-tank") {{
-			requirements(Category.distribution, with(
-				MonolithItems.lithium, 75,
-				Items.graphite, 12,
-				Items.metaglass, 13,
-				Items.plastanium, 25
-			));
-			size = 2;
-			health = 350;
-			maxVoidf = 1000;
-			transferRate = 0.01f;
-		}};
-
-		voidfVoid = new VoidfVoid("void-void") {{
-			buildVisibility = BuildVisibility.sandboxOnly;
-			size = 1;
-			health = 1000000000;
-		}};
-		voidfSource = new VoidfSource("void-source") {{
-			buildVisibility = BuildVisibility.sandboxOnly;
-			size = 1;
-			health = 1000000000;
-		}};
-
-		voidfCrafter = new VoidfCrafter("void-crafter") {{
-			requirements(Category.crafting, with(
-				MonolithItems.lithium, 150,
-				MonolithItems.macrosteel, 200,
-				Items.silicon, 125,
-				Items.graphite, 125
-			));
-			size = 2;
 			health = 160;
-			craftTime = 10;
-			drawer = new DrawMulti(new DrawDefault());
-			consumeItems(with(
-				Items.plastanium, 1,
-				Items.coal, 1
-			));
-			consumeLiquid(Liquids.water, 0.01f);
-			consumePower(2f);
-			voidfOutput = 10f;
-		}};
-		voidfFactory = new VoidfCrafter("void-factory") {{
-			requirements(Category.crafting, with(
-				MonolithItems.lithium, 150,
-				MonolithItems.macrosteel, 200,
-				Items.silicon, 125,
-				Items.graphite, 125,
-				Items.titanium, 175,
-				Items.plastanium, 200
-			));
-			size = 3;
-			health = 250;
-			craftTime = 10;
-			drawer = new DrawMulti(new DrawDefault());
-			consumeItems(with(
-				Items.plastanium, 1,
-				Items.coal, 2
-			));
-			consumeLiquid(Liquids.water, 0.1f);
-			consumePower(2f);
-			voidfOutput = 25f;
-		}};
-
-		macroSmelter = new VoidfCrafter("macro-smelter") {{
-			requirements(Category.crafting, with(
-				MonolithItems.lithium, 150,
-				Items.silicon, 200,
-				Items.graphite, 250,
-				Items.lead, 150,
-				Items.copper, 200
-			));
-			size = 3;
-			health = 300;
-			craftTime = 120;
-			itemCapacity = 30;
-			drawer = new DrawMulti(new DrawDefault());
-			consumeItems(with(
-				MonolithItems.lithium, 3,
-				Items.graphite, 5,
-				Items.sand, 7
-			));
-			consumePower(3f);
-			consumeVoidf = 25;
-			outputItems = with(MonolithItems.macrosteel, 5, Items.silicon, 6);
-		}};
-
-		coreollis = new VoidfSprayer("coreollis") {{
-			requirements(Category.turret, with(
-				MonolithItems.lithium, 125,
-				Items.plastanium, 75,
-				Items.titanium, 100,
-				Items.graphite, 80
-			));
-			size = 2;
-			health = 350;
-			consumeVoidf = 10f;
-			action = build -> {
-				Damage.status(build.team, build.x, build.y, range, MonolithStatusEffects.isolated, 60f, true, true);
-			};
-		}};
-		magnetar = new VoidfSprayer("magnetar") {{
-			requirements(Category.turret, with(
-				MonolithItems.lithium, 225,
-				Items.plastanium, 175,
-				Items.titanium, 200,
-				Items.thorium, 150,
-				Items.graphite, 180
-			));
-			size = 3;
-			health = 750;
-			consumeVoidf = 10f;
-			range = 160f;
-			action = build -> {
-				Damage.status(build.team, build.x, build.y, range, MonolithStatusEffects.isolated, 120f, true, true);
-			};
 		}};
 	}
 }
