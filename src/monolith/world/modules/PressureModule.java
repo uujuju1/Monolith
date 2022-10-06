@@ -1,8 +1,9 @@
 package monolith.world.modules;
 
 import arc.struct.*;
+import arc.util.io.*;
 import mindustry.world.modules.*;
-import monolith.world.*;
+import monolith.world.PressureBlock.*;
 import monolith.world.graph.*;
 
 public class PressureModule extends BlockModule {
