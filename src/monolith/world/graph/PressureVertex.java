@@ -1,5 +1,6 @@
 package monolith.world.graph;
 
+import arc.struct.*;
 import monolith.world.modules.*;
 
 public class PressureVertex {
@@ -34,8 +35,8 @@ public class PressureVertex {
 			if (v1 == null || v2 == null) {
 				throw new NullPointerException("edge vertexes cannot be null for transfer()");
 			}
-			v1.bigger(v2).sub(value);
-			v1.shorter(v2).add(value);
+			v1.pModule.bigger(v2.pModule).sub(value);
+			v1.pModule.shorter(v2.pModule).add(value);
 		}
 
 		public String toString() {

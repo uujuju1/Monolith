@@ -27,13 +27,13 @@ public class PressureModule extends BlockModule {
 	}
 
 	public PressureModule bigger(PressureModule compare) {
-		if (this.value > compare.value) {
+		if (this.pressure > compare.pressure) {
 			return this;
 		}
 		return compare;
 	}
 	public PressureModule shorter(PressureModule compare) {
-		if (this.value < compare.value) {
+		if (this.pressure < compare.pressure) {
 			return this;
 		}
 		return compare;
