@@ -40,7 +40,7 @@ public class PressureBlock extends Block {
 			for (Building build : proximity) {
 				if (build instanceof PressureBuild) {
 					next = ((PressureBuild) build);
-					changeGraph(next.graph);
+					changeGraph(next.pModule.graph);
 					graphProximity();
 					break;
 				}

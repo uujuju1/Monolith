@@ -1,6 +1,6 @@
 package monolith.world.interfaces;
 
-import monolith.world.*;
+import monolith.world.PressureBlock.*;
 import monolith.world.graph.*;
 import monolith.world.modules.*;
 
@@ -15,4 +15,7 @@ public interface PressureInterface {
 
 	default boolean acceptPressure(PressureBuild src, float amount) {return true;}
 	default boolean outputPressure(PressureBuild src, float amount) {return true;}
+
+	// TODO make 2 methods?
+	default void overflow() {}
 } 
