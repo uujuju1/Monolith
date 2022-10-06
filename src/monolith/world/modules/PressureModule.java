@@ -15,7 +15,7 @@ public class PressureModule extends BlockModule {
 		this.build = build;
 	}
 
-	public PressureBuild self() {return self;}
+	public PressureBuild build() {return build;}
 
 	public void add(float value) {
 		pressure += value;
@@ -38,5 +38,14 @@ public class PressureModule extends BlockModule {
 			return this;
 		}
 		return compare;
+	}
+
+	@Override
+	public void write(Writes write) {
+		write.f(pressure);
+	}
+	@Override
+	public void read(Reads read) {
+		pressure = read.f();
 	}
 }
