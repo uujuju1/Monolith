@@ -4,6 +4,7 @@ import mindustry.gen.*;
 import mindustry.world.*;
 import monolith.world.graph.*;
 import monolith.world.modules.*;
+import monolith.world.interfaces.*;
 
 public class PressureBlock extends Block {
 	public PressureBlock(String name) {
@@ -11,7 +12,7 @@ public class PressureBlock extends Block {
 		update = sync = destructible = true;
 	}
 
-	public class PressureBuild extends Building {
+	public class PressureBuild extends Building implements PressureInterface {
 		public PressureModule pModule = new PressureModule(this);
 
 		public void graphProximity() {
@@ -31,11 +32,14 @@ public class PressureBlock extends Block {
 		}
 
 		@Override
+		public void getModule() {return pModule;}
+
+		@Override
 		public void onProximityAdded() {
 			PressureBuild next;
 			for (Building build : proximity) {
 				if (build instanceof PressureBuild) {
-					next == ((PressureBuild) build);
+					next = ((PressureBuild) build);
 					changeGraph(next.graph);
 					graphProximity();
 					break;
