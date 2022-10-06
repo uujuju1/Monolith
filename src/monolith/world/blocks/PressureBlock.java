@@ -29,5 +29,18 @@ public class PressureBlock extends Block {
 			graph.addVertex(pModule.vertex);
 			pModule.graph = graph;
 		}
+
+		@Override
+		public void onProximityAdded() {
+			PressureBuild next;
+			for (Building build : proximity) {
+				if (build instanceof PressureBuild) {
+					next == ((PressureBuild) build);
+					changeGraph(next.graph);
+					graphProximity();
+					break;
+				}
+			}
+		}
 	}
 }

@@ -9,4 +9,9 @@ public class PressureGraph {
 	public void addVertex(PressureVertex vertex) {
 		vertexes.add(vertex);
 	}
+
+	// for testing
+	public void addVertex(PressureModule module) {
+		vertexes.add(new PressureVertex(module, this));
+	}
 }
