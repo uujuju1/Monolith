@@ -19,7 +19,7 @@ public class PressureVertex {
 	}
 
 	public String toString() {
-		return "Vertex:[" + this + "]: {module: " + pModule + ", graph: " + pGraph + "}"
+		return "Vertex:[" + this + "]: {module: " + pModule + ", graph: " + pGraph + "}";
 	}
 
 	public class PressureEdge {
@@ -39,7 +39,7 @@ public class PressureVertex {
 		}
 
 		public String toString() {
-			return "Edge:[" + this + "]: {v1: " + v1 +", v2: " + v2 + "}"
+			return "Edge:[" + this + "]: {v1: " + v1 +", v2: " + v2 + "}";
 		}
 	}
 }

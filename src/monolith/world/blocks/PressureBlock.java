@@ -17,8 +17,8 @@ public class PressureBlock extends Block {
 			for (Building build : proximity) {
 				if (build instanceof PressureBuild) {
 					if (((PressureBuild) build).pModule.graph != pModule.graph) {
-						(PressureBuild build).changeGraph(pModule.graph);
-						(PressureBuild build).graphProximity();	
+						((PressureBuild) build).changeGraph(pModule.graph);
+						((PressureBuild) build).graphProximity();	
 					}
 				}
 			}
