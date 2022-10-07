@@ -31,8 +31,13 @@ public class PressureBlock extends Block {
 		}
 
 		public void changeGraph(PressureGraph graph) {
-			graph.addVertex(pModule.vertex);
+			graph.addVertex(getVertex());
+			removeGraph();
 			pModule.graph = graph;
+		}
+		// removes it's vertex from the graph
+		public void removeGraph() {
+			graph.vertexes.remove(getVertex());
 		}
 
 		@Override
@@ -45,15 +50,28 @@ public class PressureBlock extends Block {
 
 		@Override
 		public void onProximityAdded() {
-			PressureBuild next;
 			for (Building build : proximity) {
 				if (build instanceof PressureBuild) {
-					next = ((PressureBuild) build);
-					changeGraph(next.pModule.graph);
-					graphProximity();
-					break;
+					if (build.getGraph() != getGraph()) {
+						changeGraph(((PressureBuild) build).getGraph());
+						graphProximity();
+						break;
+					}
+					PressureEdge next = new PressureEdge(this, build);
+					if (!getVertex().hasEqual(next)) vertex.addEdge(next);
 				}
 			}
+		}
+
+		@Override
+		public void onRemoved() {
+			for (Building build : proximity) {
+				if (build instanceof PressureBuild) {
+					build.changeGraph(new PressureGraph());
+					build.graphProximity();
+				}
+			}
+			getVertex().edges.each(e -> e.removeSelf());
 		}
 
 		@Override

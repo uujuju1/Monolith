@@ -16,13 +16,20 @@ public class PressureVertex {
 	}
 
 	public void addEdge(PressureVertex with) {
-	 PressureEdge edge = new PressureEdge(this, with);
+		PressureEdge edge = new PressureEdge(this, with);
 		edges.add(edge);
 		with.edges.add(edge);
 	}
 
 	public void transferAll(Floatf<PressureEdge> amount) {
 		for (PressureEdge edge : edges) edge.transfer(amount.get(edge));
+	}
+
+	public boolean hasEqual(PressureEdge other) {
+		edges.each(e -> {
+			if (e.compare(other)) return true;
+		});
+		return false;
 	}
 
 	public class PressureEdge {
@@ -33,16 +40,23 @@ public class PressureVertex {
 			this.v2 = v2;
 		}
 
+		public void removeSelf() {
+			v1.edges.remove(this);
+			v2.edges.remove(this);
+		}
+
 		public void transfer(float value) {
-			if (v1 == null || v2 == null) {
-				throw new NullPointerException("edge vertexes cannot be null for transfer()");
-			}
-			bigger().sub(value);
-			shorter().add(value);
+			PressureModule bigger = bigger(), shorter = shorter();
+			bigger.sub(value);
+			shorter.add(value);
+		}
+
+		public boolean compare(PressureEdge other) {
+			return (v1 == other.v1 || v1 == other.v2) && (v2 == other.v2 || v2 == other.v1);
 		}
 
 		public PressureModule bigger() {
-			if (v1.pModule.pressure > v2.pModule.pressure) return v1.pModule;
+			if (v1.pModule.pressure => v2.pModule.pressure) return v1.pModule;
 			return v2.pModule;
 		}
 		public PressureModule shorter() {
