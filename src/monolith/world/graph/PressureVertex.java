@@ -4,14 +4,14 @@ import arc.struct.*;
 import monolith.world.modules.*;
 
 public class PressureVertex {
-	// public PressureModule pModule;
+	public PressureModule pModule;
 	// public PressureGraph pGraph;
 	// public Seq<PressureEdge> edges = new Seq<>();
 
-	// public PressureVertex(PressureModule pModule, PressureGraph pGraph) {
-	// 	this.pModule = pModule;
-	// 	this.pGraph = pGraph;
-	// }
+	public PressureVertex(PressureModule pModule) {
+		this.pModule = pModule;
+		// this.pGraph = pGraph;
+	}
 
 	// // public void addEdge(PressureVertex with) {
 	// //  PressureEdge edge = new PressureEdge(this, with);

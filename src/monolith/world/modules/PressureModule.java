@@ -9,11 +9,12 @@ import monolith.world.graph.*;
 public class PressureModule extends BlockModule {
 	public float pressure = 0f;
 	public PressureGraph graph = new PressureGraph();
-	public PressureVertex vertex = new PressureVertex();
+	public PressureVertex vertex = new PressureVertex(this);
 	public PressureBuild build;
 
 	public PressureModule(PressureBuild build) {
 		this.build = build;
+		graph.addVertex(vertex);
 	}
 
 	public PressureBuild build() {return build;}
