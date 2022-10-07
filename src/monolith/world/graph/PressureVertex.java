@@ -20,15 +20,17 @@ public class PressureVertex {
 		edges.add(edge);
 		with.edges.add(edge);
 	}
+	public void addEdge(PressureEdge edge) {
+		edges.add(edge);
+		with.edges.add(edge);
+	}
 
 	public void transferAll(Floatf<PressureEdge> amount) {
 		for (PressureEdge edge : edges) edge.transfer(amount.get(edge));
 	}
 
 	public boolean hasEqual(PressureEdge other) {
-		edges.each(e -> {
-			if (e.compare(other)) return true;
-		});
+		for (PressureEdge edge : edges) if (edge.compare(other)) return true;
 		return false;
 	}
 
