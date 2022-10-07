@@ -42,11 +42,11 @@ public class PressureVertex {
 		}
 
 		public PressureModule bigger() {
-			if (v1.pModule.pressure > v2.pModule.pressure) return v1;
+			if (v1.pModule.pressure > v2.pModule.pressure) return v1.pModule;
 			return v2.pModule;
 		}
 		public PressureModule shorter() {
-			if (v1.pressure < v2.pModule.pressure) return v1;
+			if (v1.pModule.pressure < v2.pModule.pressure) return v1.pModule;
 			return v2.pModule;
 		}
 	}
