@@ -12,6 +12,6 @@ public class PressureGraph {
 
 	// for testing
 	public void addVertex(PressureModule pModule) {
-		vertexes.add(new PressureVertex(pModule));
+		vertexes.add(new PressureVertex(pModule, this));
 	}
 }

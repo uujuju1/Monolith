@@ -5,22 +5,22 @@ import monolith.world.modules.*;
 
 public class PressureVertex {
 	public PressureModule pModule;
-	// public PressureGraph pGraph;
+	public PressureGraph pGraph;
 	// public Seq<PressureEdge> edges = new Seq<>();
 
-	public PressureVertex(PressureModule pModule) {
+	public PressureVertex(PressureModule pModule, PressureGraph graph) {
 		this.pModule = pModule;
-		// this.pGraph = pGraph;
+		this.pGraph = pGraph;
 	}
 
-	// // public void addEdge(PressureVertex with) {
-	// //  PressureEdge edge = new PressureEdge(this, with);
-	// // 	edges.add(edge);
-	// // 	with.edges.add(edge);
-	// // }
+	// public void addEdge(PressureVertex with) {
+	//  PressureEdge edge = new PressureEdge(this, with);
+	// 	edges.add(edge);
+	// 	with.edges.add(edge);
+	// }
 
 	// public String toString() {
-	// 	return "Vertex:[" + this + "]: {module: " + pModule + ", graph: " + pGraph + "}";
+	// 	return "Vertex: {module: " + pModule + ", graph: " + pGraph + "}";
 	// }
 
 	// public class PressureEdge {
