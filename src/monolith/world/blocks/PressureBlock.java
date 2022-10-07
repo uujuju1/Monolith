@@ -40,7 +40,7 @@ public class PressureBlock extends Block {
 
 		@Override
 		public void overflow() {
-			if (getModule().pressure < minPressure || getModule().pressure > maxPressure) kill()
+			if (getModule().pressure < minPressure || getModule().pressure > maxPressure) kill();
 		}
 
 		@Override
