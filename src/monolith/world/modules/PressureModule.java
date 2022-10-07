@@ -29,19 +29,6 @@ public class PressureModule extends BlockModule {
 		pressure = value;
 	}
 
-	public PressureModule bigger(PressureModule compare) {
-		if (this.pressure > compare.pressure) {
-			return this;
-		}
-		return compare;
-	}
-	public PressureModule shorter(PressureModule compare) {
-		if (this.pressure < compare.pressure) {
-			return this;
-		}
-		return compare;
-	}
-
 	@Override
 	public void write(Writes write) {
 		write.f(pressure);
