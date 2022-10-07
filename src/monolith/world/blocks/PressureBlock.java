@@ -55,5 +55,10 @@ public class PressureBlock extends Block {
 				}
 			}
 		}
+
+		@Override
+		public void updateTile() {
+			overflow();
+		}
 	}
 }
