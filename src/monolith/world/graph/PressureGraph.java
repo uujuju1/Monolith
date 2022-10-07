@@ -8,7 +8,7 @@ public class PressureGraph {
 
 	public void addVertex(PressureVertex vertex) {
 		if (vertexes.contains(vertex)) vertexes.add(vertex);
-		vertex.graph = this;
+		vertex.pGraph = this;
 	}
 
 	// for testing

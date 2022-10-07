@@ -5,6 +5,7 @@ import mindustry.world.*;
 import monolith.world.graph.*;
 import monolith.world.modules.*;
 import monolith.world.interfaces.*;
+import monolith.world.graph.PressureVertex.*;
 
 public class PressureBlock extends Block {
 	public float
@@ -37,7 +38,7 @@ public class PressureBlock extends Block {
 		}
 		// removes it's vertex from the graph
 		public void removeGraph() {
-			graph.vertexes.remove(getVertex());
+			getGraph().vertexes.remove(getVertex());
 		}
 
 		@Override
@@ -52,13 +53,13 @@ public class PressureBlock extends Block {
 		public void onProximityAdded() {
 			for (Building build : proximity) {
 				if (build instanceof PressureBuild) {
-					if (build.getGraph() != getGraph()) {
+					if (((PressureBuild) build).getGraph() != getGraph()) {
 						changeGraph(((PressureBuild) build).getGraph());
 						graphProximity();
 						break;
 					}
 					PressureEdge next = new PressureEdge(this, build);
-					if (!getVertex().hasEqual(next)) vertex.addEdge(next);
+					if (!getVertex().hasEqual(next)) getVertex().addEdge(next);
 				}
 			}
 		}
@@ -67,11 +68,11 @@ public class PressureBlock extends Block {
 		public void onRemoved() {
 			for (Building build : proximity) {
 				if (build instanceof PressureBuild) {
-					build.changeGraph(new PressureGraph());
-					build.graphProximity();
+					((PressureBuild) build).changeGraph(new PressureGraph());
+					((PressureBuild) build).graphProximity();
 				}
 			}
-			getVertex().edges.each(e -> e.removeSelf());
+			for (PressuureEdge edge : getVertex().edges) edge.removeSelf();
 		}
 
 		@Override
