@@ -7,6 +7,10 @@ import monolith.world.modules.*;
 import monolith.world.interfaces.*;
 
 public class PressureBlock extends Block {
+	public float
+	minPressure = -100f,
+	maxPressure = 100f;
+
 	public PressureBlock(String name) {
 		super(name);
 		update = sync = destructible = true;
@@ -33,6 +37,11 @@ public class PressureBlock extends Block {
 
 		@Override
 		public PressureModule getModule() {return pModule;}
+
+		@Override
+		public void overflow() {
+			if (getModule().pressure < minPressure || getModule().pressure > maxPressure) kill()
+		}
 
 		@Override
 		public void onProximityAdded() {
