@@ -81,6 +81,19 @@ public class MonolithFx {
 		  Fill.circle(e.x + x, e.y + y, 5 * (1 - e.finpow()));
 		});
 	}),
+	karaniteCraft = new Efect(60f, e -> {
+		Draw.color(Pal.accent, Color.gray, e.fin());
+		Angles.randLenVectors(e.id + 1, 20, 40 * e.fin(), (x, y) -> {
+		  Fill.circle(e.x + x, e.y + y, 5 * e.fout());
+		});
+		Draw.color(Pal.accent, Color.gray, e.finpow());
+		Angles.randLenVectors(e.id + 1, 20, 50 * e.finpow(), (x, y) -> {
+		  Fill.circle(e.x + x, e.y + y, 5 * e.foutpow());
+		});
+
+		Lines.stroke(4f * e.fout());
+		Lines.circle(e.x, e.y, 30f * e.finpow());
+	}),
 
 	crucibleCraft = new Effect(30f, e -> {
 		Angles.randLenVectors(e.id, 20, e.finpow() * 40f, (x, y) -> {

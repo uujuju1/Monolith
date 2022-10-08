@@ -47,9 +47,7 @@ public class MonolithBlocks {
 
 	remnantFactory,
 
-	test,
-
-	voidfVoid, voidfSource;
+	pressureConveyor;
 
 	public static void load() {
 		// distribution
@@ -538,7 +536,7 @@ public class MonolithBlocks {
 			consumePower(3f);
 		}};
 
-		test = new PressureBlock("test") {{
+		pressureConveyor = new PressureConveyor("pressure-conveyor") {{
 			requirements(Category.distribution, with(Items.copper, 1));
 			size = 1;
 			health = 160;

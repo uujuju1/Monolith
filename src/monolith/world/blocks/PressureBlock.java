@@ -1,5 +1,6 @@
 package monolith.world;
 
+import arc.math.*;
 import mindustry.gen.*;
 import mindustry.world.*;
 import monolith.world.graph.*;
@@ -47,6 +48,10 @@ public class PressureBlock extends Block {
 			getGraph().vertexes.remove(getVertex());
 		}
 
+		public float pressureMap() {
+			Mathf.map(getModule().pressure, minPressure, maxPressure);
+		}
+
 		@Override
 		public PressureModule getModule() {return pModule;}
 
@@ -88,6 +93,7 @@ public class PressureBlock extends Block {
 		@Override
 		public void updateTile() {
 			overflow();
+			if (getGraph().updater == this) getGraph().update;
 		}
 	}
 }
