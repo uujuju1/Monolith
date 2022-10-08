@@ -21,8 +21,8 @@ public class PressureVertex {
 		with.edges.add(edge);
 	}
 	public void addEdge(PressureEdge edge) {
-		edges.add(edge);
-		with.edges.add(edge);
+		edge.v1.edges.add(edge);
+		edge.v2.edges.add(edge);
 	}
 
 	public void transferAll(Floatf<PressureEdge> amount) {
