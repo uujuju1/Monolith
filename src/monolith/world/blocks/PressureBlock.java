@@ -33,7 +33,8 @@ public class PressureBlock extends Block {
 		}
 
 		public void changeGraph() {
-			PressureGraph graph = new PressureGraph(this);
+			PressureGraph graph = new PressureGraph();
+			graph.setUpdater(this);
 			changeGraph(graph);
 		}
 		public void changeGraph(PressureGraph graph) {

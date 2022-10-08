@@ -1,6 +1,7 @@
 package monolith.world.graph;
 
 import arc.struct.*;
+import monolith.world.*;
 import monolith.world.modules.*;
 import monolith.world.PressureBlock.*;
 
@@ -22,10 +23,9 @@ public class PressureGraph {
 		vertexes.add(new PressureVertex(pModule, this));
 	}
 
-	@Override
 	public void update() {
 		for (PressureVertex vertex : vertexes) {
-			vertex.transferAll(edge -> (edge.bigger().pressure - edge.smaller().pressure)*((PressureBlock)vertex.pModule.build.block).pressureFlowMultiplier);
+			vertex.transferAll(edge -> (edge.bigger().pressure - edge.shorter().pressure)*((PressureBlock)vertex.pModule.build.block).pressureFlowMultiplier);
 		}
 	}
 }
