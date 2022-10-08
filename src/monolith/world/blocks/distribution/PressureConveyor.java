@@ -17,7 +17,9 @@ public class PressureConveyor extends PressureBlock {
 	@Override
 	public void load() {
 		super.load();
-		for (int i = 0; i < size * 4; i++) {
+		regions = new TextureRegion[16];
+		pressureRegions = new TextureRegion[16];
+		for (int i = 0; i < 16; i++) {
 			regions[i] = Core.atlas.find(name + "-" + i);
 			pressureRegions[i] = Core.atlas.find(name + "-" + i + "-pressure");
 		}
