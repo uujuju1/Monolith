@@ -8,7 +8,7 @@ import monolith.world.graph.*;
 
 public class PressureModule extends BlockModule {
 	public float pressure = 0f;
-	public PressureGraph graph = new PressureGraph();
+	public PressureGraph graph = new PressureGraph(build);
 	public PressureVertex vertex = new PressureVertex(this, graph);
 	public PressureBuild build;
 

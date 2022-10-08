@@ -2,6 +2,7 @@ package monolith.world.graph;
 
 import arc.struct.*;
 import monolith.world.modules.*;
+import monolith.world.PressureBlock.*;
 
 public class PressureGraph {
 	public Seq<PressureVertex> vertexes = new Seq<>(false, 28, PressureVertex.class);
