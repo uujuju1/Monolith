@@ -20,7 +20,7 @@ public class PressureVertex {
 	}
 	public void addEdge(PressureVertex with, boolean checkDuplicate) {
 		PressureEdge edge = new PressureEdge(this, with);
-		if (!checkDuplicate || hasEqual(edge)) {
+		if (!checkDuplicate || !hasEqual(edge)) {
 			edges.add(edge);
 			with.edges.add(edge);
 		}

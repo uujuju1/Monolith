@@ -31,6 +31,10 @@ public class PressureBlock extends Block {
 			}
 		}
 
+		public void changeGraph() {
+			PressureGraph graph = new PressureGraph();
+			changeGraph(graph);
+		}
 		public void changeGraph(PressureGraph graph) {
 			graph.addVertex(getVertex());
 			removeGraph();
@@ -65,10 +69,10 @@ public class PressureBlock extends Block {
 
 		@Override
 		public void onRemoved() {
+			removeGraph();
 			for (Building build : proximity) {
 				if (build instanceof PressureBuild) {
-					PressureGraph graph = new PressureGraph();
-					((PressureBuild) build).changeGraph(graph);
+					((PressureBuild) build).changeGraph();
 					((PressureBuild) build).graphProximity();
 				}
 			}
