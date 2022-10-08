@@ -10,7 +10,7 @@ import monolith.world.graph.PressureVertex.*;
 
 public class PressureBlock extends Block {
 	public float
-	pressureFlowMultiplier = 0.5f,
+	pressureFlowMultiplier = 0.1f,
 	minPressure = -100f,
 	maxPressure = 100f;
 
@@ -49,7 +49,7 @@ public class PressureBlock extends Block {
 		}
 
 		public float pressureMap() {
-			Mathf.map(getModule().pressure, minPressure, maxPressure);
+			return Mathf.map(getModule().pressure, minPressure, maxPressure);
 		}
 
 		@Override

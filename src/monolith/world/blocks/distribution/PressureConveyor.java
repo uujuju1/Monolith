@@ -1,5 +1,6 @@
 package monolith.world.blocks.distribution;
 
+import arc.*;
 import arc.graphics.g2d.*;
 import monolith.world.blocks.*;
 import monolith.world.blocks.PressureBlock.*;
@@ -17,8 +18,8 @@ public class PressureConveyor extends PressureBlock {
 	public void load() {
 		super.load();
 		for (int i = 0; i < size * 4; i++) {
-			variants[i] = Core.atlas.find(name + "-" + i);
-			variants[i] = Core.atlas.find(name + "-" + i + "-pressure");
+			regions[i] = Core.atlas.find(name + "-" + i);
+			pressureRegions[i] = Core.atlas.find(name + "-" + i + "-pressure");
 		}
 	}
 
@@ -31,7 +32,7 @@ public class PressureConveyor extends PressureBlock {
 		@Override
 		public void draw() {
 			Draw.rect(regions[findRegion()], x, y, 0);
-			Draw.alpha(pressuref());
+			Draw.alpha(pressureMap());
 			Draw.rect(pressureRegions[findRegion()], x, y, 0);
 		}
 	}
