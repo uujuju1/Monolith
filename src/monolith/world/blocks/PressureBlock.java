@@ -9,7 +9,7 @@ import monolith.world.graph.PressureVertex.*;
 
 public class PressureBlock extends Block {
 	public float
-	pressureFlowMultiplier = 0.5f;
+	pressureFlowMultiplier = 0.5f,
 	minPressure = -100f,
 	maxPressure = 100f;
 
