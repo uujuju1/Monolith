@@ -5,6 +5,11 @@ import monolith.world.modules.*;
 
 public class PressureGraph {
 	public Seq<PressureVertex> vertexes = new Seq<>(false, 28, PressureVertex.class);
+	public PressureBuild updater;
+
+	public PressureGraph(PressureBuild updater) {
+		this.updater = updater;
+	}
 
 	public void addVertex(PressureVertex vertex) {
 		if (!vertexes.contains(vertex)) vertexes.add(vertex);

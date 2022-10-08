@@ -32,7 +32,7 @@ public class PressureBlock extends Block {
 		}
 
 		public void changeGraph() {
-			PressureGraph graph = new PressureGraph();
+			PressureGraph graph = new PressureGraph(this);
 			changeGraph(graph);
 		}
 		public void changeGraph(PressureGraph graph) {
@@ -62,6 +62,10 @@ public class PressureBlock extends Block {
 						graphProximity();
 						break;
 					}
+				}
+			}
+			for (Building build : proximity) {
+				if (build instanceof PressureBuild) {
 					getVertex().addEdge(((PressureBuild) build).getVertex(), true);
 				}
 			}
