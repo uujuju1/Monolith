@@ -1,7 +1,7 @@
 package monolith.world.graph;
 
 import arc.struct.*;
-import monolith.world.*;
+import monolith.world.blocks.*;
 import monolith.world.modules.*;
 import monolith.world.blocks.PressureBlock.*;
 
