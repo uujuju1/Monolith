@@ -8,7 +8,7 @@ public class PressureGraph {
 	public Seq<PressureVertex> vertexes = new Seq<>(false, 28, PressureVertex.class);
 	public PressureBuild updater;
 
-	public PressureGraph(PressureBuild updater) {
+	public void setUpdater(PressureBuild updater) {
 		this.updater = updater;
 	}
 
@@ -20,5 +20,12 @@ public class PressureGraph {
 	// for testing
 	public void addVertex(PressureModule pModule) {
 		vertexes.add(new PressureVertex(pModule, this));
+	}
+
+	@Override
+	public void update() {
+		for (PressureVertex vertex : vertexes) {
+			vertex.transferAll(edge -> (edge.bigger().pressure, - edge.smaller().pressure)*vertex.pModule.build.((PressureBlock)block).pressureFlowMultiplier);
+		}
 	}
 }
