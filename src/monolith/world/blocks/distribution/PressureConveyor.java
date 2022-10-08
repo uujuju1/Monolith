@@ -27,6 +27,7 @@ public class PressureConveyor extends PressureBlock {
 		public int findRegion() {
 			int index = 0;
 			for (int i = 0; i < 4; i++) if (nearby(i) instanceof PressureBuild) if (((PressureBuild) nearby(i)).acceptPressure(this, 0f)) index += 1 << i;
+				return index;
 		}
 
 		@Override
