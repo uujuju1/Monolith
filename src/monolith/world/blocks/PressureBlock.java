@@ -43,13 +43,13 @@ public class PressureBlock extends Block {
 			removeGraph();
 			getModule().graph = graph;
 		}
-		// removes it's vertex from the graph
+
 		public void removeGraph() {
 			getGraph().vertexes.remove(getVertex());
 		}
 
 		public float pressureMap() {
-			return Mathf.map(getModule().pressure, minPressure, maxPressure);
+			return (getModule().pressure + Math.abs(minPressure))/(maxPressure + Math.abs(minPressure));
 		}
 
 		@Override
