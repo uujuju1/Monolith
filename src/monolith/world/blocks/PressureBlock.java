@@ -93,7 +93,7 @@ public class PressureBlock extends Block {
 		@Override
 		public void updateTile() {
 			overflow();
-			if (getGraph().updater == this) getGraph().update;
+			if (getGraph().updater == this) getGraph().update();
 		}
 	}
 }
