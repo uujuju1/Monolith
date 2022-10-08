@@ -16,9 +16,14 @@ public class PressureVertex {
 	}
 
 	public void addEdge(PressureVertex with) {
+		addEdge(with, false);
+	}
+	public void addEdge(PressureVertex with, boolean checkDuplicate) {
 		PressureEdge edge = new PressureEdge(this, with);
-		edges.add(edge);
-		with.edges.add(edge);
+		if (!checkDuplicate || hasEqual(edge)) {
+			edges.add(edge);
+			with.edges.add(edge);
+		}
 	}
 	public void addEdge(PressureEdge edge) {
 		edge.v1.edges.add(edge);

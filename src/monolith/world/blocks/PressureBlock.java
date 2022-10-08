@@ -34,7 +34,7 @@ public class PressureBlock extends Block {
 		public void changeGraph(PressureGraph graph) {
 			graph.addVertex(getVertex());
 			removeGraph();
-			pModule.graph = graph;
+			getModule().graph = graph;
 		}
 		// removes it's vertex from the graph
 		public void removeGraph() {
@@ -58,8 +58,7 @@ public class PressureBlock extends Block {
 						graphProximity();
 						break;
 					}
-					// PressureEdge edge = new PressureEdge(getVertex(), ((PressureBuild) build).getVertex());
-					// if (!getVertex().hasEqual(edge)) getVertex().addEdge(edge);
+					getVertex().addEdge(((PressureBuild) build).getVertex(), true);
 				}
 			}
 		}
@@ -68,7 +67,8 @@ public class PressureBlock extends Block {
 		public void onRemoved() {
 			for (Building build : proximity) {
 				if (build instanceof PressureBuild) {
-					((PressureBuild) build).changeGraph(new PressureGraph());
+					PressureGraph graph = new PressureGraph();
+					((PressureBuild) build).changeGraph(graph);
 					((PressureBuild) build).graphProximity();
 				}
 			}
