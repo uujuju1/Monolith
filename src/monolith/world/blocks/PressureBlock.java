@@ -58,8 +58,8 @@ public class PressureBlock extends Block {
 						graphProximity();
 						break;
 					}
-					PressureEdge next = new PressureEdge(getVertex(), ((PressureBuild) build).getVertex());
-					if (!getVertex().hasEqual(next)) getVertex().addEdge(next);
+					PressureEdge edge = new PressureEdge(getVertex(), ((PressureBuild) build).getVertex());
+					if (!getVertex().hasEqual(edge)) getVertex().addEdge(edge);
 				}
 			}
 		}
