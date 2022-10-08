@@ -3,8 +3,8 @@ package monolith.world.modules;
 import arc.struct.*;
 import arc.util.io.*;
 import mindustry.world.modules.*;
-import monolith.world.PressureBlock.*;
 import monolith.world.graph.*;
+import monolith.world.blocks.PressureBlock.*;
 
 public class PressureModule extends BlockModule {
 	public float pressure = 0f;

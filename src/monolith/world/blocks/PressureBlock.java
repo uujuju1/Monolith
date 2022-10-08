@@ -1,4 +1,4 @@
-package monolith.world;
+package monolith.world.blocks;
 
 import arc.math.*;
 import mindustry.gen.*;

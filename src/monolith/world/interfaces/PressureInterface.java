@@ -1,8 +1,8 @@
 package monolith.world.interfaces;
 
-import monolith.world.PressureBlock.*;
 import monolith.world.graph.*;
 import monolith.world.modules.*;
+import monolith.world.blocks.PressureBlock.*;
 
 public interface PressureInterface {
 	default PressureModule getModule() {return null;}

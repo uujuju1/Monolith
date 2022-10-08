@@ -3,7 +3,7 @@ package monolith.world.graph;
 import arc.struct.*;
 import monolith.world.*;
 import monolith.world.modules.*;
-import monolith.world.PressureBlock.*;
+import monolith.world.blocks.PressureBlock.*;
 
 public class PressureGraph {
 	public Seq<PressureVertex> vertexes = new Seq<>(false, 28, PressureVertex.class);

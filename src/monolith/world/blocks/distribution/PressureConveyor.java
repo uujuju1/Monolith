@@ -1,6 +1,8 @@
 package monolith.world.blocks.distribution;
 
+import arc.graphics.g2d.*;
 import monolith.world.blocks.*;
+import monolith.world.blocks.PressureBlock.*;
 
 public class PressureConveyor extends PressureBlock {
 	public TextureRegion[] regions;
