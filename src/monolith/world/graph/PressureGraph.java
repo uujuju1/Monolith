@@ -7,7 +7,7 @@ public class PressureGraph {
 	public Seq<PressureVertex> vertexes = new Seq<>(false, 28, PressureVertex.class);
 
 	public void addVertex(PressureVertex vertex) {
-		if (vertexes.contains(vertex)) vertexes.add(vertex);
+		if (!vertexes.contains(vertex)) vertexes.add(vertex);
 		vertex.pGraph = this;
 	}
 
