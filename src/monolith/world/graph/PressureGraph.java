@@ -25,7 +25,7 @@ public class PressureGraph {
 	@Override
 	public void update() {
 		for (PressureVertex vertex : vertexes) {
-			vertex.transferAll(edge -> (edge.bigger().pressure, - edge.smaller().pressure)*vertex.pModule.build.((PressureBlock)block).pressureFlowMultiplier);
+			vertex.transferAll(edge -> (edge.bigger().pressure - edge.smaller().pressure)*vertex.pModule.build.((PressureBlock)block).pressureFlowMultiplier);
 		}
 	}
 }
