@@ -28,7 +28,7 @@ public class PressurePipe extends PressureBlock {
 	@Override
 	public TextureRegion[] regions() {return regions[0];}
 
-	public class PressureConveyorBuild extends PressureBuild {
+	public class PressurePipeBuild extends PressureBuild {
 		public int findRegion() {
 			int index = 0;
 			for (int i = 0; i < 4; i++) if (nearby(i) instanceof PressureBuild) if (((PressureBuild) nearby(i)).acceptPressure(this, 0f)) index += 1 << i;
