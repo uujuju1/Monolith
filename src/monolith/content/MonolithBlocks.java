@@ -47,7 +47,7 @@ public class MonolithBlocks {
 
 	remnantFactory,
 
-	pressureConveyor;
+	pressurePipe;
 
 	public static void load() {
 		// distribution
@@ -200,6 +200,7 @@ public class MonolithBlocks {
 			));
 			size = 4;
 			craftTime = 90f;
+			craftEffect = MonolithFx.karaniteCraft;
 			updateEffect = Fx.smoke;
 			consumeItems(with(
 				Items.titanium, 2,
@@ -536,7 +537,7 @@ public class MonolithBlocks {
 			consumePower(3f);
 		}};
 
-		pressureConveyor = new PressureConveyor("pressure-conveyor") {{
+		pressurePipe = new PressurePipe("pressure-conveyor") {{
 			requirements(Category.distribution, with(Items.copper, 1));
 			size = 1;
 			health = 160;

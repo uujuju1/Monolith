@@ -1,6 +1,7 @@
 package monolith.world.blocks;
 
 import arc.math.*;
+import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.world.*;
 import monolith.world.graph.*;
@@ -13,6 +14,16 @@ public class PressureBlock extends Block {
 	pressureFlowMultiplier = 0.1f,
 	minPressure = -100f,
 	maxPressure = 100f;
+
+	@Override
+	public void setBars() {
+		super.setBars();
+		addBar("pressure", entity -> new Bar(
+			Core.bundle.get("bar.pressure"),
+			Pal.lancerLaser.cpy().lerp(Pal.accent, ((PressureBuild) entity)::pressureFraction),
+			() -> ((PressureBuild) entity)::pressureFraction
+		));
+	}
 
 	public PressureBlock(String name) {
 		super(name);
@@ -48,8 +59,11 @@ public class PressureBlock extends Block {
 			getGraph().vertexes.remove(getVertex());
 		}
 
-		public float pressureMap() {
-			return (getModule().pressure + Math.abs(minPressure))/(maxPressure + Math.abs(minPressure));
+		public float pressureAlpha() {
+			return Math.abs(getModule().pressure)/Math.max(Math.abs(minPressure), maxPressure);
+		}
+		public Floatp pressureFraction() {
+			return () -> (getModule().pressure + minPressure)/(maxPressure + minPressure);
 		}
 
 		@Override

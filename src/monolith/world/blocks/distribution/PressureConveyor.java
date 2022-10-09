@@ -5,11 +5,11 @@ import arc.graphics.g2d.*;
 import monolith.world.blocks.*;
 import monolith.world.blocks.PressureBlock.*;
 
-public class PressureConveyor extends PressureBlock {
+public class PressurePipe extends PressureBlock {
 	public TextureRegion[] regions;
 	public TextureRegion[] pressureRegions;
 
-	public PressureConveyor(String name) {
+	public PressurePipe(String name) {
 		super(name);
 		solid = true;
 	}
@@ -25,17 +25,20 @@ public class PressureConveyor extends PressureBlock {
 		}
 	}
 
+	@Override
+	public TextureRegion[] regions() {return regions[0];}
+
 	public class PressureConveyorBuild extends PressureBuild {
 		public int findRegion() {
 			int index = 0;
 			for (int i = 0; i < 4; i++) if (nearby(i) instanceof PressureBuild) if (((PressureBuild) nearby(i)).acceptPressure(this, 0f)) index += 1 << i;
-				return index;
+			return index;
 		}
 
 		@Override
 		public void draw() {
 			Draw.rect(regions[findRegion()], x, y, 0);
-			Draw.alpha(pressureMap());
+			Draw.alpha(pressureAlpha());
 			Draw.rect(pressureRegions[findRegion()], x, y, 0);
 		}
 	}
