@@ -1,9 +1,12 @@
 package monolith.world.blocks;
 
+import arc.*;
+import arc.func.*;
 import arc.math.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.world.*;
+import mindustry.graphics.*;
 import monolith.world.graph.*;
 import monolith.world.modules.*;
 import monolith.world.interfaces.*;

@@ -31,9 +31,9 @@ public class PressureVertex {
 	}
 
 	public void transferAll(Floatf<PressureEdge> amount) {
-		float values = new float[edge.size];
+		float[] values = new float[edges.size];
 		for (PressureEdge edge : edges) values[edges.indexOf(edge)] = amount.get(edge);
-		for (PressureEdge edge : edges) edge.transfer(vales[edges.indexOf(edge)]);
+		for (PressureEdge edge : edges) edge.transfer(values[edges.indexOf(edge)]);
 	}
 
 	public boolean hasEqual(PressureEdge other) {
@@ -55,11 +55,9 @@ public class PressureVertex {
 		}
 
 		public void transfer(float value) {
-			if (!transferFlag) {
-				PressureModule bigger = bigger(), shorter = shorter();
-				bigger.sub(value);
-				shorter.add(value);
-			}
+			PressureModule bigger = bigger(), shorter = shorter();
+			bigger.sub(value);
+			shorter.add(value);
 		}
 
 		public boolean compare(PressureEdge other) {
