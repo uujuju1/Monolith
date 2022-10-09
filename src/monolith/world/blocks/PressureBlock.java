@@ -3,6 +3,7 @@ package monolith.world.blocks;
 import arc.*;
 import arc.func.*;
 import arc.math.*;
+import arc.util.io.*;
 import arc.graphics.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
@@ -35,8 +36,8 @@ public class PressureBlock extends Block {
 		));
 	}
 
-	public void consumePressure(float amount) {
-		consume(new ConsumePressure(amount));
+	public void consumePressure(float amount, boolean inverse) {
+		consume(new ConsumePressure(amount, inverse));
 	}
 
 	public class PressureBuild extends Building implements PressureInterface {

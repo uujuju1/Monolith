@@ -14,8 +14,8 @@ import mindustry.logic.*;
 import mindustry.type.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
-import monolith.world.*;
-import monolith.world.PressureBlock.*;
+import monolith.world.blocks.*;
+import monolith.world.blocks.PressureBlock.*;
 
 import static mindustry.Vars.*;
 

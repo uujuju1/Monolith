@@ -1,5 +1,6 @@
 package monolith.world.consumers;
 
+import mindustry.gen.*;
 import mindustry.world.consumers.*;
 import monolith.world.PressureBlock.*;
 
