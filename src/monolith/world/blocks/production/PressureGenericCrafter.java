@@ -204,9 +204,7 @@ public class PressureGenericCrafter extends PressureBlock {
 					return false;
 				}
 			}
-			if (getModule().pressure + (outputPressure/60) > ((PressureBlock)).maxPressure || getModule().pressure < ((PressureBlock)).minPressure - (outputPressure/60)) {
-				return false;
-			}
+			if (getModule().pressure + (outputPressure/60) > ((PressureBlock)block).maxPressure || getModule().pressure < ((PressureBlock)block).minPressure - (outputPressure/60)) return false;
 
 			return enabled;
 		}

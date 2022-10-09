@@ -2,7 +2,7 @@ package monolith.world.consumers;
 
 import mindustry.gen.*;
 import mindustry.world.consumers.*;
-import monolith.world.PressureBlock.*;
+import monolith.world.blocks.PressureBlock.*;
 
 public class ConsumePressure extends Consume {
 	public float tresh;
