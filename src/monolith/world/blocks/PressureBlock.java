@@ -23,7 +23,7 @@ public class PressureBlock extends Block {
 		super.setBars();
 		addBar("pressure", entity -> new Bar(
 			Core.bundle.get("bar.pressure"),
-			Pal.lancerLaser.cpy().lerp(Pal.accent, ((PressureBuild) entity)::pressureAlpha),
+			Pal.lancerLaser.cpy(),
 			() -> ((PressureBuild) entity)::pressureAlpha
 		));
 	}
