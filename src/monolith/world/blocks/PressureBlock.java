@@ -10,6 +10,7 @@ import mindustry.world.*;
 import mindustry.graphics.*;
 import monolith.world.graph.*;
 import monolith.world.modules.*;
+import monolith.world.consumers.*;
 import monolith.world.interfaces.*;
 import monolith.world.graph.PressureVertex.*;
 
@@ -19,19 +20,23 @@ public class PressureBlock extends Block {
 	minPressure = -100f,
 	maxPressure = 100f;
 
+	public PressureBlock(String name) {
+		super(name);
+		update = sync = destructible = true;
+	}
+
 	@Override
 	public void setBars() {
 		super.setBars();
 		addBar("pressure", entity -> new Bar(
 			Core.bundle.get("bar.pressure"),
 			Color.white,
-			((PressureBuild) entity).pressureFraction()
+			() -> ((PressureBuild) entity).pressureFraction()
 		));
 	}
 
-	public PressureBlock(String name) {
-		super(name);
-		update = sync = destructible = true;
+	public consumePressure(float amount) {
+		consume(new ConsumePressure(amount));
 	}
 
 	public class PressureBuild extends Building implements PressureInterface {
@@ -66,8 +71,8 @@ public class PressureBlock extends Block {
 		public float pressureAlpha() {
 			return Math.abs(getModule().pressure)/Math.max(Math.abs(minPressure), maxPressure);
 		}
-		public Floatp pressureFraction() {
-			return () -> (getModule().pressure + minPressure)/(maxPressure + minPressure);
+		public float pressureFraction() {
+			return (getModule().pressure + minPressure)/(maxPressure + minPressure);
 		}
 
 		@Override
@@ -112,6 +117,17 @@ public class PressureBlock extends Block {
 		public void updateTile() {
 			overflow();
 			if (getGraph().updater == this) getGraph().update();
+		}
+
+		@Override
+		public void write(Writes write) {
+			super.write(write);
+			getModule().write(write);
+		}
+		@Override
+		public void read(Reads read, byte revision) {
+			super.read(read, revision);
+			getModule().read(read);
 		}
 	}
 }
