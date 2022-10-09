@@ -26,7 +26,9 @@ public class PressurePipe extends PressureBlock {
 	}
 
 	@Override
-	public TextureRegion[] regions() {return new TextureRegion[]{regions[0]};}
+	public TextureRegion[] icons() {
+		return new TextureRegion[]{regions[0]};
+	}
 
 	public class PressurePipeBuild extends PressureBuild {
 		public int findRegion() {
