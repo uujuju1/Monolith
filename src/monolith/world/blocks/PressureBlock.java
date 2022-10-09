@@ -35,7 +35,7 @@ public class PressureBlock extends Block {
 		));
 	}
 
-	public consumePressure(float amount) {
+	public void consumePressure(float amount) {
 		consume(new ConsumePressure(amount));
 	}
 
