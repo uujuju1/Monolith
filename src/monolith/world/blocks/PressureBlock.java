@@ -3,6 +3,7 @@ package monolith.world.blocks;
 import arc.*;
 import arc.func.*;
 import arc.math.*;
+import arc.graphics.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.world.*;
@@ -24,7 +25,7 @@ public class PressureBlock extends Block {
 		addBar("pressure", entity -> new Bar(
 			Core.bundle.get("bar.pressure"),
 			Color.white,
-			() -> ((PressureBuild) entity).pressureAlpha()
+			((PressureBuild) entity).pressureFraction()
 		));
 	}
 
