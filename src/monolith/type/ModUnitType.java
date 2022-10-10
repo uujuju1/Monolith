@@ -64,13 +64,13 @@ public class ModUnitType extends UnitType {
 		return Vars.world.floorWorld(unit.x, unit.y);
 	}
 
-	public static class PressureEngine extends UnitEngine {
+	public static class GasEngine extends UnitEngine {
 		public static Rand rand = new Rand();
 		public Color color;
 		public float length;
 		public int amount;
 
-		public PressureEngine(float x, float y, int amount, float width, float length, float rotation, Color color) {
+		public GasEngine(float x, float y, int amount, float width, float length, float rotation, Color color) {
 			super(x, y, width, rotation);
 			this.amount = amount;
 			this.length = length;

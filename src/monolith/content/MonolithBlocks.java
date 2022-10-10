@@ -47,7 +47,7 @@ public class MonolithBlocks {
 
 	remnantFactory,
 
-	pressurePipe;
+	heatPipe;
 
 	public static void load() {
 		// distribution
@@ -59,6 +59,11 @@ public class MonolithBlocks {
 			));
 			size = 1;
 			health = 60;
+		}};
+		heatPipe = new HeatPipe("heat-pipe") {{
+			requirements(Category.distribution, with(Items.copper, 1));
+			size = 1;
+			health = 160;
 		}};
 
 		// production
@@ -211,7 +216,28 @@ public class MonolithBlocks {
 			consumePower(2f);
 			outputItems = with(MonolithItems.karanite, 2);
 		}};
+		vakyiteCompressor = new PressureHeatCrafter("vakyite") {{
+			requirements(Category.crafting, with(
+				MonolithItems.lathanium, 150,
+				MonolithItems.sohrite, 125,
+				Items.silicon, 175,
+				Items.graphite, 200
+			));
+			size = 3;
+			craftTime = 90f;
+			// craftEffect = MonolithFx.vakyiteCraft;
+			updateEffect = Fx.smoke;
+			consumeItems(with(
+				Items.sohrite, 2,
+				Items.meanium, 1
+			));
+			consumeLiquid(Liquids.water, 0.1f);
+			consumeHeat(0.30f);
+			consumePower(1f);
+			outputItems = with(MonolithItems.vakyite, 1);
+		}};
 
+		// turrets
 		move = new ItemTurret("move") {{
 			requirements(Category.turret, with(
 				Items.graphite, 150,
@@ -454,6 +480,7 @@ public class MonolithBlocks {
 			);
 		}};
 
+		// walls
 		sparkWall = new SparkWall("spark-wall") {{
 			requirements(Category.defense, with(
 				MonolithItems.lithium, 12,
@@ -505,6 +532,7 @@ public class MonolithBlocks {
 			itemCapacity = 100;
 		}};
 
+		// build towers
 		artifact = new BuildTurret("artifact") {{
 			requirements(Category.effect, with(
 				Items.plastanium, 150,
@@ -535,12 +563,6 @@ public class MonolithBlocks {
 			consumeItems(with(Items.silicon, 25, MonolithItems.meanium, 50));
 			consumeLiquid(Liquids.oil, 0.5f);
 			consumePower(3f);
-		}};
-
-		pressurePipe = new PressurePipe("pressure-conveyor") {{
-			requirements(Category.distribution, with(Items.copper, 1));
-			size = 1;
-			health = 160;
 		}};
 	}
 }

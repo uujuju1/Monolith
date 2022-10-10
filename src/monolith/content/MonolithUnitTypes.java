@@ -72,7 +72,7 @@ public class MonolithUnitTypes {
 
 			immunities.add(MonolithStatusEffects.isolated);
 
-			setEnginesMirror(new PressureEngine(4f, 0f, 15, 4f, 8f, 160f, Color.gray));
+			setEnginesMirror(new GasEngine(4f, 0f, 15, 4f, 8f, 160f, Color.gray));
 			engines.get(1).rotation = -160f;
 
 			rotors.add(

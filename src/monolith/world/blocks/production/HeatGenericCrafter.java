@@ -15,11 +15,11 @@ import mindustry.type.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import monolith.world.blocks.*;
-import monolith.world.blocks.PressureBlock.*;
+import monolith.world.blocks.HeatBlock.*;
 
 import static mindustry.Vars.*;
 
-public class PressureGenericCrafter extends PressureBlock {
+public class HeatGenericCrafter extends HeatBlock {
    /** Written to outputItems as a single-element array if outputItems is null. */
 	public @Nullable ItemStack outputItem;
 	/** Overwrites outputItem if not null. */
@@ -29,7 +29,7 @@ public class PressureGenericCrafter extends PressureBlock {
 	public @Nullable LiquidStack outputLiquid;
 	/** Overwrites outputLiquid if not null. */
 	public @Nullable LiquidStack[] outputLiquids;
-	public float outputPressure = 0f;
+	public float outputHeat = 0f;
 
 	/** Liquid output directions, specified in the same order as outputLiquids. Use -1 to dump in every direction. Rotations are relative to block. */
 	public int[] liquidOutputDirections = {-1};
@@ -48,7 +48,7 @@ public class PressureGenericCrafter extends PressureBlock {
 
 	public DrawBlock drawer = new DrawDefault();
 
-	public PressureGenericCrafter(String name){
+	public HeatGenericCrafter(String name){
 		super(name);
 		update = true;
 		solid = true;
@@ -161,7 +161,7 @@ public class PressureGenericCrafter extends PressureBlock {
 		}
 	}
 
-	public class PressureGenericCrafterBuild extends PressureBuild {
+	public class HeatGenericCrafterBuild extends HeatBuild {
 		public float progress;
 		public float totalProgress;
 		public float warmup;
@@ -204,7 +204,7 @@ public class PressureGenericCrafter extends PressureBlock {
 					return false;
 				}
 			}
-			if (getModule().pressure + (outputPressure/60) > ((PressureBlock)block).maxPressure || getModule().pressure < ((PressureBlock)block).minPressure - (outputPressure/60)) return false;
+			if (getModule().heat + (outputHeat/60) > ((HeatBlock)block).maxHeat || getModule().heat - (outputHeat/60) < ((HeatBlock)block).minHeat && outputHeat != 0) return false;
 
 			return enabled;
 		}
@@ -224,7 +224,7 @@ public class PressureGenericCrafter extends PressureBlock {
 						handleLiquid(this, output.liquid, Math.min(output.amount * inc, liquidCapacity - liquids.get(output.liquid)));
 					}
 				}
-				addPressure(outputPressure/craftTime);
+				addHeat(outputHeat/craftTime);
 
 				if(wasVisible && Mathf.chanceDelta(updateEffectChance)){
 					updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4));

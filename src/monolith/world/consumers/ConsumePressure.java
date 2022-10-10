@@ -2,24 +2,24 @@ package monolith.world.consumers;
 
 import mindustry.gen.*;
 import mindustry.world.consumers.*;
-import monolith.world.blocks.PressureBlock.*;
+import monolith.world.blocks.HeatBlock.*;
 
-public class ConsumePressure extends Consume {
+public class ConsumeHeat extends Consume {
 	public float tresh;
 	public boolean inverse;
 
-	public ConsumePressure(float tresh, boolean inverse) {
+	public ConsumeHeat(float tresh, boolean inverse) {
 		this.tresh = tresh;
 		this.inverse = inverse;
 	}
 
 	@Override
 	public float efficiency(Building build) {
-		if (build instanceof PressureBuild) {
-			PressureBuild b = (PressureBuild) build;
+		if (build instanceof HeatBuild) {
+			HeatBuild b = (HeatBuild) build;
 			float
-			posValue = b.pressureAlpha() > tresh ? b.pressureAlpha() : 0f,
-			negValue = b.pressureAlpha() < tresh ? b.pressureAlpha() : 0f;
+			posValue = b.heatAlpha() > tresh ? b.heatAlpha() : 0f,
+			negValue = b.heatAlpha() < tresh ? b.heatAlpha() : 0f;
 			return inverse ? negValue : posValue;
 		}
 		return 0f;
