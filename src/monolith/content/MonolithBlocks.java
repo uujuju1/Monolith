@@ -217,7 +217,7 @@ public class MonolithBlocks {
 			consumePower(2f);
 			outputItems = with(MonolithItems.karanite, 2);
 		}};
-		vakyiteCompressor = new HeatGenericCrafter("vakyite") {{
+		vakyiteCompressor = new HeatGenericCrafter("vakyite-compressor") {{
 			requirements(Category.crafting, with(
 				MonolithItems.lathanium, 150,
 				MonolithItems.sohrite, 125,

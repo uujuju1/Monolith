@@ -18,7 +18,7 @@ import monolith.world.graph.HeatVertex.*;
 public class HeatBlock extends Block {
 	public float
 	heatFlowMultiplier = 0.05f,
-	heatLossMultiplier = 0.01f,
+	heatLossPerSecond = 1f,
 	minHeat = -273f,
 	maxHeat = 1000f;
 
@@ -106,7 +106,7 @@ public class HeatBlock extends Block {
 		@Override
 		public void onRemoved() {
 			getGraph().destroyVertex(getVertex());
-			if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).pModule.build);
+			if (getGraph().vertexes.size > 0) if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).pModule.build);
 		}
 
 		@Override
