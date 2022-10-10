@@ -21,13 +21,13 @@ public class HeatModule extends BlockModule {
 	public HeatBuild build() {return build;}
 
 	public void add(float value) {
-		Heat += value;
+		heat += value;
 	}
 	public void sub(float value) {
-		Heat -= value;
+		heat -= value;
 	}
 	public void set(float value) {
-		Heat = value;
+		heat = value;
 	}
 
 	@Override

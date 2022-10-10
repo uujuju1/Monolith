@@ -4,6 +4,7 @@ import arc.struct.*;
 import monolith.world.blocks.*;
 import monolith.world.modules.*;
 import monolith.world.blocks.HeatBlock.*;
+import monolith.world.graph.HeatVertex.*;
 
 public class HeatGraph {
 	public Seq<HeatVertex> vertexes = new Seq<>(false, 28, HeatVertex.class);

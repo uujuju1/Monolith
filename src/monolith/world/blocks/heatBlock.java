@@ -70,10 +70,10 @@ public class HeatBlock extends Block {
 			getGraph().vertexes.remove(getVertex());
 		}
 
-		public float HeatAlpha() {
+		public float heatAlpha() {
 			return Math.abs(getModule().heat)/Math.max(Math.abs(minHeat), maxHeat);
 		}
-		public float HeatFraction() {
+		public float heatFraction() {
 			return (getModule().heat + Math.abs(minHeat))/(maxHeat + Math.abs(minHeat));
 		}
 
@@ -106,7 +106,7 @@ public class HeatBlock extends Block {
 		@Override
 		public void onRemoved() {
 			getGraph().destroyEdge(getVertex());
-			if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0));
+			if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).module.build);
 		}
 
 		@Override
