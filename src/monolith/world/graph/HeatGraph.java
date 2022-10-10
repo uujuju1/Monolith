@@ -7,7 +7,7 @@ import monolith.world.blocks.HeatBlock.*;
 
 public class HeatGraph {
 	public Seq<HeatVertex> vertexes = new Seq<>(false, 28, HeatVertex.class);
-	public Seq<HeatEdge> edges = new Seq<>(false, 28, HeatEdge.class)
+	public Seq<HeatEdge> edges = new Seq<>(false, 28, HeatEdge.class);
 	public HeatBuild updater;
 
 	public void setUpdater(HeatBuild updater) {
