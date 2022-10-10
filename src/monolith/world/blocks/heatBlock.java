@@ -105,13 +105,13 @@ public class HeatBlock extends Block {
 
 		@Override
 		public void onRemoved() {
-			getGraph().destroyEdge(getVertex());
-			if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).module.build);
+			getGraph().destroyVertex(getVertex());
+			if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).pModule.build);
 		}
 
 		@Override
 		public void updateTile() {
-			overflow();
+			overheat();
 			if (getGraph().updater == this) getGraph().update();
 		}
 
