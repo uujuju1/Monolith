@@ -233,7 +233,7 @@ public class MonolithBlocks {
 				MonolithItems.meanium, 1
 			));
 			consumeLiquid(Liquids.water, 0.1f);
-			consumeHeat(0.3f , true);
+			consumeHeat(0.3f, true);
 			consumePower(1f);
 			outputItems = with(MonolithItems.vakyite, 1);
 		}};

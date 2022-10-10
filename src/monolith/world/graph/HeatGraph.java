@@ -1,5 +1,6 @@
 package monolith.world.graph;
 
+import arc.util.*;
 import arc.struct.*;
 import monolith.world.blocks.*;
 import monolith.world.modules.*;
@@ -34,6 +35,6 @@ public class HeatGraph {
 		float[] value = new float[edges.size];
 		for (HeatEdge edge : edges) value[edges.indexOf(edge)] = (edge.bigger().heat - edge.shorter().heat)*((HeatBlock) edge.bigger().build.block).heatFlowMultiplier;
 		for (HeatEdge edge : edges) edge.transfer(value[edges.indexOf(edge)]);
-		for (HeatVertex vertex : vertexes) vertex.pModule.sub(pModule.pressure > 0 ? ((HeatBlock) vertex.pModule.build.block).heatLossMultiplier : -((HeatBlock) vertex.pModule.build.block).heatLossMultiplier);
+		for (HeatVertex vertex : vertexes) vertex.pModule.sub(vertex.pModule.pressure > 0 ? ((HeatBlock) vertex.pModule.build.block).heatLossPerSecond/60 * Time.delta : -((HeatBlock) vertex.pModule.build.block).heatLLossPerSecond/60 * Time.delta);
 	}
 }

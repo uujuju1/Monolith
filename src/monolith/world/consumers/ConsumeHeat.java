@@ -18,8 +18,8 @@ public class ConsumeHeat extends Consume {
 		if (build instanceof HeatBuild) {
 			HeatBuild b = (HeatBuild) build;
 			float
-			posValue = b.heatAlpha() > tresh ? b.heatAlpha() : 0f,
-			negValue = b.heatAlpha() < tresh ? b.heatAlpha() : 0f;
+			posValue = b.getModule().pressure > tresh ? b.heatAlpha() : 0f,
+			negValue = b.getModule().pressure < tresh ? 1f - b.heatAlpha() : 0f;
 			return inverse ? negValue : posValue;
 		}
 		return 0f;
