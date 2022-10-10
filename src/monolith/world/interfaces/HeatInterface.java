@@ -16,6 +16,5 @@ public interface HeatInterface {
 	default boolean acceptHeat(HeatBuild src, float amount) {return true;}
 	default boolean outputHeat(HeatBuild src, float amount) {return true;}
 
-	// TODO make 2 methods?
-	default void overflow() {}
+	default void overheat() {}
 } 

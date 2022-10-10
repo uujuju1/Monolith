@@ -32,7 +32,8 @@ public class HeatGraph {
 
 	public void update() {
 		float[] value = new float[edges.size];
-		for (HeatEdge edge : edges) value[edges.indexOf(edge)] = (edge.bigger().heat - edge.shorter().heat)*((HeatBlock)vertex.pModule.build.block).heatFlowMultiplier;
+		for (HeatEdge edge : edges) value[edges.indexOf(edge)] = (edge.bigger().heat - edge.shorter().heat)*((HeatBlock)edge.bigger().pModule.build.block).heatFlowMultiplier;
 		for (HeatEdge edge : edges) edge.transfer(value[edges.indexOf(edge)]);
+		for (HeatVertex vertex : vertexes) vertex.pModule.pressure.sub(vertex.pModule.pressure * ((HeatBlock) vertex.pModule.build.block).heatLossMultiplier); 
 	}
 }

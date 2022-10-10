@@ -33,6 +33,7 @@ public class MonolithBlocks {
 	// production
 	macrosteelFurnace, lithiumWeaver, alloyInfuser,
 	industrialPress, sohritePress, karanitePress,
+	vakyiteCompressor,
 
 	move, accelerate,
 	revenant,
@@ -228,8 +229,8 @@ public class MonolithBlocks {
 			// craftEffect = MonolithFx.vakyiteCraft;
 			updateEffect = Fx.smoke;
 			consumeItems(with(
-				Items.sohrite, 2,
-				Items.meanium, 1
+				MonolithItems.sohrite, 2,
+				MonolithItems.meanium, 1
 			));
 			consumeLiquid(Liquids.water, 0.1f);
 			consumeHeat(0.30f);

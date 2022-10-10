@@ -81,8 +81,8 @@ public class HeatBlock extends Block {
 		public HeatModule getModule() {return pModule;}
 
 		@Override
-		public void overflow() {
-			if (getModule().heat < minHeat || getModule().heat > maxHeat) kill();
+		public void overheat() {
+			if (getModule().heat > maxHeat) kill();
 		}
 
 		@Override
