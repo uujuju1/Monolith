@@ -18,7 +18,7 @@ import monolith.world.graph.HeatVertex.*;
 public class HeatBlock extends Block {
 	public float
 	heatFlowMultiplier = 0.05f,
-	heatLoss = 1f,
+	heatLossMultiplier = 0.01f,
 	minHeat = -273f,
 	maxHeat = 1000f;
 
