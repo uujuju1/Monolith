@@ -31,10 +31,14 @@ public class HeatBlock extends Block {
 	public void setBars() {
 		super.setBars();
 		addBar("Heat", entity -> new Bar(
-			Core.bundle.get("bar.Heat"),
-			Color.white,
+			Core.bundle.get("bar.Heat") + ": " + entity.getModule().heat,
+			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction()),
 			() -> ((HeatBuild) entity).heatFraction()
-		));
+		)).set(
+			() -> Core.bundle.get("bar.Heat") + ": " + entity.getModule().heat,
+			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction()),
+			() -> ((HeatBuild) entity).heatFraction()
+		);
 	}
 
 	public void consumeHeat(float amount, boolean inverse) {
@@ -62,7 +66,7 @@ public class HeatBlock extends Block {
 		}
 		public void changeGraph(HeatGraph graph) {
 			graph.addVertex(getVertex());
-			removeGraph();
+			getGraph().destroyVertex(pModule.vertex);
 			getModule().graph = graph;
 		}
 
@@ -83,6 +87,7 @@ public class HeatBlock extends Block {
 		@Override
 		public void overheat() {
 			if (getModule().heat > maxHeat) kill();
+			if (getModule().heat < minHeat) setHeat(minHeat);
 		}
 
 		@Override

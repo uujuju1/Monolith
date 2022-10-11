@@ -20,13 +20,11 @@ public class HeatGraph {
 		if (!vertexes.contains(vertex)) vertexes.add(vertex);
 		vertex.pGraph = this;
 	}
-
-	// for testing
 	public void addVertex(HeatModule pModule) {
-		vertexes.add(new HeatVertex(pModule, this));
+		vertexes.add(pModule.vertex);
 	}
 
-	public void destroyVertex(HeatVertex vertex) {
+	public void removeVertex(HeatVertex vertex) {
 		vertexes.remove(vertex);
 		for (HeatEdge edge : vertex.edges) edge.removeSelf();
 	}
