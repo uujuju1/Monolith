@@ -12,16 +12,11 @@ public class HeatGraph {
 	public Seq<HeatEdge> edges = new Seq<>(false, 28, HeatEdge.class);
 	public HeatBuild updater;
 
-	public void setUpdater(HeatBuild updater) {
-		this.updater = updater;
-	}
+	public void setUpdater(HeatBuild updater) {this.updater = updater;}
 
 	public void addVertex(HeatVertex vertex) {
 		if (!vertexes.contains(vertex)) vertexes.add(vertex);
 		vertex.pGraph = this;
-	}
-	public void addVertex(HeatModule pModule) {
-		vertexes.add(pModule.vertex);
 	}
 
 	public void removeVertex(HeatVertex vertex) {

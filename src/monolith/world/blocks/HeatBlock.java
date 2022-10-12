@@ -46,28 +46,6 @@ public class HeatBlock extends Block {
 	public class HeatBuild extends Building implements HeatInterface {
 		public HeatModule pModule = new HeatModule(this);
 
-		public void graphProximity() {
-			for (Building build : proximity) {
-				if (build instanceof HeatBuild) {
-					if (((HeatBuild) build).pModule.graph != pModule.graph) {
-						((HeatBuild) build).changeGraph(pModule.graph);
-						((HeatBuild) build).graphProximity();	
-					}
-				}
-			}
-		}
-
-		public void changeGraph() {
-			HeatGraph graph = new HeatGraph();
-			graph.setUpdater(this);
-			changeGraph(graph);
-		}
-		public void changeGraph(HeatGraph graph) {
-			graph.addVertex(getVertex());
-			getGraph().destroyVertex(pModule.vertex);
-			getModule().graph = graph;
-		}
-
 		public float heatAlpha() {return Math.abs(getModule().heat)/Math.max(Math.abs(minHeat), maxHeat);}
 		public float heatFraction() {return (getModule().heat + Math.abs(minHeat))/(maxHeat + Math.abs(minHeat));}
 

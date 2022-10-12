@@ -22,7 +22,7 @@ public class HeatVertex {
 	public HeatGraph getGraph() {return graph;}
 
 	public void addEdge(HeatVertex with, boolean checkDuplicate) {if (!checkDuplicate || !hasEqual(edge) && !with.removed) new HeatEdge(this, with).addSelf();}
-	public void removeEdge(HeatEdge edge) edge.removeSelf();
+	public void removeEdge(HeatEdge edge) {edge.removeSelf();}
 	public void clearEdges() {for (HeatEdge edge : edges) edge.removeSelf();}
 
 	public boolean hasEqual(HeatEdge other) {
