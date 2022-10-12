@@ -68,7 +68,7 @@ public class HeatBlock extends Block {
 		public void onProximityRemoved() {
 			super.onProximityRemoved();
 			getVertex().onRemoved();
-			if (getGraph().vertexes.size > 0) if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).pModule.build);
+			if (getGraph().vertexes.size > 0) if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).getModule().build);
 		}
 
 		@Override

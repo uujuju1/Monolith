@@ -16,7 +16,7 @@ public class HeatGraph {
 
 	public void addVertex(HeatVertex vertex) {
 		if (!vertexes.contains(vertex)) vertexes.add(vertex);
-		vertex.pGraph = this;
+		vertex.graph = this;
 	}
 
 	public void removeVertex(HeatVertex vertex) {
@@ -28,6 +28,6 @@ public class HeatGraph {
 		float[] value = new float[edges.size];
 		for (HeatEdge edge : edges) value[edges.indexOf(edge)] = (edge.bigger().heat - edge.shorter().heat)*((HeatBlock) edge.bigger().build.block).heatFlowMultiplier;
 		for (HeatEdge edge : edges) edge.transfer(value[edges.indexOf(edge)]);
-		for (HeatVertex vertex : vertexes) vertex.pModule.sub(vertex.pModule.heat > 0 ? ((HeatBlock) vertex.pModule.build.block).heatLossPerSecond/60 * Time.delta : -((HeatBlock) vertex.pModule.build.block).heatLossPerSecond/60 * Time.delta);
+		for (HeatVertex vertex : vertexes) vertex.getModule().sub(vertex.getModule().heat > 0 ? ((HeatBlock) vertex.getModule().build.block).heatLossPerSecond/60 * Time.delta : -((HeatBlock) vertex.getModule().build.block).heatLossPerSecond/60 * Time.delta);
 	}
 }
