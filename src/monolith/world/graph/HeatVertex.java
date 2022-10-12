@@ -3,6 +3,8 @@ package monolith.world.graph;
 import arc.func.*;
 import arc.util.*;
 import arc.struct.*;
+import mindustry.gen.*;
+import mindustry.world.blocks.*;
 import monolith.world.modules.*;
 
 public class HeatVertex {
@@ -34,11 +36,11 @@ public class HeatVertex {
 		getGraph().removeVertex(this);
 		clearEdges();
 		removed = true;
-		for (Building b : getModule().build) if (b instanceof PressureBuild) ((PressureBuild) b).getVertex().updateEdges();
+		for (Building b : getModule().build.proximity) if (b instanceof PressureBuild) ((PressureBuild) b).getVertex().updateEdges();
 	}
 	public void updateEdges() {
 		clearEdges();
-		for (Building b : getModule().build) if (b instanceof PressureBuild) addEdge(((PressureBuild) b).getVertex(), true);
+		for (Building b : getModule().build.proximity) if (b instanceof PressureBuild) addEdge(((PressureBuild) b).getVertex(), true);
 	}
 
 	public class HeatEdge {

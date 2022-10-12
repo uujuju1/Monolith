@@ -34,11 +34,11 @@ public class HeatBlock extends Block {
 			Core.bundle.get("bar.Heat") + ": " + (entity.getModule().heat + 10f),
 			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction()),
 			() -> ((HeatBuild) entity).heatFraction()
-		)).set(
+		).set(
 			() -> Core.bundle.get("bar.Heat") + ": " + entity.getModule().heat,
 			() -> ((HeatBuild) entity).heatFraction(),
 			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction())
-		);
+		));
 	}
 
 	public ConsumeHeat consumeHeat(float amount, boolean inverse) {return consume(new ConsumeHeat(amount, inverse));}
