@@ -9,6 +9,7 @@ import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.world.*;
 import mindustry.graphics.*;
+import mindustry.world.meta.*;
 import monolith.world.graph.*;
 import monolith.world.modules.*;
 import monolith.world.consumers.*;
