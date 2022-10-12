@@ -4,6 +4,7 @@ import arc.func.*;
 import arc.util.*;
 import arc.struct.*;
 import mindustry.gen.*;
+import monolith.world.blocks.*;
 import mindustry.world.blocks.*;
 import monolith.world.modules.*;
 
@@ -23,7 +24,7 @@ public class HeatVertex {
 	public HeatModule getModule() {return module;}
 	public HeatGraph getGraph() {return graph;}
 
-	public void addEdge(HeatVertex with, boolean checkDuplicate) {if (!checkDuplicate || !hasEqual(edge) && !with.removed) new HeatEdge(this, with).addSelf();}
+	public void addEdge(HeatVertex with) {if (!with.removed) new HeatEdge(this, with).addSelf();}
 	public void removeEdge(HeatEdge edge) {edge.removeSelf();}
 	public void clearEdges() {for (HeatEdge edge : edges) edge.removeSelf();}
 
@@ -36,11 +37,11 @@ public class HeatVertex {
 		getGraph().removeVertex(this);
 		clearEdges();
 		removed = true;
-		for (Building b : getModule().build.proximity) if (b instanceof HeatBuild) ((PressureBuild) b).getVertex().updateEdges();
+		for (Building b : getModule().build.proximity) if (b instanceof HeatBuild) ((HeatBuild) b).getVertex().updateEdges();
 	}
 	public void updateEdges() {
 		clearEdges();
-		for (Building b : getModule().build.proximity) if (b instanceof HeatBuild) addEdge(((PressureBuild) b).getVertex(), true);
+		for (Building b : getModule().build.proximity) if (b instanceof HeatBuild) addEdge(((HeatBuild) b).getVertex(), true);
 	}
 
 	public class HeatEdge {
@@ -53,8 +54,10 @@ public class HeatVertex {
 		}
 
 		public void addSelf() {
-			v1.edges.add(this);
-			v2.edges.add(this);
+			if (!v1.hasEqual(this)) {
+				v1.edges.add(this);
+				v2.edges.add(this);
+			}
 		}
 		public void removeSelf() {
 			if (!v1.edges.remove(this)) Log.warn("removeEdgeWarning", "Edge wasnt removed or doesnt exist in vertex:" + v1);

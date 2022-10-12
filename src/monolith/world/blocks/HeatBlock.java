@@ -34,10 +34,6 @@ public class HeatBlock extends Block {
 			Core.bundle.get("bar.Heat") + ": " + (((HeatBuild) entity).getModule().heat + 10f),
 			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction()),
 			() -> ((HeatBuild) entity).heatFraction()
-		).set(
-			() -> Core.bundle.get("bar.Heat") + ": " + (((HeatBuild) entity).getModule().heat + 10f),
-			() -> ((HeatBuild) entity).heatFraction(),
-			Pal.lancerLaser.cpy().lerp(Pal.accent, ((HeatBuild) entity).heatFraction())
 		));
 	}
 
