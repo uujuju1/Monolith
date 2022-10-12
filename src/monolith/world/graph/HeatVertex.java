@@ -42,7 +42,7 @@ public class HeatVertex {
 	}
 	public void updateEdges() {
 		clearEdges();
-		for (Building b : getModule().build.proximity) if (b instanceof HeatBuild) addEdge(((HeatBuild) b).getVertex(), true);
+		for (Building b : getModule().build.proximity) if (b instanceof HeatBuild) addEdge(((HeatBuild) b).getVertex());
 	}
 
 	public class HeatEdge {
