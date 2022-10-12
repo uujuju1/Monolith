@@ -9,6 +9,8 @@ public class HeatVertex {
 	public HeatModule module;
 	public HeatGraph graph;
 	public Seq<HeatEdge> edges = new Seq<>(false, 28, HeatEdge.class);
+	// removed tag
+	public boolean removed = false;
 
 	public HeatVertex(HeatModule module, HeatGraph graph) {
 		this.module = module;
@@ -19,16 +21,24 @@ public class HeatVertex {
 	public HeatModule getModule() {return module;}
 	public HeatGraph getGraph() {return graph;}
 
-	public void addEdge(HeatVertex with, boolean checkDuplicate) {
-		// HeatEdge edge = new HeatEdge(this, with);
-		if (!checkDuplicate || !hasEqual(edge)) new HeatEdge(this, with).addSelf();
-	}
-	public void removeEdge(HeatEdge edge) {edge.removeSelf();}
-	public void clearEdges() {for (HeatEdge edge : edges) edge.removeSelf()}
+	public void addEdge(HeatVertex with, boolean checkDuplicate) {if (!checkDuplicate || !hasEqual(edge) && !with.removed) new HeatEdge(this, with).addSelf();}
+	public void removeEdge(HeatEdge edge) edge.removeSelf();
+	public void clearEdges() {for (HeatEdge edge : edges) edge.removeSelf();}
 
 	public boolean hasEqual(HeatEdge other) {
 		for (HeatEdge edge : edges) if (edge.equals(other)) return true;
 		return false;
+	}
+
+	public void onRemoved() {
+		getGraph().removeVertex(this);
+		clearEdges();
+		removed = true;
+		for (Building b : getModule().build) if (b instanceof PressureBuild) ((PressureBuild) b).getVertex().updateEdges();
+	}
+	public void updateEdges() {
+		clearEdges();
+		for (Building b : getModule().build) if (b instanceof PressureBuild) addEdge(((PressureBuild) b).getVertex(), true);
 	}
 
 	public class HeatEdge {
@@ -37,6 +47,7 @@ public class HeatVertex {
 		public HeatEdge(HeatVertex v1, HeatVertex v2) {
 			this.v1 = v1;
 			this.v2 = v2;
+			v1.graph = v2.graph;
 		}
 
 		public void addSelf() {
@@ -46,6 +57,7 @@ public class HeatVertex {
 		public void removeSelf() {
 			if (!v1.edges.remove(this)) Log.warn("removeEdgeWarning", "Edge wasnt removed or doesnt exist in vertex:" + v1);
 			if (!v2.edges.remove(this)) Log.warn("removeEdgeWarning", "Edge wasnt removed or doesnt exist in vertex:" + v2);
+			if (v1.getGraph().edges.remove(this)) Log.warn("removeEdgeWarning", "Edge wasnt removed or doesnt exist in graph:" + v1.graph);
 		}
 
 		public void transfer(float value) {

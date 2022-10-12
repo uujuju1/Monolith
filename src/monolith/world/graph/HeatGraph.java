@@ -26,10 +26,10 @@ public class HeatGraph {
 
 	public void removeVertex(HeatVertex vertex) {
 		vertexes.remove(vertex);
-		for (HeatEdge edge : vertex.edges) edge.removeSelf();
 	}
 
 	public void update() {
+		if (vertexes.size == 0) return; 
 		float[] value = new float[edges.size];
 		for (HeatEdge edge : edges) value[edges.indexOf(edge)] = (edge.bigger().heat - edge.shorter().heat)*((HeatBlock) edge.bigger().build.block).heatFlowMultiplier;
 		for (HeatEdge edge : edges) edge.transfer(value[edges.indexOf(edge)]);

@@ -19,7 +19,7 @@ public class HeatBlock extends Block {
 	public float
 	heatFlowMultiplier = 0.05f,
 	heatLossPerSecond = 1f,
-	minHeat = -273f,
+	minHeat = -283f,
 	maxHeat = 1000f;
 
 	public HeatBlock(String name) {
@@ -31,19 +31,17 @@ public class HeatBlock extends Block {
 	public void setBars() {
 		super.setBars();
 		addBar("Heat", entity -> new Bar(
-			Core.bundle.get("bar.Heat") + ": " + entity.getModule().heat,
+			Core.bundle.get("bar.Heat") + ": " + (entity.getModule().heat + 10f),
 			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction()),
 			() -> ((HeatBuild) entity).heatFraction()
 		)).set(
 			() -> Core.bundle.get("bar.Heat") + ": " + entity.getModule().heat,
-			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction()),
-			() -> ((HeatBuild) entity).heatFraction()
+			() -> ((HeatBuild) entity).heatFraction(),
+			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction())
 		);
 	}
 
-	public void consumeHeat(float amount, boolean inverse) {
-		consume(new ConsumeHeat(amount, inverse));
-	}
+	public ConsumeHeat consumeHeat(float amount, boolean inverse) {return consume(new ConsumeHeat(amount, inverse));}
 
 	public class HeatBuild extends Building implements HeatInterface {
 		public HeatModule pModule = new HeatModule(this);
@@ -70,16 +68,8 @@ public class HeatBlock extends Block {
 			getModule().graph = graph;
 		}
 
-		public void removeGraph() {
-			getGraph().vertexes.remove(getVertex());
-		}
-
-		public float heatAlpha() {
-			return Math.abs(getModule().heat)/Math.max(Math.abs(minHeat), maxHeat);
-		}
-		public float heatFraction() {
-			return (getModule().heat + Math.abs(minHeat))/(maxHeat + Math.abs(minHeat));
-		}
+		public float heatAlpha() {return Math.abs(getModule().heat)/Math.max(Math.abs(minHeat), maxHeat);}
+		public float heatFraction() {return (getModule().heat + Math.abs(minHeat))/(maxHeat + Math.abs(minHeat));}
 
 		@Override
 		public HeatModule getModule() {return pModule;}
@@ -91,26 +81,15 @@ public class HeatBlock extends Block {
 		}
 
 		@Override
-		public void onProximityAdded() {
-			for (Building build : proximity) {
-				if (build instanceof HeatBuild) {
-					if (((HeatBuild) build).getGraph() != getGraph()) {
-						changeGraph(((HeatBuild) build).getGraph());
-						graphProximity();
-						break;
-					}
-				}
-			}
-			for (Building build : proximity) {
-				if (build instanceof HeatBuild) {
-					getVertex().addEdge(((HeatBuild) build).getVertex(), true);
-				}
-			}
+		public void onProximityUpdate() {
+			super.onProximityUpdate();
+			getVertex().updateEdges();
 		}
 
 		@Override
-		public void onRemoved() {
-			getGraph().destroyVertex(getVertex());
+		public void onProximityRemoved() {
+			super.onProximityRemoved();
+			getVertex().onRemoved();
 			if (getGraph().vertexes.size > 0) if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).pModule.build);
 		}
 
