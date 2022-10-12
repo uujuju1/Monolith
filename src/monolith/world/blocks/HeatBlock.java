@@ -31,7 +31,7 @@ public class HeatBlock extends Block {
 	public void setBars() {
 		super.setBars();
 		addBar("heat", entity -> new Bar(
-			Core.bundle.get("bar.Heat") + ": " + (((HeatBuild) entity).getModule().heat + 10f),
+			Core.bundle.get("bar.Heat") + ": " + StatValues.fixValue(((HeatBuild) entity).getModule().heat + 10f),
 			Pal.lancerLaser.cpy().lerp(Pal.accent, ((HeatBuild) entity).heatFraction()),
 			() -> ((HeatBuild) entity).heatFraction()
 		));
@@ -64,7 +64,7 @@ public class HeatBlock extends Block {
 		public void onProximityRemoved() {
 			super.onProximityRemoved();
 			getVertex().onRemoved();
-			if (getGraph().vertexes.size > 0) if (getGraph().updater == this) getGraph().setUpdater(getGraph().vertexes.get(0).getModule().build);
+			if (getGraph().vertexes.size > 0) getGraph().setUpdater(getGraph().vertexes.get(0).getModule().build);
 		}
 
 		@Override
