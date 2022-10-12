@@ -36,11 +36,11 @@ public class HeatVertex {
 		getGraph().removeVertex(this);
 		clearEdges();
 		removed = true;
-		for (Building b : getModule().build.proximity) if (b instanceof PressureBuild) ((PressureBuild) b).getVertex().updateEdges();
+		for (Building b : getModule().build.proximity) if (b instanceof HeatBuild) ((PressureBuild) b).getVertex().updateEdges();
 	}
 	public void updateEdges() {
 		clearEdges();
-		for (Building b : getModule().build.proximity) if (b instanceof PressureBuild) addEdge(((PressureBuild) b).getVertex(), true);
+		for (Building b : getModule().build.proximity) if (b instanceof HeatBuild) addEdge(((PressureBuild) b).getVertex(), true);
 	}
 
 	public class HeatEdge {

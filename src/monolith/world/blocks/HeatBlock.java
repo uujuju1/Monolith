@@ -31,13 +31,13 @@ public class HeatBlock extends Block {
 	public void setBars() {
 		super.setBars();
 		addBar("Heat", entity -> new Bar(
-			Core.bundle.get("bar.Heat") + ": " + (entity.getModule().heat + 10f),
+			Core.bundle.get("bar.Heat") + ": " + (((HeatBuild) entity).getModule().heat + 10f),
 			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction()),
 			() -> ((HeatBuild) entity).heatFraction()
 		).set(
-			() -> Core.bundle.get("bar.Heat") + ": " + entity.getModule().heat,
+			() -> Core.bundle.get("bar.Heat") + ": " + (((HeatBuild) entity)getModule().heat + 10f),
 			() -> ((HeatBuild) entity).heatFraction(),
-			Pal.lancerLaser.cpy().lerp(Pal.accent, entity.heatFraction())
+			Pal.lancerLaser.cpy().lerp(Pal.accent, ((HeatBuild) entity).heatFraction())
 		));
 	}
 
