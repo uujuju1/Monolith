@@ -7,7 +7,7 @@ import mindustry.gen.*;
 import monolith.world.blocks.*;
 import mindustry.world.blocks.*;
 import monolith.world.modules.*;
-import mindustry.world.blocks.HeatBlock.*;
+import monolith.world.blocks.HeatBlock.*;
 
 public class HeatVertex {
 	public HeatModule module;
