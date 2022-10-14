@@ -41,7 +41,7 @@ public class HeatPipe extends HeatBlock {
 		@Override
 		public void draw() {
 			Draw.rect(regions[findRegion()], x, y, 0);
-			Draw.color(Pal.lancerLaser.cpy().lerp(Pal.accent, heatAlpha()));
+			Draw.color(getModule().heat > 0 ? Pal.accent : Pal.lancerLaser);
 			Draw.alpha(heatAlpha());
 			Draw.rect(heatRegions[findRegion()], x, y, 0);
 		}
