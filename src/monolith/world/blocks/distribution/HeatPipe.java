@@ -2,7 +2,7 @@ package monolith.world.blocks.distribution;
 
 import arc.*;
 import arc.graphics.g2d.*;
-import mindustry.content.*;
+import mindustry.graphics.*;
 import monolith.world.blocks.*;
 import monolith.world.blocks.HeatBlock.*;
 

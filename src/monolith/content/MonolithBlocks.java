@@ -9,6 +9,7 @@ import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
+import mindustry.world.consumers.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.pattern.*;
