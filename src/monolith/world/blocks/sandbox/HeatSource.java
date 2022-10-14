@@ -7,7 +7,7 @@ public class HeatSource extends HeatBlock {
 	public HeatSource(String name) {
 		super(name);
 		health = 999999999;
-		confiugurable = true;
+		configurable = true;
 	}
 
 	public class HeatSourceBuild extends HeatBuild {

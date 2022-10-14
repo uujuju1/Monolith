@@ -259,6 +259,11 @@ public class MonolithBlocks {
 			craftTime = 300f;
 			// craftEffect = MonolithFx.combust;
 			updateEffect = Fx.smoke;
+			drawer = new DrawMulti(
+				new DrawRegion("-bottom"),
+				new DrawArcSmelt(),
+				new DrawDefault()
+			);
 			consume(new ConsumeItemFlammable());
 			consumeHeat(400f, true);
 			outputHeat = 390;
