@@ -34,7 +34,7 @@ public class HeatBlock extends Block {
 		addBar("heat", entity -> new Bar(
 			Core.bundle.get("bar.Heat"),
 			Pal.lancerLaser.cpy().lerp(Pal.accent, ((HeatBuild) entity).heatAlpha()),
-			() -> ((HeatBuild) entity).heatFraction()
+			() -> ((HeatBuild) entity).heatAlpha()
 		));
 	}
 
