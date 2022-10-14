@@ -46,8 +46,8 @@ public class HeatBlock extends Block {
 		public float heatAlpha() {return Math.abs(getModule().heat)/Math.max(Math.abs(minHeat), maxHeat);}
 		public float heatFraction() {return (getModule().heat + Math.abs(minHeat))/(maxHeat + Math.abs(minHeat));}
 
-		@Override
-		public HeatModule getModule() {return pModule;}
+		public HeatBlock hBlock() {return (HeatBlock) block;}
+		@Override public HeatModule getModule() {return pModule;}
 
 		@Override
 		public void overheat() {
@@ -83,6 +83,7 @@ public class HeatBlock extends Block {
 		public void read(Reads read, byte revision) {
 			super.read(read, revision);
 			getModule().read(read);
+			getVertex().updateEdges();
 		}
 	}
 }

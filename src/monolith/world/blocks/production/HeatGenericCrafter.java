@@ -29,6 +29,7 @@ public class HeatGenericCrafter extends HeatBlock {
 	public @Nullable LiquidStack outputLiquid;
 	/** Overwrites outputLiquid if not null. */
 	public @Nullable LiquidStack[] outputLiquids;
+	// target temperature for the block
 	public float outputHeat = 0f;
 
 	/** Liquid output directions, specified in the same order as outputLiquids. Use -1 to dump in every direction. Rotations are relative to block. */
@@ -224,7 +225,7 @@ public class HeatGenericCrafter extends HeatBlock {
 						handleLiquid(this, output.liquid, Math.min(output.amount * inc, liquidCapacity - liquids.get(output.liquid)));
 					}
 				}
-				addHeat(outputHeat/craftTime * Time.delta);
+				addHeat(Mathf.approachDelta(0, outputHeat, 1f/craftTime * 100f));
 
 				if(wasVisible && Mathf.chanceDelta(updateEffectChance)){
 					updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4));

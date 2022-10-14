@@ -20,6 +20,7 @@ import monolith.world.*;
 import monolith.world.blocks.units.*;
 import monolith.world.blocks.defense.*;
 import monolith.world.blocks.payload.*;
+import monolith.world.blocks.sandbox.*;
 import monolith.world.blocks.production.*;
 import monolith.world.blocks.distribution.*;
 
@@ -29,26 +30,33 @@ public class MonolithBlocks {
 	public static Block 
 	// distribution
 	itemLiquidJunction,
+	heatPipe,
 
 	// production
 	macrosteelFurnace, lithiumWeaver, alloyInfuser,
 	industrialPress, sohritePress, karanitePress,
 	vakyiteCompressor,
+	combustionHeater, heatFan,
 
+	payloadCrucible,
+
+	// turrets
 	move, accelerate,
 	revenant,
 	caesar, vigenere,
 
+	// walls
 	sparkWall,
 	meaniumWall, meaniumWallLarge,
 
-	payloadCrucible,
-
+	// misc
 	artifact,
 
-	remnantFactory,
+	// sandbox
+	heatSource,
 
-	heatPipe;
+	// units
+	remnantFactory;
 
 	public static void load() {
 		// distribution
@@ -62,7 +70,7 @@ public class MonolithBlocks {
 			health = 60;
 		}};
 		heatPipe = new HeatPipe("heat-pipe") {{
-			requirements(Category.distribution, with(Items.copper, 1));
+			requirements(Category.distribution, with(MonolithItems.meanium, 2, Items.silicon, 1));
 			size = 1;
 			health = 160;
 		}};
@@ -237,6 +245,53 @@ public class MonolithBlocks {
 			consumePower(1f);
 			outputHeat = 25f;
 			outputItems = with(MonolithItems.vakyite, 1);
+		}};
+
+		combustionHeater = new HeatGenericCrafter("combustion-heater") {{
+			requirements(Category.crafting, with(
+				MonolithItems.meanium, 80,
+				Items.graphite, 25,
+				Items.titanium, 45
+			));
+			size = 2;
+			health = 160;
+			craftTime = 300f;
+			// craftEffect = MonolithFx.combust;
+			updateEffect = Fx.smoke;
+			consume(new ConsumeItemFlammable());
+			outputHeat = 390;
+		}};
+		heatFan = new HeatGenericCrafter("heat-fan") {{
+			requirements(Category.crafting, with(
+				MonolithItems.meanium, 120,
+				Items.titanium, 100
+			));
+			size = 3;
+			health = 200;
+			craftTime = 180f;
+			updateEffect = Fx.smoke;
+			consumePower(1f);
+			outputHeat = 0f;
+		}};
+
+		payloadCrucible = new PayloadCrafter("payload-crucible") {{
+			requirements(Category.crafting, with(
+				Items.silicon, 250,
+				Items.graphite, 180,
+				Items.titanium, 100,
+				MonolithItems.meanium, 200,
+				MonolithItems.lithium, 150,
+				MonolithItems.macrosteel, 230
+			));
+			size = 3;
+			health = 260;
+			craftEffect = MonolithFx.crucibleCraft;
+			updateEffect = Fx.smoke;
+			plans.addAll(
+				new Recipe(meaniumWallLarge, with(Items.titanium, 16, Items.coal, 40), 600f),
+				new Recipe(Blocks.container, with(Items.titanium, 50, Items.silicon, 25), 180f)
+			);
+			itemCapacity = 100;
 		}};
 
 		// turrets
@@ -514,25 +569,6 @@ public class MonolithBlocks {
 			health = 2000;
 		}};
 
-		payloadCrucible = new PayloadCrafter("payload-crucible") {{
-			requirements(Category.crafting, with(
-				Items.silicon, 250,
-				Items.graphite, 180,
-				Items.titanium, 100,
-				MonolithItems.meanium, 200,
-				MonolithItems.lithium, 150,
-				MonolithItems.macrosteel, 230
-			));
-			size = 3;
-			health = 260;
-			craftEffect = MonolithFx.crucibleCraft;
-			updateEffect = Fx.smoke;
-			plans.addAll(
-				new Recipe(meaniumWallLarge, with(Items.titanium, 16, Items.coal, 40), 600f),
-				new Recipe(Blocks.container, with(Items.titanium, 50, Items.silicon, 25), 180f)
-			);
-			itemCapacity = 100;
-		}};
 
 		// build towers
 		artifact = new BuildTurret("artifact") {{
@@ -549,6 +585,14 @@ public class MonolithBlocks {
 			consumePower(3f);
 		}};
 
+		// sandbox
+		heatSource = new HeatSource("heat-source") {{
+			buildVisibility = BuildVisibility.sandboxOnly;
+			size = 1;
+			maxHeat = 900f;
+		}};
+
+		// units
 		remnantFactory = new SingleUnitFactory("remnant-factory") {{
 			requirements(Category.units, with(
 				Items.graphite, 150,

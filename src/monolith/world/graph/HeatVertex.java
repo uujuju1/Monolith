@@ -55,6 +55,7 @@ public class HeatVertex {
 		}
 
 		public void addSelf() {
+			v1.graph = v2.graph;
 			if (!v1.hasEqual(this) || v2.hasEqual(this)) {
 				v1.edges.add(this);
 				v2.edges.add(this);
@@ -62,9 +63,9 @@ public class HeatVertex {
 			}
 		}
 		public void removeSelf() {
-			if (!v1.edges.remove(this)) Log.err("Edge wasnt removed or doesnt exist in vertex:" + v1, "a");
-			if (!v2.edges.remove(this)) Log.err("Edge wasnt removed or doesnt exist in vertex:" + v2, "a");
-			if (!v1.getGraph().edges.remove(this)) Log.err("Edge wasnt removed or doesnt exist in graph:" + v1.graph, "a");
+			if (!v1.edges.remove(this)) Log.errTag("EdgeRemovalExeption", "Edge wasnt removed or doesnt exist in vertex:" + v1);
+			if (!v2.edges.remove(this)) Log.errTag("EdgeRemovalExeption", "Edge wasnt removed or doesnt exist in vertex:" + v2);
+			if (!v1.getGraph().edges.remove(this)) Log.errTag("EdgeRemovalExeption", "Edge wasnt removed or doesnt exist in graph:" + v1.graph);
 		}
 
 		public void transfer(float value) {
