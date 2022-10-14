@@ -28,6 +28,10 @@ public class HeatGraph {
 		float[] value = new float[edges.size];
 		for (HeatEdge edge : edges) value[edges.indexOf(edge)] = (edge.bigger().heat - edge.shorter().heat)*((HeatBlock) edge.bigger().build.block).heatFlowMultiplier;
 		for (HeatEdge edge : edges) edge.transfer(value[edges.indexOf(edge)]);
+		for (HeatEdge edge : edges) {
+			edge.v1.graph = this;
+			edge.v2.graph = this;
+		}
 		for (HeatVertex vertex : vertexes) vertex.getModule().sub(vertex.getModule().heat > 0 ? ((HeatBlock) vertex.getModule().build.block).heatLossPerSecond/60 * Time.delta : -((HeatBlock) vertex.getModule().build.block).heatLossPerSecond/60 * Time.delta);
 	}
 }

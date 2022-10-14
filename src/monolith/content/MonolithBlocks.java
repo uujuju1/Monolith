@@ -256,7 +256,7 @@ public class MonolithBlocks {
 			));
 			size = 2;
 			health = 160;
-			craftTime = 300f;
+			craftTime = 180f;
 			// craftEffect = MonolithFx.combust;
 			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
@@ -283,7 +283,7 @@ public class MonolithBlocks {
 			);
 			consumePower(1f);
 			consumeHeat(0f, false);
-			outputHeat = 0f;
+			outputHeat = 10f;
 		}};
 
 		payloadCrucible = new PayloadCrafter("payload-crucible") {{

@@ -32,8 +32,8 @@ public class HeatBlock extends Block {
 	public void setBars() {
 		super.setBars();
 		addBar("heat", entity -> new Bar(
-			Core.bundle.get("bar.Heat") + ": " + StatValues.fixValue(((HeatBuild) entity).getModule().heat + 10f),
-			Pal.lancerLaser.cpy().lerp(Pal.accent, ((HeatBuild) entity).heatFraction()),
+			Core.bundle.get("bar.Heat"),
+			Pal.lancerLaser.cpy().lerp(Pal.accent, ((HeatBuild) entity).heatAlpha()),
 			() -> ((HeatBuild) entity).heatFraction()
 		));
 	}
@@ -43,8 +43,7 @@ public class HeatBlock extends Block {
 	public class HeatBuild extends Building implements HeatInterface {
 		public HeatModule pModule = new HeatModule(this);
 
-		public float heatAlpha() {return Math.abs(getModule().heat)/Math.max(Math.abs(minHeat), maxHeat);}
-		public float heatFraction() {return (getModule().heat + Math.abs(minHeat))/(maxHeat + Math.abs(minHeat));}
+		public float heatAlpha() {return getModule().heat > 0 ? getModule().heat/maxHeat : getModule().heat/minheat;}
 
 		public HeatBlock hBlock() {return (HeatBlock) block;}
 		@Override public HeatModule getModule() {return pModule;}

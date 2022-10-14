@@ -29,7 +29,7 @@ public class HeatGenericCrafter extends HeatBlock {
 	public @Nullable LiquidStack outputLiquid;
 	/** Overwrites outputLiquid if not null. */
 	public @Nullable LiquidStack[] outputLiquids;
-	// target temperature for the block
+	// temperature increment for the block
 	public float outputHeat = 0f;
 
 	/** Liquid output directions, specified in the same order as outputLiquids. Use -1 to dump in every direction. Rotations are relative to block. */
