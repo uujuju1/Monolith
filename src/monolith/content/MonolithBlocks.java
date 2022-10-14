@@ -260,6 +260,7 @@ public class MonolithBlocks {
 			// craftEffect = MonolithFx.combust;
 			updateEffect = Fx.smoke;
 			consume(new ConsumeItemFlammable());
+			consumeHeat(400f, true);
 			outputHeat = 390;
 		}};
 		heatFan = new HeatGenericCrafter("heat-fan") {{
@@ -271,7 +272,12 @@ public class MonolithBlocks {
 			health = 200;
 			craftTime = 180f;
 			updateEffect = Fx.smoke;
+			drawer = new DrawMulti(
+				new DrawDefault(),
+				new DrawBlurSpin("-rotator", 6f)
+			);
 			consumePower(1f);
+			consumeHeat(0f, false);
 			outputHeat = 0f;
 		}};
 

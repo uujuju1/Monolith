@@ -205,7 +205,7 @@ public class HeatGenericCrafter extends HeatBlock {
 					return false;
 				}
 			}
-			if (getModule().heat + (outputHeat/60 * Time.delta) > ((HeatBlock)block).maxHeat && outputHeat != 0) return false;
+			if (getModule().heat + (outputHeat/craftTime * Time.delta) > ((HeatBlock)block).maxHeat && outputHeat != 0) return false;
 
 			return enabled;
 		}
@@ -225,7 +225,7 @@ public class HeatGenericCrafter extends HeatBlock {
 						handleLiquid(this, output.liquid, Math.min(output.amount * inc, liquidCapacity - liquids.get(output.liquid)));
 					}
 				}
-				addHeat(Mathf.approachDelta(0, outputHeat, 1f/craftTime * 100f));
+				addHeat(outputHeat/craftTime * Time.delta);
 
 				if(wasVisible && Mathf.chanceDelta(updateEffectChance)){
 					updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4));
