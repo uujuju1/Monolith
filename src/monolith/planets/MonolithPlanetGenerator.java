@@ -12,16 +12,18 @@ import mindustry.maps.generators.*;
 
 public class MonolithPlanetGenerator extends PlanetGenerator {
 	public float minHeight = 0.1f;
-	public Biome[] arr;
+	public Seq<Biome> arr = new Seq<>();
 	public Block defaultBlock = Blocks.stone;
 
 	public class Biome {
 		public Block[] heightMap;
 		public int noiseSeed = 0;
-		public float minValue = 0, maxValue = 1;
+		public float minValue = 0f, maxValue = 1f, magnitude = 1f;
 		public double xOffset = 0, yOffset = 0, zOffset = 0, octaves = 3, persistence = 0.5, scale = 1;
 
-		public float noise(Vec3 pos) {return Simplex.noise3d(seed, octaves, persistence, scale, pos.x + xOffset, pos.y + yOffset, pos.z + zOffset);}
+		public float noise(Vec3 pos) {
+			return Simplex.noise3d(seed, octaves, persistence, scale, pos.x + xOffset, pos.y + yOffset, pos.z + zOffset) * magnitude;
+		}
 		public @Nullable Block getBlock(Vec3 pos) {
 			Block res = heightMap[Mathf.clamp((int) (noise(pos) * (heightMap.length - 1f)), 0, heightMap.length - 1)];
 			return (noise(pos) < minValue || noise(pos) > maxValue) ? null : res;

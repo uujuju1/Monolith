@@ -13,16 +13,16 @@ public class MonolithPlanets {
 	public static void load() {
 		chroma = new Planet("chroma", Planets.sun, 1f, 3) {{
 			generator = new MonolithPlanetGenerator() {{
-				arr = new Biome[]{
+				arr.add(
 					new Biome() {{
 						heightMap = new Block[]{Blocks.ferricStone, Blocks.carbonStone, Blocks.crystalFloor, Blocks.crystallineStone};
-						maxValue = 0.4f;
+						maxValue = 0.6f;
 					}},
 					new Biome() {{
 						heightMap = new Block[]{Blocks.carbonStone, Blocks.rhyolite, Blocks.regolith, Blocks.redStone};
-						minValue = 0.3f;
+						minValue = 0.4f;
 					}}
-				};
+				);
 				defaultBlock = Blocks.carbonStone;
 			}};
 			meshLoader = () -> new HexMesh(this, 6);
