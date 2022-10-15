@@ -15,7 +15,7 @@ public class MonolithPlanets {
 			generator = new MonolithPlanetGenerator() {{
 				arr = new Biome[]{
 					new Biome() {{
-						heightMap = new Block[]{Blocks.ferricStone, Blocks.carbonStone, Blocks.crystalFloor, Blocks.crystallineFloor};
+						heightMap = new Block[]{Blocks.ferricStone, Blocks.carbonStone, Blocks.crystalFloor, Blocks.crystallineStone};
 						maxValue = 0.4f;
 					}},
 					new Biome() {{
