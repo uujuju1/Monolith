@@ -31,7 +31,7 @@ public class MonolithBlocks {
 	public static Block 
 	// distribution
 	itemLiquidJunction,
-	heatPipe,
+	heatPipe, advHeatPipe,
 
 	// production
 	macrosteelFurnace, lithiumWeaver, alloyInfuser,
@@ -75,6 +75,12 @@ public class MonolithBlocks {
 			size = 1;
 			health = 160;
 		}};
+		advHeatPipe = new HeatPipe("adv-heat-pipe") {{
+			requirements(Category.distribution, with(MonolithItems.sohrite, 2, Items.silicon, 2));
+			size = 1;
+			health = 160;
+			heatFlowMultiplier = 0.2f;
+		}};
 
 		// production
 		macrosteelFurnace = new GenericCrafter("macrosteel-furnace") {{
@@ -85,6 +91,7 @@ public class MonolithBlocks {
 			size = 3;
 			health = 200;
 			craftTime = 120;
+			alwaysUnlocked = true;
 			craftEffect = MonolithFx.macrosteelCraft;
 			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
@@ -231,11 +238,12 @@ public class MonolithBlocks {
 				MonolithItems.lathanium, 150,
 				MonolithItems.sohrite, 125,
 				Items.silicon, 175,
+				Items.thorium, 100,
 				Items.graphite, 200
 			));
 			size = 3;
 			craftTime = 90f;
-			// craftEffect = MonolithFx.vakyiteCraft;
+			craftEffect = MonolithFx.vakyiteCraft;
 			updateEffect = Fx.smoke;
 			consumeItems(with(
 				MonolithItems.sohrite, 2,
@@ -257,7 +265,6 @@ public class MonolithBlocks {
 			size = 2;
 			health = 160;
 			craftTime = 180f;
-			// craftEffect = MonolithFx.combust;
 			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
@@ -275,15 +282,15 @@ public class MonolithBlocks {
 			));
 			size = 3;
 			health = 200;
-			craftTime = 180f;
+			craftTime = 30f;
 			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
 				new DrawDefault(),
-				new DrawBlurSpin("-rotator", 6f)
+				new DrawBlurSpin("-rotator", 15f)
 			);
 			consumePower(1f);
 			consumeHeat(0f, false);
-			outputHeat = 10f;
+			outputHeat = -10f;
 		}};
 
 		payloadCrucible = new PayloadCrafter("payload-crucible") {{

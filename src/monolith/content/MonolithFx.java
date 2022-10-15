@@ -94,6 +94,14 @@ public class MonolithFx {
 		Lines.stroke(4f * e.fout());
 		Lines.circle(e.x, e.y, 30f * e.finpow());
 	}),
+	vakyiteCraft = new Effect(60f, e -> {
+		Draw.color(Pal.heal);
+		Angles.randLenVectors(e.id, 20, 16 * e.finpow(), (x, y) -> {
+			Fill.circle(e.x + x, e.y + y, Interp.sine.apply(e.finpow() * 2));
+		});
+		Lines.stroke(e.fout());
+		Lines.circle(e.x, e.y, 40 * e.finpow());
+	}),
 
 	crucibleCraft = new Effect(30f, e -> {
 		Angles.randLenVectors(e.id, 20, e.finpow() * 40f, (x, y) -> {

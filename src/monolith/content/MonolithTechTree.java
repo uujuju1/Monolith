@@ -37,13 +37,23 @@ public class MonolithTechTree {
 			});
 
 			node(itemLiquidJunction, Seq.with(new Produce(macrosteel)), () -> {});
+			node(heatPipe, Seq.with(new Produce(meanium)), () -> {
+				node(advHeatPipe, Seq.with(new Produce(Items.vakyite)), () -> {});
+
+				node(combustionBurner, Seq.with(new Research(Blocks.laserDrill)), () -> {});
+				node(heatFan, Seq.with(new Research(Blocks.laserDrill)), () -> {});
+			});
 
 			node(lithiumWeaver, Seq.with(new Produce(macrosteel)), () -> {
 				node(alloyInfuser, Seq.with(new Produce(lithium)), () -> {
 					node(industrialPress, Seq.with(new Produce(Items.titanium)), () -> {
-						node(karanitePress, Seq.with(new Produce(Items.plastanium)), () -> {});
+						node(karanitePress, Seq.with(new Produce(Items.plastanium)), () -> {
+							// node(natniumForge, Seq.with(new Produce(venera)), () -> {});
+						});
 					});
-					node(sohritePress, Seq.with(new Produce(Items.titanium)), () -> {});
+					node(sohritePress, Seq.with(new Produce(Items.titanium)), () -> {
+						node(vakyiteCompressor, Seq.with(new Produce(Items.thorium)), () -> {});
+					});
 				});
 			});
 
