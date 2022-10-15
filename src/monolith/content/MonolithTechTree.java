@@ -38,9 +38,9 @@ public class MonolithTechTree {
 
 			node(itemLiquidJunction, Seq.with(new Produce(macrosteel)), () -> {});
 			node(heatPipe, Seq.with(new Produce(meanium)), () -> {
-				node(advHeatPipe, Seq.with(new Produce(Items.vakyite)), () -> {});
+				node(advHeatPipe, Seq.with(new Produce(vakyite)), () -> {});
 
-				node(combustionBurner, Seq.with(new Research(Blocks.laserDrill)), () -> {});
+				node(combustionHeater, Seq.with(new Research(Blocks.laserDrill)), () -> {});
 				node(heatFan, Seq.with(new Research(Blocks.laserDrill)), () -> {});
 			});
 

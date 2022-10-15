@@ -19,11 +19,11 @@ public class MonolithPlanets {
 						maxValue = 0.4f;
 					}},
 					new Biome() {{
-						heightMap = new Block[]{Blocks.carbonWall, Blocks.rhyolite, Blocks.regolith, Blocks.redStone};
+						heightMap = new Block[]{Blocks.carbonStone, Blocks.rhyolite, Blocks.regolith, Blocks.redStone};
 						minValue = 0.3f;
 					}}
 				};
-				defaultBlock = Blocks.carbonFloor;
+				defaultBlock = Blocks.carbonStone;
 			}};
 			meshLoader = () -> new HexMesh(this, 6);
 			startSector = 15;

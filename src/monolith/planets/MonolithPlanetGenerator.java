@@ -30,7 +30,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	
 	float rawHeight(Vec3 pos) {return Simplex.noise3d(seed, 7, 0.5f, 2.3f, pos.x, pos.y, pos.z);}
 	Block getBlock(Vec3 pos) {
-		Block res;
+		@Nullable Block res = null;
 		for (Biome biome : arr) res = biome.getBlock(pos);
 		return res == null ? defaultBlock : res;
 	}
