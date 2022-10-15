@@ -13,7 +13,7 @@ public class MonolithPlanets {
 	public static void load() {
 		chroma = new Planet("chroma", Planets.sun, 1f, 3) {{
 			generator = new MonolithPlanetGenerator() {{
-				arr.add(
+				biomes.add(
 					new Biome() {{
 						heightMap = new Block[]{Blocks.ferricStone, Blocks.carbonStone, Blocks.crystalFloor, Blocks.crystallineStone};
 						maxValue = 0.6f;

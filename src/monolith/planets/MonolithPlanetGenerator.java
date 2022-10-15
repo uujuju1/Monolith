@@ -12,7 +12,7 @@ import mindustry.maps.generators.*;
 
 public class MonolithPlanetGenerator extends PlanetGenerator {
 	public float minHeight = 0.1f;
-	public Seq<Biome> arr = new Seq<>();
+	public Seq<Biome> biomes = new Seq<>();
 	public Block defaultBlock = Blocks.stone;
 
 	public class Biome {
@@ -33,7 +33,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	float rawHeight(Vec3 pos) {return Simplex.noise3d(seed, 7, 0.5f, 2.3f, pos.x, pos.y, pos.z);}
 	Block getBlock(Vec3 pos) {
 		@Nullable Block res = null;
-		for (Biome biome : arr) res = biome.getBlock(pos);
+		for (Biome biome : biomes) if(biome.getBlock(pos) != null) res = biome.getBlock(pos);
 		return res == null ? defaultBlock : res;
 	}
 
