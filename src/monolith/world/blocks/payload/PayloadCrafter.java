@@ -84,8 +84,8 @@ public class PayloadCrafter extends PayloadBlock {
 		}
 
 		public Table display() {
-			if (output == null) return;
 			Table res = new Table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray));
+			if (output == null) return res;
 
 			res.table(table -> {
 				table.table(name -> {
