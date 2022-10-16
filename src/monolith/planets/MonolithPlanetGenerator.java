@@ -12,17 +12,56 @@ import mindustry.maps.generators.*;
 
 public class MonolithPlanetGenerator extends PlanetGenerator {
 	public float minHeight = 0.1f;
+	public double scale = 2.3, persistence =  0.5, octaves = 7;
 	public Seq<Biome> biomes = new Seq<>();
+	public Cons<MonoloithPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
 	public Block defaultBlock = Blocks.stone;
 
 	public class Biome {
+		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
+
+		// equator to pole interpolation
+		public Interp polarInterp = Interp.one;
+
+		// seed for noise
 		public int noiseSeed = 0;
-		public float minValue = 0f, maxValue = 1f, magnitude = 1f;
-		public double xOffset = 0, yOffset = 0, zOffset = 0, octaves = 3, persistence = 0.5, scale = 1;
+
+		public float 
+		// height that the biome starts
+		minValue = 0f,
+		// height that the biome ends
+		maxValue = 1f,
+
+		// noise magnitude
+		magnitude = 1f;
+
+		/**
+			@param clampHeight will override any biome before it when set to true
+			clamps noise onto min and max values
+			this will apply the entire noise height map onto the planet
+		*/
+		public boolean clampHeight = false;
+
+		public double
+		// x, y and z noise offsets
+		xOffset = 0,
+		yOffset = 0,
+		zOffset = 0,
+
+		// clamps npoise onto min and max values
+		public boolean clampHeight = false;
+
+		// noise octaves
+		octaves = 3, 
+		// noise persistence
+		persistence = 0.5,
+		// noise scale
+		scale = 1;
 
 		public float noise(Vec3 pos) {
-			return Simplex.noise3d(seed, octaves, persistence, scale, pos.x + xOffset, pos.y + yOffset, pos.z + zOffset) * magnitude;
+			float noise = Simplex.noise3d(seed, octaves, persistence, scale, pos.x + xOffset, pos.y + yOffset, pos.z + zOffset) * magnitude * polarInterp.apply(Math.abs(pos.y))
+			return clampHeight ? Mathf.clamp(Math.max(0, noise), minValue, maxValue) : Math.max(0, noise);
 		}
 		public @Nullable Block getBlock(Vec3 pos) {
 			Block res = heightMap[Mathf.clamp((int) (noise(pos) * (heightMap.length - 1f)), 0, heightMap.length - 1)];
@@ -30,7 +69,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 		}
 	}
 	
-	float rawHeight(Vec3 pos) {return Simplex.noise3d(seed, 7, 0.5f, 2.3f, pos.x, pos.y, pos.z);}
+	float rawHeight(Vec3 pos) {return Simplex.noise3d(seed, octaves, persistence, scale, pos.x, pos.y, pos.z);}
 	Block getBlock(Vec3 pos) {
 		@Nullable Block res = null;
 		for (Biome biome : biomes) if(biome.getBlock(pos) != null) res = biome.getBlock(pos);
@@ -44,5 +83,5 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public Color getColor(Vec3 pos) {return getBlock(pos).mapColor;}
 
 	@Override
-	protected void generate() {pass((x, y) -> floor = getBlock(sector.tile.v));}
+	protected void generate() {gen.get(this);}
 }
