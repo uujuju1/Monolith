@@ -65,14 +65,14 @@ public class MonolithPlanets {
 				gen = p -> {
 					p.pass((x, y) -> {
 						float 
-						offsetX = (x/p.width - 0.5f) / 8f,
-						offsetY = (y/p.height - 0.5f) / 8f,
+						offsetX = (x/p.width() - 0.5f) / 8f,
+						offsetY = (y/p.height() - 0.5f) / 8f,
 						offsetZ = offsetX;
-						p.floor = p.getBlock(Tmp.v1.set(
-							p.sector.tile.v.x + offsetX,
-							p.sector.tile.v.y + offsetY,
-							p.sector.tile.v.z + offsetZ
-						));
+						p.setFloor(p.getBlock(Tmp.v31.set(
+							p.sector().tile.v.x + offsetX,
+							p.sector().tile.v.y + offsetY,
+							p.sector().tile.v.z + offsetZ
+						)));
 					});
 				};
 			}};

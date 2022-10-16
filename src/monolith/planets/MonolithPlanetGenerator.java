@@ -18,6 +18,15 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public Cons<MonolithPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
 	public Block defaultBlock = Blocks.stone;
 
+	// aaaaaa
+	public Sector sector() {return sector;}
+	public float width() {return width;}
+	public float height() {return height;}
+
+	public setFloor(Block floor) {this.floor = floor;}
+	public setBlock(Block block) {this.block = block;}
+	public setOre(Block ore) {this.ore = ore;}
+
 	public class Biome {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
