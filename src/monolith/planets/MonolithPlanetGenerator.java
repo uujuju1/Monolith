@@ -23,9 +23,9 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public float width() {return width;}
 	public float height() {return height;}
 
-	public setFloor(Block floor) {this.floor = floor;}
-	public setBlock(Block block) {this.block = block;}
-	public setOre(Block ore) {this.ore = ore;}
+	public Block setFloor(Block floor) {return this.floor = floor;}
+	public Block setBlock(Block block) {return this.block = block;}
+	public Block setOre(Block ore) {return this.ore = ore;}
 
 	public class Biome {
 		// array tileset, i reccomend 10 - 13 blocks here
