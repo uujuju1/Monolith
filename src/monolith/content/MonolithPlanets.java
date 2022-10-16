@@ -17,12 +17,12 @@ public class MonolithPlanets {
 					new Biome() {{
 						heightMap = new Block[]{
 							Blocks.ferricStone,
+							Blocks.ferricStone,
 							Blocks.carbonStone,
-							Blocks.crystalFloor,
 							Blocks.carbonStone,
-							Blocks.crystallineStone,
-							Blocks.crystallineStone,
-							Blocks.space,
+							Blocks.basalt,
+							Blocks.basalt,
+							Blocks.basalt,
 							Blocks.space,
 							Blocks.space,
 							Blocks.space,
@@ -35,12 +35,12 @@ public class MonolithPlanets {
 							Blocks.space,
 							Blocks.space,
 							Blocks.space,
-							Blocks.space,
-							Blocks.carbonStone,
-							Blocks.carbonStone,
-							Blocks.regolith,
-							Blocks.rhyolite,
 							Blocks.roughRhyolite,
+							Blocks.roughRhyolite,
+							Blocks.roughRhyolite,
+							Blocks.rhyolite,
+							Blocks.regolith,
+							Blocks.redStone,
 							Blocks.redStone
 						};
 						minValue = 0.4f;
