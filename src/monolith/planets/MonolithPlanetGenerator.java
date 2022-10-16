@@ -13,7 +13,7 @@ import mindustry.maps.generators.*;
 
 public class MonolithPlanetGenerator extends PlanetGenerator {
 	public float minHeight = 0.1f;
-	public double scale = 2.3, persistence =  0.5, octaves = 7;
+	public double scale = 2, persistence =  0.7, octaves = 7;
 	public Seq<Biome> biomes = new Seq<>();
 	public Cons<MonolithPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
 	public Block defaultBlock = Blocks.stone;
@@ -40,7 +40,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 		/**
 			@param clampHeight will override any biome before it when set to true
 			clamps noise onto min and max values
-			this will apply the entire noise height map onto the planet
+			this will apply the entire noise height map onto the entire planet
 		*/
 		public boolean clampHeight = false;
 

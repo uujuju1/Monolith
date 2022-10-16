@@ -24,11 +24,14 @@ public class MonolithPlanets {
 							Blocks.ferricStone,
 							Blocks.rhyolite,
 							Blocks.rhyolite,
+							Blocks.rhyolite,
+							Blocks.regolith,
 							Blocks.regolith,
 							Blocks.regolith
 						};
-						scale = 0.5;
-						magnitude = 2f;
+						scale = 1;
+						magnitude = 1.5f;
+						clampHeight = true;
 					}},
 					new Biome() {{
 						heightMap = new Block[]{
@@ -44,16 +47,25 @@ public class MonolithPlanets {
 							Blocks.basalt
 						};
 						minValue = 0.4f;
-						scale = 0.5;
+						scale = 0.1;
+						magnitude = 2;
 						noiseSeed = 1;
+					}},
+					new Biome() {{
+						heightMap = new Block[]{Blocks.redIce};
+						polarInter = Interp.pow2In;
+						noiseSeed = 2;
 					}}
 				);
 				defaultBlock = Blocks.carbonStone;
 			}};
-			meshLoader = () -> new HexMesh(this, 6);
+			meshLoader = () -> new HexMesh(this, 5);
 			startSector = 15;
 			alwaysUnlocked = accessible = true;
 			hasAtmosphere = false;
+			// gen = p -> {
+				
+			// };
 		}};
 	}
 }
