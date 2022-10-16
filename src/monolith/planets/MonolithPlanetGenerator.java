@@ -49,9 +49,6 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 		yOffset = 0,
 		zOffset = 0,
 
-		// clamps npoise onto min and max values
-		public boolean clampHeight = false;
-
 		// noise octaves
 		octaves = 3, 
 		// noise persistence
@@ -60,7 +57,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 		scale = 1;
 
 		public float noise(Vec3 pos) {
-			float noise = Simplex.noise3d(seed, octaves, persistence, scale, pos.x + xOffset, pos.y + yOffset, pos.z + zOffset) * magnitude * polarInterp.apply(Math.abs(pos.y))
+			float noise = Simplex.noise3d(seed, octaves, persistence, scale, pos.x + xOffset, pos.y + yOffset, pos.z + zOffset) * magnitude * polarInterp.apply(Math.abs(pos.y));
 			return clampHeight ? Mathf.clamp(Math.max(0, noise), minValue, maxValue) : Math.max(0, noise);
 		}
 		public @Nullable Block getBlock(Vec3 pos) {
