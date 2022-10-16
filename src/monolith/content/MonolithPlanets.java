@@ -36,9 +36,9 @@ public class MonolithPlanets {
 					}},
 					new Biome() {{
 						heightMap = new Block[]{
-							Blocks.space,
-							Blocks.space,
-							Blocks.space,
+							Blocks.ferricStone,
+							Blocks.ferricStone,
+							Blocks.ferricStone,
 							Blocks.ferricStone,
 							Blocks.ferricStone,
 							Blocks.carbonStone,
@@ -56,6 +56,8 @@ public class MonolithPlanets {
 						heightMap = new Block[]{Blocks.redIce};
 						polarInterp = Interp.pow2In;
 						noiseSeed = 2;
+						scale = 0.1;
+						minValue = 0.25f;
 					}}
 				);
 				defaultBlock = Blocks.carbonStone;
@@ -63,10 +65,19 @@ public class MonolithPlanets {
 			meshLoader = () -> new HexMesh(this, 5);
 			startSector = 15;
 			alwaysUnlocked = accessible = true;
-			hasAtmosphere = false;
-			// gen = p -> {
-
-			// };
+			gen = p -> {
+				p.pass((x, y) -> {
+					float 
+					offsetX = (x/p.width - 0.5f) / 8,
+					offsetY = (y/p.height - 0.5f) / 8,
+					offsetZ = offsetX;
+					floor = p.getBlock(Tmp.v1.set(
+						p.sector.tile.v.x + offsetX
+						p.sector.tile.v.y + offsetY
+						p.sector.tile.v.z + offsetZ
+					));
+				});
+			};
 		}};
 	}
 }
