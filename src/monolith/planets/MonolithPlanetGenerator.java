@@ -2,6 +2,7 @@ package monolith.planets;
 
 import arc.math.*;
 import arc.util.*;
+import arc.func.*;
 import arc.struct.*;
 import arc.graphics.*;
 import arc.math.geom.*;
@@ -14,7 +15,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public float minHeight = 0.1f;
 	public double scale = 2.3, persistence =  0.5, octaves = 7;
 	public Seq<Biome> biomes = new Seq<>();
-	public Cons<MonoloithPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
+	public Cons<MonolithPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
 	public Block defaultBlock = Blocks.stone;
 
 	public class Biome {
