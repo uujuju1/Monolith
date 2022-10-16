@@ -65,8 +65,8 @@ public class MonolithPlanets {
 				gen = p -> {
 					p.pass((x, y) -> {
 						float 
-						offsetX = (x/p.width() - 0.5f) / 8f,
-						offsetY = (y/p.height() - 0.5f) / 8f,
+						offsetX = (x/p.width() - 0.5f),
+						offsetY = (y/p.height() - 0.5f),
 						offsetZ = offsetX;
 						p.setFloor(p.getBlock(Tmp.v31.set(
 							p.sector().tile.v.x + offsetX,
@@ -76,6 +76,9 @@ public class MonolithPlanets {
 					});
 				};
 			}};
+			atmosphereColor = Color.valueOf("809A5E");
+			atmosphereRadIn = 0.07f;
+			atmosphereRadOut = 0.25f;
 			meshLoader = () -> new HexMesh(this, 5);
 			startSector = 15;
 			alwaysUnlocked = accessible = true;

@@ -84,11 +84,13 @@ public class PayloadCrafter extends PayloadBlock {
 		}
 
 		public Table display() {
+			if (output == null) return;
 			Table res = new Table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray));
 
 			res.table(table -> {
 				table.table(name -> {
 					name.background(Tex.underline);
+
 					if (output.unlockedNow()) {
 						name.add(new Image(output.uiIcon)).size(48f, 48f);
 					} else {
