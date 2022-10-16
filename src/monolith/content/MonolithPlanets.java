@@ -74,6 +74,25 @@ public class MonolithPlanets {
 							p.sector().tile.v.z + offsetZ
 						)));
 					});
+					p.distort(123f, 58f);
+					p.distort(129f, 39f);
+					p.distort(105f, 81f);
+					p.distort(157f, 43f);
+					p.distort(177f, 68f);
+					p.distort(39f, 29f);
+
+					p.cells(5);
+
+					Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
+					int 
+					spawnX = (int) (trns.x + width()/2f),
+					spawnY = (int) (trns.y + height()/2f),
+					endX = (int) (trns.x + width()/2f),
+					endY = (int) (trns.y + height()/2f);
+
+					p.inverseFloodFill(tiles().getn(spawnX, spawnY));
+					p.erase(spawnX, spawnY, 10);
+					p.erase(endX, endY, 10);
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");

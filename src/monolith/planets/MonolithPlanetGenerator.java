@@ -12,6 +12,8 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.maps.generators.*;
 
+/** @author uujuju */
+
 public class MonolithPlanetGenerator extends PlanetGenerator {
 	public float minHeight = 0.1f;
 	public double scale = 2, persistence =  0.7, octaves = 7;
@@ -21,6 +23,8 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 
 	// aaaaaa
 	public Sector sector() {return sector;}
+	public Rand rand() {return rand;}
+	public Tiles tiles() {return tiles;}
 	public float width() {return width;}
 	public float height() {return height;}
 
