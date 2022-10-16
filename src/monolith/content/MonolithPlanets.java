@@ -1,6 +1,7 @@
 package monolith.content;
 
 import arc.math.*;
+import arc.util.*;
 import arc.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
@@ -61,23 +62,23 @@ public class MonolithPlanets {
 					}}
 				);
 				defaultBlock = Blocks.carbonStone;
+				gen = p -> {
+					p.pass((x, y) -> {
+						float 
+						offsetX = (x/p.width - 0.5f) / 8f,
+						offsetY = (y/p.height - 0.5f) / 8f,
+						offsetZ = offsetX;
+						p.floor = p.getBlock(Tmp.v1.set(
+							p.sector.tile.v.x + offsetX,
+							p.sector.tile.v.y + offsetY,
+							p.sector.tile.v.z + offsetZ
+						));
+					});
+				};
 			}};
 			meshLoader = () -> new HexMesh(this, 5);
 			startSector = 15;
 			alwaysUnlocked = accessible = true;
-			gen = p -> {
-				p.pass((x, y) -> {
-					float 
-					offsetX = (x/p.width - 0.5f) / 8f,
-					offsetY = (y/p.height - 0.5f) / 8f,
-					offsetZ = offsetX;
-					floor = p.getBlock(Tmp.v1.set(
-						p.sector.tile.v.x + offsetX,
-						p.sector.tile.v.y + offsetY,
-						p.sector.tile.v.z + offsetZ
-					));
-				});
-			};
 		}};
 	}
 }
