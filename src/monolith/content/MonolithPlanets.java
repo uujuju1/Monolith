@@ -1,5 +1,6 @@
 package monolith.content;
 
+import arc.math.*;
 import arc.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
@@ -53,7 +54,7 @@ public class MonolithPlanets {
 					}},
 					new Biome() {{
 						heightMap = new Block[]{Blocks.redIce};
-						polarInter = Interp.pow2In;
+						polarInterp = Interp.pow2In;
 						noiseSeed = 2;
 					}}
 				);
@@ -64,7 +65,7 @@ public class MonolithPlanets {
 			alwaysUnlocked = accessible = true;
 			hasAtmosphere = false;
 			// gen = p -> {
-				
+
 			// };
 		}};
 	}
