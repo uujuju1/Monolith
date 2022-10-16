@@ -3,6 +3,7 @@ package monolith.content;
 import arc.math.*;
 import arc.util.*;
 import arc.graphics.*;
+import arc.math.geom.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
