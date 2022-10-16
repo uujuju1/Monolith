@@ -15,12 +15,36 @@ public class MonolithPlanets {
 			generator = new MonolithPlanetGenerator() {{
 				biomes.add(
 					new Biome() {{
-						heightMap = new Block[]{Blocks.ferricStone, Blocks.carbonStone, Blocks.crystalFloor, Blocks.crystallineStone};
+						heightMap = new Block[]{
+							Blocks.ferricStone,
+							Blocks.carbonStone,
+							Blocks.crystalFloor,
+							Blocks.carbonStone,
+							Blocks.crystallineStone,
+							Blocks.crystallineStone,
+							Blocks.space,
+							Blocks.space,
+							Blocks.space,
+							Blocks.space,
+						};
 						maxValue = 0.6f;
+						scale = 0.3;
 					}},
 					new Biome() {{
-						heightMap = new Block[]{Blocks.carbonStone, Blocks.rhyolite, Blocks.regolith, Blocks.redStone};
+						heightMap = new Block[]{
+							Blocks.space,
+							Blocks.space,
+							Blocks.space,
+							Blocks.space,
+							Blocks.carbonStone,
+							Blocks.carbonStone,
+							Blocks.regolith,
+							Blocks.rhyolite,
+							Blocks.roughRhyolite,
+							Blocks.redStone
+						};
 						minValue = 0.4f;
+						scale = 0.3;
 					}}
 				);
 				defaultBlock = Blocks.carbonStone;
