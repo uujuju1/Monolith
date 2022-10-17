@@ -87,7 +87,9 @@ public class MonolithPlanets {
 					p.distort(39f, 29f);
 
 					Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
-					Seq<Room> rooms = Seq.with(
+					Seq<Room> rooms = new Seq<>();
+
+					rooms.add(
 						new Room((int) (trns.x + width()/2f), (int) (trns.y + height()/2f), 10),
 						new Room((int) (-trns.x + width()/2f), (int) (-trns.y + height()/2f), 10)
 					);
