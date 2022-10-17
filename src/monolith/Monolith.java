@@ -35,7 +35,7 @@ public class Monolith extends Mod{
 		MonolithLiquids.load();
 		MonolithUnitTypes.load();
 		MonolithBlocks.load();
-		// ah fu-
+		// has to be this because static skill issue
 		new MonolithPlanets().load();
 		MonolithTechTree.load();
 	}
