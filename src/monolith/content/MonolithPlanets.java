@@ -88,11 +88,11 @@ public class MonolithPlanets {
 
 					Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
 					Seq<Room> rooms = new Seq<>();
+					Room 
+					spawn = new Room((int) (trns.x + width()/2f), (int) (trns.y + height()/2f), 10);
+					end = new Room((int) (-trns.x + width()/2f), (int) (-trns.y + height()/2f), 10);
 
-					rooms.add(
-						new Room((int) (trns.x + width()/2f), (int) (trns.y + height()/2f), 10),
-						new Room((int) (-trns.x + width()/2f), (int) (-trns.y + height()/2f), 10)
-					);
+					rooms.add(spawn, end);
 
 					for (Room room : rooms) p.erase(room.x, room.y, room.radius);
 				};
