@@ -86,7 +86,7 @@ public class MonolithPlanets {
 					p.distort(177f, 68f);
 					p.distort(39f, 29f);
 
-					float[] rooms = new float[10];
+					int[] rooms = new int[10];
 					for (int i = 0; i < rooms.length; i += 2) {
 						Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
 						rooms[i] = (int)(trns.x + width()/2f);
