@@ -86,15 +86,14 @@ public class MonolithPlanets {
 					p.distort(177f, 68f);
 					p.distort(39f, 29f);
 
-					Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
-					Seq<Room> rooms = new Seq<>();
-					Room 
-					spawn = new Room((int) (trns.x + width()/2f), (int) (trns.y + height()/2f), 10);
-					end = new Room((int) (-trns.x + width()/2f), (int) (-trns.y + height()/2f), 10);
+					float[] rooms = new float[10];
+					for (int i = 0; i < rooms.length; i += 2) {
+						Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
+						rooms[i] = (int)(trns.x + width()/2f);
+						rooms[i + 1] = (int)(trns.y + height()/2f);
+					}
 
-					rooms.add(spawn, end);
-
-					for (Room room : rooms) p.erase(room.x, room.y, room.radius);
+					for (int i = 0; i < rooms.length; i += 2) p.erase(rooms[i], rooms[i + 1], 10);
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");
@@ -104,15 +103,5 @@ public class MonolithPlanets {
 			startSector = 15;
 			alwaysUnlocked = accessible = true;
 		}};
-	}
-	public class Room {
-		public int x, y, radius;
-		public Room other;
-
-		public Room(int x, int y, int radius) {
-			this.x = x;
-			this.y = y;
-			this.radius = radius;
-		}
 	}
 }
