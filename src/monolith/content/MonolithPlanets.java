@@ -69,11 +69,14 @@ public class MonolithPlanets {
 						offsetX = (x/p.width() - 0.5f),
 						offsetY = (y/p.height() - 0.5f),
 						offsetZ = offsetX;
-						p.setFloor(p.getBlock(Tmp.v31.set(
-							p.sector().tile.v.x + offsetX,
-							p.sector().tile.v.y + offsetY,
-							p.sector().tile.v.z + offsetZ
-						)));
+
+						p.setBlock(
+							p.setFloor(p.getBlock(Tmp.v31.set(
+								p.sector().tile.v.x + offsetX,
+								p.sector().tile.v.y + offsetY,
+								p.sector().tile.v.z + offsetZ
+							))).asFloor().wall
+						);
 					});
 					p.distort(123f, 58f);
 					p.distort(129f, 39f);
@@ -82,18 +85,15 @@ public class MonolithPlanets {
 					p.distort(177f, 68f);
 					p.distort(39f, 29f);
 
-					p.cells(5);
-
 					Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
-					int 
-					spawnX = (int) (trns.x + width()/2f),
-					spawnY = (int) (trns.y + height()/2f),
-					endX = (int) (trns.x + width()/2f),
-					endY = (int) (trns.y + height()/2f);
+					Seq<Room> rooms = Seq.with(
+						new Room((int) (trns.x + width()/2f), (int) (trns.y + height()/2f), 10),
+						new Room((int) (-trns.x + width()/2f), (int) (-trns.y + height()/2f), 10),
+					);
 
-					p.inverseFloodFill(tiles().getn(spawnX, spawnY));
-					p.erase(spawnX, spawnY, 10);
-					p.erase(endX, endY, 10);
+					for (Room room : rooms) {
+						p.erase(room.x, room.y, room.radius);
+					}
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");
@@ -103,5 +103,15 @@ public class MonolithPlanets {
 			startSector = 15;
 			alwaysUnlocked = accessible = true;
 		}};
+	}
+	public class Room {
+		public int x, y, radius;
+		public Room other;
+
+		public Room(int x, int y, int radius) {
+			this.x = x;
+			this.y = y;
+			this.radius = radius;
+		}
 	}
 }
