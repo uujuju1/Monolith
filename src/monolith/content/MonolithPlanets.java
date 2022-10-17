@@ -110,9 +110,9 @@ public class MonolithPlanets {
 					}
 
 					for (Room room : rooms) {
-						while (room.connect == null || room.connect != this) room.connect = rooms.random(rand());
+						while (room.connect == null || room.connect != room) room.connect = rooms.random(rand());
 						p.erase(room.x, room.y, room.r);
-						p.brush(p.pathfind(room.x, room.y, room.connect.x, room.connect.y, tile -> Mathf.dst(room.x, room.y, room.connect.x, room.connect.y), Astar.manhattan), rand().random(10, 20));
+						p.brush(p.pathfind(room.x, room.y, room.connect.x, room.connect.y, tile -> Mathf.dst(tile.x, tile.y, room.connect.x, room.connect.y), Astar.manhattan), rand().random(10, 20));
 					}
 				};
 			}};
