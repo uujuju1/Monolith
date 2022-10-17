@@ -88,12 +88,10 @@ public class MonolithPlanets {
 					Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
 					Seq<Room> rooms = Seq.with(
 						new Room((int) (trns.x + width()/2f), (int) (trns.y + height()/2f), 10),
-						new Room((int) (-trns.x + width()/2f), (int) (-trns.y + height()/2f), 10),
+						new Room((int) (-trns.x + width()/2f), (int) (-trns.y + height()/2f), 10)
 					);
 
-					for (Room room : rooms) {
-						p.erase(room.x, room.y, room.radius);
-					}
+					for (Room room : rooms) p.erase(room.x, room.y, room.radius);
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");
