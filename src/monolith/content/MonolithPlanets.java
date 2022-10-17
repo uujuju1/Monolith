@@ -99,13 +99,13 @@ public class MonolithPlanets {
 
 					Vec2 baseTrns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
 					Seq<Room> rooms = Seq.with(
-						new Room(baseTrns.x + width()/2f, baseTrns.y + height()/2f, 10),
-						new Room(-baseTrns.x + width()/2f, -baseTrns.y + height()/2f, 10)
+						new Room((int) baseTrns.x + width()/2f, (int) baseTrns.y + height()/2f, 10),
+						new Room((int) -baseTrns.x + width()/2f, (int) -baseTrns.y + height()/2f, 10)
 					);
 
 					for (int i = 0; i < 10; i++) {
 						Vec2 roomTrns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
-						rooms.add(new Room(roomTrns.x + width()/2f, roomTrns.y + height()/2f, 10), rand().random(10, 20));
+						rooms.add(new Room((int) roomTrns.x + width()/2f, (int) roomTrns.y + height()/2f, 10), rand().random(10, 20));
 					}
 
 					for (Room room : rooms) p.erase(room.x, room.y, room.r);
