@@ -14,7 +14,18 @@ import monolith.planets.*;
 public class MonolithPlanets {
 	public static Planet chroma;
 
-	public static void load() {
+	public class Room {
+		public int x, y, r;
+		public Room connect;
+
+		public Room(int x, int y, int r) {
+			this.x = x;
+			this.y = y;
+			this.r = r;
+		}
+	}
+
+	public void load() {
 		chroma = new Planet("chroma", Planets.sun, 1f, 2) {{
 			generator = new MonolithPlanetGenerator() {{
 				biomes.add(
@@ -86,14 +97,18 @@ public class MonolithPlanets {
 					p.distort(177f, 68f);
 					p.distort(39f, 29f);
 
-					int[] rooms = new int[10];
-					for (int i = 0; i < rooms.length; i += 2) {
-						Vec2 trns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
-						rooms[i] = (int)(trns.x + width()/2f);
-						rooms[i + 1] = (int)(trns.y + height()/2f);
+					Vec2 baseTrns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
+					Seq<Room> rooms = Seq.with(
+						new Room(baseTrns.x + width()/2f, baseTrns.y + height()/2f, 10),
+						new Room(-baseTrns.x + width()/2f, -baseTrns.y + height()/2f, 10)
+					);
+
+					for (int i = 0; i < 10; i++) {
+						Vec2 roomTrns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
+						rooms.add(new Room(roomTrns.x + width()/2f, roomTrns.y + height()/2f, 10), rand().random(10, 20));
 					}
 
-					for (int i = 0; i < rooms.length; i += 2) p.erase(rooms[i], rooms[i + 1], 10);
+					for (Room room : rooms) p.erase(room.x, room.y, room.r);
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");
