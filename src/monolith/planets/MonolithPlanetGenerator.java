@@ -43,7 +43,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public class Biome {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
-		public ObjectFloatMap<OreBlock> ores = ObjectMap.of(Blokcs.oreCopper, 0.70f, Blocks.oreLead, 0.70f);
+		public ObjectFloatMap<Block> ores = ObjectMap.of(Blocks.oreCopper, 0.70f, Blocks.oreLead, 0.70f);
 
 		// equator to pole interpolation
 		public Interp polarInterp = Interp.one;
