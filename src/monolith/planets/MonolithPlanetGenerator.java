@@ -32,6 +32,10 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public Block setBlock(Block block) {return this.block = block;}
 	public Block setOre(Block ore) {return this.ore = ore;}
 
+	public Seq<Tile> pathfind(int startX, int startY, int endX, int endY, TileHueristic th, DistanceHeuristic dh, Boolf<Tile> passable) {
+		return Astar.pathfind(startX, startY, endX, endY, th, dh, passable);
+	}
+
 	public class Biome {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
