@@ -134,7 +134,7 @@ public class MonolithPlanets {
 							p.sector().tile.v.z + offsetZ
 						)).ores);
 
-						ores.each(ore -> {if (noise(x + 1000 + (ores.indexOf(ore)*999), y + (ores.indexOf(ore)*999, 2, 0.7, 40 + ore.tresh * 4) > ore.tresh) setOre(ore.ore);});
+						ores.each(ore -> {if (noise(x + 1000 + (ores.indexOf(ore)*999), y + (ores.indexOf(ore)*999), 2, 0.7, 40 + ore.tresh * 4) > ore.tresh) setOre(ore.ore);});
 					});
 
 					p.erase(rooms.get(0).x, rooms.get(0).y, rooms.get(0).r);
