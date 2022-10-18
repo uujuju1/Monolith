@@ -91,7 +91,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 			Block res = heightMap[Mathf.clamp((int) (noise(pos) * (heightMap.length - 1f)), 0, heightMap.length - 1)];
 			return (noise(pos) < minValue || noise(pos) > maxValue) ? null : res;
 		}
-		public boolean isValid(Vec3 pos) {return noise(pos) < minValue || noise(pos) > maxValue;}
+		public boolean isValid(Vec3 pos) {return noise(pos) > minValue && noise(pos) < maxValue;}
 	}
 
 	public class OreEntry {
