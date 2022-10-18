@@ -7,6 +7,7 @@ import arc.graphics.*;
 import arc.math.geom.*;
 import mindustry.*;
 import mindustry.ai.*;
+import mindustry.game.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
@@ -115,6 +116,31 @@ public class MonolithPlanets {
 						p.erase(room.x, room.y, room.r);
 						p.brush(Astar.pathfind(Vars.world.tiles.getn(room.x, room.y), Vars.world.tiles.getn(room.connect.x, room.connect.y), tile -> Mathf.dst(width()/2f, height()/2f), tile -> true), rand().random(10, 20));
 					}
+					p.distort(118f, 37f);
+					p.distort(67f, 17f);
+					p.distort(55f, 20f);
+					p.median(3, 0.5);
+					p.distort(18f, 4f);
+					ObjectFloatMap<Block> ores;
+					pass((x, y) => {
+						float 
+						offsetX = (x/p.width() - 0.5f),
+						offsetY = (y/p.height() - 0.5f),
+						offsetZ = offsetX;
+
+						ores = p.getBiome(
+							p.sector().tile.v.x + offsetX,
+							p.sector().tile.v.y + offsetY,
+							p.sector().tile.v.z + offsetZ
+						).ores;
+
+						ores.each(ore -> if (noise(x, y, 2, 0.7, (40 + ore.value) * 4) > ore.value) setOre(ore.key));
+					});
+
+					p.erase(rooms.get(0).x, rooms.get(0).y, rooms.get(0).r);
+					p.erase(rooms.get(1).x, rooms.get(1).y, rooms.get(1).r);
+					Schematics.placeLaunchLoadout(rooms.get(0).x, rooms.get(0).y);
+					tiles.getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");

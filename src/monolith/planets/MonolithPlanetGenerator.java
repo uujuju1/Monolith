@@ -34,13 +34,16 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public Block setBlock(Block block) {return this.block = block;}
 	public Block setOre(Block ore) {return this.ore = ore;}
 
-	public Seq<Tile> pathfind(int startX, int startY, int endX, int endY, TileHueristic th, DistanceHeuristic dh, Boolf<Tile> passable) {
-		return Astar.pathfind(startX, startY, endX, endY, th, dh, passable);
+	public @Nullable Biome getBiome(Vec3 pos) {
+		Biome res = null;
+		for (Biome biome : biomes) if (biome.isValid(pos)) res = biome;
+		return res;
 	}
 
 	public class Biome {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
+		public ObjectFloatMap<OreBlock> ores = ObjectMap.of(Blokcs.oreCopper, 0.70f, Blocks.oreLead, 0.70f);
 
 		// equator to pole interpolation
 		public Interp polarInterp = Interp.one;
@@ -60,7 +63,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 		/**
 			@param clampHeight will override any biome before it when set to true
 			clamps noise onto min and max values
-			this will apply the entire noise height map onto the entire planet
+			this will apply the entire noise height map onto the entire planet!
 		*/
 		public boolean clampHeight = false;
 
@@ -85,6 +88,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 			Block res = heightMap[Mathf.clamp((int) (noise(pos) * (heightMap.length - 1f)), 0, heightMap.length - 1)];
 			return (noise(pos) < minValue || noise(pos) > maxValue) ? null : res;
 		}
+		public boolean isValid(Vec3 pos) {return noise(pos) < minValue || noise(pos) > maxValue;}
 	}
 	
 	float rawHeight(Vec3 pos) {return Simplex.noise3d(seed, octaves, persistence, scale, pos.x, pos.y, pos.z);}
