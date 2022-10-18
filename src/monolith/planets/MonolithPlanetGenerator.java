@@ -11,6 +11,7 @@ import mindustry.ai.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
+import mindustry.ai.Astar.*;
 import mindustry.maps.generators.*;
 
 /** @author uujuju */
