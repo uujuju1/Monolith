@@ -128,11 +128,11 @@ public class MonolithPlanets {
 						offsetY = (y/p.height() - 0.5f),
 						offsetZ = offsetX;
 
-						ores = p.getBiome(
+						ores = p.getBiome(Tmp.v31.set(
 							p.sector().tile.v.x + offsetX,
 							p.sector().tile.v.y + offsetY,
 							p.sector().tile.v.z + offsetZ
-						).ores;
+						)).ores;
 
 						ores.each(ore -> {if (noise(x, y, 2, 0.7, 40 + ore.value * 4) > ore.value) setOre(ore.key);});
 					});
