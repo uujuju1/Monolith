@@ -5,6 +5,7 @@ import arc.util.*;
 import arc.struct.*;
 import arc.graphics.*;
 import arc.math.geom.*;
+import mindustry.*;
 import mindustry.ai.*;
 import mindustry.type.*;
 import mindustry.world.*;
@@ -113,7 +114,8 @@ public class MonolithPlanets {
 						while (room.connect == null || room.connect != room) room.connect = rooms.random(rand());
 						p.erase(room.x, room.y, room.r);
 					}
-					for (Room room : rooms) p.brush(Astar.pathfind(room.x, room.y, room.connect.x, room.connect.y, tile -> Mathf.dst(width()/2f, height()/2f), Astar.manhattan, tile -> true), 15);
+					Seq<Tile> path = Astar.pathfind(Vars.world.tiles.getn(room.x, room.y), Vars.world.tiles.getn(room.conncect.x, room.conncect.y), tile -> Mathf.dst(width()/2f, height()/2f), tile -> true);
+					for (Tile tile : path) p.erase(tile.x, tile.y, 10);
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");
