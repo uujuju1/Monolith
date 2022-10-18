@@ -121,18 +121,18 @@ public class MonolithPlanets {
 					p.distort(55f, 20f);
 					p.median(3, 0.5);
 					p.distort(18f, 4f);
-					Seq<OreEntry> ores;
+
 					pass((x, y) -> {
 						float 
 						offsetX = (x/p.width() - 0.5f),
 						offsetY = (y/p.height() - 0.5f),
 						offsetZ = offsetX;
 
-						ores = p.getBiome(Tmp.v31.set(
+						Seq<OreEntry> ores = new Seq<>(p.getBiome(Tmp.v31.set(
 							p.sector().tile.v.x + offsetX,
 							p.sector().tile.v.y + offsetY,
 							p.sector().tile.v.z + offsetZ
-						)).ores;
+						)).ores);
 
 						ores.each(ore -> {if (noise(x, y, 2, 0.7, 40 + ore.tresh * 4) > ore.tresh) setOre(ore.ore);});
 					});
