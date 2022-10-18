@@ -7,6 +7,7 @@ import arc.struct.*;
 import arc.graphics.*;
 import arc.math.geom.*;
 import arc.util.noise.*;
+import mindustry.ai.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
