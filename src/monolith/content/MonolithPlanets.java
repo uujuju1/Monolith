@@ -121,7 +121,7 @@ public class MonolithPlanets {
 					p.distort(55f, 20f);
 					p.median(3, 0.5);
 					p.distort(18f, 4f);
-					ObjectFloatMap<Block> ores;
+					Seq<OreEntry> ores;
 					pass((x, y) -> {
 						float 
 						offsetX = (x/p.width() - 0.5f),
@@ -134,7 +134,7 @@ public class MonolithPlanets {
 							p.sector().tile.v.z + offsetZ
 						)).ores;
 
-						ores.each(ore -> {if (noise(x, y, 2, 0.7, 40 + ore.value * 4) > ore.value) setOre(ore.key);});
+						ores.each(ore -> {if (noise(x, y, 2, 0.7, 40 + ore.tresh * 4) > ore.tresh) setOre(ore.ore);});
 					});
 
 					p.erase(rooms.get(0).x, rooms.get(0).y, rooms.get(0).r);

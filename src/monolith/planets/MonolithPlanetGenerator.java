@@ -23,7 +23,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public Cons<MonolithPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
 	public Block defaultBlock = Blocks.stone;
 
-	// aaaaaa
+	// un protect the things
 	public Sector sector() {return sector;}
 	public Rand rand() {return rand;}
 	public Tiles tiles() {return tiles;}
@@ -43,7 +43,10 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public class Biome {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
-		public ObjectFloatMap<Block> ores = ObjectFloatMap.of(Blocks.oreCopper, 0.7f, Blocks.oreLead, 0.7f);
+		public Seq<OreEntry> ores = Seq.with(
+			new OreEntry(Blocks.oreCopper, 0.7f),
+			new OreEntry(Blocks.oreLead, 0.73f)
+		);
 
 		// equator to pole interpolation
 		public Interp polarInterp = Interp.one;
@@ -89,6 +92,15 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 			return (noise(pos) < minValue || noise(pos) > maxValue) ? null : res;
 		}
 		public boolean isValid(Vec3 pos) {return noise(pos) < minValue || noise(pos) > maxValue;}
+	}
+
+	public class OreEntry {
+		public float tresh = 0.7f;
+		public Block ore = Blocks.oreCopper;
+		public OreEntry(Block ore, float tresh) {
+			this.ore = ore;
+			this.tresh = tresh;
+		}
 	}
 	
 	float rawHeight(Vec3 pos) {return Simplex.noise3d(seed, octaves, persistence, scale, pos.x, pos.y, pos.z);}
