@@ -113,7 +113,7 @@ public class MonolithPlanets {
 						while (room.connect == null || room.connect != room) room.connect = rooms.random(rand());
 						p.erase(room.x, room.y, room.r);
 					}
-					for (Room room : rooms) p.brush(Astar.pathfind(room.x, room.y, room.connect.x, room.connect.y, tile -> Math.dst(width()/2f, height()/2f) - tile.dst(width()/2f, height()/2f)/10f, Astar.manhattan, tile -> true), 15);
+					for (Room room : rooms) p.brush(Astar.pathfind(room.x, room.y, room.connect.x, room.connect.y, tile -> Math.dst(width()/2f, height()/2f), Astar.manhattan, tile -> true), 15);
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");
