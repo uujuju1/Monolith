@@ -113,9 +113,9 @@ public class MonolithPlanets {
 					for (Room room : rooms) {
 						while (room.connect == null || room.connect != room) room.connect = rooms.random(rand());
 						p.erase(room.x, room.y, room.r);
+						Seq<Tile> path = Astar.pathfind(Vars.world.tiles.getn(room.x, room.y), Vars.world.tiles.getn(room.conncect.x, room.conncect.y), tile -> Mathf.dst(width()/2f, height()/2f), tile -> true);
+						for (Tile tile : path) p.erase(tile.x, tile.y, 10);
 					}
-					Seq<Tile> path = Astar.pathfind(Vars.world.tiles.getn(room.x, room.y), Vars.world.tiles.getn(room.conncect.x, room.conncect.y), tile -> Mathf.dst(width()/2f, height()/2f), tile -> true);
-					for (Tile tile : path) p.erase(tile.x, tile.y, 10);
 				};
 			}};
 			atmosphereColor = Color.valueOf("809A5E");
