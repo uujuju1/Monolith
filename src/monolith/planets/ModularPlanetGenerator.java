@@ -23,7 +23,7 @@ public class ModularPlanetGenerator extends PlanetGenerator {
 	public float minHeight = 0.1f;
 	public double scale = 2, persistence =  0.7, octaves = 7;
 	public Seq<Biome> biomes = new Seq<>();
-	public Cons<MonolithPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
+	public Cons<ModularPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
 	public Cons<Sector> genSectors = p -> {};
 	public Block defaultBlock = Blocks.stone;
 

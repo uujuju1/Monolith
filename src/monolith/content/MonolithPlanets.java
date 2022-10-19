@@ -30,7 +30,7 @@ public class MonolithPlanets {
 
 	public void load() {
 		chroma = new Planet("chroma", Planets.sun, 1f, 2) {{
-			generator = new MonolithPlanetGenerator() {{
+			generator = new ModularPlanetGenerator() {{
 				biomes.add(
 					new Biome() {{
 						heightMap = new Block[]{
