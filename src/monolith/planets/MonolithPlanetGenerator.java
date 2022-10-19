@@ -91,7 +91,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 			Block res = heightMap[Mathf.clamp((int) (noise(pos) * (heightMap.length - 1f)), 0, heightMap.length - 1)];
 			return (noise(pos) < minValue || noise(pos) > maxValue) ? null : res;
 		}
-		public boolean isValid(Vec3 pos) {return noise(pos) > minValue && noise(pos) < maxValue;}
+		public boolean isValid(Vec3 pos) {return (noise(pos) > minValue && noise(pos) < maxValue);}
 	}
 
 	public class OreEntry {
@@ -106,7 +106,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	float rawHeight(Vec3 pos) {return Simplex.noise3d(seed, octaves, persistence, scale, pos.x, pos.y, pos.z);}
 	public Block getBlock(Vec3 pos) {
 		@Nullable Block res = null;
-		for (Biome biome : biomes) if(biome.getBlock(pos) != null) res = biome.getBlock(pos);
+		if(getBiome(pos) != null) if(getBiome(pos).getBlock(pos) != null) res = biome.getBlock(pos);
 		return res == null ? defaultBlock : res;
 	}
 

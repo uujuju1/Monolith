@@ -128,13 +128,16 @@ public class MonolithPlanets {
 						offsetY = (y/p.height() - 0.5f),
 						offsetZ = offsetX;
 
-						Seq<OreEntry> ores = new Seq<>(p.getBiome(Tmp.v31.set(
+						@Nullable Biome current = p.getBiome(Tmp.v31.set(
 							p.sector().tile.v.x + offsetX,
 							p.sector().tile.v.y + offsetY,
 							p.sector().tile.v.z + offsetZ
-						)).ores);
+						));
+						if (current != null) {
+							Seq<OreEntry> ores = new Seq<>(current.ores);
 
-						ores.each(ore -> {if (noise(x + 1000 + (ores.indexOf(ore)*999), y + (ores.indexOf(ore)*999), 2, 0.7, 40 + ore.tresh * 4) > ore.tresh) setOre(ore.ore);});
+							ores.each(ore -> {if (noise(x + 1000 + (ores.indexOf(ore)*999), y + (ores.indexOf(ore)*999), 2, 0.7, 40 + ore.tresh * 4) > ore.tresh) setOre(ore.ore);});
+						}
 					});
 
 					p.erase(rooms.get(0).x, rooms.get(0).y, rooms.get(0).r);
