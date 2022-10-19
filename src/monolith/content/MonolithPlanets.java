@@ -148,7 +148,7 @@ public class MonolithPlanets {
 
 					p.erase(rooms.get(0).x, rooms.get(0).y, rooms.get(0).r);
 					p.erase(rooms.get(1).x, rooms.get(1).y, rooms.get(1).r);
-					p.brush(Astar.pathfind(Vars.world.tiles.getn(room.get(0).x, room.get(0).y), Vars.world.tiles.getn(room.get(1).x, room.get(1).y), tile -> Mathf.dst(width()/2f, height()/2f), tile -> Vars.world.getDarkness(tile.x, tile.y) <= 1), 10);
+					p.brush(Astar.pathfind(Vars.world.tiles.getn(rooms.get(0).x, rooms.get(0).y), Vars.world.tiles.getn(rooms.get(1).x, rooms.get(1).y), tile -> Mathf.dst(width()/2f, height()/2f), tile -> Vars.world.getDarkness(tile.x, tile.y) <= 1), 10);
 					// TODO non 0 chance that sector blocks ground unit's path
 					p.distort(120f, 29f);
 					p.distort(17f, 5f);
