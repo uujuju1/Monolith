@@ -14,9 +14,12 @@ import mindustry.content.*;
 import mindustry.ai.Astar.*;
 import mindustry.maps.generators.*;
 
-/** @author uujuju */
+/** 
+	@author uujuju 
+	other updates will be made in monolith(mayme make it a separate mod ig)
+*/
 
-public class MonolithPlanetGenerator extends PlanetGenerator {
+public class ModularPlanetGenerator extends PlanetGenerator {
 	public float minHeight = 0.1f;
 	public double scale = 2, persistence =  0.7, octaves = 7;
 	public Seq<Biome> biomes = new Seq<>();
@@ -45,8 +48,8 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
 		public Seq<OreEntry> ores = Seq.with(
-			new OreEntry(Blocks.oreCopper, 0.7f),
-			new OreEntry(Blocks.oreLead, 0.73f)
+			new OreEntry(Blocks.oreCopper, 0.8f),
+			new OreEntry(Blocks.oreLead, 0.83f)
 		);
 
 		// equator to pole interpolation
