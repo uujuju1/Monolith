@@ -139,7 +139,7 @@ public class MonolithPlanets {
 						if (current != null) {
 							Seq<OreEntry> ores = new Seq<>(current.ores);
 							ores.each(ore -> {
-								if (noise(x, y + (ores.indexOf(ore)*999), 2, 0.7, 60 * ore.tresh) => ore.tresh) {
+								if (noise(x, y + (ores.indexOf(ore)*999), 2, 0.7, 60 * ore.tresh) >= ore.tresh) {
 									setOre(ore.ore);
 									Log.info("ore placed: " + ore.ore + "at:" + x + ", " + y);
 								}
