@@ -106,7 +106,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	float rawHeight(Vec3 pos) {return Simplex.noise3d(seed, octaves, persistence, scale, pos.x, pos.y, pos.z);}
 	public Block getBlock(Vec3 pos) {
 		@Nullable Block res = null;
-		if(getBiome(pos) != null) if(getBiome(pos).getBlock(pos) != null) res = biome.getBlock(pos);
+		if(getBiome(pos) != null) if(getBiome(pos).getBlock(pos) != null) res = getBiome(pos).getBlock(pos);
 		return res == null ? defaultBlock : res;
 	}
 
