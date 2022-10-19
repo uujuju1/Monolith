@@ -21,6 +21,7 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 	public double scale = 2, persistence =  0.7, octaves = 7;
 	public Seq<Biome> biomes = new Seq<>();
 	public Cons<MonolithPlanetGenerator> gen = p -> p.pass((x, y) -> {p.floor = getBlock(p.sector.tile.v);});
+	public Cons<Sector> genSectors = p -> {};
 	public Block defaultBlock = Blocks.stone;
 
 	// un protect the things
@@ -44,8 +45,8 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
 		public Seq<OreEntry> ores = Seq.with(
-			new OreEntry(Blocks.oreCopper, 0.7f),
-			new OreEntry(Blocks.oreLead, 0.73f)
+			new OreEntry(Blocks.oreCopper, 0.8f),
+			new OreEntry(Blocks.oreLead, 0.83f)
 		);
 
 		// equator to pole interpolation
@@ -115,6 +116,9 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 
 	@Override
 	public Color getColor(Vec3 pos) {return getBlock(pos).mapColor;}
+
+	@Override
+	public void generateSector(Sector sector) {genSectors.get(sector);}
 
 	@Override
 	protected void generate() {gen.get(this);}

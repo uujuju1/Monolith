@@ -47,6 +47,7 @@ public class MonolithPlanets {
 							Blocks.regolith,
 							Blocks.regolith
 						};
+						ores.add(new OreEntry(Blocks.oreCoal, 0.85f))
 						scale = 1;
 						magnitude = 1.5f;
 						clampHeight = true;
@@ -64,6 +65,7 @@ public class MonolithPlanets {
 							Blocks.basalt,
 							Blocks.basalt
 						};
+						ores.add(new OreEntry(Blocks.oreTitanium, 0.87f));
 						minValue = 0.4f;
 						scale = 0.1;
 						magnitude = 2;
@@ -71,6 +73,7 @@ public class MonolithPlanets {
 					}},
 					new Biome() {{
 						heightMap = new Block[]{Blocks.redIce};
+						ores.add(new OreEntry(Blocks.oreThorium, 0.9f));
 						polarInterp = Interp.pow2In;
 						noiseSeed = 2;
 						scale = 0.1;
@@ -102,8 +105,8 @@ public class MonolithPlanets {
 
 					Vec2 baseTrns = Tmp.v1.trns(rand().random(360f), width()/2.6f);
 					Seq<Room> rooms = Seq.with(
-						new Room((int) (baseTrns.x + width()/2f), (int) (baseTrns.y + height()/2f), 10),
-						new Room((int) (-baseTrns.x + width()/2f), (int) (-baseTrns.y + height()/2f), 10)
+						new Room((int) (baseTrns.x + width()/2f), (int) (baseTrns.y + height()/2f), 20),
+						new Room((int) (-baseTrns.x + width()/2f), (int) (-baseTrns.y + height()/2f), 20)
 					);
 
 					for (int i = 0; i < 10; i++) {
@@ -135,13 +138,21 @@ public class MonolithPlanets {
 						));
 						if (current != null) {
 							Seq<OreEntry> ores = new Seq<>(current.ores);
-
-							ores.each(ore -> {if (noise(x + 1000 + (ores.indexOf(ore)*999), y + (ores.indexOf(ore)*999), 2, 0.7, 40 + ore.tresh * 4) > ore.tresh) setOre(ore.ore);});
+							ores.each(ore -> {if (noise(x + 1000 + (ores.indexOf(ore)*999), y + (ores.indexOf(ore)*999), 2, 0.7, 20 + (ore.tresh * 4)) > ore.tresh) setOre(ore.ore);});
 						}
 					});
 
+					p.distort(120f, 29f);
+					p.distort(120f, 29f);
+					p.distort(17f, 5f);
+
 					p.erase(rooms.get(0).x, rooms.get(0).y, rooms.get(0).r);
 					p.erase(rooms.get(1).x, rooms.get(1).y, rooms.get(1).r);
+					p.brush(Astar.pathfind(Vars.world.tiles.getn(room.get(0).x, room.get(0).y), Vars.world.tiles.getn(room.get(1).x, room.get(1).y), tile -> Mathf.dst(width()/2f, height()/2f), tile -> Vars.world.getDarkness(tile.x, tile.y) <= 1), 10);
+					// TODO non 0 chance that sector blocks ground unit's path
+					p.distort(120f, 29f);
+					p.distort(17f, 5f);
+
 					Schematics.placeLaunchLoadout(rooms.get(0).x, rooms.get(0).y);
 					tiles.getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);
 				};
