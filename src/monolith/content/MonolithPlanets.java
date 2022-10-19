@@ -47,7 +47,7 @@ public class MonolithPlanets {
 							Blocks.regolith,
 							Blocks.regolith
 						};
-						ores.add(new OreEntry(Blocks.oreCoal, 0.85f))
+						ores.add(new OreEntry(Blocks.oreCoal, 0.85f));
 						scale = 1;
 						magnitude = 1.5f;
 						clampHeight = true;
