@@ -45,8 +45,8 @@ public class MonolithPlanetGenerator extends PlanetGenerator {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;
 		public Seq<OreEntry> ores = Seq.with(
-			new OreEntry(Blocks.oreCopper, 0.8f),
-			new OreEntry(Blocks.oreLead, 0.83f)
+			new OreEntry(Blocks.oreCopper, 0.7f),
+			new OreEntry(Blocks.oreLead, 0.73f)
 		);
 
 		// equator to pole interpolation

@@ -47,7 +47,7 @@ public class MonolithPlanets {
 							Blocks.regolith,
 							Blocks.regolith
 						};
-						ores.add(new OreEntry(Blocks.oreCoal, 0.85f));
+						ores.add(new OreEntry(Blocks.oreCoal, 0.75f));
 						scale = 1;
 						magnitude = 1.5f;
 						clampHeight = true;
@@ -65,7 +65,7 @@ public class MonolithPlanets {
 							Blocks.basalt,
 							Blocks.basalt
 						};
-						ores.add(new OreEntry(Blocks.oreTitanium, 0.87f));
+						ores.add(new OreEntry(Blocks.oreTitanium, 0.77f));
 						minValue = 0.4f;
 						scale = 0.1;
 						magnitude = 2;
@@ -73,7 +73,7 @@ public class MonolithPlanets {
 					}},
 					new Biome() {{
 						heightMap = new Block[]{Blocks.redIce};
-						ores.add(new OreEntry(Blocks.oreThorium, 0.9f));
+						ores.add(new OreEntry(Blocks.oreThorium, 0.8f));
 						polarInterp = Interp.pow2In;
 						noiseSeed = 2;
 						scale = 0.1;
@@ -155,9 +155,14 @@ public class MonolithPlanets {
 
 					Schematics.placeLaunchLoadout(rooms.get(0).x, rooms.get(0).y);
 					tiles.getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);
+
+					Vars.state.rules.waveSpacing = Mathf.lerp(60 * 65 * 2, 60f * 60f * 1f, Math.max(sector().threat - 0.4f, 0f));
+					Vars.state.rules.winWave = sector().info.winWave = 10 + 5 * (int)Math.max(sector().threat * 10, 1);
+					Vars.state.rules.waves = sector().info.waves = true;
+					Vars.state.rules.env = sector().planet.defaultEnv;
 				};
 			}};
-			atmosphereColor = Color.valueOf("809A5E");
+			atmosphereColor = Color.valueOf("85B058");
 			atmosphereRadIn = 0.07f;
 			atmosphereRadOut = 0.25f;
 			meshLoader = () -> new HexMesh(this, 5);
