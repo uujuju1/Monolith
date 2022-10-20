@@ -16,7 +16,7 @@ import mindustry.maps.generators.*;
 
 /** 
 	@author uujuju 
-	other updates will be made in monolith(mayme make it a separate mod ig)
+	other updates will be made in monolith(mayme make in a separate mod ig)
 */
 
 public class ModularPlanetGenerator extends PlanetGenerator {

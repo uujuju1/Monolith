@@ -12,7 +12,7 @@ import static monolith.content.MonolithUnitTypes.*;
 
 public class MonolithTechTree {
 	public static void load() {
-		MonolithPlanets.chroma.techTree = nodeRoot("chroma", macrosteelFurnace, true, () -> {
+		MonolithPlanets.chroma.techTree = nodeRoot("chroma", wallPulverizer, true, () -> {
 			nodeProduce(macrosteel, () -> {
 				nodeProduce(lithium, () -> {
 					nodeProduce(meanium, () -> {
@@ -44,19 +44,21 @@ public class MonolithTechTree {
 				node(heatFan, Seq.with(new Research(Blocks.laserDrill)), () -> {});
 			});
 
-			node(lithiumWeaver, Seq.with(new Produce(macrosteel)), () -> {
-				node(alloyInfuser, Seq.with(new Produce(lithium)), () -> {
-					node(industrialPress, Seq.with(new Produce(Items.titanium)), () -> {
-						node(karanitePress, Seq.with(new Produce(Items.plastanium)), () -> {
-							// node(natniumForge, Seq.with(new Produce(venera)), () -> {});
+			node(macrosteelFurnace, () -> {
+				node(lithiumWeaver, Seq.with(new Produce(macrosteel)), () -> {
+					node(alloyInfuser, Seq.with(new Produce(lithium)), () -> {
+						node(industrialPress, Seq.with(new Produce(Items.titanium)), () -> {
+							node(karanitePress, Seq.with(new Produce(Items.plastanium)), () -> {
+								// node(natniumForge, Seq.with(new Produce(venera)), () -> {});
+							});
 						});
-					});
-					node(sohritePress, Seq.with(new Produce(Items.titanium)), () -> {
-						node(vakyiteCompressor, Seq.with(new Produce(Items.thorium)), () -> {});
+						node(sohritePress, Seq.with(new Produce(Items.titanium)), () -> {
+							node(vakyiteCompressor, Seq.with(new Produce(Items.thorium)), () -> {});
+						});
 					});
 				});
 			});
-
+			
 			node(move, Seq.with(new Produce(macrosteel)), () -> {
 				node(accelerate, Seq.with(new Produce(Items.thorium)), () -> {});
 

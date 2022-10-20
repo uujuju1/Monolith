@@ -33,6 +33,9 @@ public class MonolithBlocks {
 	itemLiquidJunction,
 	heatPipe, advHeatPipe,
 
+	// drills
+	wallPulverizer,
+
 	// production
 	macrosteelFurnace, lithiumWeaver, alloyInfuser,
 	industrialPress, sohritePress, karanitePress,
@@ -82,6 +85,17 @@ public class MonolithBlocks {
 			heatFlowMultiplier = 0.2f;
 		}};
 
+		// drills
+		wallPulverizer = new WallCrafter("wall-pulverizer") {{
+			requirements(Category.production, with(
+				Items.copper, 15
+				Items.lead, 10
+			));
+			size = 2;
+			health = 160;
+			drillTime = 110f;
+		}};
+
 		// production
 		macrosteelFurnace = new GenericCrafter("macrosteel-furnace") {{
 			requirements(Category.crafting, with(
@@ -91,7 +105,6 @@ public class MonolithBlocks {
 			size = 3;
 			health = 200;
 			craftTime = 120;
-			alwaysUnlocked = true;
 			craftEffect = MonolithFx.macrosteelCraft;
 			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
