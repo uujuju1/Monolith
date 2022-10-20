@@ -135,30 +135,8 @@ public class MonolithPlanets {
 					p.distort(120f, 29f);
 					p.distort(17f, 5f);
 
-					pass((x, y) -> {
-						float 
-						offsetX = (x/p.width() - 0.5f),
-						offsetY = (y/p.height() - 0.5f),
-						offsetZ = offsetX;
-
-						@Nullable Biome current = p.getBiome(Tmp.v31.set(
-							p.sector().tile.v.x + offsetX,
-							p.sector().tile.v.y + offsetY,
-							p.sector().tile.v.z + offsetZ
-						));
-						if (current != null) {
-							Seq<OreEntry> ores = new Seq<>(current.ores);
-							ores.each(ore -> {
-								if (noise(x, y + (ores.indexOf(ore)*999), 2, 0.7, 60 * ore.tresh) >= ore.tresh) {
-									tiles.getn(x, y).setOverlay(ore.ore);
-									Log.info("ore placed: " + ore.ore + " at:" + x + ", " + y);
-								}
-							});
-						}
-					});
-
 					Schematics.placeLaunchLoadout(rooms.get(0).x, rooms.get(0).y);
-					tiles.getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);
+					tiles().getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);
 
 					Vars.state.rules.waveSpacing = Mathf.lerp(60 * 65 * 2, 60f * 60f * 1f, Math.max(sector().threat - 0.4f, 0f));
 					Vars.state.rules.winWave = sector().info.winWave = 10 + 5 * (int)Math.max(sector().threat * 10, 1);
