@@ -88,7 +88,7 @@ public class MonolithBlocks {
 		// drills
 		wallPulverizer = new WallCrafter("wall-pulverizer") {{
 			requirements(Category.production, with(
-				Items.copper, 15
+				Items.copper, 15,
 				Items.lead, 10
 			));
 			size = 2;
