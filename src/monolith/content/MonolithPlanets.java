@@ -140,8 +140,8 @@ public class MonolithPlanets {
 							Seq<OreEntry> ores = new Seq<>(current.ores);
 							ores.each(ore -> {
 								if (noise(x, y + (ores.indexOf(ore)*999), 2, 0.7, 60 * ore.tresh) >= ore.tresh) {
-									setOre(ore.ore);
-									Log.info("ore placed: " + ore.ore + "at:" + x + ", " + y);
+									tiles.getn(x, y).setOverlay(ore.ore);
+									Log.info("ore placed: " + ore.ore + " at:" + x + ", " + y);
 								}
 							});
 						}
@@ -167,13 +167,13 @@ public class MonolithPlanets {
 					Vars.state.rules.env = sector().planet.defaultEnv;
 				};
 			}};
-			atmosphereColor = Color.valueOf("85B058");
+			atmosphereColor = Color.valueOf("E3DB71");
 			atmosphereRadIn = 0.07f;
 			atmosphereRadOut = 0.25f;
 			meshLoader = () -> new HexMesh(this, 5);
 			cloudMeshLoader = () -> new MultiMesh(
-				new HexSkyMesh(this, 10, 0.1f, 0.1f, 5, Color.valueOf("85B058").mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
-				new HexSkyMesh(this, 2, 0.2f, 0.17f, 5, Color.valueOf("85B058").mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.41f)
+				new HexSkyMesh(this, 10, 0.13f, 0.1f, 5, Color.valueOf("E3DB71").mul(0.9f).a(0.25f), 2, 0.45f, 0.9f, 0.38f),
+				new HexSkyMesh(this, 2, 0.15f, 0.17f, 5, Color.valueOf("E3DB71").mul(0.7f).a(0.25f), 2, 0.45f, 0.9f, 0.41f)
 			);
 			startSector = 15;
 			alwaysUnlocked = accessible = true;
