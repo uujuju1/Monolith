@@ -1,13 +1,13 @@
-package monolith.world.graph;
+package flow.world.graph;
 
 import arc.func.*;
 import arc.util.*;
 import arc.struct.*;
 import mindustry.gen.*;
-import monolith.world.blocks.*;
+import flow.world.blocks.*;
 import mindustry.world.blocks.*;
-import monolith.world.modules.*;
-import monolith.world.blocks.HeatBlock.*;
+import flow.world.modules.*;
+import flow.world.blocks.HeatBlock.*;
 
 public class HeatVertex {
 	public HeatModule module;

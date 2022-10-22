@@ -1,8 +1,8 @@
-package monolith.world.consumers;
+package flow.world.consumers;
 
 import mindustry.gen.*;
 import mindustry.world.consumers.*;
-import monolith.world.blocks.HeatBlock.*;
+import flow.world.blocks.HeatBlock.*;
 
 public class ConsumeHeat extends Consume {
 	public float tresh;

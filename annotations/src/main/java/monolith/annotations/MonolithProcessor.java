@@ -1,4 +1,4 @@
-package monolith.annotations;
+package flow.annotations;
 
 import mma.annotations.*;
 // i wanna know something

@@ -1,7 +1,7 @@
-package monolith.world.blocks.sandbox;
+package flow.world.blocks.sandbox;
 
 import arc.scene.ui.layout.*;
-import monolith.world.blocks.*;
+import flow.world.blocks.*;
 
 public class HeatSource extends HeatBlock {
 	public HeatSource(String name) {

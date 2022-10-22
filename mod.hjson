@@ -1,8 +1,8 @@
-displayName: "Monolith"
-name: "Monolith"
+displayName: "Flow"
+name: "flow"
 author: "Uujuju"
-main: "monolith.Monolith"
-description: "Sometimes glitchy ideas."
-version: v0.2
-minGameVersion: 138
+main: "flow.Flow"
+description: "Stuff."
+version: v0.3
+minGameVersion: 139
 java: true

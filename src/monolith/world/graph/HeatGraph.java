@@ -1,11 +1,11 @@
-package monolith.world.graph;
+package flow.world.graph;
 
 import arc.util.*;
 import arc.struct.*;
-import monolith.world.blocks.*;
-import monolith.world.modules.*;
-import monolith.world.blocks.HeatBlock.*;
-import monolith.world.graph.HeatVertex.*;
+import flow.world.blocks.*;
+import flow.world.modules.*;
+import flow.world.blocks.HeatBlock.*;
+import flow.world.graph.HeatVertex.*;
 
 public class HeatGraph {
 	public Seq<HeatVertex> vertexes = new Seq<>(false, 28, HeatVertex.class);

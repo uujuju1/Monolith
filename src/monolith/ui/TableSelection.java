@@ -1,4 +1,4 @@
-package monolith.ui;
+package flow.ui;
 
 import arc.func.*;
 import arc.struct.*;
@@ -7,8 +7,8 @@ import arc.scene.ui.layout.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import monolith.world.blocks.defense.AOEBlock.BulletRecipe;
-import monolith.world.blocks.production.MultiCrafter.ItemRecipe;
+import flow.world.blocks.defense.AOEBlock.BulletRecipe;
+import flow.world.blocks.production.MultiCrafter.ItemRecipe;
 
 public class TableSelection {
 	public static void itemRecipeSelection(Seq<ItemRecipe> recipes, Table table, Cons<ItemRecipe> consumer, Prov<ItemRecipe> provider) {

@@ -1,4 +1,4 @@
-package monolith.content;
+package flow.content;
 
 import arc.math.*;
 import arc.util.*;
@@ -12,9 +12,9 @@ import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.graphics.g3d.*;
-import monolith.planets.*;
+import flow.planets.*;
 
-public class MonolithPlanets {
+public class FlowPlanets {
 	public static Planet chroma;
 
 	public class Room {

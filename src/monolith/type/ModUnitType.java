@@ -1,4 +1,4 @@
-package monolith.type;
+package flow.type;
 
 import arc.*;
 import arc.math.*;
@@ -13,7 +13,7 @@ import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.entities.*;
 import mindustry.world.blocks.environment.*;
-import monolith.type.draw.*;
+import flow.type.draw.*;
 
 public class ModUnitType extends UnitType {
 	public Seq<Rotor> rotors = new Seq<>();

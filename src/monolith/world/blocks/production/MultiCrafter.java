@@ -1,4 +1,4 @@
-package monolith.world.blocks.production;
+package flow.world.blocks.production;
 
 import arc.math.*;
 import arc.util.*;
@@ -13,8 +13,8 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.world.meta.*;
 import mindustry.world.consumers.*;
-import monolith.ui.*;
-import monolith.world.meta.*;
+import flow.ui.*;
+import flow.world.meta.*;
 /** 
 	* TODO might extend both from {@link GenericCrafter} later
 	* @author Uujuju

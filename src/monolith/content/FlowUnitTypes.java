@@ -1,4 +1,4 @@
-package monolith.content;
+package flow.content;
 
 import arc.math.*;
 import arc.graphics.*;
@@ -12,14 +12,12 @@ import mindustry.entities.abilities.*;
 import mindustry.annotations.Annotations.*;
 import mindustry.world.blocks.units.UnitFactory;
 import mindustry.world.blocks.units.UnitFactory.*;
-import monolith.type.*;
-import monolith.type.draw.*;
-import monolith.type.ModUnitType.*;
+import flow.type.*;
+import flow.type.draw.*;
+import flow.type.ModUnitType.*;
 
-public class MonolithUnitTypes {
-	public static @EntityDef({Unitc.class, Mechc.class}) UnitType shelter;
-
-	public static @EntityDef({Unitc.class}) UnitType connect, vessel, remnant;
+public class FlowUnitTypes {
+	public static UnitType shelter, connect, vessel, remnant;
 
 	public static void load() {
 		shelter = new ModUnitType("shelter") {{
@@ -220,9 +218,5 @@ public class MonolithUnitTypes {
 				);
 			}
 		}};
-
-		// plans
-		((UnitFactory) Blocks.groundFactory).plans.addAll(new UnitPlan(shelter, 120 * 60, ItemStack.with(Items.silicon, 25, MonolithItems.macrosteel, 20)));
-		((UnitFactory) Blocks.airFactory).plans.addAll(new UnitPlan(connect, 120 * 60, ItemStack.with(Items.silicon, 25, MonolithItems.lithium, 20, Items.plastanium, 15)));
 	}
 }

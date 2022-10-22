@@ -1,8 +1,8 @@
-package monolith.world.interfaces;
+package flow.world.interfaces;
 
-import monolith.world.graph.*;
-import monolith.world.modules.*;
-import monolith.world.blocks.HeatBlock.*;
+import flow.world.graph.*;
+import flow.world.modules.*;
+import flow.world.blocks.HeatBlock.*;
 
 public interface HeatInterface {
 	default HeatModule getModule() {return null;}

@@ -1,4 +1,4 @@
-package monolith.content;
+package flow.content;
 
 import arc.graphics.*;
 import mindustry.gen.*;
@@ -6,9 +6,9 @@ import mindustry.type.*;
 import mindustry.content.*;
 import mindustry.world.meta.*;
 import mindustry.type.weather.*;
-import monolith.type.weathers.*;
+import flow.type.weathers.*;
 
-public class MonolithWeathers {
+public class FlowWeathers {
 	public static Weather storm;
 
 	public static void load() {

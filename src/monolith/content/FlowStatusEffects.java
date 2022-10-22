@@ -1,9 +1,9 @@
-package monolith.content;
+package flow.content;
 
 import mindustry.type.*;
 import mindustry.content.*;
 
-public class MonolithStatusEffects {
+public class FlowStatusEffects {
 	public static StatusEffect overrun, isolated;
 
 	public static void load() {
