@@ -27,6 +27,11 @@ public class FlowCrafting {
 			craftTime = 90f;
 			craftEffect = FlowFx.chromiumCraft;
 			updateEffect = Fx.smoke;
+			drawer = new DrawMulti(
+				new DrawRegion("-bottom"),
+				new DrawArcSmelt(),
+				new DrawDefault()
+			);
 			consumeItems(with(
 				Items.lead, 2,
 				Items.copper, 1
