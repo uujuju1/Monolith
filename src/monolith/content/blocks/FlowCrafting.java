@@ -56,7 +56,7 @@ public class FlowCrafting {
 		}};
 		heatFan = new HeatGenericCrafter("heat-fan") {{
 			requirements(Category.crafting, with(
-				Items.graphite, 150
+				Items.graphite, 150,
 				Items.titanium, 100
 			));
 			size = 3;
