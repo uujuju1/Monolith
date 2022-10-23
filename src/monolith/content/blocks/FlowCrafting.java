@@ -55,8 +55,8 @@ public class FlowCrafting {
 			updateEffect = Fx.smoke;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
-				new DrawLiquidRegion(Liquids.water) {{suffix = "-liquid-water"}},
-				new DrawLiquidRegion(Liquids.vapour) {{suffix = "-liquid-vapour"}},
+				new DrawLiquidRegion(Liquids.water) {{suffix = "-liquid-water";}},
+				new DrawLiquidRegion(Liquids.vapour) {{suffix = "-liquid-vapour";}},
 				new DrawDefault()
 			);
 			consumeLiquid(Liquids.water, 0.1f);
