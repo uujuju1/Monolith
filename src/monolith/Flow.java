@@ -10,6 +10,7 @@ import mindustry.content.*;
 import mindustry.type.Weather.*;
 import mindustry.game.EventType.*;
 import flow.content.*;
+import java.lang.*;
 
 public class Flow extends Mod{
 	public boolean hasWeather(Weather in) {
@@ -30,19 +31,17 @@ public class Flow extends Mod{
 
 	@Override
 	public void loadContent(){
-		Runnable[] load = Seq<Runnable>with(
+		Runnable[] load = {
 			FlowStatusEffects::load,
 			FlowWeathers::load,
 			FlowItems::load,
 			FlowLiquids::load,
 			FlowUnitTypes::load,
-			new FlowBlocks(),
+			FlowBlocks::load,
 			FlowPlanets::loadc,
 			FlowTechTree::load
-		).flatMap(c -> Seq.with(c instanceof FlowBlocks b ? b.list : new Runnable[]{c})).toArray(Runnable.class);
-		
-		for (Runnable r : load) {
-			r.run();
 		}
+		
+		for (Runnable r : load) r.run();
 	}
 }

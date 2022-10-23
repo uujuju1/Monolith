@@ -100,7 +100,7 @@ public class FlowUnitTypes {
 						height = 12.5f;
 						trailWidth = 2;
 						trailLength = 10;
-						status = MonolithStatusEffects.isolated;
+						status = FlowStatusEffects.isolated;
 						statusDuration = 180f;
 					}};
 				}}
@@ -211,8 +211,6 @@ public class FlowUnitTypes {
 							height = 12.5f;
 							trailWidth = 2;
 							trailLength = 10;
-							status = MonolithStatusEffects.isolated;
-							statusDuration = 180f;
 						}};
 					}}
 				);
