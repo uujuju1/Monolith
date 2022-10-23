@@ -40,7 +40,7 @@ public class Flow extends Mod{
 			FlowBlocks::load,
 			FlowPlanets::loadc,
 			FlowTechTree::load
-		}
+		};
 		
 		for (Runnable r : load) r.run();
 	}
