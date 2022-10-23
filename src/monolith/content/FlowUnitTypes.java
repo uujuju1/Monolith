@@ -28,7 +28,7 @@ public class FlowUnitTypes {
 			outlineColor = Pal.darkOutline;
 			canDrown = false;
 			constructor = MechUnit::create;
-			immunities.add(MonolithStatusEffects.overrun);
+			immunities.add(FlowStatusEffects.overrun);
 
 			weapons.add(
 				new Weapon("monolith-shelter-cannon") {{
@@ -68,7 +68,7 @@ public class FlowUnitTypes {
 			flying = lowAltitude = true;
 			constructor = UnitEntity::create;
 
-			immunities.add(MonolithStatusEffects.isolated);
+			immunities.add(FlowStatusEffects.isolated);
 
 			setEnginesMirror(new GasEngine(4f, 0f, 15, 4f, 8f, 160f, Color.gray));
 			engines.get(1).rotation = -160f;
@@ -119,7 +119,7 @@ public class FlowUnitTypes {
 			flying = true;
 			constructor = UnitEntity::create;
 
-			immunities.add(MonolithStatusEffects.isolated);
+			immunities.add(FlowStatusEffects.isolated);
 
 			rotors.add(
 				new Rotor("-rotor", 0f, 6f, 15f) {{

@@ -2,7 +2,7 @@ package monolith;
 
 import arc.*;
 import arc.util.*;
-import arc.stuct.*;
+import arc.struct.*;
 import mindustry.*;
 import mindustry.mod.*;
 import mindustry.type.*;
@@ -23,7 +23,7 @@ public class Flow extends Mod{
 		Events.on(WorldLoadEvent.class, e -> {
 			Time.runTask(60 * 2, () -> {
 				if(Vars.state.isMenu() || hasWeather(FlowWeathers.storm) || !hasWeather(Weathers.rain)) return;
-				Vars.state.rules.weather.add(new Weather.WeatherEntry(FlowWeathers.storm, FlowWeathers.storm.duration * 6f, Floweathers.storm.duration * 12f, Floweathers.storm.duration / 2f, Floweathers.storm.duration * 1.5f));
+				Vars.state.rules.weather.add(new Weather.WeatherEntry(FlowWeathers.storm, FlowWeathers.storm.duration * 6f, FlowWeathers.storm.duration * 12f, FlowWeathers.storm.duration / 2f, FlowWeathers.storm.duration * 1.5f));
 			});
 		});
 	}
@@ -37,12 +37,12 @@ public class Flow extends Mod{
 			FlowLiquids::load,
 			FlowUnitTypes::load,
 			new FlowBlocks(),
-			new FlowPlanets().load(),
+			FlowPlanets::loadc(),
 			FlowTechTree::load
 		).flatMap(c -> Seq.with(c instanceof FlowBlocks b ? b.list : new Runnable[]{c})).toArray(Runnable.class);
 		
 		for (Runnable r : load) {
-			load.run();
+			r.run();
 		}
 	}
 }

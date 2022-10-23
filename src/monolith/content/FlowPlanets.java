@@ -27,6 +27,9 @@ public class FlowPlanets {
 			this.r = r;
 		}
 	}
+	public static void loadc() {
+		new FlowPlanets().load();
+	}
 
 	public void load() {
 		chroma = new Planet("chroma", Planets.sun, 1f, 2) {{

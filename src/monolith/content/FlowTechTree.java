@@ -13,14 +13,14 @@ import static flow.content.FlowUnitTypes.*;
 
 public class FlowTechTree {
 	public static void load() {
-		MonolithPlanets.chroma.techTree = nodeRoot("chroma", Blocks.coreShard, true, () -> {
+		FlowPlanets.chroma.techTree = nodeRoot("chroma", Blocks.coreShard, true, () -> {
 			nodeProduce(chromium, () -> {
-				nodeProduce(steam, () -> {});
+				nodeProduce(vapour, () -> {});
 			});
 
-			node(itemLiquidJunction, Seq.with(new Produce(macrosteel)), () -> {});
-			node(heatPipe, Seq.with(new Produce(meanium)), () -> {
-				node(advHeatPipe, Seq.with(new Produce(vakyite)), () -> {});
+			node(itemLiquidJunction, Seq.with(new Produce(chromium)), () -> {});
+			node(heatPipe, Seq.with(new Produce(Items.silicon)), () -> {
+				node(advHeatPipe, Seq.with(new Produce(chromium)), () -> {});
 
 				node(combustionHeater, Seq.with(new Research(Blocks.laserDrill)), () -> {});
 				node(heatFan, Seq.with(new Research(Blocks.laserDrill)), () -> {});

@@ -18,7 +18,7 @@ public class FlowWeathers {
 			noiseSpeed.set(0.125f, 0.0125f);
 			attrs.set(Attribute.light, -0.3f);
 			attrs.set(Attribute.water, 2f);
-			status = MonolithStatusEffects.overrun;
+			status = FlowStatusEffects.overrun;
 			sound = Sounds.rain;
 		}};
 	}

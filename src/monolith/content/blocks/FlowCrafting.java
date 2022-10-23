@@ -3,6 +3,7 @@ package flow.content.blocks;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
+import mindustry.world.draw.*;
 import flow.content.*;
 import flow.world.blocks.production.*;
 
@@ -33,7 +34,7 @@ public class FlowCrafting {
 			consumeHeat(100f, true);
 			consumePower(1f);
 			outputHeat = 25f;
-			outputItems = with(MonolithItems.chromium, 1);
+			outputItems = with(FlowItems.chromium, 1);
 		}};
 
 		combustionHeater = new HeatGenericCrafter("combustion-heater") {{
