@@ -53,6 +53,7 @@ public class FlowCrafting {
 			health = 200;
 			craftTime = 10;
 			updateEffect = Fx.smoke;
+			hasLiquids = true;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
 				new DrawLiquidRegion(Liquids.water) {{suffix = "-liquid-water";}},
