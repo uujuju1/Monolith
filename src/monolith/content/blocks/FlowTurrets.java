@@ -4,7 +4,7 @@ import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.bullet.*;
-import mindustry.world.blocks.defense.turret.*;
+import mindustry.world.blocks.defense.turrets.*;
 
 import static mindustry.type.ItemStack.*;
 
