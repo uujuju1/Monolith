@@ -61,7 +61,7 @@ public class FlowCrafting {
 			);
 			consumeLiquid(Liquids.water, 0.1f);
 			consumeHeat(90f, true);
-			outputLiquids = LiquidStack.with(Liquids.vapour, 0.1f);
+			outputLiquids = LiquidStack.with(FlowLiquids.vapour, 0.1f);
 			outputHeat = -1f;
 		}};
 
