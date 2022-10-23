@@ -56,11 +56,12 @@ public class FlowCrafting {
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
 				new DrawLiquidRegion(Liquids.water) {{suffix = "-liquid-water";}},
-				new DrawLiquidRegion(Liquids.vapour) {{suffix = "-liquid-vapour";}},
+				new DrawLiquidRegion(FlowLiquids.vapour) {{suffix = "-liquid-vapour";}},
 				new DrawDefault()
 			);
 			consumeLiquid(Liquids.water, 0.1f);
-			consummeHeat(90f, true);
+			consumeHeat(90f, true);
+			outputLiquids = LiquidStack.with(Liquids.vapour, 0.1f);
 			outputHeat = -1f;
 		}};
 

@@ -29,7 +29,7 @@ public class MultiCrafter extends Block {
 		solid = update = sync = destructible = true;
 
 		consume(new ConsumeItemDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeItems : ItemStack.empty));
-		consume(new ConsumeLiquidDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeLiquids : LiquidStack.empty));
+		// consume(new ConsumeLiquidDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeLiquids : LiquidStack.empty));
 		consume(new ConsumePowerDynamic(e -> ((MultiCrafterBuild) e).getPowerCons()));
 	}
 
@@ -45,7 +45,7 @@ public class MultiCrafter extends Block {
 		outputItems = ItemStack.empty;
 
 		public @Nullable LiquidStack[]
-		liquids = LiquidStack.empty,
+		consumeLiquids = LiquidStack.empty,
 		outputLiquids = LiquidStack.empty;
 
 		public Effect 
@@ -64,7 +64,7 @@ public class MultiCrafter extends Block {
 		public int currentPlan = -1;
 		public float
 		progress,
-		totalProgres,
+		totalProgress,
 		warmup;
 
 		public @Nullable ItemRecipe getRecipe() {return currentPlan == -1 ? null : recipes.get(currentPlan);}
@@ -81,7 +81,7 @@ public class MultiCrafter extends Block {
 
 		@Override public float warmup() {return warmup;}
 		@Override public float progress() {return progress;}
-		@Override public float totalProgres() {return totalProgres;}
+		@Override public float totalProgress() {return totalProgress;}
 
 		@Override
 		public void buildConfiguration(Table table) {
@@ -106,7 +106,7 @@ public class MultiCrafter extends Block {
 			if (efficiency > 0 && getRecipe() != null) {
 				warmup = Mathf.approachDelta(warmup, 1f, getRecipe().warmupSpeed);
 				progress += getProgressIncrease(getRecipe().craftTime) * warmup;
-				totalProgres += edelta() * warmup;
+				totalProgress += edelta() * warmup;
 
 				if (wasVisible && Mathf.chance(getRecipe().updateEffectChance)) getRecipe().updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4f));
 				if(getRecipe() != null) for(LiquidStack output : getRecipe().outputLiquids) handleLiquid(this, output.liquid, Math.min(output.amount * getProgressIncrease(1f), liquidCapacity - liquids.get(output.liquid)));
@@ -127,7 +127,7 @@ public class MultiCrafter extends Block {
 			super.write(w);
 			w.f(warmup);
 			w.f(progress);
-			w.f(totalProgres);
+			w.f(totalProgress);
 			w.i(currentPlan);
 		}
 
@@ -136,7 +136,7 @@ public class MultiCrafter extends Block {
 			super.read(r, revision);
 			warmup = r.f();
 			progress = r.f();
-			totalProgres = r.f();
+			totalProgress = r.f();
 			currentPlan = r.i();
 		}
 	}
