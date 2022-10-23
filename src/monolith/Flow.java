@@ -37,7 +37,7 @@ public class Flow extends Mod{
 			FlowLiquids::load,
 			FlowUnitTypes::load,
 			new FlowBlocks(),
-			FlowPlanets::loadc(),
+			FlowPlanets::loadc,
 			FlowTechTree::load
 		).flatMap(c -> Seq.with(c instanceof FlowBlocks b ? b.list : new Runnable[]{c})).toArray(Runnable.class);
 		
