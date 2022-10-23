@@ -28,14 +28,14 @@ public class FlowTurrets {
 			targetAir = false;
 
 			ammo(
-				Items.copper, new BasicBulletType(2f, 20, "mine-bullet") {{
+				Items.copper, new BasicBulletType(2f, 10, "mine-bullet") {{
 					lifetime = 100;
-					width = height = 10f;
+					width = height = 14f;
 					knockback = 32f;
 				}},
-				Items.graphite, new BasicBulletType(2f, 50, "mine-bullet") {{
+				Items.graphite, new BasicBulletType(2f, 20, "mine-bullet") {{
 					lifetime = 100;
-					width = height = 10f;
+					width = height = 16f;
 					knockback = 64f;
 				}}
 			);

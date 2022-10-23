@@ -29,6 +29,7 @@ public class MultiCrafter extends Block {
 		solid = update = sync = destructible = true;
 
 		consume(new ConsumeItemDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeItems : ItemStack.empty));
+		consume(new ConsumeLiquidDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeLiquids : LiquidStack.empty));
 		consume(new ConsumePowerDynamic(e -> ((MultiCrafterBuild) e).getPowerCons()));
 	}
 
@@ -40,12 +41,12 @@ public class MultiCrafter extends Block {
 
 	public class ItemRecipe {
 		public @Nullable ItemStack[]
-		consumeItems,
-		outputItems;
+		consumeItems = ItemStack.empty,
+		outputItems = ItemStack.empty;
 
-		// public LiquidStack[]
-		// liquids = LiquidStack.empty,
-		// outputLiquids = LiquidStack.empty;
+		public @Nullable LiquidStack[]
+		liquids = LiquidStack.empty,
+		outputLiquids = LiquidStack.empty;
 
 		public Effect 
 		craftEffect = Fx.none,
@@ -56,12 +57,6 @@ public class MultiCrafter extends Block {
 		updateEffectChance = 0.03f,
 		warmupSpeed = 0.019f,
 		craftTime = 60f;
-
-		public @Nullable Item firstOutput() {
-			if (outputItems == null) return null;
-			if (outputItems.length == 0) return null;
-			return outputItems[0].item; 
-		}
 	}
 
 
@@ -72,14 +67,8 @@ public class MultiCrafter extends Block {
 		totalProgres,
 		warmup;
 
-		public @Nullable ItemRecipe getRecipe() {
-			if (currentPlan == -1) return null;
-			return recipes.get(currentPlan);
-		}
-
-		public float getPowerCons() {
-			return getRecipe() != null ? getRecipe().consumePower : 0f;
-		}
+		public @Nullable ItemRecipe getRecipe() {return currentPlan == -1 ? null : recipes.get(currentPlan);}
+		public float getPowerCons() {return getRecipe() != null ? getRecipe().consumePower : 0f;}
 
 		public void dumpOutputs() {
 			if(getRecipe() != null && timer(timerDump, dumpTime / timeScale)){
@@ -89,6 +78,10 @@ public class MultiCrafter extends Block {
 				}
 			}
 		}
+
+		@Override public float warmup() {return warmup;}
+		@Override public float progress() {return progress;}
+		@Override public float totalProgres() {return totalProgres;}
 
 		@Override
 		public void buildConfiguration(Table table) {
@@ -104,9 +97,9 @@ public class MultiCrafter extends Block {
 		@Override
 		public boolean shouldConsume() {
 			if (getRecipe() == null) return false;
-			if (getRecipe().consumeItems == null) return false;
 			return enabled;
 		}
+
 
 		@Override
 		public void updateTile() {
@@ -116,18 +109,12 @@ public class MultiCrafter extends Block {
 				totalProgres += edelta() * warmup;
 
 				if (wasVisible && Mathf.chance(getRecipe().updateEffectChance)) getRecipe().updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4f));
-
+				if(getRecipe() != null) for(LiquidStack output : getRecipe().outputLiquids) handleLiquid(this, output.liquid, Math.min(output.amount * getProgressIncrease(1f), liquidCapacity - liquids.get(output.liquid)));
 				if (progress >= 1f) {
 					progress %= 1f;
 					consume();
 					if (wasVisible) getRecipe().craftEffect.at(x, y);
-					if (getRecipe().outputItems != null) {
-						for (ItemStack out : getRecipe().outputItems) {
-							for (int i = 0; i < out.amount; i++) {
-								offload(out.item);
-							}
-						}	
-					}
+					if (getRecipe() != null) for (ItemStack out : getRecipe().outputItems) for (int i = 0; i < out.amount; i++) offload(out.item);
 				}
 			} else {
 				warmup = Mathf.approachDelta(warmup, 0f, 0.019f);

@@ -14,9 +14,8 @@ import static flow.content.FlowUnitTypes.*;
 public class FlowTechTree {
 	public static void load() {
 		FlowPlanets.chroma.techTree = nodeRoot("chroma", Blocks.coreShard, true, () -> {
-			nodeProduce(chromium, () -> {
-				nodeProduce(vapour, () -> {});
-			});
+			nodeProduce(chromium, () -> {});
+			nodeProduce(vapour, () -> {});
 
 			node(itemLiquidJunction, Seq.with(new Produce(chromium)), () -> {});
 			node(heatPipe, Seq.with(new Produce(Items.silicon)), () -> {
