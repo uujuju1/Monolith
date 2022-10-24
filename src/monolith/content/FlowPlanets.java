@@ -50,7 +50,7 @@ public class FlowPlanets {
 							Blocks.regolith,
 							Blocks.regolith
 						};
-						ores.add(new OreEntry(Blocks.oreCoal, 0.75f));
+						ores.add(Blocks.oreCoal);
 						scale = 1;
 						magnitude = 1.5f;
 						clampHeight = true;
@@ -68,7 +68,7 @@ public class FlowPlanets {
 							Blocks.basalt,
 							Blocks.basalt
 						};
-						ores.add(new OreEntry(Blocks.oreTitanium, 0.77f));
+						ores.add(Blocks.oreTitanium);
 						minValue = 0.4f;
 						scale = 0.1;
 						magnitude = 2;
@@ -76,7 +76,7 @@ public class FlowPlanets {
 					}},
 					new Biome() {{
 						heightMap = new Block[]{Blocks.redIce};
-						ores.add(new OreEntry(Blocks.oreThorium, 0.8f));
+						ores.add(Blocks.oreThorium);
 						polarInterp = Interp.pow2In;
 						noiseSeed = 2;
 						scale = 0.1;
@@ -137,6 +137,8 @@ public class FlowPlanets {
 					// TODO non 0 chance that sector blocks ground unit's path
 					p.distort(120f, 29f);
 					p.distort(17f, 5f);
+
+					p.ores(p.getBiome(p.sector().tile.v).ores);
 
 					Schematics.placeLaunchLoadout(rooms.get(0).x, rooms.get(0).y);
 					tiles().getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);

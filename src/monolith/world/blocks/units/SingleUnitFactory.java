@@ -16,6 +16,7 @@ import mindustry.entities.*;
 
 public class SingleUnitFactory extends Block {
 	public UnitType unit = UnitTypes.dagger;
+	public Effect craftEffect = Fx.none;
 	public float craftTime = 60f;
 	
 	public SingleUnitFactory(String name) {
@@ -34,13 +35,19 @@ public class SingleUnitFactory extends Block {
 		public float time, warmup;
 
 		@Override
+		public boolean shouldConsume() {
+			if (team.data().countType(unit) < Units.getCap(team)) return false;
+			return enabled;
+		}
+
+		@Override
 		public void updateTile() {
-			if (efficiency > 0 && team.data().countType(unit) < Units.getCap(team)) {
-				time += edelta() * Vars.state.rules.unitBuildSpeed(team);
+			if (efficiency > 0) {
+				time += getProgressIncrease(craftTime) * Vars.state.rules.unitBuildSpeed(team);
 				warmup = Mathf.lerpDelta(warmup, 1f, 0.05f);
-				if (time >= craftTime) {
+				if (time >= 1) {
 					consume();
-					// craftEffect.at(x, y);
+					craftEffect.at(x, y);
 					unit.spawn(team, x, y);
 					time %= 1f;
 				}
@@ -59,12 +66,14 @@ public class SingleUnitFactory extends Block {
 		public void write(Writes write) {
 			super.write(write);
 			write.f(time);
+			write.f(warmup);
 		}
 
 		@Override
 		public void read(Reads read, byte revision) {
 			super.read(read, revision);
 			time = read.f();
+			warmup = read.f();
 		}
 	}
 }

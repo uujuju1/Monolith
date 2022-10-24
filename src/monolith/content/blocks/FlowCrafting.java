@@ -12,7 +12,7 @@ import static mindustry.type.ItemStack.*;
 
 public class FlowCrafting {
 	public static Block
-	chromiumSmelter, boiler,
+	chromiumSmelter, boiler, compressor,
 	combustionHeater, heatFan;
 
 	public static void load() {
@@ -61,9 +61,21 @@ public class FlowCrafting {
 				new DrawDefault()
 			);
 			consumeLiquid(Liquids.water, 0.1f);
-			consumeHeat(90f, true);
+			consumeHeat(90f, false);
 			outputLiquids = LiquidStack.with(FlowLiquids.vapour, 0.1f);
 			outputHeat = -1f;
+		}};
+		compressor = new GenericCrafter("compressor") {{
+			requirements(Category.crafting, with(
+				Items.copper, 50,
+				Items.lead, 65
+			));
+			size = 2;
+			health = 160;
+			craftTime = 30f;
+			updateEffect = Fx.smoke;
+			consumeItems(with(Items.copper, 3, Items.lead, 2));
+			outputItems = with(Items.scrap, 1);
 		}};
 
 		combustionHeater = new HeatGenericCrafter("combustion-heater") {{
