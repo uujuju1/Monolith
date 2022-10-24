@@ -5,6 +5,7 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.world.draw.*;
 import mindustry.world.consumers.*;
+import mindustry.world.blocks.production.*;
 import flow.content.*;
 import flow.world.blocks.production.*;
 

@@ -35,22 +35,4 @@ public class TableSelection {
 
 		table.add(cont);
 	}
-	public static void bulletRecipeSelection(Seq<BulletRecipe> recipes, Table table, Cons<BulletRecipe> consumer, Prov<BulletRecipe> provider) {
-		int i = 0;
-		Table cont = new Table();
-		cont.defaults().size(40);
-		for (BulletRecipe recipe : recipes) {
-			Button button = cont.button(b -> {
-				b.image(recipe.uiIcon).size(32f);
-			}, Styles.clearTogglei, () -> {}).get();
-			
-			if (i++ % 4 == 3) {
-				cont.row();
-			}
-			button.changed(() -> consumer.get(button.isChecked() ? recipe : null));
-			button.update(() -> button.setChecked(provider.get() == recipe));
-		}
-
-		table.add(cont);
-	}
 }
