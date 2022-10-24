@@ -10,7 +10,6 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
-import flow.world.blocks.defense.AOEBlock.BulletRecipe;
 import flow.world.blocks.production.MultiCrafter.ItemRecipe;
 
 import static mindustry.world.meta.StatValues.*;

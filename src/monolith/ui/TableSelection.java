@@ -7,7 +7,6 @@ import arc.scene.ui.layout.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import flow.world.blocks.defense.AOEBlock.BulletRecipe;
 import flow.world.blocks.production.MultiCrafter.ItemRecipe;
 
 public class TableSelection {
