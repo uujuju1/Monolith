@@ -14,8 +14,8 @@ public class Mortar extends ItemTurret {
 
 	@Override
 	public void drawPlace(int x, int y, int rotation, boolean valid) {
-		super.drawPlace(x * Vars.tilesize + offset, y * Vars.tilesize + offset, rotation, valid);
-		if (minRange > 0) Drawf.dashCircle(x, y, minRange, Pal.placing.cpy().mul(0.8f));
+		super.drawPlace(x, y, rotation, valid);
+		if (minRange > 0) Drawf.dashCircle(x * Vars.tilesize + offset, y * Vars.tilesize + offset, minRange, Pal.placing.cpy().mul(0.8f));
 	}
 
 	public class MortarBuild extends ItemTurretBuild {
@@ -24,7 +24,7 @@ public class Mortar extends ItemTurret {
 		@Override
 		public void drawSelect() {
 			super.drawSelect();
-			if (minRange > 0) Drawf.dashCircle(x, y, minRange, Pal.placing.cpy().mul(0.8f));
+			if (((Mortar) block).minRange > 0) Drawf.dashCircle(x, y, ((Mortar) block).minRange, Pal.placing.cpy().mul(0.8f));
 		}
 
 		@Override
