@@ -9,8 +9,6 @@ import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.world.blocks.defense.turrets.*;
 
-// from esch from esch from esch from esch from esch from esch
-
 public class Mortar extends ItemTurret {
 	public Mortar(String name) {super(name);}
 
@@ -31,15 +29,15 @@ public class Mortar extends ItemTurret {
 
 		@Override
 		protected void bullet(BulletType type, float xOffset, float yOffset, float angleOffset, Mover mover) {
-			Mortar self = (Mortar) type;
+			Mortar self = (Mortar) block;
 			float 
 			lifeScl = type.scaleLife ? Mathf.clamp(Mathf.dst(x, y, targetPos.x, targetPos.y) / type.range, self.minRange / type.range, range() / type.range) : 1f,
 			shootAngle = rotation + angleOffset + Mathf.range(self.inaccuracy);
 
 			type.create(this, team, x, y, shootAngle, -1f, (1f - self.velocityRnd) + Mathf.random(self.velocityRnd), lifeScl, null, mover, targetPos.x, targetPos.y);
 
-			(shootEffect == null ? self.shootEffect : shootEffect).at(x, y, rotation + angleOffset, type.hitColor);
-			(smokeEffect == null ? self.smokeEffect : smokeEffect).at(x, y, rotation + angleOffset, type.hitColor);
+			(self.shootEffect == null ? type.shootEffect : self.shootEffect).at(x, y, rotation + angleOffset, type.hitColor);
+			(self.smokeEffect == null ? type.smokeEffect : self.smokeEffect).at(x, y, rotation + angleOffset, type.hitColor);
 			shootSound.at(x, y, Mathf.random(self.soundPitchMin, self.soundPitchMax));
 			if(self.shake > 0) Effect.shake(self.shake, self.shake, this);
 
