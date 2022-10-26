@@ -6,6 +6,7 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
+import mindustry.entities.pattern.*;
 import mindustry.world.blocks.defense.turrets.*;
 import flow.content.*;
 import flow.world.blocks.defense.turrets.*;
@@ -131,7 +132,7 @@ public class FlowTurrets {
 		}};
 
 		shrapnel = new ItemTurret("shrapnel") {{
-			requirements(Category.turret. with(
+			requirements(Category.turret, with(
 				Items.lead, 150,
 				Items.graphite, 135,
 				Items.silicon, 140
@@ -143,7 +144,7 @@ public class FlowTurrets {
 			shake = 2f;
 			inaccuracy = 15f;
 			targetGround = false;
-			shootSound = Sounds.shrapnel;
+			shootSound = Sounds.shotgun;
 			shoot = new ShootPattern() {{shots = 6;}};
 
 			ammo(

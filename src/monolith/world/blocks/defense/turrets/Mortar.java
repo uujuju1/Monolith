@@ -1,8 +1,10 @@
 package flow.world.blocks.defense.turrets;
 
 import arc.math.*;
+import arc.graphics.g2d.*;
 import mindustry.*;
 import mindustry.graphics.*;
+import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.world.blocks.defense.turrets.*;
@@ -24,25 +26,27 @@ public class Mortar extends ItemTurret {
 		@Override
 		public void drawSelect() {
 			super.drawSelect();
-			if (minRange > 0) Drawf.dashCircle(x, y, minRange, UAWPal.darkPyraBloom);
+			if (minRange > 0) Drawf.dashCircle(x, y, minRange, Pal.placing.cpy().mul(0.8f));
 		}
 
 		@Override
-		protected void bullet(BulletType type, float angle) {
-			float lifeScl = type.scaleVelocity ? Mathf.clamp(Mathf.dst(x, y, targetPos.x, targetPos.y) / type.range(), minRange / type.range(), range / type.range()) : 1f;
-			type.create(this, team, x, y, angle, 1f + Mathf.range(velocityInaccuracy), lifeScl);
-		}
+		protected void bullet(BulletType type, float xOffset, float yOffset, float angleOffset, Mover mover) {
+			Mortar self = (Mortar) type;
+			float 
+			lifeScl = type.scaleLife ? Mathf.clamp(Mathf.dst(x, y, targetPos.x, targetPos.y) / type.range, self.minRange / type.range, range() / type.range) : 1f,
+			shootAngle = rotation + angleOffset + Mathf.range(self.inaccuracy);
 
-		@Override
-		protected void effects() {
-			Effect shoot = shootEffect == Fx.none ? peekAmmo().shootEffect : shootEffect;
-			Effect smoke = smokeEffect == Fx.none ? peekAmmo().smokeEffect : smokeEffect;
+			type.create(this, team, x, y, shootAngle, -1f, (1f - self.velocityRnd) + Mathf.random(self.velocityRnd), lifeScl, null, mover, targetPos.x, targetPos.y);
 
-			shoot.at(x, y);
-			smoke.at(x, y);
-			shootSound.at(x, y, Mathf.random(0.9f, 1.1f));
+			(shootEffect == null ? self.shootEffect : shootEffect).at(x, y, rotation + angleOffset, type.hitColor);
+			(smokeEffect == null ? self.smokeEffect : smokeEffect).at(x, y, rotation + angleOffset, type.hitColor);
+			shootSound.at(x, y, Mathf.random(self.soundPitchMin, self.soundPitchMax));
+			if(self.shake > 0) Effect.shake(self.shake, self.shake, this);
 
-			if (shootShake > 0) Effect.shake(shootShake, shootShake, this);
+			curRecoil = 1f;
+			heat = 1f;
+
+			if(!self.consumeAmmoOnce) useAmmo();
 		}
 	}
 }
