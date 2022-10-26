@@ -33,5 +33,5 @@ public class FlowFx {
 		Angles.randLenVectors(e.id, 10, 40f * e.finpow(), (x, y) -> Lines.lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 3f * e.fout()));
 		Lines.circle(e.x, e.y, 40 * e.finpow());
 	}),
-	trebuchetSmoke = new Effect(90f, e -> Angles.randLenVectors(e.id, 10, 40 * e.finpow(), (x, y) => Fill.circle(e.x + x, e.y + y, 10 * e.fout())));
+	trebuchetSmoke = new Effect(90f, e -> Angles.randLenVectors(e.id, 10, 40 * e.finpow(), (x, y) -> Fill.circle(e.x + x, e.y + y, 10 * e.fout())));
 }
