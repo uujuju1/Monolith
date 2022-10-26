@@ -22,7 +22,7 @@ public class HeatPipe extends HeatBlock {
 		heatRegions = new TextureRegion[16];
 		for (int i = 0; i < 16; i++) {
 			regions[i] = Core.atlas.find(name + "-" + i);
-			heatRegions[i] = Core.atlas.find(name + "-" + i + "-heat", Core.atlas.find("monolith-pipe-" + i + "-heat"));
+			heatRegions[i] = Core.atlas.find(name + "-" + i + "-heat", Core.atlas.find("flow-pipe-" + i + "-heat"));
 		}
 	}
 

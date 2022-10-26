@@ -26,5 +26,12 @@ public class FlowFx {
 		
 		Lines.stroke(2f * e.foutpow());
 		Lines.circle(e.x, e.y, 40f * e.finpow());
-	});
+	}),
+
+	trebuchetShoot = new Effect(30f, e -> {
+		Lines.stroke(3f * e.fout());
+		Angles.randLenVectors(e.id, 10, 40f * e.finpow(), (x, y) -> Lines.lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 3f * e.fout()));
+		Lines.circle(e.x, e.y, 40 * e.finpow());
+	}),
+	trebuchetSmoke = new Effect(90f, e -> Angles.randLenVectors(e.id, 10, 40 * e.finpow(), (x, y) => Fill.circle(e.x + x, e.y + y, 10 * e.fout())));
 }
