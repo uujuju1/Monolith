@@ -1,6 +1,7 @@
 package flow.content.blocks;
 
 import mindustry.world.*;
+import mindustry.world.blocks.*;
 import mindustry.world.blocks.environment.*;
 
 public class FlowEnvironment {
