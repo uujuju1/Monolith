@@ -24,14 +24,14 @@ public class FlowEnvironment {
 		mosaicStone = new Floor("mosaic-stone") {{attributes.set(Attributes.water, -0.5f)}};
 		oxaicStone = new Floor("oxaic-stone");
 
-		crystalIceWall = new StaticWall("crystal-ice-wall") {{crystalIce.asFloor().wall = this}};
-		crystalSnowWall = new StaticWall("crystal-snow-wall") {{crystalSnow.asFloor().wall = this}};
-		crystalWall = new StaticWall("crystal-wall") {{crystalStone.asFloor().wall = this}};
-		flakeWall = new StaticWall("flake-wall") {{flakeStone.asFloor().wall = this}};
-		cupricWall = new StaticWall("cupric-wall") {{cupricStone.asFloor().wall = this}};
-		lodeWall = new StaticWall("lode-wall") {{lodeStone.asFloor().wall = this}};
-		acrylicWall = new StaticWall("acrylic-wall") {{acrylicStone.asFloor().wall = this}};
-		mosaicWall = new StaticWall("mosaic-wall") {{mosaicStone.asFloor().wall = this}};
-		oxaicWall = new StaticWall("oxaic-wall") {{oxaicStone.asFloor().wall = this}};
+		crystalIceWall = new StaticWall("crystal-ice-wall") {{crystalIce.asFloor().wall = this;}};
+		crystalSnowWall = new StaticWall("crystal-snow-wall") {{crystalSnow.asFloor().wall = this;}};
+		crystalWall = new StaticWall("crystal-wall") {{crystalStone.asFloor().wall = this;}};
+		flakeWall = new StaticWall("flake-wall") {{flakeStone.asFloor().wall = this;}};
+		cupricWall = new StaticWall("cupric-wall") {{cupricStone.asFloor().wall = this;}};
+		lodeWall = new StaticWall("lode-wall") {{lodeStone.asFloor().wall = this;}};
+		acrylicWall = new StaticWall("acrylic-wall") {{acrylicStone.asFloor().wall = this;}};
+		mosaicWall = new StaticWall("mosaic-wall") {{mosaicStone.asFloor().wall = this;}};
+		oxaicWall = new StaticWall("oxaic-wall") {{oxaicStone.asFloor().wall = this;}};
 	}
 }
