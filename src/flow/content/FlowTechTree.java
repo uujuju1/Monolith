@@ -15,7 +15,7 @@ import static flow.content.blocks.FlowCrafting.*;
 import static flow.content.blocks.FlowDistribution.*;
 
 public class FlowTechTree {
-	public static TechNode node(UnlockableContent contetn, Seq<Objective> objectives) {return node(content, objectives, () -> );}
+	public static TechNode node(UnlockableContent contetn, Seq<Objective> objectives) {return node(content, objectives, () -> {});}
 
 	public static void load() {
 		FlowPlanets.chroma.techTree = nodeRoot("chroma", Blocks.coreShard, true, () -> {
