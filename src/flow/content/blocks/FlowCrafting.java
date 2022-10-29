@@ -38,7 +38,6 @@ public class FlowCrafting {
 				Items.lead, 2,
 				Items.copper, 1
 			));
-			consumeLiquid(FlowLiquids.vapour, 0.1f);
 			consumeHeat(140f, true);
 			consumePower(1f);
 			outputHeat = 25f;

@@ -17,7 +17,7 @@ public class FlowEnvironment {
 	public static void load() {
 		crystalIce = new Floor("crystal-ice") {{attributes.set(Attribute.water, 0.4f);}};
 		crystalSnow = new Floor("crystal-snow") {{attributes.set(Attribute.water, 0.3f);}};
-		crystalStone = new Floor("crystal-stone");
+		crystalStone = new Floor("crystal-stone") {{attributes.set(Attribute.water, 0.1f);}};
 		flakeStone = new Floor("flake-stone");
 		cupricStone = new Floor("cupric-stone");
 		lodeStone = new Floor("lode-stone") {{attributes.set(Attribute.water, -0.25f);}};

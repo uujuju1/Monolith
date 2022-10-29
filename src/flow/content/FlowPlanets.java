@@ -13,6 +13,7 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.graphics.g3d.*;
 import flow.planets.*;
+import flow.content.blocks.*;
 
 public class FlowPlanets {
 	public static Planet chroma;
@@ -37,18 +38,18 @@ public class FlowPlanets {
 				biomes.add(
 					new Biome() {{
 						heightMap = new Block[]{
-							Blocks.roughRhyolite,
-							Blocks.roughRhyolite,
-							Blocks.roughRhyolite,
-							Blocks.ferricStone,
-							Blocks.ferricStone,
-							Blocks.ferricStone,
-							Blocks.rhyolite,
-							Blocks.rhyolite,
-							Blocks.rhyolite,
-							Blocks.regolith,
-							Blocks.regolith,
-							Blocks.regolith
+							FlowEnvironment.mosaicStone,
+							FlowEnvironment.mosaicStone,
+							FlowEnvironment.mosaicStone,
+							FlowEnvironment.mosaicStone,
+							FlowEnvironment.oxaicStone,
+							FlowEnvironment.oxaicStone,
+							FlowEnvironment.oxaicStone,
+							FlowEnvironment.oxaicStone,
+							FlowEnvironment.lodeStone,
+							FlowEnvironment.lodeStone,
+							FlowEnvironment.lodeStone,
+							FlowEnvironment.lodeStone
 						};
 						ores.add(Blocks.oreCoal);
 						scale = 1;
@@ -57,16 +58,18 @@ public class FlowPlanets {
 					}},
 					new Biome() {{
 						heightMap = new Block[]{
-							Blocks.ferricStone,
-							Blocks.ferricStone,
-							Blocks.ferricStone,
-							Blocks.ferricStone,
-							Blocks.ferricStone,
-							Blocks.carbonStone,
-							Blocks.carbonStone,
-							Blocks.basalt,
-							Blocks.basalt,
-							Blocks.basalt
+							FlowEnvironment.crystalStone,
+							FlowEnvironment.crystalStone,
+							FlowEnvironment.crystalStone,
+							FlowEnvironment.acrylicStone,
+							FlowEnvironment.acrylicStone,
+							FlowEnvironment.acrylicStone,
+							FlowEnvironment.flakeStone,
+							FlowEnvironment.flakeStone,
+							FlowEnvironment.flakeStone,
+							FlowEnvironment.cupricStone,
+							FlowEnvironment.cupricStone,
+							FlowEnvironment.cupricStone
 						};
 						ores.add(Blocks.oreTitanium);
 						minValue = 0.4f;
@@ -75,7 +78,10 @@ public class FlowPlanets {
 						noiseSeed = 1;
 					}},
 					new Biome() {{
-						heightMap = new Block[]{Blocks.redIce};
+						heightMap = new Block[]{
+							FlowEnvironment.crystalIce,
+							FlowEnvironment.crystalSnow
+						};
 						ores.add(Blocks.oreThorium);
 						polarInterp = Interp.pow2In;
 						noiseSeed = 2;

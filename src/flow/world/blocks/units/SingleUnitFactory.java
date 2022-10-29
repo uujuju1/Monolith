@@ -4,6 +4,7 @@ import arc.*;
 import arc.math.*;
 import arc.util.*;
 import arc.util.io.*;
+import arc.scene.style.*;
 import arc.graphics.g2d.*;
 import mindustry.*;
 import mindustry.ui.*;
@@ -13,8 +14,10 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.entities.*;
+import mindustry.world.meta.*;
 
 public class SingleUnitFactory extends Block {
+	public TextureRegion topRegion;
 	public UnitType unit = UnitTypes.dagger;
 	public Effect craftEffect = Fx.none;
 	public float craftTime = 60f;
@@ -26,19 +29,30 @@ public class SingleUnitFactory extends Block {
 	}
 
 	@Override
+	public void load() {
+		super.load();
+		topRegion = Core.atlas.find(name + "-top");
+	}
+
+	@Override
 	public void setBars() {
 		super.setBars();
 		addBar("progress", b -> new Bar(Core.bundle.get("bar.progress"), Pal.accent, () -> ((SingleUnitFactoryBuild)b).time/craftTime));
 	}
 
+	@Override
+	public void setStats() {
+		super.setStats();
+		stats.add(Stat.output, t -> t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), name -> {
+			name.image(unit.uiIcon).size(48).row();
+			name.add(unit.localizedName);
+		}).pad(10));
+	}
+
 	public class SingleUnitFactoryBuild extends Building {
 		public float time, warmup;
 
-		@Override
-		public boolean shouldConsume() {
-			if (team.data().countType(unit) < Units.getCap(team)) return false;
-			return enabled;
-		}
+		@Override public boolean shouldConsume() {return enabled && team.data().countType(unit) < Units.getCap(team);}
 
 		@Override
 		public void updateTile() {
@@ -60,6 +74,8 @@ public class SingleUnitFactory extends Block {
 		public void draw() {
 			super.draw();
 			Draw.draw(Layer.blockOver, () -> Drawf.construct(this, unit, -90f, time / craftTime, warmup, Time.time));
+			Draw.z(Layer.blockOver + 0.1f);
+			Draw.rect(topRegion, x, y);
 		}
 
 		@Override

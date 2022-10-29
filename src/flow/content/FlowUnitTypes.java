@@ -17,9 +17,33 @@ import flow.type.draw.*;
 import flow.type.ModUnitType.*;
 
 public class FlowUnitTypes {
-	public static UnitType shelter, connect, vessel, remnant;
+	public static UnitType 
+	moth, 
+	shelter, connect, vessel, remnant;
 
 	public static void load() {
+		moth = new UnitType("moth") {{
+			health = 650;
+			speed = 2f;
+			range = maxRange = 18f * 8f;
+			hitSize = 9f;
+			outlineColor = Pal.darkOutline;
+			constructor = UnitEntity::create;
+
+			weapons.addAll(
+				new Weapon("flow-moth-weapon") {{
+					x = 6f;
+					y = -1f;
+					reload = 30f;
+					bullet = new BasicBulletType(2f, 30) {{
+						lifetime = 72f;
+						frontColor = Color.white;
+						backColor = Pal.accent;
+					}};
+				}}
+			);
+		}};
+
 		shelter = new ModUnitType("shelter") {{
 			health = 1650;
 			speed = 1f;
