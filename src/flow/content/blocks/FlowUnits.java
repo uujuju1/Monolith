@@ -1,7 +1,8 @@
 package flow.content.blocks;
 
+import mindustry.type.*;
 import mindustry.world.*;
-import mindustry.world.type.*;
+import mindustry.content.*;
 import flow.content.*;
 import flow.world.blocks.units.*;
 
@@ -16,7 +17,7 @@ public class FlowUnits {
 				Items.silicon, 150,
 				Items.graphite, 145,
 				Items.titanium, 120,
-				Items.leadm, 160
+				Items.lead, 160
 			));
 			size = 3;
 			health = 200;
@@ -25,7 +26,7 @@ public class FlowUnits {
 				Items.silicon, 60,
 				Items.graphite, 40,
 				Items.titanium, 45,
-				FLowItems.chromium, 30
+				FlowItems.chromium, 30
 			));
 			consumeLiquid(FlowLiquids.vapour, 0.2f);
 			consumePower(3f);

@@ -6,16 +6,16 @@ import flow.planets.*;
 
 public class FlowGenerators {
 	public static Cons<ModularPlanetGenerator> chroma = gen -> {
-		p.pass((x, y) -> {
+		gen.pass((x, y) -> {
 			float 
-			offsetX = x/p.width() - 0.5f,
-			offsetY = y/p.height() - 0.5f,
+			offsetX = x/gen.width() - 0.5f,
+			offsetY = y/gen.height() - 0.5f,
 			offsetZ = offsetX;
 
-			p.setBlock(p.setFloor(p.getBlock(Tmp.v31.set(
-				p.sector().tile.v.x + offsetX,
-				p.sector().tile.v.y + offsetY,
-				p.sector().tile.v.z + offsetZ
+			gen.setBlock(gen.setFloor(gen.getBlock(Tmp.v31.set(
+				gen.sector().tile.v.x + offsetX,
+				gen.sector().tile.v.y + offsetY,
+				gen.sector().tile.v.z + offsetZ
 			))).asFloor().wall);
 		});
 	};

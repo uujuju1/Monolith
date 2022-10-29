@@ -15,29 +15,28 @@ import static flow.content.blocks.FlowCrafting.*;
 import static flow.content.blocks.FlowDistribution.*;
 
 public class FlowTechTree {
-	public static TechNode node(UnlockableContent contetn, Seq<Objective> objectives) {return node(content, objectives, () -> {});}
 
 	public static void load() {
 		FlowPlanets.chroma.techTree = nodeRoot("chroma", Blocks.coreShard, true, () -> {
 			nodeProduce(chromium, () -> {});
 			nodeProduce(vapour, () -> {});
 
-			node(itemLiquidJunction, Seq.with(new Produce(chromium)));
+			node(itemLiquidJunction, Seq.with(new Produce(chromium)) () -> {});
 			node(heatPipe, Seq.with(new Produce(Items.silicon)), () -> {
-				node(advHeatPipe, Seq.with(new Produce(chromium)));
+				node(advHeatPipe, Seq.with(new Produce(chromium)) () -> {});
 
-				node(combustionHeater, Seq.with(new Research(Blocks.laserDrill)));
-				node(heatFan, Seq.with(new Research(Blocks.laserDrill)));
+				node(combustionHeater, Seq.with(new Research(Blocks.laserDrill)) () -> {});
+				node(heatFan, Seq.with(new Research(Blocks.laserDrill)) () -> {});
 			});
 
-			node(compressor, Seq.with(new SectorComplete(SectorPresets.frozenForest)));
+			node(compressor, Seq.with(new SectorComplete(SectorPresets.frozenForest)) () -> {});
 
 			node(chromiumSmelter, Seq.with(new SectorComplete(SectorPresets.craters)), () -> {
-				node(boiler, Seq.with(new SectorComplete(SectorPresets.ruinousShores)));
+				node(boiler, Seq.with(new SectorComplete(SectorPresets.ruinousShores)) () -> {});
 			});
 
 			node(holder, Seq.with(new SectorComplete(SectorPresets.stainedMountains)), () -> {
-				node(pusher, Seq.with(new SectorComplete(SectorPresets.biomassFacility)));
+				node(pusher, Seq.with(new SectorComplete(SectorPresets.biomassFacility)) () -> {});
 			});
 		});
 	}
