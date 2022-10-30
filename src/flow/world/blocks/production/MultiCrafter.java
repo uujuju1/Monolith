@@ -150,9 +150,9 @@ public class MultiCrafter extends Block {
 		@Override
 		public void drawLight() {
 			if (getRecipe() != null) {
-				getRecipe().drawer.drawlight(this);				
+				getRecipe().drawer.drawLight(this);
 			} else {
-				recipes.get(0).drawer.drawlight(this);
+				recipes.get(0).drawer.drawLight(this);
 			}
 		}
 
