@@ -29,7 +29,9 @@ public class FlowTechTree {
 				node(heatFan, Seq.with(new Research(Blocks.laserDrill)), () -> {});
 			});
 
-			node(compressor, Seq.with(new SectorComplete(SectorPresets.frozenForest)), () -> {});
+			node(compressor, Seq.with(new SectorComplete(SectorPresets.frozenForest)), () -> {
+				node(advancedCrafter, Seq.with(new Produce(Items.titanium), new Produce(chromium)), () -> {});
+			});
 
 			node(chromiumSmelter, Seq.with(new SectorComplete(SectorPresets.craters)), () -> {
 				node(boiler, Seq.with(new SectorComplete(SectorPresets.ruinousShores)), () -> {});

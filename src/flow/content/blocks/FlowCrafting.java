@@ -113,7 +113,7 @@ public class FlowCrafting {
 						new DrawDefault(),
 						new DrawRegion("-cap")
 					);
-					outputItems = with(Items.silicon, 5);
+					outputItems = with(Items.graphite, 7);
 					updateEffect = Fx.smoke;
 					craftTime = 180f;
 				}}

@@ -21,6 +21,7 @@ public class FlowUnits {
 			));
 			size = 3;
 			health = 200;
+			itemCapacity = 120;
 			craftTime = 2100f;
 			consumeItems(with(
 				Items.silicon, 60,

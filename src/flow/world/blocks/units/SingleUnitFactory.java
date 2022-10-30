@@ -34,6 +34,8 @@ public class SingleUnitFactory extends Block {
 		topRegion = Core.atlas.find(name + "-top");
 	}
 
+	@Override public TextureRegion[] icons() {return new TextureRegion[]{region, topRegion};}
+
 	@Override
 	public void setBars() {
 		super.setBars();
@@ -45,8 +47,8 @@ public class SingleUnitFactory extends Block {
 		super.setStats();
 		stats.add(Stat.output, t -> t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), name -> {
 			name.image(unit.uiIcon).size(48).row();
-			name.add(unit.localizedName);
-		}).pad(10));
+			name.add(unit.localizedName).pad(10);
+		}).margin(10));
 	}
 
 	public class SingleUnitFactoryBuild extends Building {
