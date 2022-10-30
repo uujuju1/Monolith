@@ -8,6 +8,7 @@ public class FlowBlocks {
 		FlowEnvironment::load,
 		FlowTurrets::load,
 		FlowDistribution::load,
+		FlowUnits::load,
 		FlowCrafting::load
 	};
 

@@ -1,4 +1,4 @@
-package flow.content;
+"C34345package flow.content;
 
 import arc.math.*;
 import arc.util.*;
@@ -155,13 +155,11 @@ public class FlowPlanets {
 					Vars.state.rules.env = sector().planet.defaultEnv;
 				};
 			}};
-			atmosphereColor = Color.valueOf("E3DB71");
-			atmosphereRadIn = 0.07f;
-			atmosphereRadOut = 0.25f;
+			atmosphereColor = Color.valueOf("C94A4A");
 			meshLoader = () -> new HexMesh(this, 5);
 			cloudMeshLoader = () -> new MultiMesh(
-				new HexSkyMesh(this, 10, 0.13f, 0.1f, 5, Color.valueOf("E3DB71").mul(0.9f).a(0.25f), 2, 0.45f, 0.9f, 0.38f),
-				new HexSkyMesh(this, 2, 0.15f, 0.17f, 5, Color.valueOf("E3DB71").mul(0.7f).a(0.25f), 2, 0.45f, 0.9f, 0.41f)
+				new HexSkyMesh(this, 10, 0.13f, 0.1f, 5, Color.valueOf("C94A4A").mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
+				new HexSkyMesh(this, 2, 0.15f, 0.17f, 5, Color.valueOf("C94A4A").mul(0.7f).a(0.75f), 2, 0.45f, 0.9f, 0.41f)
 			);
 			startSector = 15;
 			alwaysUnlocked = accessible = true;

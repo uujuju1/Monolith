@@ -5,6 +5,7 @@ import arc.util.*;
 import arc.struct.*;
 import arc.util.io.*;
 import arc.scene.ui.*;
+import arc.graphics.g2d.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 import mindustry.type.*;
@@ -12,13 +13,11 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.world.meta.*;
+import mindustry.entities.units.*;
 import mindustry.world.consumers.*;
 import flow.ui.*;
 import flow.world.meta.*;
-/** 
-	* TODO might extend both from {@link GenericCrafter} later
-	* @author Uujuju
-*/
+
 public class MultiCrafter extends Block {
 	public Seq<ItemRecipe> recipes = new Seq<>();
 
@@ -39,6 +38,10 @@ public class MultiCrafter extends Block {
 		stats.add(Stat.output, MonolithStatValues.itemRecipe(recipes));
 	}
 
+	@Override public void drawPlan(BuildPlan plan, Eachable<BuildPlan> list) {recipes.get(0).drawer.drawPlan(this, plan, list);}
+	@Override public TextureRegion icons() {return recipes.get(0).drawer.finalIcons(this);}
+	@Override public void getRegionsToOutline(Seq<TextureRegion> out) {recipes.get(0).drawer.getRegionsToOutline(this, out);}
+
 	public class ItemRecipe {
 		public @Nullable ItemStack[]
 		consumeItems = ItemStack.empty,
@@ -51,6 +54,8 @@ public class MultiCrafter extends Block {
 		public Effect 
 		craftEffect = Fx.none,
 		updateEffect = Fx.none;
+
+		public Drawer drawer = new DrawDefault();
 
 		public float 
 		consumePower = 1f,
@@ -70,6 +75,11 @@ public class MultiCrafter extends Block {
 		public @Nullable ItemRecipe getRecipe() {return currentPlan == -1 ? null : recipes.get(currentPlan);}
 		public float getPowerCons() {return getRecipe() != null ? getRecipe().consumePower : 0f;}
 
+		public void changeRecipe(ItemRecipe recipe) {
+			currentPlan = recipes.indexOf(recipe);
+			Fx.coreBuildBlock.at(x, y, rotdeg(), block);
+		}
+
 		public void dumpOutputs() {
 			if(getRecipe() != null && timer(timerDump, dumpTime / timeScale)){
 				if (getRecipe().outputItems == null) return; 
@@ -85,7 +95,7 @@ public class MultiCrafter extends Block {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			TableSelection.itemRecipeSelection(recipes, table, recipe -> currentPlan = recipes.indexOf(recipe), () -> getRecipe());
+			TableSelection.itemRecipeSelection(recipes, table, recipe -> changeRecipe(recipe), () -> getRecipe());
 		}
 
 		@Override
@@ -120,6 +130,23 @@ public class MultiCrafter extends Block {
 				warmup = Mathf.approachDelta(warmup, 0f, 0.019f);
 			}
 			dumpOutputs();
+		}
+
+		@Override
+		public void draw() {
+			if (getRecipe != null) {
+				getRecipe().drawer.draw(this);				
+			} else {
+				recipes.get(0).drawer.draw(this);
+			}
+		}
+		@Override
+		public void drawLight() {
+			if (getRecipe != null) {
+				getRecipe().drawer.drawlight(this);				
+			} else {
+				recipes.get(0).drawer.drawlight(this);
+			}
 		}
 
 		@Override

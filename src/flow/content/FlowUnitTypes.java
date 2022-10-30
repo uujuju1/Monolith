@@ -27,12 +27,15 @@ public class FlowUnitTypes {
 			speed = 2f;
 			range = maxRange = 18f * 8f;
 			hitSize = 9f;
+			engineSize = 4f;
+			engineOffset = 6f;
 			outlineColor = Pal.darkOutline;
+			flying = true;
 			constructor = UnitEntity::create;
 
 			weapons.addAll(
 				new Weapon("flow-moth-weapon") {{
-					x = 6f;
+					x = 6.25f;
 					y = -1f;
 					reload = 30f;
 					bullet = new BasicBulletType(2f, 30) {{
