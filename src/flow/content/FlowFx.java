@@ -8,6 +8,17 @@ import mindustry.entities.*;
 
 public class FlowFx {
 	public static Effect 
+	changeRecipe = new Effect(30f, e -> {
+		if (!(e.data instanceof Block block)) return;
+		
+		Draw.mixcol(Pal.accent, 1);
+		Draw.alpha(e.fout());
+		Draw.rect(block.fullIcon, e.x, e.y, e.rotation);
+		Draw.alpha(1f);
+		Lines.stroke(4f * e.fout());
+		Lines.square(e.x, e.y, block.size * 4f);
+	}),
+
 	chromiumCraft = new Effect(60f, e -> {
 		Draw.color(Pal.accent);
 		for(int i = 0; i < 4; i++) {

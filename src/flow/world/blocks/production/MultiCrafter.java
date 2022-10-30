@@ -17,6 +17,7 @@ import mindustry.world.meta.*;
 import mindustry.entities.units.*;
 import mindustry.world.consumers.*;
 import flow.ui.*;
+import flow.content.*;
 import flow.world.meta.*;
 
 public class MultiCrafter extends Block {
@@ -84,7 +85,7 @@ public class MultiCrafter extends Block {
 
 		public void changeRecipe(ItemRecipe recipe) {
 			currentPlan = recipes.indexOf(recipe);
-			Fx.coreBuildBlock.at(x, y, rotdeg(), block);
+			FlowFx.changeRecipe.at(x, y, rotdeg(), block);
 		}
 
 		public void dumpOutputs() {
