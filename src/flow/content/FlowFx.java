@@ -3,6 +3,7 @@ package flow.content;
 import arc.math.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
+import mindustry.world.*;
 import mindustry.graphics.*;
 import mindustry.entities.*;
 
@@ -10,7 +11,7 @@ public class FlowFx {
 	public static Effect 
 	changeRecipe = new Effect(30f, e -> {
 		if (!(e.data instanceof Block block)) return;
-		
+
 		Draw.mixcol(Pal.accent, 1);
 		Draw.alpha(e.fout());
 		Draw.rect(block.fullIcon, e.x, e.y, e.rotation);
