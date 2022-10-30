@@ -12,6 +12,7 @@ import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.entities.*;
+import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.entities.units.*;
 import mindustry.world.consumers.*;
@@ -41,7 +42,7 @@ public class MultiCrafter extends Block {
 	@Override public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list) {recipes.get(0).drawer.drawPlan(this, plan, list);}
 	@Override public TextureRegion[] icons() {return recipes.get(0).drawer.finalIcons(this);}
 	@Override public void getRegionsToOutline(Seq<TextureRegion> out) {recipes.get(0).drawer.getRegionsToOutline(this, out);}
-	
+
 	@Override
 	public void load() {
 		super.load();
@@ -61,7 +62,7 @@ public class MultiCrafter extends Block {
 		craftEffect = Fx.none,
 		updateEffect = Fx.none;
 
-		public Drawer drawer = new DrawDefault();
+		public DrawBlock drawer = new DrawDefault();
 
 		public float 
 		consumePower = 1f,
@@ -140,7 +141,7 @@ public class MultiCrafter extends Block {
 
 		@Override
 		public void draw() {
-			if (getRecipe != null) {
+			if (getRecipe() != null) {
 				getRecipe().drawer.draw(this);				
 			} else {
 				recipes.get(0).drawer.draw(this);
@@ -148,7 +149,7 @@ public class MultiCrafter extends Block {
 		}
 		@Override
 		public void drawLight() {
-			if (getRecipe != null) {
+			if (getRecipe() != null) {
 				getRecipe().drawer.drawlight(this);				
 			} else {
 				recipes.get(0).drawer.drawlight(this);
