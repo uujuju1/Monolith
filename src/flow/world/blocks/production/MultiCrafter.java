@@ -38,9 +38,15 @@ public class MultiCrafter extends Block {
 		stats.add(Stat.output, MonolithStatValues.itemRecipe(recipes));
 	}
 
-	@Override public void drawPlan(BuildPlan plan, Eachable<BuildPlan> list) {recipes.get(0).drawer.drawPlan(this, plan, list);}
-	@Override public TextureRegion icons() {return recipes.get(0).drawer.finalIcons(this);}
+	@Override public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list) {recipes.get(0).drawer.drawPlan(this, plan, list);}
+	@Override public TextureRegion[] icons() {return recipes.get(0).drawer.finalIcons(this);}
 	@Override public void getRegionsToOutline(Seq<TextureRegion> out) {recipes.get(0).drawer.getRegionsToOutline(this, out);}
+	
+	@Override
+	public void load() {
+		super.load();
+		for (ItemRecipe recipe : recipes) recipe.drawer.load(this);
+	}
 
 	public class ItemRecipe {
 		public @Nullable ItemStack[]

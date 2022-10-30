@@ -81,7 +81,7 @@ public class FlowCrafting {
 			requirements(Category.crafting, with(
 				Items.silicon, 120,
 				Items.titanium, 150,
-				Items.metaglass 125,
+				Items.metaglass, 125,
 				Items.lead, 135,
 				FlowItems.chromium, 140
 			));
@@ -90,17 +90,29 @@ public class FlowCrafting {
 			recipes.add(
 				new ItemRecipe() {{
 					consumeItems = with(
-						Items.pyratite, 1
+						Items.pyratite, 1,
 						Items.sand, 5,
 						Items.coal, 3
 					);
+					consumePower = 4f;
+					drawer = new DrawMulti(
+						new DrawDefault(),
+						new DrawFlame() {{
+							flameRadius = 4f;
+						}}
+					);
 					outputItems = with(Items.silicon, 5);
 					updateEffect = Fx.smoke;
-					craftTime = 120f
+					craftTime = 120f;
 				}},
 				new ItemRecipe() {{
 					consumeItems = with(Items.coal, 10);
 					consumeLiquids = LiquidStack.with(Liquids.water, 0.1f);
+					consumePower = 4f;
+					drawer = new DrawMulti(
+						new DrawDefault(),
+						new DrawRegion("-cap")
+					);
 					outputItems = with(Items.silicon, 5);
 					updateEffect = Fx.smoke;
 					craftTime = 180f;

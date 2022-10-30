@@ -1,4 +1,4 @@
-"C34345package flow.content;
+package flow.content;
 
 import arc.math.*;
 import arc.util.*;
