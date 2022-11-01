@@ -14,7 +14,7 @@ public class HeatModule extends BlockModule {
 
 	public HeatModule(HeatBuild build) {
 		this.build = build;
-		graph.setUpdater(build);
+		// graph.setUpdater(build);
 	}
 
 	public HeatBuild build() {return build;}

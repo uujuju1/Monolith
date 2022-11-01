@@ -34,7 +34,7 @@ public class HeatBlock extends Block {
 		addBar("heat", entity -> new Bar(
 			Core.bundle.get("bar.heat"),
 			((HeatBuild) entity).getModule().heat > 0 ? Pal.accent : Pal.lancerLaser,
-			() -> ((HeatBuild) entity).heatAlpha()
+			((HeatBuild) entity)::heatAlpha
 		));
 	}
 
@@ -43,9 +43,13 @@ public class HeatBlock extends Block {
 	public class HeatBuild extends Building implements HeatInterface {
 		public HeatModule pModule = new HeatModule(this);
 
+
+		public HeatBlock hBlock() {return (HeatBlock) block;}
+		public Floatp heatAlpha() {return () -> 1f;}
+
 		public Seq<HeatBuild> heatProximityBuilds() {
 			Seq<HeatBuild> out = new Seq<>();
-			for (Building build : proximity) out.add(build);
+			for (Building build : proximity) out.add((HeatBuild) build);
 			return out;
 		}
 
@@ -57,7 +61,7 @@ public class HeatBlock extends Block {
 		@Override
 		public void onProximityRemoved() {
 			super.onProximityRemoved();
-			getVertex().disconnectFromGraph();
+			getVertex().disconnect();
 		}
 
 		@Override

@@ -17,8 +17,8 @@ public class HeatGraph {
 	public void onGraphUpdate() {}	
 
 	public Seq<HeatVertex> floodFrom(HeatVertex start) {
-		if (start.getGraph() != this) return;
 		Seq<HeatVertex> res = new Seq<>();
+		if (start.getGraph() != this) return res;
 		start.getBuild().getProximityBuilds().each(b -> {
 			if (res.contains(b.getVertex())) {
 				res.add(b.getVertex());
@@ -41,22 +41,22 @@ public class HeatGraph {
 		vertexes.add(vertex);
 		vertex.graph = this;
 		onGraphUpdate();
-		onVertexAdded();
+		onVertexAdded(vertex);
 	}
 	public void removeVertex(HeatVertex vertex) {
 		if (vertex.getGraph() != this) return;
 		vertexes.remove(vertex);
 		onGraphUpdate();
-		onVertexRemoved();
+		onVertexRemoved(vertex);
 	}
 	public void addEdge(HeatEdge edge) {
 		edges.add(edge);
 		onGraphUpdate();
-		onEdgeAdded();
+		onEdgeAdded(edge);
 	}
 	public void removeEdge(HeatEdge edge) {
 		edges.remove(edge);
 		onGraphUpdate();
-		onEdgeRemoved();
+		onEdgeRemoved(edge);
 	}
 }

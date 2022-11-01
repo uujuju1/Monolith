@@ -2,6 +2,7 @@ package flow.world.graph;
 
 import arc.struct.*;
 import flow.world.modules.*;
+import flow.world.blocks.HeatBlock.*;
 
 public class HeatVertex {
 	public HeatModule module;
