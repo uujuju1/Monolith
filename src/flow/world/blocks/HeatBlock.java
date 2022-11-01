@@ -34,7 +34,7 @@ public class HeatBlock extends Block {
 		addBar("heat", entity -> new Bar(
 			Core.bundle.get("bar.heat"),
 			((HeatBuild) entity).getModule().heat > 0 ? Pal.accent : Pal.lancerLaser,
-			((HeatBuild) entity)::heatAlpha
+			((HeatBuild) entity).heatAlpha()
 		));
 	}
 

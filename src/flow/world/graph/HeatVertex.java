@@ -23,7 +23,7 @@ public class HeatVertex {
 
 	public void onProximityUpdate() {
 		clearEdges();
-		getBuild().heatProximityBuilds().each(b -> new HeatEdge(this, b).addSelf());
+		getBuild().heatProximityBuilds().each(b -> new HeatEdge(this, b.getVertex()).addSelf());
 	}
 
 	public void addEdge(HeatEdge edge) {if (!edge.contains(this)) edges.add(edge);}
