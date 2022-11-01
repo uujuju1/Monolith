@@ -19,11 +19,12 @@ public class HeatGraph {
 	public Seq<HeatVertex> floodFrom(HeatVertex start) {
 		if (start.getGraph() != this) return;
 		Seq<HeatVertex> res = new Seq<>();
-		start.getBuild().getProximityBuilds().each(b -> if (res.contains(b.getVertex())) {
+		start.getBuild().getProximityBuilds().each(b -> {
+			if (res.contains(b.getVertex())) {
 				res.add(b.getVertex());
 				res.add(floodFrom(b.getVertex()));
 			}
-		);
+		});
 		return res;
 	} 
 
