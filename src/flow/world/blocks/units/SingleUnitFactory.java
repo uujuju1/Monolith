@@ -39,7 +39,7 @@ public class SingleUnitFactory extends Block {
 	@Override
 	public void setBars() {
 		super.setBars();
-		addBar("progress", b -> new Bar(Core.bundle.get("bar.progress"), Pal.accent, () -> ((SingleUnitFactoryBuild)b).time/craftTime));
+		addBar("progress", b -> new Bar(Core.bundle.get("bar.progress"), Pal.accent, () -> ((SingleUnitFactoryBuild)b).time));
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class SingleUnitFactory extends Block {
 		@Override
 		public void draw() {
 			super.draw();
-			Draw.draw(Layer.blockOver, () -> Drawf.construct(this, unit, -90f, time / craftTime, warmup, Time.time));
+			Draw.draw(Layer.blockOver, () -> Drawf.construct(this, unit, -90f, time, warmup, Time.time));
 			Draw.z(Layer.blockOver + 0.1f);
 			Draw.rect(topRegion, x, y);
 		}

@@ -38,7 +38,9 @@ public class FlowUnitTypes {
 					x = 6.25f;
 					y = -1f;
 					reload = 30f;
-					bullet = new BasicBulletType(2f, 30) {{
+					shootSound = Sounds.chargedShock;
+					bullet = new BasicBulletType(2f, 50) {{
+						widht = height = 10f;
 						lifetime = 72f;
 						frontColor = Color.white;
 						backColor = Pal.accent;

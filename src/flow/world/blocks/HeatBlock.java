@@ -3,6 +3,7 @@ package flow.world.blocks;
 import arc.*;
 import arc.func.*;
 import arc.math.*;
+import arc.struct.*;
 import arc.util.io.*;
 import arc.graphics.*;
 import mindustry.ui.*;
@@ -14,7 +15,6 @@ import flow.world.graph.*;
 import flow.world.modules.*;
 import flow.world.consumers.*;
 import flow.world.interfaces.*;
-import flow.world.graph.HeatVertex.*;
 
 public class HeatBlock extends Block {
 	public float
@@ -43,10 +43,22 @@ public class HeatBlock extends Block {
 	public class HeatBuild extends Building implements HeatInterface {
 		public HeatModule pModule = new HeatModule(this);
 
-		public float heatAlpha() {return getModule().heat > 0 ? getModule().heat/maxHeat : getModule().heat/minHeat;}
+		public Seq<HeatBuild> heatProximityBuilds() {
+			Seq<HeatBuild> out = new Seq<>();
+			for (Building build : proximity) out.add(build);
+			return out;
+		}
 
-		public HeatBlock hBlock() {return (HeatBlock) block;}
-		@Override public HeatModule getModule() {return pModule;}
+		@Override
+		public void onProximityUpdate() {
+			super.onProximityUpdate();
+			getVertex().onProximityUpdate();
+		}
+		@Override
+		public void onProximityRemoved() {
+			super.onProximityRemoved();
+			getVertex().disconnectFromGraph();
+		}
 
 		@Override
 		public void overheat() {
@@ -55,23 +67,7 @@ public class HeatBlock extends Block {
 		}
 
 		@Override
-		public void onProximityUpdate() {
-			super.onProximityUpdate();
-			getVertex().updateEdges();
-		}
-
-		@Override
-		public void onProximityRemoved() {
-			super.onProximityRemoved();
-			getVertex().onRemoved();
-			if (getGraph().vertexes.size > 0) getGraph().setUpdater(getGraph().vertexes.get(0).getModule().build);
-		}
-
-		@Override
-		public void updateTile() {
-			overheat();
-			if (getGraph().updater == this) getGraph().update();
-		}
+		public void updateTile() {overheat();}
 
 		@Override
 		public void write(Writes write) {
@@ -82,7 +78,6 @@ public class HeatBlock extends Block {
 		public void read(Reads read, byte revision) {
 			super.read(read, revision);
 			getModule().read(read);
-			getVertex().updateEdges();
 		}
 	}
 }

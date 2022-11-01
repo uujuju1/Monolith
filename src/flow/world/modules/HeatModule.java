@@ -15,27 +15,14 @@ public class HeatModule extends BlockModule {
 	public HeatModule(HeatBuild build) {
 		this.build = build;
 		graph.setUpdater(build);
-		graph.addVertex(vertex);
 	}
 
 	public HeatBuild build() {return build;}
 
-	public void add(float value) {
-		heat += value;
-	}
-	public void sub(float value) {
-		heat -= value;
-	}
-	public void set(float value) {
-		heat = value;
-	}
+	public void add(float value) {heat += value;}
+	public void sub(float value) {heat -= value;}
+	public void set(float value) {heat = value;}
 
-	@Override
-	public void write(Writes write) {
-		write.f(heat);
-	}
-	@Override
-	public void read(Reads read) {
-		heat = read.f();
-	}
+	@Override public void write(Writes write) {write.f(heat);}
+	@Override public void read(Reads read) {heat = read.f();}
 }

@@ -59,7 +59,7 @@ public class HeatGenericCrafter extends HeatBlock {
 		ambientSoundVolume = 0.03f;
 		flags = EnumSet.of(BlockFlag.factory);
 		drawArrow = false;
-	}
+	}/*
 
 	@Override
 	public void setStats(){
@@ -161,8 +161,9 @@ public class HeatGenericCrafter extends HeatBlock {
 			}
 		}
 	}
-
+	*/
 	public class HeatGenericCrafterBuild extends HeatBuild {
+		/*
 		public float progress;
 		public float totalProgress;
 		public float warmup;
@@ -328,7 +329,6 @@ public class HeatGenericCrafter extends HeatBlock {
 			progress = read.f();
 			warmup = read.f();
 			if(legacyReadWarmup) read.f();
-	
-		}
+		}*/
 	}
 }
