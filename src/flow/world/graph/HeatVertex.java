@@ -20,7 +20,9 @@ public class HeatVertex {
 	public HeatBuild getBuild() {return module.build;}
 
 	public boolean hasEdge(HeatEdge edge) {
-		edges.each(e -> {if (edge.equals(e)) return true;});
+		edges.each(e -> {
+			if (edge.equals(e)) return true;
+		});
 		return false;
 	}
 
