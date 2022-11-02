@@ -20,7 +20,7 @@ public class HeatVertex {
 	public HeatBuild getBuild() {return module.build;}
 
 	public boolean hasEdge(HeatEdge edge) {
-		for (HeatEdge edge : edges) if (edge.equals(e)) return true;
+		for (HeatEdge e : edges) if (edge.equals(e)) return true;
 		return false;
 	}
 
