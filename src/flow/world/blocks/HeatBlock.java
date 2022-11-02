@@ -41,7 +41,7 @@ public class HeatBlock extends Block {
 	public ConsumeHeat consumeHeat(float amount, boolean inverse) {return consume(new ConsumeHeat(amount, inverse));}
 
 	public class HeatBuild extends Building implements HeatInterface {
-		public HeatModule pModule = new HeatModule(this);
+		public HeatModule module = new HeatModule(this);
 
 
 		public HeatBlock hBlock() {return (HeatBlock) block;}
@@ -49,12 +49,12 @@ public class HeatBlock extends Block {
 
 		public Seq<HeatBuild> heatProximityBuilds() {
 			Seq<HeatBuild> out = new Seq<>();
-			for (Building build : proximity) out.add((HeatBuild) build);
+			for (Building build : proximity) if (build instanceof HeatBuild) out.add((HeatBuild) build);
 			return out;
 		}
 
 		@Override
-		public HeatModule getModule() {return pModule;}
+		public HeatModule getModule() {return module;}
 
 		@Override
 		public void onProximityUpdate() {
