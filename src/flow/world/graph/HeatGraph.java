@@ -15,7 +15,7 @@ public class HeatGraph {
 	public void updateEdges() {}
 	public void updateVertexes() {}
 
-	public void onGraphUpdate() {for (HeatVertex vertex : vertexes) vertex.graph == this;}	
+	public void onGraphUpdate() {for (HeatVertex vertex : vertexes) vertex.graph = this;}	
 
 	// public Seq<HeatVertex> floodFrom(HeatVertex start) {
 	// 	Seq<HeatVertex> res = new Seq<>();

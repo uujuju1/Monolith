@@ -45,7 +45,7 @@ public class HeatBlock extends Block {
 
 
 		public HeatBlock hBlock() {return (HeatBlock) block;}
-		public Floatp heatAlpha() {return () -> 1f;}
+		public Floatp heatAlpha() {return () -> getModule().heat < 0 ? getModule().heat/minHeat : getModule().heat/maxHeat;}
 
 		public Seq<HeatBuild> heatProximityBuilds() {
 			Seq<HeatBuild> out = new Seq<>();
