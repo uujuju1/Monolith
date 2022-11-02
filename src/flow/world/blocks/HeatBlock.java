@@ -54,6 +54,9 @@ public class HeatBlock extends Block {
 		}
 
 		@Override
+		public HeatModule getModule() {return pModule;}
+
+		@Override
 		public void onProximityUpdate() {
 			super.onProximityUpdate();
 			getVertex().onProximityUpdate();
