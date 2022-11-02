@@ -43,7 +43,6 @@ public class HeatBlock extends Block {
 	public class HeatBuild extends Building implements HeatInterface {
 		public HeatModule module = new HeatModule(this);
 
-
 		public HeatBlock hBlock() {return (HeatBlock) block;}
 		public Floatp heatAlpha() {return () -> getModule().heat < 0 ? getModule().heat/minHeat : getModule().heat/maxHeat;}
 
