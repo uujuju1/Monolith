@@ -20,7 +20,7 @@ public class HeatEdge {
 
 	public boolean contains(HeatVertex v) {return v1 == v || v2 == v;}
 	public boolean equals(HeatEdge other) {return contains(other.v1) && contains(other.v2);}
-	public boolean isfrom(HeatGraph graph) {return v1.getGraph() == graph || v2.getGraph() == graph}
+	public boolean isfrom(HeatGraph graph) {return v1.getGraph() == graph || v2.getGraph() == graph;}
 
 	public HeatVertex bigger() {return v1.module.heat >= v2.module.heat ? v1 : v2;}
 	public HeatVertex smaller() {return v1.module.heat < v2.module.heat ? v1 : v2;}

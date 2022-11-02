@@ -1,6 +1,6 @@
 package flow.world.graph;
 
-import arc.util.*
+import arc.util.*;
 import arc.struct.*;
 import flow.world.blocks.*;
 import flow.world.modules.*;
