@@ -66,7 +66,7 @@ public class FlowUnitTypes {
 						width = 40f;
 						length = 25f * 8f;
 						colors = new Color[]{Pal.accent.cpy().mul(1f, 1f, 1f, 0.4f), Pal.accent, Color.white};
-					}}
+					}};
 				}},
 				new Weapon("flow-butterfly-weapon") {{
 					x = -7f;
