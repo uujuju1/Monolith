@@ -15,6 +15,13 @@ public class HeatVertex {
 		graph.addVertex(this);
 	}
 
+	public void changeGraph(HeatGraph other) {
+		if (other == graph) {Log.errTag("CGE", "can't change graph to itself"); return;}
+		disconnect();
+		graph = other;
+		graph.addVertex(this);
+	}
+
 	public HeatGraph getGraph() {return graph;}
 	public HeatModule getModule() {return module;}
 	public HeatBuild getBuild() {return module.build;}
@@ -24,7 +31,10 @@ public class HeatVertex {
 		return false;
 	}
 
-	public void disconnect() {getGraph().removeVertex(this);}
+	public void disconnect() {
+		getGraph().removeVertex(this);
+		onProximityUpdate();
+	}
 
 	public void onProximityUpdate() {
 		clearEdges();
@@ -38,7 +48,15 @@ public class HeatVertex {
 
 	public HeatEdge newEdge(HeatVertex v1, HeatVertex v2) {return new HeatEdge(v1, v2);}
 
-	public void addEdge(HeatEdge edge) {if (edge.contains(this) && !hasEdge(edge)) edges.add(edge);}
-	public void removeEdge(HeatEdge edge) {edges.remove(edge);}
+	public void addEdge(HeatEdge edge) {
+		if (edge.contains(this) && !hasEdge(edge)) {
+			edges.add(edge);
+			getGraph().addEdge(edge);
+		}
+	}
+	public void removeEdge(HeatEdge edge) {
+		edges.remove(edge);
+		getGraph().removeEdge(edge);
+	}
 	public void clearEdges() {edges.each(e -> e.removeSelf());}
 }
