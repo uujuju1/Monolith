@@ -1,3 +1,4 @@
+
 package flow.content.blocks;
 
 import mindustry.gen.*;
@@ -41,20 +42,14 @@ public class FlowTurrets {
 				Items.lead, new ArtilleryBulletType(2f, 80) {{
 					lifetime = 100f;
 					width = height = 32f;
-					collides = true;
-					collidesAir = true;
-					collidesGround = true;
 					splashDamage = 20f;
-					splashDamageRadius = 40f;
+					splashDamageRadius = 80f;
 					despawnEffect = hitEffect = new MultiEffect(FlowFx.trebuchetShoot, FlowFx.trebuchetSmoke);
 					hitColor = frontColor;
 				}},
 				Items.graphite, new ArtilleryBulletType(2f, 120) {{
 					lifetime = 100f;
 					width = height = 32f;
-					collides = true;
-					collidesAir = true;
-					collidesGround = true;
 					splashDamage = 40f;
 					splashDamageRadius = 40f;
 					despawnEffect = hitEffect = new MultiEffect(FlowFx.trebuchetShoot, FlowFx.trebuchetSmoke);

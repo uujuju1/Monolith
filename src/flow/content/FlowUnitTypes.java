@@ -18,7 +18,7 @@ import flow.type.ModUnitType.*;
 
 public class FlowUnitTypes {
 	public static UnitType 
-	moth, 
+	moth, butterfly,
 	shelter, connect, vessel, remnant;
 
 	public static void load() {
@@ -30,7 +30,7 @@ public class FlowUnitTypes {
 			engineSize = 4f;
 			engineOffset = 6f;
 			outlineColor = Pal.darkOutline;
-			flying = true;
+			flying = lowAltitude = true;
 			constructor = UnitEntity::create;
 
 			weapons.addAll(
@@ -38,13 +38,46 @@ public class FlowUnitTypes {
 					x = 6.25f;
 					y = -1f;
 					reload = 30f;
-					// shootSound = Sounds.chargedShock;
+					shootSound = Sounds.mediumCannon;
 					bullet = new BasicBulletType(2f, 50) {{
 						width = height = 10f;
 						lifetime = 72f;
 						frontColor = Color.white;
 						backColor = Pal.accent;
 					}};
+				}}
+			);
+		}};
+		butterfly = new UnitType("butterfly") {{
+			health = 4800;
+			speed = 1f;
+			range = maxRange = 25f * 8f;
+			hitSize = 19f;
+			outlineColor = Pal.darkOutline;
+			flying = lowAltitude = true;
+			constructor = UnitEntity::create;
+
+			weapons.addAll(
+				new Weapon() {{
+					x = 0f;
+					y = 12f;
+					mirror = false;
+					bullet = new LaserBulletType(250) {{
+						width = 40f;
+						length = 25f * 8f;
+						colors = new Color[]{Pal.accent.cpy().mul(1f, 1f, 1f, 0.4f), Pal.accent, Color.white};
+					}}
+				}}
+				new Weapon("flow-butterfly-weapon") {{
+					x = -7f;
+					y = -4f;
+					reload = 60f;
+					bullet = new BasicBulletType(3.5f, 80) {{
+						width = height = 20f;
+						lifetime = 28f;
+						frontColor = Color.white;
+						backColor = Pal.accent;
+					}}
 				}}
 			);
 		}};

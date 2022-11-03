@@ -13,11 +13,10 @@ import static mindustry.type.ItemStack.*;
 
 public class FlowCrafting {
 	public static Block
-	chromiumSmelter, boiler, compressor, advancedCrafter,
-	combustionHeater, heatFan;
+	chromiumSmelter, boiler, compressor, advancedCrafter;
 
 	public static void load() {
-		chromiumSmelter = new HeatGenericCrafter("chromium-smelter") {{
+		chromiumSmelter = new GenericCrafter("chromium-smelter") {{
 			requirements(Category.crafting, with(
 				Items.titanium, 150,
 				Items.silicon, 200,
@@ -38,12 +37,10 @@ public class FlowCrafting {
 				Items.lead, 2,
 				Items.copper, 1
 			));
-			consumeHeat(140f, true);
 			consumePower(1f);
-			outputHeat = 25f;
 			outputItems = with(FlowItems.chromium, 1);
 		}};
-		boiler = new HeatGenericCrafter("boiler") {{
+		boiler = new GenericCrafter("boiler") {{
 			requirements(Category.crafting, with(
 				Items.metaglass, 120,
 				Items.graphite, 150,
@@ -51,7 +48,7 @@ public class FlowCrafting {
 			));
 			size = 3;
 			health = 200;
-			craftTime = 10;
+			craftTime = 60;
 			updateEffect = Fx.smoke;
 			hasLiquids = true;
 			drawer = new DrawMulti(
@@ -60,10 +57,9 @@ public class FlowCrafting {
 				new DrawLiquidRegion(FlowLiquids.vapour) {{suffix = "-liquid-vapour";}},
 				new DrawDefault()
 			);
+			consumeItems(with(Items.coal, 2));
 			consumeLiquid(Liquids.water, 0.1f);
-			consumeHeat(90f, false);
 			outputLiquids = LiquidStack.with(FlowLiquids.vapour, 0.1f);
-			outputHeat = -1f;
 		}};
 		compressor = new GenericCrafter("compressor") {{
 			requirements(Category.crafting, with(
@@ -118,42 +114,6 @@ public class FlowCrafting {
 					craftTime = 180f;
 				}}
 			);
-		}};
-
-		combustionHeater = new HeatGenericCrafter("combustion-heater") {{
-			requirements(Category.crafting, with(
-				Items.graphite, 25,
-				Items.titanium, 45
-			));
-			size = 2;
-			health = 160;
-			craftTime = 180f;
-			updateEffect = Fx.smoke;
-			drawer = new DrawMulti(
-				new DrawRegion("-bottom"),
-				new DrawArcSmelt(),
-				new DrawDefault()
-			);
-			consume(new ConsumeItemFlammable());
-			consumeHeat(400f, true);
-			outputHeat = 390;
-		}};
-		heatFan = new HeatGenericCrafter("heat-fan") {{
-			requirements(Category.crafting, with(
-				Items.graphite, 150,
-				Items.titanium, 100
-			));
-			size = 3;
-			health = 200;
-			craftTime = 30f;
-			updateEffect = Fx.smoke;
-			drawer = new DrawMulti(
-				new DrawDefault(),
-				new DrawBlurSpin("-rotator", 15f)
-			);
-			consumePower(1f);
-			consumeHeat(0f, false);
-			outputHeat = -10f;
 		}};
 	}
 }

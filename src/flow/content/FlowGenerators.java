@@ -8,8 +8,8 @@ public class FlowGenerators {
 	public static Cons<ModularPlanetGenerator> chroma = gen -> {
 		gen.pass((x, y) -> {
 			float 
-			offsetX = x/gen.width() - 0.5f,
-			offsetY = y/gen.height() - 0.5f,
+			offsetX = (x/gen.width()-0.5f) / 1.3f,
+			offsetY = (y/gen.height()-0.5f) / 1.3f,
 			offsetZ = offsetX;
 
 			gen.setBlock(gen.setFloor(gen.getBlock(Tmp.v31.set(
