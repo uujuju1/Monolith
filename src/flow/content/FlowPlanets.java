@@ -154,8 +154,8 @@ public class FlowPlanets {
 					Vars.state.rules.winWave = sector().info.winWave = 10 + 5 * (int)Math.max(sector().threat * 10, 1);
 					Vars.state.rules.waves = sector().info.waves = true;
 					Vars.state.rules.env = sector().planet.defaultEnv;
-				};
-			}};*/
+				};*/
+			}};
 			atmosphereColor = Color.valueOf("C94A4A");
 			meshLoader = () -> new HexMesh(this, 5);
 			cloudMeshLoader = () -> new MultiMesh(
