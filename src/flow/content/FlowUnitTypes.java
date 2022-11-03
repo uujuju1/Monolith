@@ -67,7 +67,7 @@ public class FlowUnitTypes {
 						length = 25f * 8f;
 						colors = new Color[]{Pal.accent.cpy().mul(1f, 1f, 1f, 0.4f), Pal.accent, Color.white};
 					}}
-				}}
+				}},
 				new Weapon("flow-butterfly-weapon") {{
 					x = -7f;
 					y = -4f;
@@ -77,7 +77,7 @@ public class FlowUnitTypes {
 						lifetime = 28f;
 						frontColor = Color.white;
 						backColor = Pal.accent;
-					}}
+					}};
 				}}
 			);
 		}};

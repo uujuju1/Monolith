@@ -90,7 +90,8 @@ public class FlowPlanets {
 					}}
 				);
 				defaultBlock = Blocks.carbonStone;
-				gen = p -> {
+				gen = FlowGenerators.chroma;
+				 /*p -> {
 					p.pass((x, y) -> {
 						float 
 						offsetX = (x/p.width() - 0.5f),
@@ -154,7 +155,7 @@ public class FlowPlanets {
 					Vars.state.rules.waves = sector().info.waves = true;
 					Vars.state.rules.env = sector().planet.defaultEnv;
 				};
-			}};
+			}};*/
 			atmosphereColor = Color.valueOf("C94A4A");
 			meshLoader = () -> new HexMesh(this, 5);
 			cloudMeshLoader = () -> new MultiMesh(
