@@ -21,6 +21,7 @@ public class HeatGraph {
 
 	public Seq<HeatVertex> floodFrom(HeatVertex start) {
 		Seq<HeatVertex> res = new Seq<>();
+		if (start == null && start.getBuild() == null && start.getBuild().heatProximityBuilds() == null) return res; 
 		for (HeatBuild build : start.getBuild().heatProximityBuilds()) if (!res.contains(build.getVertex())) {
 			res.add(build.getVertex());
 			res.add(floodFrom(build.getVertex()));
@@ -29,7 +30,7 @@ public class HeatGraph {
 	} 
 
 	public void onVertexAdded(HeatVertex vertex) {
-		floodFrom(vertex).each(v -> v.changeGraph(this));
+		// floodFrom(vertex).each(v -> v.changeGraph(this));
 	}
 	public void onVertexRemoved(HeatVertex vertex) {}
 
