@@ -12,6 +12,7 @@ public class HeatEdge {
 		v1.getGraph().mergeGraphs(v2.getGraph());
 		v1.addEdge(this);
 		v2.addEdge(this);
+		v1.getGraph().addEdge(this);
 	}
 	public void removeSelf() {
 		v1.removeEdge(this);

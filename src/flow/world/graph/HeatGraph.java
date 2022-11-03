@@ -17,14 +17,14 @@ public class HeatGraph {
 
 	public void onGraphUpdate() {for (HeatVertex vertex : vertexes) vertex.graph = this;}	
 
-	// public Seq<HeatVertex> floodFrom(HeatVertex start) {
-	// 	Seq<HeatVertex> res = new Seq<>();
-	// 	if (start.getGraph() == this) for (HeatBuild build : start.getBuild().heatProximityBuilds()) if (res.contains(build.getVertex())) {
-	// 		res.add(build.getVertex());
-	// 		res.add(floodFrom(build.getVertex()));
-	// 	} else {Log.errTag("FE", "cant floodFill from an vertex that doesnt belong here");}
-	// 	return res;
-	// } 
+	public Seq<HeatVertex> floodFrom(HeatVertex start) {
+		Seq<HeatVertex> res = new Seq<>();
+		if (start.getGraph() == this) for (HeatBuild build : start.getBuild().heatProximityBuilds()) if (res.contains(build.getVertex())) {
+			res.add(build.getVertex());
+			res.add(floodFrom(build.getVertex()));
+		} else {Log.errTag("FE", "cant floodFill from an vertex that doesnt belong here");}
+		return res;
+	} 
 
 	public void onVertexAdded(HeatVertex vertex) {}
 	public void onVertexRemoved(HeatVertex vertex) {}

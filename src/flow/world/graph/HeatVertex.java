@@ -28,7 +28,7 @@ public class HeatVertex {
 
 	public void onProximityUpdate() {
 		clearEdges();
-		// for (HeatBuild build : getBuild().heatProximityBuilds()) new HeatEdge(this, build.getVertex()).addSelf();
+		for (HeatBuild build : getBuild().heatProximityBuilds()) new HeatEdge(this, build.getVertex()).addSelf();
 	}
 	// TODO remove after testing is done
 	public void updateEdges() {
