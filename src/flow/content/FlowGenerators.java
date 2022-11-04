@@ -2,6 +2,7 @@ package flow.content;
 
 import arc.func.*;
 import arc.util.*;
+import arc.struct.*;
 import flow.planets.*;
 
 public class FlowGenerators {
