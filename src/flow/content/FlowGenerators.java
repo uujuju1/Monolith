@@ -15,7 +15,7 @@ public class FlowGenerators {
 			this.r = r;
 		}
 	}
-
+	public Seq<Room> rooms = new Seq<>();
 	public static Cons<ModularPlanetGenerator> chroma = gen -> {
 		gen.pass((x, y) -> {
 			float 
@@ -34,7 +34,7 @@ public class FlowGenerators {
 		int 
 		startX = (gen.width()/2) + Tmp.v1.x, startY = (gen.height()/2) + Tmp.v1.y,
 		endX = (gen.width()/2) - Tmp.v1.x, endY = (gen.height()/2) - Tmp.v1.x,
-		Seq<Room> rooms = Seq.with(
+		rooms.add(
 			new Room(startX, startY, 20),
 			new Room(endX, endY, 20)
 		);
