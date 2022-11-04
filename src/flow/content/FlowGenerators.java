@@ -30,6 +30,7 @@ public class FlowGenerators {
 			))).asFloor().wall);
 		});
 
+		rooms.clear();
 		Tmp.v1.trns(gen.rand().random(360f), gen.width()/2.6f);
 		int 
 		startX = (gen.width()/2) + Tmp.v1.x, startY = (gen.height()/2) + Tmp.v1.y,
