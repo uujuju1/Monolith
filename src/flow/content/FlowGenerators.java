@@ -21,7 +21,7 @@ public class FlowGenerators {
 			this.r = r;
 		}
 
-		public Seq<Tile> path(Tile s, Tile e, TileHueristic th, Boolf<Tile> passable) {return Astar.pathfind(s, e, th, passable);}
+		public Seq<Tile> path(int x, int y, int x2, int y2, TileHueristic th, Boolf<Tile> passable) {return Astar.pathfind(x, y, x2, y2, th, passable);}
 	}
 
 	public Cons<ModularPlanetGenerator> chroma = gen -> {
@@ -55,7 +55,7 @@ public class FlowGenerators {
 		for (Room room : rooms) {
 			gen.erase(room.x, room.y, room.r);
 			while (room.other == room && room.other == null) room.other = rooms.random(gen.rand());
-			gen.brush(room.path(gen.tiles().getn(room.x, room.y), gen.tiles().getn(room.other.x, room.other.y), tile -> Mathf.dst(room.x, room.y) * Mathf.dst(room.other.x, room.other.y), tile -> true), 20);
+			gen.brush(room.path(room.x, room.y, room.other.x, room.other.y, tile -> Mathf.dst(room.x, room.y) * Mathf.dst(room.other.x, room.other.y), tile -> true), 20);
 		}
 
 		gen.distort(165f, 60f);
