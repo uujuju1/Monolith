@@ -4,6 +4,7 @@ import arc.func.*;
 import arc.util.*;
 import arc.math.*;
 import arc.struct.*;
+import mindustry.*;
 import mindustry.ai.*;
 import mindustry.world.*;
 import mindustry.ai.Astar.*;
