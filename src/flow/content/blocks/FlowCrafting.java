@@ -74,7 +74,7 @@ public class FlowCrafting {
 			outputItems = with(Items.scrap, 1);
 		}};
 		pyratitePress = new GenericCrafter("pyratite-press") {{
-			requirements(Category.craftting, with(
+			requirements(Category.crafting, with(
 				Items.copper, 50,
 				Items.graphite, 25
 			));
@@ -97,7 +97,7 @@ public class FlowCrafting {
 			));
 			size = 3;
 			health = 200;
-			itemCapacity = 15f;
+			itemCapacity = 15;
 			recipes.add(
 				new ItemRecipe() {{
 					consumeItems = with(

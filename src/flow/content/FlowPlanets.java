@@ -17,6 +17,7 @@ import flow.content.blocks.*;
 
 public class FlowPlanets {
 	public static Planet chroma;
+	public FlowGenerators generators = new FlowGenerators();
 
 	public class Room {
 		public int x, y, r;
@@ -75,7 +76,7 @@ public class FlowPlanets {
 						ores.add(Blocks.oreTitanium);
 						minValue = 0.8f;
 						scale = 0.5;
-						magnitude = 1.6;
+						magnitude = 1.6f;
 						noiseSeed = 1;
 						xOffset = 100f;
 					}},
@@ -94,7 +95,7 @@ public class FlowPlanets {
 					}}
 				);
 				defaultBlock = Blocks.carbonStone;
-				gen = FlowGenerators.chroma;
+				gen = generators.chroma;
 				 /*p -> {
 					p.pass((x, y) -> {
 						float 
