@@ -32,8 +32,8 @@ public class FlowGenerators {
 
 		Tmp.v1.trns(gen.rand().random(360f), gen.width()/2.6f);
 		int 
-		startX = ((int) (gen.width()/2) + Tmp.v1.x), startY = ((int) (gen.height()/2) + Tmp.v1.y),
-		endX = ((int) (gen.width()/2) - Tmp.v1.x), endY = ((int) (gen.height()/2) - Tmp.v1.y);
+		startX = ((int) (gen.width()/2f) + Tmp.v1.x), startY = ((int) (gen.height()/f) + Tmp.v1.y),
+		endX = ((int) (gen.width()/2f) - Tmp.v1.x), endY = ((int) (gen.height()/2f) - Tmp.v1.y);
 
 		Seq<Room> rooms = Seq.with(
 			new Room(startX, startY, 20),
@@ -42,7 +42,7 @@ public class FlowGenerators {
 
 		for (int i = 0; i < 10; i++) {
 			Tmp.v1.trns(gen.rand().random(360f), gen.width()/gen.rand().random(2.6f));
-			rooms.add(new Room((gen.width()/2) - Tmp.v1.x, (gen.height()/2) - Tmp.v1.y, gen.rand().random(10, 20)));
+			rooms.add(new Room((gen.width()/2) - Tmp.v1.x, (gen.height()/2f) - Tmp.v1.y, gen.rand().random(10, 20)));
 		}
 		for (Room room : rooms) gen.erase(room.x, room.y, room.r);
 
