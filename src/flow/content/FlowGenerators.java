@@ -60,7 +60,7 @@ public class FlowGenerators {
 		}
 		for (Room room : rooms) {
 			gen.erase(room.x, room.y, room.r);
-			while (room.other == room && room.other == null) room.other = rooms.random(rand);
+			while (room.other == room && room.other == null) room.other = rooms.random(gen.rand());
 			gen.brush(room.path(tile -> Mathf.dst(room.x, room.y) * Mathf.dst(room.other.x, room.other.y), tile -> true), 20);
 		}
 
