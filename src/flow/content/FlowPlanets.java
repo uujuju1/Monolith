@@ -55,6 +55,7 @@ public class FlowPlanets {
 						scale = 1;
 						magnitude = 1.5f;
 						clampHeight = true;
+						xOffset = 100f;
 					}},
 					new Biome() {{
 						heightMap = new Block[]{
@@ -72,21 +73,24 @@ public class FlowPlanets {
 							FlowEnvironment.cupricStone
 						};
 						ores.add(Blocks.oreTitanium);
-						minValue = 0.4f;
-						scale = 0.1;
-						magnitude = 2;
+						minValue = 0.8f;
+						scale = 0.5;
+						magnitude = 1.6;
 						noiseSeed = 1;
+						xOffset = 100f;
 					}},
 					new Biome() {{
 						heightMap = new Block[]{
-							FlowEnvironment.crystalIce,
-							FlowEnvironment.crystalSnow
+							FlowEnvironment.crystalSnow,
+							FlowEnvironment.crystalSnow,
+							FlowEnvironment.crystalIce
 						};
 						ores.add(Blocks.oreThorium);
 						polarInterp = Interp.pow2In;
 						noiseSeed = 2;
-						scale = 0.1;
-						minValue = 0.25f;
+						scale = 0.3;
+						minValue = 0.2f;
+						xOffset = 100f;
 					}}
 				);
 				defaultBlock = Blocks.carbonStone;
@@ -158,10 +162,10 @@ public class FlowPlanets {
 			}};
 			atmosphereColor = Color.valueOf("C94A4A");
 			meshLoader = () -> new HexMesh(this, 5);
-			cloudMeshLoader = () -> new MultiMesh(
-				new HexSkyMesh(this, 10, 0.13f, 0.1f, 5, Color.valueOf("C94A4A").mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
-				new HexSkyMesh(this, 2, 0.15f, 0.17f, 5, Color.valueOf("C94A4A").mul(0.7f).a(0.75f), 2, 0.45f, 0.9f, 0.41f)
-			);
+			// cloudMeshLoader = () -> new MultiMesh(
+			// 	new HexSkyMesh(this, 10, 0.13f, 0.1f, 5, Color.valueOf("C94A4A").mul(0.9f).a(0.75f), 2, 0.45f, 0.9f, 0.38f),
+			// 	new HexSkyMesh(this, 2, 0.15f, 0.17f, 5, Color.valueOf("C94A4A").mul(0.7f).a(0.75f), 2, 0.45f, 0.9f, 0.41f)
+			// );
 			startSector = 15;
 			alwaysUnlocked = accessible = true;
 		}};

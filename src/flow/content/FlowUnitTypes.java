@@ -29,7 +29,6 @@ public class FlowUnitTypes {
 			hitSize = 9f;
 			engineSize = 4f;
 			engineOffset = 6f;
-			outlineColor = Pal.darkOutline;
 			flying = lowAltitude = true;
 			constructor = UnitEntity::create;
 
@@ -53,7 +52,6 @@ public class FlowUnitTypes {
 			speed = 1f;
 			range = maxRange = 25f * 8f;
 			hitSize = 19f;
-			outlineColor = Pal.darkOutline;
 			flying = lowAltitude = true;
 			constructor = UnitEntity::create;
 
@@ -62,6 +60,7 @@ public class FlowUnitTypes {
 					x = 0f;
 					y = 12f;
 					mirror = false;
+					reload = 180f;
 					bullet = new LaserBulletType(250) {{
 						width = 40f;
 						length = 25f * 8f;

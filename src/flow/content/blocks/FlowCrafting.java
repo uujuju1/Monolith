@@ -13,7 +13,7 @@ import static mindustry.type.ItemStack.*;
 
 public class FlowCrafting {
 	public static Block
-	chromiumSmelter, boiler, compressor, advancedCrafter;
+	chromiumSmelter, boiler, compressor, pyratitePress, advancedCrafter;
 
 	public static void load() {
 		chromiumSmelter = new GenericCrafter("chromium-smelter") {{
@@ -73,6 +73,20 @@ public class FlowCrafting {
 			consumeItems(with(Items.copper, 3, Items.lead, 2));
 			outputItems = with(Items.scrap, 1);
 		}};
+		pyratitePress = new GenericCrafter("pyratite-press") {{
+			requirements(Category.craftting, with(
+				Items.copper, 50,
+				Items.graphite, 25
+			));
+			size = 2;
+			health = 160;
+			craftTime = 120f;
+			consumeItems(with(
+				Items.lead, 1,
+				Items.graphite, 1
+			));
+			outputItems = with(Items.pyratite, 2);
+		}};
 		advancedCrafter = new MultiCrafter("advanced-crafter") {{
 			requirements(Category.crafting, with(
 				Items.silicon, 120,
@@ -83,6 +97,7 @@ public class FlowCrafting {
 			));
 			size = 3;
 			health = 200;
+			itemCapacity = 15f;
 			recipes.add(
 				new ItemRecipe() {{
 					consumeItems = with(

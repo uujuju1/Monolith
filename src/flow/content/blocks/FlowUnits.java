@@ -45,6 +45,7 @@ public class FlowUnits {
 			));
 			size = 5;
 			health = 560;
+			itemCapacity = 250;
 			plans.addAll(
 				new AssemblerUnitPlan(FlowUnitTypes.butterfly, 3600f, PayloadStack.list(Blocks.thoriumWallLarge, 5, Blocks.plastaniumWallLarge, 7))
 			);
