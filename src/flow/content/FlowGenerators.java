@@ -53,12 +53,14 @@ public class FlowGenerators {
 		for (int i = 0; i < 10; i++) {
 			Tmp.v1.trns(gen.rand().random(360f), gen.width()/2.6f * gen.rand().random(1f));
 			rooms.add(new Room((int) ((gen.width()/2f) - Tmp.v1.x), (int) ((gen.height()/2f) - Tmp.v1.y), 20));
-			Log.info("Room: " + rooms.peek(), rooms.peek());
+			
 		}
 		for (Room room : rooms) {
 			gen.erase(room.x, room.y, room.r);
 			while (room.other == room || room.other == null) room.other = rooms.random(gen.rand());
-			gen.brush(room.path(tile -> Mathf.dst(room.x, room.y) * Mathf.dst(room.other.x, room.other.y), tile -> tile.solid()), 20);
+			Log.info(rooms.indexOf(room) + " " + "Room: " + room, room);
+			Log.info(rooms.indexOf(room.other) + " " + "Other room: " + room.other, room.other);
+			gen.brush(room.path(tile -> 999999999, tile -> true), 20);
 		}
 
 		gen.distort(165f, 60f);
