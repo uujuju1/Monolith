@@ -7,12 +7,22 @@ import flow.planets.*;
 
 public class FlowGenerators {
 	public class Room {
-		int x, y, r;
+		public int x, y, r;
+		public Room other;
 
 		public Room(int x, int y, int r) {
 			this.x = x;
 			this.y = y;
 			this.r = r;
+		}
+
+		public Seq<Tile> path(TileHueristic th, Boolf<Tile> passable) {
+			return Astar.pathfind(
+				Vars.world.tiles.getn(x, y),
+				Vars.world.tiles.getn(other.x, other.y),
+				th,
+				passable
+			);
 		}
 	}
 
@@ -42,9 +52,13 @@ public class FlowGenerators {
 
 		for (int i = 0; i < 10; i++) {
 			Tmp.v1.trns(gen.rand().random(360f), gen.width()/gen.rand().random(2.6f));
-			rooms.add(new Room((int) ((gen.width()/2f) - Tmp.v1.x), (int)((gen.height()/2f) - Tmp.v1.y), gen.rand().random(10, 20)));
+			rooms.add(new Room((int) ((gen.width()/2f) - Tmp.v1.x), (int) ((gen.height()/2f) - Tmp.v1.y), 20));
 		}
-		for (Room room : rooms) gen.erase(room.x, room.y, room.r);
+		for (Room room : rooms) {
+			gen.erase(room.x, room.y, room.r);
+			while (room.other == room && room.other == null) room.other == rooms.random(rand);
+			gen.brush(room.path(tile -> Mathf.dst(gen.width()/2f, gen.height()/2f), tile -> true), 20);
+		}
 
 		gen.distort(165f, 60f);
 		gen.distort(73f, 27f);
