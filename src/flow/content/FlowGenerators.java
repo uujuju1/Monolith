@@ -15,7 +15,7 @@ public class FlowGenerators {
 			this.r = r;
 		}
 	}
-	public Seq<Room> rooms = new Seq<>();
+
 	public static Cons<ModularPlanetGenerator> chroma = gen -> {
 		gen.pass((x, y) -> {
 			float 
@@ -30,12 +30,14 @@ public class FlowGenerators {
 			))).asFloor().wall);
 		});
 
-		rooms.clear();
 		Tmp.v1.trns(gen.rand().random(360f), gen.width()/2.6f);
 		int 
 		startX = (gen.width()/2) + Tmp.v1.x, startY = (gen.height()/2) + Tmp.v1.y,
-		endX = (gen.width()/2) - Tmp.v1.x, endY = (gen.height()/2) - Tmp.v1.x,
-		rooms.add(new Room(startX, startY, 20), new Room(endX, endY, 20));
+		endX = (gen.width()/2) - Tmp.v1.x, endY = (gen.height()/2) - Tmp.v1.x;
+		Seq<Room> rooms = Seq.with(
+			new Room(startX, startY, 20),
+			new Room(endX, endY, 20)
+		);
 
 		for (int i = 0; i < 10; i++) {
 			Tmp.v1.trns(gen.rand().random(360f), gen.width()/gen.rand().random(2.6f));
