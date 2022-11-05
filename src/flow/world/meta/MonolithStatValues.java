@@ -5,6 +5,7 @@ import arc.util.*;
 import arc.struct.*;
 import arc.graphics.*;
 import arc.scene.style.*;
+import arc.scene.ui.layout.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
 import mindustry.type.*;
@@ -24,13 +25,23 @@ public class MonolithStatValues {
 						plan.table(input -> {
 							for (ItemStack stack : recipe.consumeItems) input.add(new ItemImage(stack)).pad(5f);							
 							input.row();
-							for (LiquidStack stack : recipe.outputLiquds) input.add(new ItemImage(stack.liquid.uiIcon, stack.amount * 60f)).pad(5);
+							for (LiquidStack stack : recipe.consumeLiquds) output.add(new Stack(){{
+								add(new Image(stack.liquid.uiIcon));
+								Table cont = new Table().left().bottom();
+								cont.add(Strings.autoFixed(stack.amount, 2)).style(Styles.outlineLabel);
+								add(cont);
+        			}}).pad(8f);
 						});
 						plan.image(Icon.right).color(Color.gray).pad(5f);
 						plan.table(output -> {
 							for (ItemStack stack : recipe.outputItems) output.add(new ItemImage(stack)).pad(5f);
 							output.row();
-							for (LiquidStack stack : recipe.outputLiquds) output.add(new ItemImage(stack.liquid, stack.amount * 60f)).pad(5);
+							for (LiquidStack stack : recipe.outputLiquds) output.add(new Stack(){{
+								add(new Image(stack.liquid.uiIcon));
+								Table cont = new Table().left().bottom();
+								cont.add(Strings.autoFixed(stack.amount, 2)).style(Styles.outlineLabel);
+								add(cont);
+        			}}).pad(8f);
 						});
 					}).growX().pad(10f).row();
 					table.table(stats -> {
