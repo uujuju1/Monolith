@@ -46,7 +46,7 @@ public class MultiCrafter extends Block {
 		super.setBars();
 
 		removeBar("liquid");
-		recipes.each(r -> addRecipeBars(recipe));
+		recipes.each(r -> addRecipeBars(r));
 	}
 
 	public void addRecipeBars(ItemRecipe recipe) {
