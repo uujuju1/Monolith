@@ -12,13 +12,12 @@ import flow.planets.*;
 
 public class FlowGenerators {
 	public class Room {
-		public int x, y, r;
+		public int x, y;
 		public Room other;
 
-		public Room(int x, int y, int r) {
+		public Room(int x, int y) {
 			this.x = x;
 			this.y = y;
-			this.r = r;
 		}
 
 		public Seq<Tile> path(TileHueristic th, Boolf<Tile> passable) {return Astar.pathfind(x, y, other.x, other.y, th, passable);}
@@ -46,20 +45,17 @@ public class FlowGenerators {
 		endX = (int) ((gen.width()/2f) - Tmp.v1.x), endY = (int) ((gen.height()/2f) - Tmp.v1.y);
 
 		Seq<Room> rooms = Seq.with(
-			new Room(startX, startY, 20),
-			new Room(endX, endY, 20)
+			new Room(startX, startY),
+			new Room(endX, endY)
 		);
 
 		for (int i = 0; i < 10; i++) {
 			Tmp.v1.trns(gen.rand().random(360f), gen.width()/2.6f * gen.rand().random(1f));
-			rooms.add(new Room((int) ((gen.width()/2f) - Tmp.v1.x), (int) ((gen.height()/2f) - Tmp.v1.y), 20));
-			
+			rooms.add(new Room((int) ((gen.width()/2f) - Tmp.v1.x), (int) ((gen.height()/2f) - Tmp.v1.y)));
 		}
 		for (Room room : rooms) {
-			gen.erase(room.x, room.y, room.r);
+			gen.erase(room.x, room.y, 20);
 			while (room.other == room || room.other == null) room.other = rooms.random(gen.rand());
-			Log.info(rooms.indexOf(room) + " " + "Room: " + room, room);
-			Log.info(rooms.indexOf(room.other) + " " + "Other room: " + room.other, room.other);
 			gen.brush(room.path(tile -> 999999999, tile -> true), 20);
 		}
 
@@ -67,8 +63,12 @@ public class FlowGenerators {
 		gen.distort(73f, 27f);
 		gen.distort(64f, 21f);
 		gen.median(5, 0.5f);
-		gen.distort(61f, 6f);
-		gen.distort(26f, 4f);
-		gen.distort(18f, 3f);
+		gen.distort(61f, 8f);
+		gen.distort(26f, 6f);
+		gen.distort(18f, 5f);
+		gen.distort(12f, 4f);
+
+		Schematics.placeLaunchLoadout(rooms.get(0).x, rooms.get(0).y);
+		tiles().getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);
 	};
 }

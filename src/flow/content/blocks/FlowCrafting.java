@@ -13,7 +13,9 @@ import static mindustry.type.ItemStack.*;
 
 public class FlowCrafting {
 	public static Block
-	chromiumSmelter, boiler, compressor, pyratitePress, advancedCrafter;
+	chromiumSmelter, boiler,
+	mechanicalWell,
+	compressor, pyratitePress, advancedCrafter;
 
 	public static void load() {
 		chromiumSmelter = new GenericCrafter("chromium-smelter") {{
@@ -61,6 +63,25 @@ public class FlowCrafting {
 			consumeLiquid(Liquids.water, 0.1f);
 			outputLiquids = LiquidStack.with(FlowLiquids.vapour, 0.1f);
 		}};
+
+		mechanicalWell = new AttributeCrafter("mechanical-well") {{
+			requirements(Category.production, with(
+				Items.copper, 45,
+				Items.lead, 25
+			));
+			size = 2;
+			health = 160;
+			hasLiquids = true;
+			attribute = Attribute.water;
+			minEfficiency = baseEfficiency = 0f;
+			drawer = new DrawMulti(
+				new DrawRegion("-bottom"),
+				new DrawLiquidRegion(Liquids.water),
+				new DrawDefault()
+			);
+			outputLiquids = LiquidStack.with(Liquids.water);
+		}};
+
 		compressor = new GenericCrafter("compressor") {{
 			requirements(Category.crafting, with(
 				Items.copper, 50,

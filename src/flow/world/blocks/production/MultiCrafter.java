@@ -19,6 +19,7 @@ import mindustry.world.consumers.*;
 import flow.ui.*;
 import flow.content.*;
 import flow.world.meta.*;
+import flow.world.consumers.*;
 
 public class MultiCrafter extends Block {
 	public Seq<ItemRecipe> recipes = new Seq<>();
@@ -30,8 +31,8 @@ public class MultiCrafter extends Block {
 		solid = update = sync = destructible = true;
 
 		consume(new ConsumeItemDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeItems : ItemStack.empty));
-		// consume(new ConsumeLiquidDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeLiquids : LiquidStack.empty));
-		consume(new ConsumePowerDynamic(e -> ((MultiCrafterBuild) e).getPowerCons()));
+		consume(new ConsumeLiquidDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumeLiquids : LiquidStack.empty));
+		consume(new ConsumePowerDynamic((MultiCrafterBuild e) -> e.currentPlan != -1 ? e.getRecipe().consumePower : 0f));
 	}
 
 	@Override
