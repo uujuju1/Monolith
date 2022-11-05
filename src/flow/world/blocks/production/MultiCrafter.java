@@ -41,6 +41,19 @@ public class MultiCrafter extends Block {
 		stats.add(Stat.output, MonolithStatValues.itemRecipe(recipes));
 	}
 
+	@Override
+	public void setBars() {
+		super.setBars();
+
+		removeBar("liquid");
+		recipes.each(r -> addRecipeBars(recipe));
+	}
+
+	public void addRecipeBars(ItemRecipe recipe) {
+		for (LiquidStack stack : recipe.consumeLiquids) addLiquidBar(stack.liquid);
+		for (LiquidStack stack : recipe.outputLiquids) addLiquidBar(stack.liquid);
+	}
+
 	@Override public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list) {recipes.get(0).drawer.drawPlan(this, plan, list);}
 	@Override public TextureRegion[] icons() {return recipes.get(0).drawer.finalIcons(this);}
 	@Override public void getRegionsToOutline(Seq<TextureRegion> out) {recipes.get(0).drawer.getRegionsToOutline(this, out);}
@@ -52,11 +65,11 @@ public class MultiCrafter extends Block {
 	}
 
 	public class ItemRecipe {
-		public @Nullable ItemStack[]
+		public ItemStack[]
 		consumeItems = ItemStack.empty,
 		outputItems = ItemStack.empty;
 
-		public @Nullable LiquidStack[]
+		public LiquidStack[]
 		consumeLiquids = LiquidStack.empty,
 		outputLiquids = LiquidStack.empty;
 
@@ -111,7 +124,12 @@ public class MultiCrafter extends Block {
 		@Override
 		public boolean acceptItem(Building source, Item item) {
 			if (getRecipe() == null) return false;
-			return items.get(item) < getMaximumAccepted(item) &&	Structs.contains(getRecipe().consumeItems, stack -> stack.item == item);
+			return items.get(item) < getMaximumAccepted(item) && Structs.contains(getRecipe().consumeItems, stack -> stack.item == item);
+		}
+		@Override
+		public boolean acceptLiquid(Building source, Liquid liquid) {
+			if (getRecipe() == null) return false;
+			return liquids.get(liquid) < block.liquidCapacity && Structs.contains(getRecipe().consumeLiquids, stack -> stack.liquid == liquid);
 		}
 
 		@Override

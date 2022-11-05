@@ -74,7 +74,8 @@ public class FlowCrafting {
 			health = 160;
 			hasLiquids = true;
 			attribute = Attribute.water;
-			minEfficiency = baseEfficiency = 0f;
+			boostScale = 0.25f;
+			minEfficiency = 0f;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
 				new DrawLiquidRegion(Liquids.water),

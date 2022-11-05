@@ -23,10 +23,7 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 
 		table.table(cont -> {
 			table.update(() -> {
-				if (current[0] == liquids.get((T) build)) {
-					rebuild(build, cont);
-					current[0] = liquids.get((T) build);
-				}
+				if (current[0] != liquids.get((T) build)) current[0] = liquids.get((T) build);
 				rebuild(build, cont);
 			});
 		});
@@ -50,7 +47,8 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 	@Override
 	public float efficiency(Building build) {
 		float efficiencyScl = build.edelta() * build.efficiencyScale();
-		if(efficiencyScl <= 0.00000001f) return 0f;
+		if (efficiencyScl <= 0.00000001f) return 0f;
+		if (liquids.get((T) build).length == 0) return 1f; 
 
 		float efficiencyAverage = 0f;
 		for (LiquidStack stack : liquids.get((T) build)) efficiencyAverage += Math.min(build.liquids.get(stack.liquid) / (stack.amount * efficiencyScl), 1f);
