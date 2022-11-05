@@ -4,6 +4,7 @@ import arc.*;
 import arc.util.*;
 import arc.struct.*;
 import arc.graphics.*;
+import arc.scene.ui.*;
 import arc.scene.style.*;
 import arc.scene.ui.layout.*;
 import mindustry.ui.*;
@@ -25,7 +26,7 @@ public class MonolithStatValues {
 						plan.table(input -> {
 							for (ItemStack stack : recipe.consumeItems) input.add(new ItemImage(stack)).pad(5f);							
 							input.row();
-							for (LiquidStack stack : recipe.consumeLiquds) output.add(new Stack(){{
+							for (LiquidStack stack : recipe.consumeLiquids) input.add(new Stack(){{
 								add(new Image(stack.liquid.uiIcon));
 								Table cont = new Table().left().bottom();
 								cont.add(Strings.autoFixed(stack.amount, 2)).style(Styles.outlineLabel);
@@ -36,7 +37,7 @@ public class MonolithStatValues {
 						plan.table(output -> {
 							for (ItemStack stack : recipe.outputItems) output.add(new ItemImage(stack)).pad(5f);
 							output.row();
-							for (LiquidStack stack : recipe.outputLiquds) output.add(new Stack(){{
+							for (LiquidStack stack : recipe.outputLiquids) output.add(new Stack(){{
 								add(new Image(stack.liquid.uiIcon));
 								Table cont = new Table().left().bottom();
 								cont.add(Strings.autoFixed(stack.amount, 2)).style(Styles.outlineLabel);
