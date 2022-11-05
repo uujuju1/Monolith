@@ -80,7 +80,7 @@ public class FlowCrafting {
 				new DrawLiquidRegion(Liquids.water),
 				new DrawDefault()
 			);
-			outputLiquids = LiquidStack.with(Liquids.water);
+			outputLiquids = LiquidStack.with(Liquids.water, 0.09f);
 		}};
 
 		compressor = new GenericCrafter("compressor") {{
