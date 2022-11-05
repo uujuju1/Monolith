@@ -14,7 +14,7 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 
 	public ConsumeLiquidDynamic(Func<T, LiquidStack[]> liquids) {this.liquids = liquids;}
 
-	@Override public void apply(Block block) {block.hasLiquids = block.acceptLiquids = true;}
+	@Override public void apply(Block block) {block.hasLiquids = true;}
 	@Override public void display(Stats stats) {}
 
 	@Override
@@ -38,24 +38,23 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 
 		for (LiquidStack stack : liquids.get((T) build)) {
 			table.add(new ReqImage(
-				new ItemImage(stack.liquid.uiIcon, stack.amount),
+				stack.liquid.uiIcon,
 				() -> build.liquids == null && build.liquids.get(stack.liquid) >= stack.amount
 			)).padRight(8).left();
 			if (++i % 4 == 0) table.row();
 		}
 	}
 
-	@Override
-	public void update(Building build) {
-		LiquidStack[][] current = {liquids.get((T) build)};
-		build.liquids.remove(current[0].liquid, current[0].amount * build.edelta());
-	}
+	@Override public void update(Building build) {for (LiquidStack stack : liquids.get((T) build)) build.liquids.remove(stack.liquid, stack.amount * build.edelta());}
 
 	@Override
 	public float efficiency(Building build) {
-		LiquidStack[][] current = {liquids.get((T) build)};
-		float ed = build.edelta() * build.efficiencyScale();
-		if(ed <= 0.00000001f) return 0f;
-		return Math.min(build.liquids.get(current[0].liquid) / (current[0].amount * ed), 1f);
+		float efficiencyScl = build.edelta() * build.efficiencyScale();
+		if(efficiencyScl <= 0.00000001f) return 0f;
+
+		float efficiencyAverage = 0f;
+		for (LiquidStack stack : liquids.get((T) build)) efficiencyAverage += Math.min(build.liquids.get(stack.liquid) / (stack.amount * ed), 1f);
+		
+		return efficiencyAverage/liquids.get((T) build).length;
 	}
 }
