@@ -10,6 +10,9 @@ public class FlowEnvironment {
 	crystalStone, flakeStone, cupricStone,
 	lodeStone, acrylicStone, mosaicStone, oxaicStone, 
 
+	lodeCrater, oxaicCrater,
+	cupricCrater,
+
 	crystalIceWall, crystalSnowWall,
 	crystalWall, flakeWall, cupricWall,
 	lodeWall, acrylicWall, mosaicWall, oxaicWall;
@@ -24,6 +27,10 @@ public class FlowEnvironment {
 		acrylicStone = new Floor("acrylic-stone");
 		mosaicStone = new Floor("mosaic-stone") {{attributes.set(Attribute.water, -0.5f);}};
 		oxaicStone = new Floor("oxaic-stone");
+
+		lodeCrater = new Floor("lode-crater") {{blendGroup = lodeStone}};
+		oxaicCrater = new Floor("oxaic-crater") {{blendGroup = oxaicStone}};
+		cupricCrater = new Floor("cupric-crater") {{blendGroup = cupricStone}};
 
 		crystalIceWall = new StaticWall("crystal-ice-wall") {{crystalIce.asFloor().wall = this;}};
 		crystalSnowWall = new StaticWall("crystal-snow-wall") {{crystalSnow.asFloor().wall = this;}};

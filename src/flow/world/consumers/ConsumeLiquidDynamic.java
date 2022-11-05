@@ -23,9 +23,12 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 
 		table.table(cont -> {
 			table.update(() -> {
-				if (current[0] != liquids.get((T) build)) current[0] = liquids.get((T) build);
-				rebuild(build, cont);
+				if (current[0] != liquids.get((T) build)) {
+					rebuild(build, cont);
+					current[0] = liquids.get((T) build);
+				}
 			});
+			rebuild(build, cont);
 		});
 	}
 
@@ -36,7 +39,7 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 		for (LiquidStack stack : liquids.get((T) build)) {
 			table.add(new ReqImage(
 				stack.liquid.uiIcon,
-				() -> build.liquids == null && build.liquids.get(stack.liquid) >= stack.amount
+				() -> build.liquids != null && build.liquids.get(stack.liquid) > 0
 			)).padRight(8).left();
 			if (++i % 4 == 0) table.row();
 		}

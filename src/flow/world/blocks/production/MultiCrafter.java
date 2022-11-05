@@ -124,7 +124,7 @@ public class MultiCrafter extends Block {
 		@Override
 		public boolean acceptItem(Building source, Item item) {
 			if (getRecipe() == null) return false;
-			return items.get(item) < getMaximumAccepted(item) && Structs.contains(getRecipe().consumeItems, stack -> stack.item == item);
+			return Structs.contains(getRecipe().consumeItems, stack -> stack.item == item && items.get(item) < stack.amount * 2);
 		}
 		@Override
 		public boolean acceptLiquid(Building source, Liquid liquid) {
@@ -135,9 +135,10 @@ public class MultiCrafter extends Block {
 		@Override
 		public boolean shouldConsume() {
 			if (getRecipe() == null) return false;
+			for (ItemStack stack : getRecipe().outputItems) if (items.get(stack.item) >= getMaximumAccepted(stack.item));
+			for (LiquidStack stack : getRecipe().outputLiquids) if (liquids.get(stack.liquid) >= block.liquidCapacity);
 			return enabled;
 		}
-
 
 		@Override
 		public void updateTile() {

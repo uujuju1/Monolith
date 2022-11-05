@@ -112,15 +112,12 @@ public class FlowCrafting {
 		}};
 		advancedCrafter = new MultiCrafter("advanced-crafter") {{
 			requirements(Category.crafting, with(
-				Items.silicon, 120,
-				Items.titanium, 150,
-				Items.metaglass, 125,
-				Items.lead, 135,
-				FlowItems.chromium, 140
+				Items.graphite, 95,
+				Items.copper, 120,
+				Items.lead, 100
 			));
 			size = 3;
 			health = 200;
-			itemCapacity = 15;
 			recipes.add(
 				new ItemRecipe() {{
 					consumeItems = with(
@@ -128,7 +125,7 @@ public class FlowCrafting {
 						Items.sand, 5,
 						Items.coal, 3
 					);
-					consumePower = 4f;
+					consumePower = 1f;
 					drawer = new DrawMulti(
 						new DrawDefault(),
 						new DrawFlame() {{
@@ -140,14 +137,14 @@ public class FlowCrafting {
 					craftTime = 120f;
 				}},
 				new ItemRecipe() {{
-					consumeItems = with(Items.coal, 10);
+					consumeItems = with(Items.coal, 5);
 					consumeLiquids = LiquidStack.with(Liquids.water, 0.1f);
-					consumePower = 4f;
+					consumePower = 0.5f;
 					drawer = new DrawMulti(
 						new DrawDefault(),
 						new DrawRegion("-cap")
 					);
-					outputItems = with(Items.graphite, 7);
+					outputItems = with(Items.graphite, 4);
 					updateEffect = Fx.smoke;
 					craftTime = 180f;
 				}}
