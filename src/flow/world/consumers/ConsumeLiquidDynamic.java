@@ -53,7 +53,7 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 		if(efficiencyScl <= 0.00000001f) return 0f;
 
 		float efficiencyAverage = 0f;
-		for (LiquidStack stack : liquids.get((T) build)) efficiencyAverage += Math.min(build.liquids.get(stack.liquid) / (stack.amount * ed), 1f);
+		for (LiquidStack stack : liquids.get((T) build)) efficiencyAverage += Math.min(build.liquids.get(stack.liquid) / (stack.amount * efficiencyScl), 1f);
 		
 		return efficiencyAverage/liquids.get((T) build).length;
 	}
