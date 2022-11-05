@@ -19,7 +19,7 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 
 	@Override
 	public void build(Building build, Table table) {
-		LiquidStack[][] current = new {liquids.get((T) build)};
+		LiquidStack[][] current = {liquids.get((T) build)};
 
 		table.table(cont -> {
 			table.update(() -> {
@@ -47,13 +47,13 @@ public class ConsumeLiquidDynamic<T extends Building> extends Consume {
 
 	@Override
 	public void update(Building build) {
-		LiquidStack[][] current = new {liquids.get((T) build)};
+		LiquidStack[][] current = {liquids.get((T) build)};
 		build.liquids.remove(current.liquid, current.amount * build.edelta());
 	}
 
 	@Override
 	public float efficiency(Building build) {
-		LiquidStack[][] current = new {liquids.get((T) build)};
+		LiquidStack[][] current = {liquids.get((T) build)};
 		float ed = build.edelta() * build.efficiencyScale();
 		if(ed <= 0.00000001f) return 0f;
 		return Math.min(build.liquids.get(current.liquid) / (current.amount * ed), 1f);
