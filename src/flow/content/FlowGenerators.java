@@ -6,7 +6,9 @@ import arc.math.*;
 import arc.struct.*;
 import mindustry.*;
 import mindustry.ai.*;
+import mindustry.game.*;
 import mindustry.world.*;
+import mindustry.content.*;
 import mindustry.ai.Astar.*;
 import flow.planets.*;
 
@@ -69,6 +71,6 @@ public class FlowGenerators {
 		gen.distort(12f, 4f);
 
 		Schematics.placeLaunchLoadout(rooms.get(0).x, rooms.get(0).y);
-		tiles().getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);
+		gen.tiles().getn(rooms.get(1).x, rooms.get(1).y).setOverlay(Blocks.spawn);
 	};
 }
