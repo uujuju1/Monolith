@@ -68,7 +68,7 @@ public class FlowGenerators {
 			gen.brush(room.path(tile -> 999999999, tile -> true), 20);
 		}
 
-		gen.pass((x, y) -> {if (noise(x + 999, y, 3, 0.5, 40) > 0.7f) gen.setFloor(craters.get(gen.floor()));});
+		gen.pass((x, y) -> {if (gen.noise(x + 999, y, 3, 0.5, 40) > 0.7f) gen.setFloor(craters.get(gen.floor()));});
 
 		gen.distort(165f, 60f);
 		gen.distort(73f, 27f);
