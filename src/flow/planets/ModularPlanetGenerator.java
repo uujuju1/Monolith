@@ -33,6 +33,7 @@ public class ModularPlanetGenerator extends PlanetGenerator {
 	public Tiles tiles() {return tiles;}
 	public float width() {return width;}
 	public float height() {return height;}
+	public float noise(float x, float y, double octaves, double persistence, double scale) {return noise(x, y, octaves, persistence, scale)}
 
 	public Block setFloor(Block floor) {return this.floor = floor;}
 	public Block setBlock(Block block) {return this.block = block;}
