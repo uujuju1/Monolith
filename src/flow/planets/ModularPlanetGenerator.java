@@ -37,6 +37,10 @@ public class ModularPlanetGenerator extends PlanetGenerator {
 	public Block setFloor(Block floor) {return this.floor = floor;}
 	public Block setBlock(Block block) {return this.block = block;}
 	public Block setOre(Block ore) {return this.ore = ore;}
+	
+	public Block floor() {return floor;}
+	public Block block() {return block;}
+	public Block ore() {return ore;}
 
 	public @Nullable Biome getBiome(Vec3 pos) {
 		Biome res = null;

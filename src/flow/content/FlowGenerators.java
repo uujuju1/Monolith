@@ -11,6 +11,7 @@ import mindustry.world.*;
 import mindustry.content.*;
 import mindustry.ai.Astar.*;
 import flow.planets.*;
+import flow.content.blocks.*;
 
 public class FlowGenerators {
 	public class Room {
@@ -26,6 +27,12 @@ public class FlowGenerators {
 
 		public String toString() {return "x = " + x + ", y = " + y;}
 	}
+
+	public ObjectMap<Block, Block> craters = ObjectMap.of(
+		FlowEnvironment.lodeStone, FlowEnvironment.lodeCrater,
+		FlowEnvironment.oxaicStone, FlowEnvironment.oxaicCrater,
+		FlowEnvironment.cupricStone, FlowEnvironment.cupricCrater
+	);
 
 	public Cons<ModularPlanetGenerator> chroma = gen -> {
 		gen.pass((x, y) -> {
@@ -60,6 +67,8 @@ public class FlowGenerators {
 			while (room.other == room || room.other == null) room.other = rooms.random(gen.rand());
 			gen.brush(room.path(tile -> 999999999, tile -> true), 20);
 		}
+
+		pass((x, y) -> if (noise(x + 999, y, 3, 0.5, 40) > 0.7f) setFloor(craters.get(gen.floor())));
 
 		gen.distort(165f, 60f);
 		gen.distort(73f, 27f);
