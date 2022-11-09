@@ -98,7 +98,7 @@ public class ModularPlanetGenerator extends PlanetGenerator {
 		}
 		public @Nullable Block getBlock(Vec3 pos) {
 			if (noise(pos) < minValue || noise(pos) > maxValue) return null;
-			float noise = Mathf.map(noise(pos), minValue, maxValue);
+			float noise = Mathf.map(noise(pos), minValue, maxValue, 0, 1);
 			Block res = heightMap[Mathf.clamp((int) (noise * (heightMap.length - 1f)), 0, heightMap.length - 1)];
 			return res;
 		}

@@ -6,19 +6,54 @@ import mindustry.content.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.world.consumers.*;
+import mindustry.world.blocks.payloads.*;
 import mindustry.world.blocks.production.*;
 import flow.content.*;
+import flow.world.blocks.payload .*;
 import flow.world.blocks.production.*;
 
 import static mindustry.type.ItemStack.*;
 
 public class FlowCrafting {
 	public static Block
+	wallCrafter, payloadDeconstructor,
 	chromiumSmelter, boiler,
 	mechanicalWell,
 	compressor, pyratitePress, advancedCrafter;
 
 	public static void load() {
+		wallCrafter = new PayloadCrafter("wall-crafter") {{
+			requirements(Category.units, with(
+				Items.titanium, 130,
+				Items.silicon, 150,
+				Items.plastanium, 80,
+				Items.graphite, 145,
+				Items.chromium, 120
+			));
+			size = 3;
+			health = 200;
+			recipes.addAll(
+				new PayloadRecipe(Blocks.copperWallLarge, with(Items.copper, 18) 180),
+				new PayloadRecipe(Blocks.titaniumWallLarge, with(Items.titanium, 18) 200),
+				new PayloadRecipe(Blocks.plastaniumWallLarge, with(Items.plastanium, 12, Items.metaglass, 6) 220),
+				new PayloadRecipe(Blocks.thoriumWallLarge, with(Items.thorium, 18) 240),
+				new PayloadRecipe(Blocks.surgeWallLarge, with(Items.surgeAlloy, 18) 260)
+			);
+			updateEffect = Fx.smoke;
+			consumePower(3f);
+		}};
+		payloadDeconstructor = new PayloadDeconstructor("payload-deconstructor") {{
+			requirements(Category.units, with(
+				Items.graphite, 120,
+				Items.silicon, 150,
+				Items.titanium, 140
+			));
+			size = 3;
+			health = 200;
+			itemCapacity = 100;
+			consumePower(2f);
+		}};
+
 		chromiumSmelter = new GenericCrafter("chromium-smelter") {{
 			requirements(Category.crafting, with(
 				Items.titanium, 150,
@@ -75,7 +110,7 @@ public class FlowCrafting {
 			hasLiquids = true;
 			attribute = Attribute.water;
 			boostScale = 0.25f;
-			minEfficiency = 0f;
+			minEfficiency = -1f;
 			drawer = new DrawMulti(
 				new DrawRegion("-bottom"),
 				new DrawLiquidRegion(Liquids.water),

@@ -135,8 +135,8 @@ public class MultiCrafter extends Block {
 		@Override
 		public boolean shouldConsume() {
 			if (getRecipe() == null) return false;
-			for (ItemStack stack : getRecipe().outputItems) if (items.get(stack.item) >= getMaximumAccepted(stack.item));
-			for (LiquidStack stack : getRecipe().outputLiquids) if (liquids.get(stack.liquid) >= block.liquidCapacity);
+			for (ItemStack stack : getRecipe().outputItems) if (items.get(stack.item) >= getMaximumAccepted(stack.item)) return false;
+			for (LiquidStack stack : getRecipe().outputLiquids) if (liquids.get(stack.liquid) >= block.liquidCapacity) return false;
 			return enabled;
 		}
 
@@ -148,7 +148,7 @@ public class MultiCrafter extends Block {
 				totalProgress += edelta() * warmup;
 
 				if (wasVisible && Mathf.chance(getRecipe().updateEffectChance)) getRecipe().updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4f));
-				if(getRecipe() != null) for(LiquidStack output : getRecipe().outputLiquids) handleLiquid(this, output.liquid, Math.min(output.amount * getProgressIncrease(1f), liquidCapacity - liquids.get(output.liquid)));
+				for(LiquidStack output : getRecipe().outputLiquids) handleLiquid(this, output.liquid, Math.min(output.amount * getProgressIncrease(1f), liquidCapacity - liquids.get(output.liquid)));
 				if (progress >= 1f) {
 					progress %= 1f;
 					consume();

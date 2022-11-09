@@ -55,4 +55,45 @@ public class MonolithStatValues {
 			});
 		};
 	}
+
+	public static StatValue payloadRecipe(Seq<PayloadRecipe> recipes) {
+		return stat -> {
+			stat.row();
+			stat.table(t -> {
+				for (PayloadRecipe recipe : recipes) t.table(((TextureRegionDrawable) Tex.whiteui).tint(Pal.darkestGray), table -> {
+					table.table(Styles.black3, input -> {
+						if (recipe.input != null) {
+							input.image(recipe.input.uiIcon).size(48).pad(10).row();
+							input.image(Icon.down).pad(5).row();
+						}
+						input.image(recipe.output.uiIcon).size(48).pad(10);
+					});
+
+					table.table(stat -> {
+						stat.table(Tex.underline, name -> {
+							name.add(recipe.output.localizedName).row();
+						}).row();
+
+						if (recipe.requirements.length != 0) {
+							stat.table(input -> {
+								input.add(Core.bundle.get("stat.input") + ":");
+								input.table(items -> {
+									int i = 0;
+									for (ItemStack stack : recipe.requirements) {
+										items.add(new ItemImage(stack)).pad(5);
+										if (i++ % 4 == 0) items.row();
+									}
+								}); 
+							}).left().row();	
+						}
+				
+						stat.table(craft -> {
+							craft.add(Core.bundle.get("stat.productiontime") + ": ");
+							craft.add(StatValues.fixValue(time)).color(Color.gray);
+						}).left().row();
+					}).top().pad(10);
+				});
+			}).pad(5);
+		};
+	}
 }
