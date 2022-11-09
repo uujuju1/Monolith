@@ -21,9 +21,10 @@ import mindustry.world.meta.*;
 import mindustry.world.blocks.*;
 import mindustry.world.consumers.*;
 import mindustry.world.blocks.payloads.*;
+import flow.world.meta.*;
 
 public class PayloadCrafter extends PayloadBlock {
-	public Seq<Recipe> recipes = new Seq<>();
+	public Seq<PayloadRecipe> recipes = new Seq<>();
 	public Effect 
 	craftEffect = Fx.none,
 	updateEffect = Fx.none;
@@ -78,18 +79,19 @@ public class PayloadCrafter extends PayloadBlock {
 
 		@Override
 		public void buildConfiguration(Table table) {
-			Seq<Block> blocks = Seq.with(plans).map(r -> r.output).filter(b -> b.unlockedNow());
+			Seq<Block> blocks = Seq.with(recipes).map(r -> r.output).filter(b -> b.unlockedNow());
 
 			if (blocks.any()) {
-				ItemSelection.buildTable(PayloadCrafter.this, table, blocks, () -> getRecipe() == null ? null : getRecipe().output, block -> currentPlan = plans.indexOf(r -> r.output == block));
+				ItemSelection.buildTable(PayloadCrafter.this, table, blocks, () -> getRecipe() == null ? null : getRecipe().output, block -> currentPlan = recipes.indexOf(r -> r.output == block));
 			} else {
 				table.table(Styles.black3, t -> t.add("").color(Color.lightGray));
 			}
 		}
 
 		@Override
-		public boolean acceptItem(Building source, Item item){
-			return currentPlan != -1 && items.get(item) < getMaximumAccepted(item) &&	Structs.contains(plans.get(currentPlan).requirements, stack -> stack.item == item);
+		public boolean acceptItem(Building source, Item item) {
+			if (getRecipe() != null) return false;
+			return Structs.contains(getRecipe().requirements, stack -> stack.item == item && items.get(item) < stack.amount * 2);
 		}
 
 		@Override
@@ -113,7 +115,7 @@ public class PayloadCrafter extends PayloadBlock {
 		@Override
 		public void updateTile() {
 			if (efficiency > 0)  {
-				warmup = Mathf.approachDelta(warmup, 1f, getRecipe().warmupSpeed);
+				warmup = Mathf.approachDelta(warmup, 1f, 0.016f);
 				progress += getProgressIncrease(getRecipe().craftTime) * warmup;
 				totalProgress += edelta() * warmup;
 

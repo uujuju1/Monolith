@@ -38,7 +38,7 @@ public class MultiCrafter extends Block {
 	@Override
 	public void setStats() {
 		super.setStats();
-		stats.add(Stat.output, MonolithStatValues.itemRecipe(recipes));
+		stats.add(Stat.output, FLowStatValues.itemRecipe(recipes));
 	}
 
 	@Override

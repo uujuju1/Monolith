@@ -28,7 +28,7 @@ public class FlowCrafting {
 				Items.silicon, 150,
 				Items.plastanium, 80,
 				Items.graphite, 145,
-				Items.chromium, 120
+				FlowItems.chromium, 120
 			));
 			size = 3;
 			health = 200;

@@ -13,10 +13,11 @@ import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 import flow.world.blocks.production.MultiCrafter.ItemRecipe;
+import flow.world.blocks.payload.PayloadCrafter.PayloadRecipe;
 
 import static mindustry.world.meta.StatValues.*;
 
-public class MonolithStatValues {
+public class FlowStatValues {
 	public static StatValue itemRecipe(Seq<ItemRecipe> recipes) {
 		return stat -> {
 			stat.row();
@@ -69,13 +70,13 @@ public class MonolithStatValues {
 						input.image(recipe.output.uiIcon).size(48).pad(10);
 					});
 
-					table.table(stat -> {
-						stat.table(Tex.underline, name -> {
+					table.table(stats -> {
+						stats.table(Tex.underline, name -> {
 							name.add(recipe.output.localizedName).row();
 						}).row();
 
 						if (recipe.requirements.length != 0) {
-							stat.table(input -> {
+							stats.table(input -> {
 								input.add(Core.bundle.get("stat.input") + ":");
 								input.table(items -> {
 									int i = 0;
@@ -87,9 +88,9 @@ public class MonolithStatValues {
 							}).left().row();	
 						}
 				
-						stat.table(craft -> {
+						stats.table(craft -> {
 							craft.add(Core.bundle.get("stat.productiontime") + ": ");
-							craft.add(StatValues.fixValue(time)).color(Color.gray);
+							craft.add(StatValues.fixValue(recipe.craftTime)).color(Color.gray);
 						}).left().row();
 					}).top().pad(10);
 				});
