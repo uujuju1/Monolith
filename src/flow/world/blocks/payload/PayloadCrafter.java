@@ -54,12 +54,12 @@ public class PayloadCrafter extends PayloadBlock {
 		public ItemStack[] requirements = ItemStack.empty;
 		public float craftTime = 60f;
 
-		public Recipe(Block output, ItemStack[] requirements, float craftTime) {
+		public PayloadRecipe(Block output, ItemStack[] requirements, float craftTime) {
 			this.output = output;
 			this.requirements = requirements;
 			this.craftTime = craftTime;
 		}
-		public Recipe(Block input, Block output, ItemStack[] requirements, float craftTime) {
+		public PayloadRecipe(Block input, Block output, ItemStack[] requirements, float craftTime) {
 			this.output = output;
 			this.requirements = requirements;
 			this.craftTime = craftTime;
