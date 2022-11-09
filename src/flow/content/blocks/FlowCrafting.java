@@ -37,7 +37,7 @@ public class FlowCrafting {
 				new PayloadRecipe(Blocks.titaniumWallLarge, with(Items.titanium, 18), 200f),
 				new PayloadRecipe(Blocks.plastaniumWallLarge, with(Items.plastanium, 12, Items.metaglass, 6), 220f),
 				new PayloadRecipe(Blocks.thoriumWallLarge, with(Items.thorium, 18), 240f),
-				new PayloadRecipe(Blocks.surgeWallLarge, with(Items.surgeAlloy, 18,) 26f0)
+				new PayloadRecipe(Blocks.surgeWallLarge, with(Items.surgeAlloy, 18), 260f)
 			);
 			updateEffect = Fx.smoke;
 			consumePower(3f);
