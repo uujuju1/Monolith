@@ -73,10 +73,6 @@ public class PayloadCrafter extends PayloadBlock {
 
 		public PayloadRecipe getRecipe() {return currentPlan == -1 ? null : recipes.get(currentPlan);}
 
-		public float currentTime() {
-			return currentPlan == -1 ? 0f : recipes.get(currentPlan).craftTime;
-		}
-
 		@Override
 		public void buildConfiguration(Table table) {
 			Seq<Block> blocks = Seq.with(recipes).map(r -> r.output).filter(b -> b.unlockedNow());
@@ -90,7 +86,7 @@ public class PayloadCrafter extends PayloadBlock {
 
 		@Override
 		public boolean acceptItem(Building source, Item item) {
-			if (getRecipe() != null) return false;
+			if (getRecipe() == null) return false;
 			return Structs.contains(getRecipe().requirements, stack -> stack.item == item && items.get(item) < stack.amount * 2);
 		}
 
