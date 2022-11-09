@@ -74,7 +74,7 @@ public class PayloadCrafter extends PayloadBlock {
 		public PayloadRecipe getRecipe() {return currentPlan == -1 ? null : recipes.get(currentPlan);}
 
 		public float currentTime() {
-			return currentPlan == -1 ? 0f : plans.get(currentPlan).craftTime;
+			return currentPlan == -1 ? 0f : recipes.get(currentPlan).craftTime;
 		}
 
 		@Override
