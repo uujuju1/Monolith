@@ -50,8 +50,19 @@ public class ModularPlanetGenerator extends PlanetGenerator {
 	}
 
 	public void passOres() {
+		Seq<Block> ores = getBiome(sector.tile.v).ores;
 		pass((x, y) -> {
-			for (Block newore : gen.getBiome(gen.sector().tile.v).ores) if (tnoise(x + 999)) ore = newore;
+			if(!floor.asFloor().hasSurface()) return;
+
+			int offsetX = x - 4, offsetY = y + 23;
+			for(int i = ores.size - 1; i >= 0; i--){
+				Block entry = ores.get(i);
+				if(Math.abs(0.5f - noise(offsetX, offsetY + i*999, 2, 0.7, (40 + i * 2))) > 0.26f &&
+					Math.abs(0.5f - noise(offsetX, offsetY - i*999, 1, 1, (30 + i * 4))) > 0.37f){
+					ore = entry;
+					break;
+				}
+			}
 		});
 	}
 
