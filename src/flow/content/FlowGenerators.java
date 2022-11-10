@@ -69,9 +69,7 @@ public class FlowGenerators {
 		}
 
 		gen.pass((x, y) -> {if (gen.tnoise(x + 999, y, 3, 0.5, 10) > 0.7f && craters.get(gen.floor()) != null) gen.setFloor(craters.get(gen.floor()));});
-		gen.pass((x, y) -> {
-			for (Block ore : gen.getBiome(gen.sector().tile.v).ores) gen.setOre(ore);
-		});
+		gen.pass((x, y) -> gen.setOre(Blocks.oreCopper));
 
 		gen.distort(165f, 60f);
 		gen.distort(73f, 27f);

@@ -49,6 +49,12 @@ public class ModularPlanetGenerator extends PlanetGenerator {
 		return res;
 	}
 
+	public void passOres() {
+		pass((x, y) -> {
+			for (Block newore : gen.getBiome(gen.sector().tile.v).ores) if (tnoise(x + 999)) ore = newore;
+		});
+	}
+
 	public class Biome {
 		// array tileset, i reccomend 10 - 13 blocks here
 		public Block[] heightMap;

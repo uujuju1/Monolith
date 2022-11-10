@@ -104,7 +104,8 @@ public class PayloadCrafter extends PayloadBlock {
 		@Override
 		public boolean shouldConsume() {
 			if (getRecipe() == null) return false;
-			if (getRecipe().input != null && payload != null) if (((BuildPayload) payload).build.block != getRecipe().input) return false; 
+			if (getRecipe().input != null && payload != null) if (((BuildPayload) payload).build.block != getRecipe().input) return false;
+			if (payload != null) if ((((BuildPayload) payload).build.block == getRecipe().output)) return false;
 			return enabled;
 		}
 
